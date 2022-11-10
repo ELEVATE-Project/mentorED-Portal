@@ -4,10 +4,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { DynamicFormComponent } from './components';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
-    DynamicFormComponent
+    DynamicFormComponent,
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,23 @@
+.header-content{
+    border-radius: 2rem;
+    justify-content: center;
+    display: flex;
+    background-color: salmon;
+    height: 5rem;
+    width: 60rem;
+    margin: auto;
+    align-self: center;
+    border-bottom-right-radius: 0%;
+    border-bottom-left-radius: 0%;
+    margin-top: 5rem;
+    // button.active { background-color: maroon;}
+}
+button{
+    margin-top: 1.5rem;
+    margin-inline: .5rem;
+    justify-content: center;
+    border-radius: .5rem;
+    font-weight: bolder;
+    max-height: 2rem;
+    min-width: 11rem;
+}
