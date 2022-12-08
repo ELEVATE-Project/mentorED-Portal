@@ -32,8 +32,28 @@ $mentorEd-portal-theme: mat.define-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($mentorEd-portal-theme);
-
+@import "../src/variables";
 /* You can add global styles to this file, and also import other style files */
 @import "~ng-pick-datetime/assets/style/picker.min.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-snack-bar-container{
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 60px !important;
+  font-weight: 500 !important;
+}
+.cdk-overlay-pane {
+  width: 100% !important;
+  justify-content: end !important;
+}
+.snack-bar-success {
+  margin: 102px 0px 0px 0px!important;
+  color: $white !important;
+  background-color: $green !important;
+}
+.snack-bar-danger {
+  margin: 102px 0px 0px 0px!important;
+  color: $white !important;
+  background-color: $red !important;
+}
