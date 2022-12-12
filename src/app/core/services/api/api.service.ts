@@ -7,7 +7,7 @@ import { API_CONSTANTS } from '../../constants/apiUrlConstants';
 import { localKeys } from '../../constants/localStorage.keys';
 import { HttpOptions } from '../../interfaces/httpOptions';
 import { LocalStorageService } from '../local-storage/local-storage.service';
-import { ToastService } from '../toast.service';
+import { ToastService } from '../toast/toast.service';
 import { UserService } from '../user/user.service';
 
 @Injectable({

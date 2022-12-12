@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/core/services/auth/auth.service";
 import { LocalStorageService } from "src/app/core/services/local-storage/local-storage.service";
 import { ProfileService } from "src/app/core/services/profile/profile.service";
-import { ToastService } from "src/app/core/services/toast.service";
+import { ToastService } from "src/app/core/services/toast/toast.service";
 import { CountdownTimerComponent } from "src/app/shared/components";
 
 @Component({

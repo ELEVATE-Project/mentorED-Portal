@@ -6,7 +6,8 @@ import { API_CONSTANTS } from '../../constants/apiUrlConstants';
 import { localKeys } from '../../constants/localStorage.keys';
 import { ApiService } from '../api/api.service';
 import { LocalStorageService } from '../local-storage/local-storage.service';
-import { ToastService } from '../toast.service';
+import { ProfileService } from '../profile/profile.service';
+import { ToastService } from '../toast/toast.service';
 import { UserService } from '../user/user.service';
 
 @Injectable({
@@ -19,7 +20,8 @@ export class AuthService {
     private userService: UserService,
     private toastService:ToastService,
     private localStorage: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private profile: ProfileService
     ) { }
 
     async createAccount(formData: any) {
@@ -37,17 +39,15 @@ export class AuthService {
       )
     }
 
-  async loginAccount(formData: any){
+  loginAccount(formData: any){
     const config = {
       url: API_CONSTANTS.ACCOUNT_LOGIN,
       payload: formData
     };
     return this.apiService.post(config).pipe(
-      map((result:any) => {
+      map(async (result:any) => {
         this.toastService.showMessage(result.message, 'success');
-        this.setUserInLocal(result).then(()=>{
-          return result;
-        })
+        return await this.setUserInLocal(result);
       })
     )
   }
@@ -66,6 +66,7 @@ export class AuthService {
     await this.localStorage.saveLocalData(localKeys.TOKEN, JSON.stringify(token));
     await this.localStorage.saveLocalData(localKeys.USER_DETAILS, JSON.stringify(data.result.user));
     await this.localStorage.saveLocalData(localKeys.SELECTED_LANGUAGE, data.result.user.preferredLanguage);
+    this.profile.getProfileDetailsAPI();
     return true;
   }
 }

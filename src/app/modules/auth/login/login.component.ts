@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
-import { ToastService } from 'src/app/core/services/toast.service';
+import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { DynamicFormComponent } from 'src/app/shared/components';
 
 @Component({
@@ -66,13 +66,13 @@ export class LoginComponent implements OnInit {
 
   }
 
-  async onSubmit() {
-    (await this.authService.loginAccount(this.loginForm.myForm.value)).subscribe(async (response: any) => {
+  onSubmit() {
+    this.authService.loginAccount(this.loginForm.myForm.value).subscribe(async (response: any) => {
       if (this.rememberMe) {
         this.localStorage.saveLocalData(localKeys.REMEMBER_ME, btoa(JSON.stringify(this.loginForm.myForm.value)))
       }
       this.router.navigate(['/home']);
-        })
+    })
 
   }
 }

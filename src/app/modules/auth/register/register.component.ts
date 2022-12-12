@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { createSecureServer } from 'http2';
 import * as _ from 'lodash';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
-import { ToastService } from 'src/app/core/services/toast.service';
+import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { DynamicFormComponent } from 'src/app/shared/components';
 import { TranslateService } from '@ngx-translate/core'
 
