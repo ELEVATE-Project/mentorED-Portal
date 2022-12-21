@@ -1,9 +1,7 @@
 <div class="created-session-container" fxLayout="column" fxLayoutAlign="center">
     <div class="created-sessions" fxLayout="column">
-
         <div class="create-new-session-container" fxLayout="column" fxLayoutAlign="center">
             <app-no-data-found [data]="noData" *ngIf="!upcomingCardDetails?.length && !pastCardDetails?.length && !loading" fxLayoutAlign="center"></app-no-data-found>
-
             <h3 class="create-new-session-text" *ngIf="upcomingCardDetails?.length || pastCardDetails?.length">{{"CREATE_NEW_SESSION" | translate}}</h3>
             <div fxFlex="50%" fxLayout="row" fxLayoutAlign="center">
                 <button class="create-session-button" mat-button fxLayout="row">
@@ -35,7 +33,7 @@
                     <div fxLayout="row wrap" fxLayoutGap="20px grid">
                         <div *ngFor='let item of pastCardDetails| slice:start:lastIndexPastSessions' fxFlex="50%"
                             fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="50%">
-                            <app-session-card [cardData]="item"></app-session-card>
+                            <app-session-card [cardData]="item" [status]="status"></app-session-card>
                         </div>
                     </div>
                     <div fxFlex="50%" fxLayoutAlign="center" class="view-more-button-container">
@@ -45,7 +43,5 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>

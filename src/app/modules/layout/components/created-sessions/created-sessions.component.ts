@@ -59,7 +59,7 @@ export class CreatedSessionsComponent implements OnInit {
 
   getpastSessions() {
     const config = {
-      url: API_CONSTANTS.GET_SESSIONS_LIST + this.status + "?page=1&limit=100",
+      url: API_CONSTANTS.GET_SESSIONS_LIST + this.status + "1&limit=100",
       payload: {}
     };
     this.loading = true;

@@ -1,20 +1,16 @@
 <mat-card class="card-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
-
     <div class="card-images" fxFlex="40%">
         <div class="image"
             [ngStyle]="{'background-image':(cardData.image && cardData.image.length) ? 'url(' + cardData.image + ')' : 'url(\'/assets/images/session-default-img.png\')' }">
         </div>
     </div>
     <div fxFlex="100%" class="card-details" fxLayout="column" fxLayoutGap="10px">
-
         <p class="card-detail-bold">{{cardData.title | titlecase}}</p>
-
         <p class="card-detail-bold">{{cardData.mentorName | titlecase}}</p>
         <div>
             <div class="card-session-date" fxLayout="row">
                 <mat-icon>event</mat-icon>
                 <p>Session date: {{cardData.startDate | date:'shortDate'}}</p>
-
             </div>
             <div class="card-session-time" fxLayout="row">
                 <mat-icon>alarm</mat-icon>
@@ -23,10 +19,8 @@
         </div>
         <div class="sub-card-details" fxLayout="row">
             <p class="sub-card-view-details">View details</p>
-            <button *ngIf="cardData?.status != 'completed'" class="sub-card-details-button" mat-raised-button
+            <button *ngIf="status != 'completed'" class="sub-card-details-button" mat-raised-button
                 color="primary">{{ buttonConfig?.label | translate}}</button>
         </div>
-
     </div>
-
 </mat-card>
