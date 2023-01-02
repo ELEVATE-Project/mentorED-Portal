@@ -34,13 +34,18 @@ export class CreateSessionComponent implements OnInit {
     })
   }
 
-  ImageUploadEvent(event: any) {
-    this.localImage = event.target.files[0];
-    var reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (file: any) => {
-      this.imgData.image = file.target.result
-      this.imgData.isUploaded = false;
+  imageEvent(event: any) {
+    if(event){
+      this.localImage = event.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (file: any) => {
+        this.imgData.image = file.target.result
+        this.imgData.isUploaded = false;
+      }
+    } else {
+      this.localImage = this.imgData.image = '';
+      this.imgData.isUploaded = true;
     }
   }
 

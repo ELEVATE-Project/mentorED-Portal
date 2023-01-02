@@ -1,12 +1,12 @@
 <div class="container" fxLayoutAlign="center space-between" fxLayout="column">
     <div fxLayoutAlign="center">
-        <img class="image" [src]="imgData?.image || defaultImg" alt="">
+        <img class="image" [ngClass]="{'round-image':imgData?.image}" [src]="imgData?.image || defaultImg" alt="">
     </div>
     <div fxLayout="row" fxFlexOffset="15px" fxLayoutAlign="center center">
         <div fxLayout="column" fxFlex="30" fxFlex.sm="40" fxFlex.xs="55" fxLayoutGap="20" fxLayoutAlign="center center">
             <input type="file" (change)="imageUpload($event)" #fileUpload hidden>
             <button mat-raised-button class="button-shadow" color="primary" (click)="fileUpload.click()">{{"ADD_IMAGE" | translate}}</button>
-            <button mat-raised-button class="button-shadow" color="primary" [disabled]="!imgData?.image">{{"REMOVE_IMAGE" |
+            <button mat-raised-button class="button-shadow" color="primary" [disabled]="!imgData?.image" (click)="imageRemove()">{{"REMOVE_IMAGE" |
                 translate}}</button>
         </div>
     </div>

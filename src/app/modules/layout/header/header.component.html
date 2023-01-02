@@ -66,8 +66,9 @@
           class="options"
           fxFlex
           fxFlexAlign="center"
-          [(value)]="selectedLanguage"
+          [(ngModel)]="selectedLanguage"
           selectedLanguage="en"
+          (selectionChange)="languageEvent()"
         >
           <mat-option [value]="option.value" *ngFor="let option of options">
             {{ option.label }}

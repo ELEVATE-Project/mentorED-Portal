@@ -1,9 +1,9 @@
 import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import * as _ from 'lodash';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { API_CONSTANTS } from 'src/app/core/constants/apiUrlConstants';
 import { EDIT_PROFILE_FORM } from 'src/app/core/constants/formConstant';
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/core/services';
 import { FormService } from 'src/app/core/services/form/form.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
-import { DynamicFormComponent, DynamicFormData } from 'src/app/shared';
+import { DynamicFormComponent } from 'src/app/shared';
 import { ExitPopupComponent } from 'src/app/shared/components/exit-popup/exit-popup.component';
 import { CanLeave } from '../../../../core/interfaces/canLeave';
 @Component({
@@ -20,7 +20,6 @@ import { CanLeave } from '../../../../core/interfaces/canLeave';
   styleUrls: ['./edit-profile.component.scss'],
 })
 export class EditProfileComponent implements OnInit, CanLeave {
-  private win: any = window;
   @ViewChild('editProfile') editProfile: DynamicFormComponent;
   imgData = {
     type: 'profile',
@@ -84,18 +83,29 @@ export class EditProfileComponent implements OnInit, CanLeave {
   upload(file: any, path: any) {
     const imageForm = new FormData();
     imageForm.append('image', file);
+    var options = {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      },
+    };
     return this.http.put(path.signedUrl, imageForm);
   }
 
-  ImageUploadEvent(event: any) {
-    this.localImage = event.target.files[0];
-    var reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (file: any) => {
-      this.imgData.image = file.target.result
-      this.imgData.isUploaded = false;
+  imageEvent(event: any) {
+    if(event){
+      this.localImage = event.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (file: any) => {
+        this.imgData.image = file.target.result
+        this.imgData.isUploaded = false;
+      }
+    } else {
+      this.localImage = this.imgData.image = '';
+      this.imgData.isUploaded = true;
     }
   }
+
   preFillData(existingData: any) {
     this.imgData.image = (existingData['image']) ? existingData['image'] : '';
     for (let i = 0; i < this.formData.controls.length; i++) {

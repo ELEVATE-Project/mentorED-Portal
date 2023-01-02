@@ -69,3 +69,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: $black;
   letter-spacing: .3px;
 }
+.mat-badge-content {
+  min-width: 45px !important;
+  max-height: 20px !important;
+  border-radius: 0px !important;
+  margin-top: 10px;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  background-color: $light-blue !important;
+}

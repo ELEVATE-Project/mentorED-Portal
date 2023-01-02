@@ -2,7 +2,7 @@
   <div>
     <ng-template [ngIf]="details.data.image" [ngIfElse]="loggedOut">
       <div>
-        <img  class="image" [src]="details?.data?.image" alt="profilepic" />
+        <img class="image" [ngClass]="{'round-image':details?.data?.image}" [src]="details?.data?.image" alt="profilepic" />
       </div>
     </ng-template>
     
@@ -23,13 +23,12 @@
     <div class="inline-label">{{ location?.label }}</div>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-around center" class="title" *ngIf="details?.data?.isAMentor">
-    <mat-icon class="star-icon">grade</mat-icon>
-
-    <div *ngIf="details?.data?.isAMentor" class="inline-label">
-      {{ details?.data?.rating?.average + '  ' }}({{
+    <mat-icon *ngIf="details?.data?.rating?.average" class="star-icon">grade</mat-icon>
+    <label class="inline-label">
+      <span *ngIf="details?.data?.rating?.average">{{ details?.data?.rating?.average + '  ' }}</span>({{
         details?.data?.sessionsHosted + ('SESSIONS' | translate)
       }})
-    </div>
+    </label>
     
   </div>
   <div *ngIf="!details?.data?.isAMentor" fxLayout="row" fxLayoutAlign="space-around center" class="title">

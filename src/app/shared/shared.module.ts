@@ -31,6 +31,7 @@ import { MatMenuModule} from '@angular/material/menu';
 import { GenericDetailsComponent } from './components/generic-details/generic-details.component';
 import { InputDialogueBoxComponent } from './components/dialogue-box/dialogue-box.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsModule,
     MatMenuModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatBadgeModule
   ],
   exports: [
     MatButtonModule,
@@ -98,7 +100,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatMenuModule,
     GenericDetailsComponent,
     ProfileHeaderComponent,
-    MatDialogModule
+    MatDialogModule,
+    MatBadgeModule
   ]
 })
 export class SharedModule { }

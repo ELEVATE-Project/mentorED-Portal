@@ -1,8 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
-import { localKeys } from 'src/app/core/constants/localStorage.keys'
-import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service'
-import { TranslateService } from '@ngx-translate/core'
-import { UserService } from 'src/app/core/services/user/user.service'
 
 @Component({
   selector: 'app-session-card',
@@ -15,11 +11,7 @@ export class SessionCardComponent implements OnInit {
   @Output() buttonClick = new EventEmitter()
   buttonConfig: any
   userData: any
-  constructor(
-    private localStorage: LocalStorageService,
-    private translate: TranslateService,
-    private userService:UserService
-  ) {}
+  constructor() {}
 
   async ngOnInit() {
     this.setButtonConfig(this.isCreator)

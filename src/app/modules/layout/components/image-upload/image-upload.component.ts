@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ImageUploadComponent implements OnInit {
   @Input() imgData: any;
-  @Output() imageUploadEvent = new EventEmitter();
+  @Output() imageEvent = new EventEmitter();
   defaultImg: any;
 
   constructor() { }
@@ -23,6 +23,9 @@ export class ImageUploadComponent implements OnInit {
     }
   }
   imageUpload(event: Event): void {
-    this.imageUploadEvent.emit(event)
+    this.imageEvent.emit(event)
+  }
+  imageRemove(){
+    this.imageEvent.emit()
   }
 }
