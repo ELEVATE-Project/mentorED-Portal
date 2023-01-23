@@ -12,13 +12,13 @@
           (click)="onSubmit()" fxFlex="100">
           {{ "LOGIN" | translate }}
         </button>
-        <div  fxLayout="row" fxLayoutAlign="space-between" class="wrapper" >
+        <div fxLayout="row" fxLayoutAlign="space-between" class="wrapper">
           <mat-checkbox class="remember-me" [(ngModel)]="rememberMe">
             {{"REMEMBER_ME" | translate}}
           </mat-checkbox>
-          <a href="https://www.google.com/"  class="forgot-password">{{
-          "FORGOT_PASSWORD" | translate
-          }}</a>
+          <a routerLink="/auth/forgotPassword" class="forgot-password">{{
+            "FORGOT_PASSWORD" | translate
+            }}</a>
         </div>
       </div>
     </div>
@@ -38,7 +38,8 @@
       </div>
     </div>
     <div fxLayout="row" fxLayoutAlign="center">
-      <button fxFlex="50" fxFlex.sm="80" fxFlex.xs="95" class="btn-signup" mat-raised-button color="primary" routerLink="/auth/role-selection">
+      <button fxFlex="50" fxFlex.sm="80" fxFlex.xs="95" class="btn-signup" mat-raised-button color="primary"
+        routerLink="/auth/role-selection">
         {{ "SIGN_UP" | translate }}
       </button>
     </div>

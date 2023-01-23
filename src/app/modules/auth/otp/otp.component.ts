@@ -1,5 +1,5 @@
 import { Location } from "@angular/common";
-import { Component, OnInit, ViewChild} from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/core/services/auth/auth.service";
 import { LocalStorageService } from "src/app/core/services/local-storage/local-storage.service";
@@ -36,7 +36,8 @@ export class OtpComponent implements OnInit {
   resetPasswordData : any;
   signupData: any;
   enableResendOtp: boolean = false;
-
+  forgotPasswordData: any;
+  otp: any;
 
   constructor(
     private authService: AuthService,
@@ -51,18 +52,28 @@ export class OtpComponent implements OnInit {
     if(!this.router.getCurrentNavigation()?.extras.state){
       this.location.back();
     }
-    this.signupData = this.router.getCurrentNavigation()?.extras.state;
+    this.signupData = !this.router.getCurrentNavigation()?.extras.state;
+    this.forgotPasswordData = this.router.getCurrentNavigation()?.extras.state;
+
   }
 
   ngOnInit(): void {}
 
   async onSubmit() {
-    this.signupData.formData.otp = this.otpFormRef.myForm.value.otp;
-    (await this.authService.createAccount(this.signupData.formData)).subscribe(async (response: any) => {
-      this.router.navigate(['/home']);
-        })
+    if ( this.signupData) {
+      this.signupData.formData.otp = this.otpFormRef.myForm.value.otp;
+      (await this.authService.createAccount(this.signupData.formData)).subscribe(async (response: any) => {
+        this.router.navigate(['/home']);
+      })
   }
-  
+    else{
+      this.forgotPasswordData.formData.otp = this.otpFormRef.myForm.value.otp;
+      (await this.profileService.updatePassword(this.forgotPasswordData.formData)).subscribe(async (response: any) => {
+        this.router.navigate(['/home']);
+      })
+    }
+  }
+
   async resendOTP() {
     this.timerRef.startCountdown();
     this.enableResendOtp = false;
@@ -71,8 +82,8 @@ export class OtpComponent implements OnInit {
       }))
     }else{
       this.profileService.generateOtp({ email: this.signupData.formData.email, password:  this.signupData.formData.password})
-      .subscribe((response => {
-      }))
+        .subscribe((response => {
+        }))
     }
   }
   timerEvent(){

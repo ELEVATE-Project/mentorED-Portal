@@ -97,5 +97,7 @@
     "IMAGE_REMOVED_SUCCESSFULLY": "Image removed successfully",
     "FORMAT_IS_WRONG": "Uploaded file format is invalid",
     "WHO_IS_THIS_SESSION_FOR": "Who is this session for?",
-    "LANGUAGES": "Languages"
+    "LANGUAGES": "Languages",
+    "CREATE_NEW_PASSWORD": "Create New Password",
+    "RESET_PASSWORD": "Reset Password" 
 }
