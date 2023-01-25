@@ -13,9 +13,6 @@ import { RoleSelectionComponent } from './role-selection/role-selection.componen
 import { FlexLayoutModule } from '@angular/flex-layout'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDividerModule} from '@angular/material/divider';
-import { MatInputModule } from '@angular/material/input';
-import { MatInput } from '@angular/material/input';
-//import { MatFormField } from '@angular/material/form-field';
 
 import { MatCardModule } from '@angular/material/card';
 import { OtpComponent } from './otp/otp.component';
@@ -34,8 +31,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     AuthRoutingModule,
     MatToolbarModule,
     MatIconModule,
-    MatInputModule,
-    //MatFormField,
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
