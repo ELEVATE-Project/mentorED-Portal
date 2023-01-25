@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/core/services';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
 import { DynamicFormComponent } from 'src/app/shared/components/dynamic-form/dynamic-form.component';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-forgot-password',
@@ -61,7 +62,8 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(private router: Router,
     private profileService: ProfileService,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private translate: TranslateService) { }
   ngOnInit(): void { }
 
   resetPassword() {
@@ -74,7 +76,7 @@ export class ForgotPasswordComponent implements OnInit {
           }
         })
       } else {
-        this.toastService.showMessage('Please enter the same password', 'warning');
+        this.toastService.showMessage(this.translate.get('PLEASE_ENTER_THE_SAME_PASSWORD'), 'warning')
       }
     }
   }
