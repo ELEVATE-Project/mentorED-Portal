@@ -81,7 +81,6 @@ export class ProfileService {
       url: API_CONSTANTS.PROFILE_UPDATE,
       payload: formData,
     };
-  
     return this.apiService.post(config).pipe(
       map((response: any) => {
         (showToast)?this.toastService.showMessage(response.message,'success'):'';
@@ -89,7 +88,7 @@ export class ProfileService {
            return this.getProfileDetailsWithRole(JSON.parse(user)._id,JSON.parse(user).isAMentor).subscribe((user)=>{
             this._location.back();
           })
-        });
+      });
         return response;
       })
     );
@@ -130,5 +129,4 @@ export class ProfileService {
       })
     );
   }
-
 }
