@@ -179,9 +179,9 @@
                     {{control?.errorMessage}}
                 </mat-error>
             </mat-form-field> 
+
             <mat-form-field *ngIf="control?.type==='date'" [appearance]="uiConfig.appearance" [floatLabel]='uiConfig.floatLabel'>
                 <mat-label [ngClass]="{'large':uiConfig.appearance=='fill'}">{{control?.label}}</mat-label>
-               
                <input class="date-input" matInput autocomplete="off"
                     #date
                     [ngClass]="{'field-large':uiConfig.appearance=='fill'}"
