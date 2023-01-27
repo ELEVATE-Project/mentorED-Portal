@@ -87,7 +87,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   }
   getImageUploadUrl(file: any) {
     let config = {
-      url: API_CONSTANTS.GET_IMAGE_UPLOAD_URL + file.name.replaceAll(/\s/g,'').toLowerCase()
+      url: API_CONSTANTS.GET_IMAGE_UPLOAD_URL + file.name.replace(/[^A-Z0-9]+/ig, "_").toLowerCase()
     }
     return this.apiService.get(config).pipe(
       map((result: any) => {

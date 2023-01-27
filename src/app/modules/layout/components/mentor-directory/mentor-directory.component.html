@@ -1,1 +1,10 @@
-<p>mentor-directory works!</p>
+  <div *ngFor="let mentor of mentors" fxLayout="column" >
+        <div fxLayout="row wrap"  class="mentor-card-conatiner"  fxLayoutGap="20px grid">
+            <div *ngFor="let value of mentor.values" fxFlex="33.3%" fxFlex.xs="100%" fxFlex.sm="50%"
+            fxFlex.md="33.3%">
+                <app-mentor-card [cardData]="value" (onClickEvent)="eventAction($event)"></app-mentor-card>
+            </div>
+        </div>
+       
+      </div>
+

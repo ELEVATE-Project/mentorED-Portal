@@ -39,7 +39,7 @@ export class ProfilePageComponent implements OnInit {
     menteeForm: ['SESSIONS_ATTENDED'],
     data: {},
   };
-
+  layoutAlign:any='center center';
   constructor(private router: Router, private profileService: ProfileService) { }
 
   ngOnInit(): void {

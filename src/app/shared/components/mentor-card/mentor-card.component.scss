@@ -1,0 +1,56 @@
+@import "../../../../variables";
+.image {
+    width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.mat-card-container{
+    height: 200px;
+}
+.vertical-line{
+    border-left: 1px solid $black;
+}
+.view-button{
+    float: right;
+    border-radius: 100px;
+}
+.mentor-name{
+    font-size: medium;
+    font-weight: 500;
+}
+.mentor-designation{
+    font-size: small;
+}
+.session-font{
+    font-size: small;
+}
+.star-icon{
+    color: gold;;
+}
+.round-image {
+    border-radius: 100px;
+}
+.card-details{
+    width: 100%;
+}
+
+::ng-deep .mat-card{
+    padding: 10px !important;
+}
+.text-ellipse{
+    max-width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    
+}
+.about-container{
+    display: -webkit-box;
+    max-width: 200px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

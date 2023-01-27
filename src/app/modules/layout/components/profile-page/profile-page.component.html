@@ -1,11 +1,11 @@
 <div *ngIf="details" fxLayoutAlign="center">
   <mat-card fxFlex="55%" fxFlex.xs="98%" fxFlex.sm="80%" class="card" fxLayout="column" fxLayoutAlign="center">
     
-    <app-profile-header [details]="details"></app-profile-header>
+    <app-profile-header [details]="details"  [layoutAlign]= "layoutAlign"></app-profile-header>
 
     <span layout="row"><hr flex /></span>
-    <mat-card-content>
-      <app-generic-details [details]="details"></app-generic-details>
+    <mat-card-content fxLayoutAlign="center center">
+      <app-generic-details [details]="details" [layoutAlign]= "layoutAlign"></app-generic-details>
     </mat-card-content>
   </mat-card>
 </div>

@@ -12,8 +12,9 @@
             [removable]="control?.removable"
             [value]="chip.value"
             (click)="onChipClick(chip)"
-            [selected]="this.selectedChips.has(chip)">
-            <div class="chip">
+            [selected]="this.selectedChips.has(chip)"
+            class="mat-chip-container">
+            <div class="chip" fxFlex="100">
                 {{chip?.label}}
             </div>
             <mat-icon 

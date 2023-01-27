@@ -1,0 +1,13 @@
+<div *ngIf="details" fxLayoutAlign="center" class="mentor-profile-container">
+    <mat-card class="card" fxLayout="row" fxFlex="80%">
+      <div fxFlex="30%" class="profile-header-conatiner" fxLayoutAlign="left">
+        <app-profile-header  [details]="details"></app-profile-header>
+      </div>
+  
+      <div class="vertical-line"></div>
+     
+        <div fxFlex="70%"  class="profile-details-conatiner"> 
+          <app-generic-details  [details]="details" [layoutAlign]="layout"></app-generic-details>
+        </div>
+    </mat-card>
+  </div>

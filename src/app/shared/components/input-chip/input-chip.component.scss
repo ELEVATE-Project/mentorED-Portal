@@ -6,7 +6,6 @@ mat-chip.mat-standard-chip::after {
 .chip {
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 mat-chip {
     border: 1px solid $theme;
@@ -42,3 +41,12 @@ input {
   .wrapper {
     margin-top: 15px;
   }
+.mat-chip-container {
+    max-width: 100%;
+}
+.mat-chip-remove.mat-icon{
+    width: 25px !important;
+}
+::ng-deep .mat-chip-list-wrapper {
+    justify-content: left;
+}

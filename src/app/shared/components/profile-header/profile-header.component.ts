@@ -9,11 +9,19 @@ import { Router } from '@angular/router';
 })
 export class ProfileHeaderComponent implements OnInit {
   @Input() details: any
-  constructor(private translate:TranslateService,private router: Router) { }
+  @Input() layoutAlign: any
+  selectedPage:any
+  mentorDirectory:any=false;
+  constructor(private translate:TranslateService,private router: Router) { 
+    this.selectedPage = router.url
+  }
   public isArray(arr:any ) {
     return Array.isArray(arr)
  }
   ngOnInit(): void {
+   if(this.selectedPage == '/mentor-profile'){
+      this.mentorDirectory = true
+    }
   }
   editProfile(){
     this.router.navigate(["./edit-profile"])

@@ -1,17 +1,15 @@
-<div *ngFor="let detail of details?.form" fxLayoutAlign="center center" fxLayout="column" class="data"
+<div *ngFor="let detail of details?.form" [fxLayoutAlign]="layoutAlign"  fxLayout="column" class="data"
   fxLayoutGap="5px">
   <div class="title">
     {{ detail?.title | translate }}
   </div>
-  <div *ngIf="isArray((details?.data)[detail?.key]); else elseBlock">
-    <mat-chip-list>
-      <mat-chip *ngFor="let chip of (details?.data)[detail?.key]" fxLayoutAlign="center center">
-        {{ chip.label }}
-      </mat-chip>
-    </mat-chip-list>
+  <div *ngIf="isArray((details?.data)[detail?.key]); else elseBlock" fxLayout="row wrap" [fxLayoutAlign]="layoutAlign">
+    <mat-chip *ngFor="let chip of (details?.data)[detail?.key]" fxLayoutAlign="center center" class="mat-chip-container">
+      {{ chip.label }}
+    </mat-chip>
   </div>
   <ng-template #elseBlock>
-    <div class="description">{{(detail?.key == 'experience')? details?.data[detail?.key] +("YEARS"|
+    <div class="description" [fxLayoutAlign]="layoutAlign">{{(detail?.key == 'experience')? details?.data[detail?.key] +("YEARS"|
       translate):details?.data[detail?.key] }} </div>
   </ng-template>
 </div>

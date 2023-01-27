@@ -1,5 +1,5 @@
 <div class="home-container" fxLayoutAlign="center">
-    <div *ngIf="!cardDetails?.length && !loading" fxLayout="column"  fxLayoutAlign="center" fxFlex="90%">
+    <div *ngIf="!cardDetails?.length && !loading && selectedPage!='/home'" fxLayout="column"  fxLayoutAlign="center" fxFlex="90%">
         <app-no-data-found [data]="noData"  fxLayoutAlign="center"></app-no-data-found>
     </div>
     <div class="session-listing-container" *ngIf="cardDetails?.length" fxLayout="column" fxFlex="90%" fxFlex.xs="100%" fxLayoutAlign="center">

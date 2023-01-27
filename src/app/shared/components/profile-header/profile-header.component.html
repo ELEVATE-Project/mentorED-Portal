@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="center center">
+<div fxLayout="column" fxLayoutGap="10px" [fxLayoutAlign]="layoutAlign">
   <div>
     <ng-template [ngIf]="details.data.image" [ngIfElse]="loggedOut">
       <div>
@@ -15,37 +15,62 @@
   <div class="title">{{ details?.data?.name | titlecase }}</div>
   <div
     fxLayout="row"
-    fxLayoutAlign="space-around center"
     class="title"
     *ngFor="let location of details?.data?.location"
   >
     <mat-icon class="location-icon">room</mat-icon>
     <div class="inline-label">{{ location?.label }}</div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="space-around center" class="title" *ngIf="details?.data?.isAMentor">
+  <div fxLayout="row" class="title" *ngIf="details?.data?.isAMentor && !mentorDirectory">
     <mat-icon *ngIf="details?.data?.rating?.average" class="star-icon">grade</mat-icon>
     <label class="inline-label">
       <span *ngIf="details?.data?.rating?.average">{{ details?.data?.rating?.average + '  ' }}</span>({{
         details?.data?.sessionsHosted + ('SESSIONS' | translate)
       }})
     </label>
-    
   </div>
-  <div *ngIf="!details?.data?.isAMentor" fxLayout="row" fxLayoutAlign="space-around center" class="title">
+  <div fxLayout="row" class="title" *ngIf="details?.data?.isAMentor && mentorDirectory && details?.data?.rating?.average">
+    <mat-icon *ngIf="details?.data?.rating?.average" class="star-icon">grade</mat-icon>
+    <label class="inline-label" >
+      <span *ngIf="details?.data?.rating?.average">{{ details?.data?.rating?.average + '  ' }}</span>({{
+        ('RATING' | translate)
+      }})
+    </label>
+  </div>
+  <div *ngIf="!details?.data?.isAMentor" fxLayout="row" class="title">
     {{details?.data?.sessionsAttended  + ('SESSIONS_ATTENDED' | translate)}}
   </div>
+  <div *ngIf="details?.data?.isAMentor && mentorDirectory" fxLayout="row" fxLayoutGap="3px" class="title" fxLayoutAlign="center center">
+    <mat-icon class="location-icon">videocam</mat-icon>
+    <span>{{ details?.data?.sessionsHosted}}</span>
+    {{('SESSIONs_HOSTED' | translate)}}
+  </div>
   <button
-    class="edit-button button-shadow"
-    fxLayoutAlign="center"
+    class="edit-button"
+    fxLayoutAlign="center center"
     fxLayout="row"
     fxFlex.md="10%"
     fxFlex.lt-md="10%"
-    fxLayoutAlign="center center"
     (click)="editProfile()"
+    *ngIf="!mentorDirectory"
   >
-    <mat-icon class="edit-icon" fxLayoutAlign="center center">
+    <mat-icon class="edit-icon">
       mode_edit_outline
     </mat-icon>
-    <div class="edit-text" fxLayoutAlign="center center">{{details?.buttonLabel|translate}}</div>
+    <div class="edit-text">{{details?.buttonLabel|translate}}</div>
+  </button>
+  <button
+    class="edit-button"
+    fxLayoutAlign="center center"
+    fxLayoutGap="5px" 
+    fxLayout="row"
+    fxFlex.md="10%"
+    fxFlex.lt-md="10%"
+    *ngIf="mentorDirectory"
+  >
+    <mat-icon class="edit-icon">
+      share
+    </mat-icon>
+    <div class="edit-text">{{'SHARE_PROFILE'|translate}}</div>
   </button>
 </div>

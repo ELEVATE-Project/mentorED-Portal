@@ -48,6 +48,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .warning{
   background: $red !important;
   color: $white !important;
+  max-width: 100% !important;
 }
 .mat-chip {
   height: 45px !important;
@@ -87,10 +88,14 @@ mat-chip{
 }
 .owl-dt-container {
   border: 1px solid black;
+  height: fit-content !important;
 }
 @media only screen and (orientation: landscape) {
   .owl-dt-container {
     height: fit-content !important;
     border: 1px solid black;
   }
+}
+.mat-chip-list-wrapper{
+  justify-content: center;
 }

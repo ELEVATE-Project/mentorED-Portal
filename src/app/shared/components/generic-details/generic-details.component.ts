@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -8,11 +9,14 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class GenericDetailsComponent implements OnInit {
   @Input() details: any
-  constructor(private translate:TranslateService) {}
+  @Input() layoutAlign:any
+  selectedPage:any;
+  constructor(private translate:TranslateService, private router:Router) {
+    this.selectedPage = router.url
+  }
   public isArray(arr:any ) {
     return Array.isArray(arr)
  }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   
 }

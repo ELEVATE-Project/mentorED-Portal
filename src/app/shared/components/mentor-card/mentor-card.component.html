@@ -1,0 +1,40 @@
+<mat-card fxLayout="row" fxLayoutGap="10px" class="mat-card-container">
+    <div class="card-images" fxFlex="35%" fxLayout="column"> 
+        <div fxFlex="60%">
+            <ng-template [ngIf]="cardData.image" [ngIfElse]="loggedOut">
+              <div fxLayoutAlign="center">
+                <img class="image" [ngClass]="{'round-image':cardData?.image}" [src]="cardData?.image" alt="profilepic" />
+              </div>
+            </ng-template>
+            
+            <ng-template #loggedOut>
+              <div fxLayoutAlign="center">
+                <img class="image" src="/assets/images/user-circle-add.svg" /> 
+              </div>
+            </ng-template>
+          </div>
+        <div fxLayout="column" fxFlex="40%" fxLayoutGap="1px" fxLayoutAlign="center">
+          <div fxLayoutAlign="center" >
+            <p  class="mentor-name text-ellipse">{{ cardData?.name}}</p>
+          </div>        
+            <div fxLayout="row" *ngIf="cardData?.rating?.average" fxLayoutGap="1px" fxLayoutAlign="center center">
+                <mat-icon class="star-icon">grade</mat-icon>
+                <div class="session-font">{{cardData?.rating?.average}}</div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="vertical-line"></div>
+    <div fxLayout="column" class="card-details">
+      <div fxFlex="80%"fxLayout="column">
+        <div   >
+            <h3>About</h3>
+            <p class="card-detail-bold  about-container">{{cardData?.about}}</p>
+        </div>
+    </div>
+    <div fxFlex="20%">
+        <button  class="view-button" mat-raised-button color="primary" (click)="onClickCiewProfile(cardData)">View profile</button>   
+  </div>  
+    </div>
+    
+</mat-card>

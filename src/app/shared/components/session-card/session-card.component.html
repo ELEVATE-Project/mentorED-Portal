@@ -8,10 +8,10 @@
     <div fxFlex="100%" class="card-details" fxLayout="column">
         <div>
             <mat-icon class="status-badge" *ngIf="cardData?.status=='live'" matBadge="Live"></mat-icon>
-            <p class="card-detail-bold">{{cardData?.title | titlecase}}</p>
+            <p class="card-detail-bold text-ellipse">{{cardData?.title | titlecase}}</p>
         </div>
-
-        <p class="card-detail-bold">{{cardData?.mentorName | titlecase}}</p>
+ 
+        <p class="card-detail-bold text-ellipse">{{cardData?.mentorName | titlecase}}</p>
         <div>
             <div class="card-session-date" fxLayout="row">
                 <mat-icon>event</mat-icon>

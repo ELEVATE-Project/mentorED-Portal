@@ -42,7 +42,9 @@
 
 .card-detail-bold {
     font-weight: 500;
-
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .image {
@@ -66,4 +68,10 @@ background-color:$theme;
     background-color:$light-blue;
     padding:  0 10px 0 10px;
    float: left;
+}
+.text-ellipse{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 200px;
 }

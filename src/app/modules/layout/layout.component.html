@@ -27,10 +27,12 @@
     <div class="static-header">
       <app-header (menuToggleEvent)="drawer.toggle()"></app-header>
     </div>
-    <div class="layout-sections">
+    <div >
       <div class="router-container">
       <app-page-navigator fxLayout="row" fxLayoutAlign="center center"></app-page-navigator>
-        <router-outlet></router-outlet>
+      <div class="layout-sections">
+        <router-outlet ></router-outlet>
+      </div>
       </div>
       <div class="footer">
         <app-footer></app-footer>
