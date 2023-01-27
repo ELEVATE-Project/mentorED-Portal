@@ -86,7 +86,7 @@ export class ProfileService {
       map((response: any) => {
         (showToast)?this.toastService.showMessage(response.message,'success'):'';
         this.localStorage.getLocalData(localKeys.USER_DETAILS).then((user:any) =>{
-          return this.getProfileDetailsWithRole(JSON.parse(user)._id,JSON.parse(user).isAMentor).subscribe((user)=>{
+           return this.getProfileDetailsWithRole(JSON.parse(user)._id,JSON.parse(user).isAMentor).subscribe((user)=>{
             this._location.back();
           })
         });

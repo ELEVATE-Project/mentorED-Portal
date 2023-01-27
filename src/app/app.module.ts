@@ -27,10 +27,10 @@ export function translateHttpLoaderFactory(httpClient: HttpClient) {
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
-   // SharedModule,
+    SharedModule,
     CoreModule,
     ReactiveFormsModule,
-   // LayoutModule,
+    LayoutModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {

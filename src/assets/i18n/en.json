@@ -99,5 +99,6 @@
     "WHO_IS_THIS_SESSION_FOR": "Who is this session for?",
     "LANGUAGES": "Languages",
     "CREATE_NEW_PASSWORD": "Create New Password",
-    "RESET_PASSWORD": "Reset Password" 
+    "RESET_PASSWORD": "Reset Password",
+    "PLEASE_ENTER_THE_SAME_PASSWORD":"Please enter the same password"
 }

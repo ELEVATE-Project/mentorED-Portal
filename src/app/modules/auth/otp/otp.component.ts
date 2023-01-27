@@ -52,15 +52,14 @@ export class OtpComponent implements OnInit {
     if(!this.router.getCurrentNavigation()?.extras.state){
       this.location.back();
     }
-    this.signupData = !this.router.getCurrentNavigation()?.extras.state;
+    this.signupData = this.router.getCurrentNavigation()?.extras.state;
     this.forgotPasswordData = this.router.getCurrentNavigation()?.extras.state;
-
-  }
+    }
 
   ngOnInit(): void {}
 
   async onSubmit() {
-    if ( this.signupData) {
+    if ( this.signupData.type == 'signup') {
       this.signupData.formData.otp = this.otpFormRef.myForm.value.otp;
       (await this.authService.createAccount(this.signupData.formData)).subscribe(async (response: any) => {
         this.router.navigate(['/home']);
