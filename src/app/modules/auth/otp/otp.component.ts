@@ -64,8 +64,7 @@ export class OtpComponent implements OnInit {
       (await this.authService.createAccount(this.signupData.formData)).subscribe(async (response: any) => {
         this.router.navigate(['/home']);
       })
-  }
-    else{
+  }else{
       this.forgotPasswordData.formData.otp = this.otpFormRef.myForm.value.otp;
       (await this.profileService.updatePassword(this.forgotPasswordData.formData)).subscribe(async (response: any) => {
         this.router.navigate(['/home']);
