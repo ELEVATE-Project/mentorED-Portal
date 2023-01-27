@@ -1,5 +1,5 @@
 import { Location } from "@angular/common";
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/core/services/auth/auth.service";
 import { LocalStorageService } from "src/app/core/services/local-storage/local-storage.service";
@@ -80,8 +80,8 @@ export class OtpComponent implements OnInit {
       }))
     }else{
       this.profileService.generateOtp({ email: this.signupData.formData.email, password:  this.signupData.formData.password})
-        .subscribe((response => {
-        }))
+      .subscribe((response => {
+      }))
     }
   }
   timerEvent(){
