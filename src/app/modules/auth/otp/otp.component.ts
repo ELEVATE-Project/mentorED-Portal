@@ -71,7 +71,7 @@ export class OtpComponent implements OnInit {
       })
     }
   }
-
+  
   async resendOTP() {
     this.timerRef.startCountdown();
     this.enableResendOtp = false;

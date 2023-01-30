@@ -81,14 +81,15 @@ export class ProfileService {
       url: API_CONSTANTS.PROFILE_UPDATE,
       payload: formData,
     };
+
     return this.apiService.post(config).pipe(
       map((response: any) => {
         (showToast)?this.toastService.showMessage(response.message,'success'):'';
         this.localStorage.getLocalData(localKeys.USER_DETAILS).then((user:any) =>{
            return this.getProfileDetailsWithRole(JSON.parse(user)._id,JSON.parse(user).isAMentor).subscribe((user)=>{
             this._location.back();
-        })
-  });
+           })
+        });
         return response;
       })
     );
