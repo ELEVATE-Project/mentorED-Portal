@@ -3,6 +3,7 @@ import * as _ from "lodash";
 import { SessionService } from "src/app/core/services/session/session.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import * as moment from "moment";
+import { PageTitleService } from "src/app/core/services/page-title/page-title.service";
 import { MatDialog } from '@angular/material/dialog';
 import { ExitPopupComponent } from "src/app/shared/components/exit-popup/exit-popup.component";
 
@@ -62,6 +63,7 @@ export class SessionDetailComponent implements OnInit {
     private router: Router,
     private sessionService: SessionService,
     private route: ActivatedRoute,
+    private pageTitle: PageTitleService,
     private dialog: MatDialog
   ) {
     this.route.params.subscribe((params: Params) => {
@@ -78,11 +80,16 @@ export class SessionDetailComponent implements OnInit {
       let readableStartDate = moment.unix(response.startDate).format("DD/MM/YYYY");
       let readableStartTime = moment.unix(response.startDate).format("hh:MM");
       this.details.data = Object.assign({}, response);
-      this.details.data.startDate = readableStartDate;
-      this.details.data.startTime = readableStartTime;
+      this.details.data.startDate = readableStartDate
+      this.details.data.startTime = readableStartTime
       this.isEnrolled = response.isEnrolled;
       this.published = response.status
+      this.pageTitle.editTItle(response.title)
     });
+    this.router.events.subscribe(
+      event => {
+        this.pageTitle.editTItle('');
+      });
   }
   onEnroll() {
     let result = this.sessionService.enrollSession(this.id).subscribe(() =>{
@@ -107,4 +114,8 @@ export class SessionDetailComponent implements OnInit {
       this.sessionDetailApi()
     })
   }
+
+   ngOnDestroy(){
+    this.pageTitle.editTItle('');
+   }
 }

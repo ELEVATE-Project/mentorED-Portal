@@ -1,6 +1,6 @@
-<div *ngFor="let detail of details?.form" fxLayoutAlign.xs="start start" [fxLayoutAlign]="layoutAlign"  fxLayout="column" class="data"
+<div *ngFor="let detail of details?.form" [fxLayoutAlign]="layoutAlign"  fxLayout="column" class="data"
   fxLayoutGap="5px">
-  <div class="title">
+  <div *ngIf="details?.data[detail?.key]" class="title">
     {{ detail?.title | translate }}
   </div>
   <div *ngIf="isArray((details?.data)[detail?.key]); else elseBlock" fxLayout="row wrap" [fxLayoutAlign]="layoutAlign">
