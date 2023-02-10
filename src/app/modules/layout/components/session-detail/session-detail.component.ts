@@ -3,6 +3,7 @@ import * as _ from "lodash";
 import { SessionService } from "src/app/core/services/session/session.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import * as moment from "moment";
+import { PageTitleService } from "src/app/core/services/page-title/page-title.service";
 
 @Component({
   selector: "app-session-detail",
@@ -59,6 +60,7 @@ export class SessionDetailComponent implements OnInit {
     private router: Router,
     private sessionService: SessionService,
     private route: ActivatedRoute,
+    private pageTitle: PageTitleService
   ) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
@@ -76,7 +78,15 @@ export class SessionDetailComponent implements OnInit {
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate
       this.details.data.startTime = readableStartTime
+      this.pageTitle.editTItle(response.title)
     });
-    
+    this.router.events.subscribe(
+      event => {
+        this.pageTitle.editTItle('');
+      });
   }
+
+   ngOnDestroy(){
+    this.pageTitle.editTItle('');
+   }
 }

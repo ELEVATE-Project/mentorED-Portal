@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs';
+import { PageTitleService } from 'src/app/core/services/page-title/page-title.service';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
 import { SharePopupComponent } from 'src/app/shared/components/share-popup/share-popup.component';
 
@@ -36,10 +37,16 @@ export class PageNavigatorComponent implements OnInit {
   onBackUrl:any;
   url: any;
   showShareButton: any;
+  subscription: any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private translate: TranslateService, private profileService: ProfileService, private titleService: Title, private location: Location,private pLocation: PlatformLocation,public dialog: MatDialog,) {
-    this.setTitle();
-   
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private translate: TranslateService, private profileService: ProfileService, private titleService: Title, private location: Location,private pLocation: PlatformLocation,public dialog: MatDialog,private pageTitleService: PageTitleService) {
+    this.setTitle().then(()=>{
+      this.subscription = this.pageTitleService.newTitle$.subscribe((title)=>{
+        if(title){
+          this.pageTitle = title;
+        }
+      })
+    })
   }
   
   ngOnInit(): void {
@@ -49,12 +56,12 @@ export class PageNavigatorComponent implements OnInit {
     })
   }
 
-  setTitle() {
+  async setTitle() {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd),
     ).subscribe(() => {
       const child: any = this.activatedRoute.firstChild;
-      this.pageTitle = (child.snapshot.data['title'])?child.snapshot.data['title']:"";
-      this.onBackUrl = (child.snapshot.data['onBackUrl'])?child.snapshot.data['onBackUrl']:"";
+      this.pageTitle = child.snapshot.data['title'] || "";
+      this.onBackUrl = child.snapshot.data['onBackUrl'] || "";
       this.showShareButton = child.snapshot.data['showShareButton']
     })
   }
