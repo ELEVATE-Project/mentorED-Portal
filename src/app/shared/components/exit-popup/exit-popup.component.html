@@ -1,16 +1,18 @@
 <div class="exit-popup-container">
-    <mat-icon class="mat-cancel-icon" mat-dialog-close (click)="onClickCancel()">cancel_circle_outline</mat-icon>
-    <div class="text-container">
-        <h1 class="text-exit-page">{{'EXIT_THIS_PAGE' | translate}}</h1>
-        <h2>{{'ARE_YOU_SURE_WANT_TO_EXIT' | translate}}</h2>
+    <div fxLayout="row" >
+        <div class="text-container" fxFlex="100">
+            <h1 class="text-exit-page">{{data.header | translate}}</h1>
+            <h2>{{data.label | translate}}</h2>
+        </div>
+        <mat-icon class="mat-cancel-icon" mat-dialog-close>cancel_circle_outline</mat-icon>
     </div>
-    <div fxLayout="row" class="exit-conatiner">
+    <div fxLayout="row" class="exit-conatiner" fxLayoutAlign="space-between center">
         <div mat-dialog-actions>
-            <button class="exit-cancel-button" mat-button mat-dialog-close (click)="onClickExit()">{{'EXIT' | translate}}</button>
+            <button class="exit-cancel-button" mat-button mat-dialog-close (click)="onUnEnroll()">{{data.unEnrollButton | translate}}</button>
         </div>
         <div mat-dialog-actions class="cancel-button-container">
             <button class="cancel-button exit-cancel-button" mat-button mat-dialog-close 
-               (click)="onClickCancel()" >{{'CANCEL' | translate}}</button>
+             >{{data.cancelButton | translate}}</button>
         </div>
     </div>
 </div>

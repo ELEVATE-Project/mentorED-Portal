@@ -121,5 +121,8 @@
     "TOTAL_SESSION_HOSTED":"Total session hosted",
     "TOTAL_SESSION_CREATED":"Total session created",
     "SESSION_OVERVIEW":"Session Overview",
-    "SHARE_SESSION": "Share session"
+    "SHARE_SESSION": "Share session",
+    "UN_ENROLL": "Un-enroll",
+    "ARE_YOU_SURE_WANT_TO_UN_ENROLL": "Are you sure you want to un-enroll from this session ?",
+    "UN_ENROLL_SESSION": "Un-enroll session"
 }

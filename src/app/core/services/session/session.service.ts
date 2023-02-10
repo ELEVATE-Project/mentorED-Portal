@@ -130,4 +130,16 @@ startSession(id: any){
       }),
     )
   }
+  unEnrollSession(id: any){
+    const config = {
+      url: API_CONSTANTS.UNENROLL_SESSION + id,
+      payload: {},
+    }
+    return this.apiService.post(config).pipe(
+      map((result: any) => {
+        this.toastService.showMessage(result.message, 'success')
+        return result.result
+      }),
+    )
+  }
 }

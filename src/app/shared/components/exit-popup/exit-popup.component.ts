@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-exit-popup',
@@ -7,14 +7,14 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./exit-popup.component.scss']
 })
 export class ExitPopupComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<ExitPopupComponent>) { }
+
+  @Output() buttonClick = new EventEmitter()
+
+  constructor(public dialogRef: MatDialogRef<ExitPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
   }
-  onClickExit(){
-    this.dialogRef.close(true);
-  }
-  onClickCancel(){
-    this.dialogRef.close(false);
+  onUnEnroll() {
+    this.buttonClick.emit()
   }
 }

@@ -8,9 +8,9 @@
                 </ng-template>
             </div>
             <div fxFlex="25">
-                <button *ngIf="!isEnrolled" (click)="isEnrolled = true" class="enroll-button" mat-raised-button color="primary" >{{details.enrollButton}}</button>
-                <button *ngIf="isEnrolled" (click)="isEnrolled = false" class="enroll-button" mat-raised-button color="primary" >{{details.unEnrollButton}}</button>
-            </div>
+                <button *ngIf="!isEnrolled && published != 'completed'" class="enroll-button" mat-raised-button color="primary" (click)="onEnroll()">{{details.enrollButton}}</button>
+                <button *ngIf="isEnrolled && published ==='published'" class="enroll-button" mat-raised-button color="primary" (click)="unEnrollDialogBox()">{{details.unEnrollButton}}</button>
+            </div> 
         </div>
         <div fxFlex="75%" fxLayoutGap="10px" class="session-data">
             <app-generic-details [details]="details" [layoutAlign]="layout"></app-generic-details>
