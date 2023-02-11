@@ -25,20 +25,20 @@ export class AuthService {
     private toastService: ToastService
     ) { }
 
-    async createAccount(formData: any) {
-      const config = {
-        url: API_CONSTANTS.CREATE_ACCOUNT,
-        payload: formData,
-      };
-      return this.apiService.post(config).pipe(
-        map((result:any) => {
-          this.toastService.showMessage(result.message,'success')
+  createAccount(formData: any) {
+    const config = {
+      url: API_CONSTANTS.CREATE_ACCOUNT,
+      payload: formData,
+    };
+    return this.apiService.post(config).pipe(
+      map((result:any) => {
+        this.toastService.showMessage(result.message,'success')
           this.setUserInLocal(result).then(()=>{
-            return result;
-          })
+          return result;
         })
-      )
-    }
+      })
+    )
+  }
 
   loginAccount(formData: any){
     const config = {

@@ -111,19 +111,19 @@ export class RegisterComponent implements OnInit {
     this.signup.onSubmit();
     this.createUser();
   }
-  async createUser(){
+  createUser(){
     let formJson = this.signup.myForm.value;
     formJson.isAMentor = this.isAMentor ? this.isAMentor : false;
-    if (_.isEqual(formJson.password, formJson.cPassword)) {
-
-      this.profileService.registrationOtp(formJson).subscribe(async (response: any) => {
-        if(response){
-          this.router.navigate(['/auth/otp'], { state: { type: "signup", formData: formJson } });
-        }
-      })
-    } else {
-      this.toastService.showMessage(this.translate.get('PASSWORD_NOT_MATCH'), 'warning')
+    if (this.signup.myForm.valid) {
+      if (_.isEqual(formJson.password, formJson.cPassword)) {
+        this.profileService.registrationOtp(formJson).subscribe((response: any) => {
+          if (response) {
+            this.router.navigate(['/auth/otp'], { state: { type: "signup", formData: formJson, service: 'authService', redirectUrl: '/home', method: 'createAccount' } });
+          }
+        })
+      } else {
+        this.toastService.showMessage(this.translate.get('PASSWORD_NOT_MATCH'), 'warning')
+      }
     }
   }
-
 }

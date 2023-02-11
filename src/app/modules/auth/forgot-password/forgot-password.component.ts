@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { ApiService } from 'src/app/core/services';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
 import { DynamicFormComponent } from 'src/app/shared/components/dynamic-form/dynamic-form.component';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
@@ -16,6 +14,8 @@ import { TranslateService } from '@ngx-translate/core'
 export class ForgotPasswordComponent implements OnInit {
   [x: string]: any;
   @ViewChild('forgotPassword') forgotPassword: DynamicFormComponent;
+
+  
 
   formData: any = {
     controls: [
@@ -66,13 +66,14 @@ export class ForgotPasswordComponent implements OnInit {
     private translate: TranslateService) { }
   ngOnInit(): void { }
 
+
   resetPassword() {
     let formJson = this.forgotPassword.myForm.value;
     if (this.forgotPassword.myForm.valid) {
       if (_.isEqual(formJson.password, formJson.cPassword)) {
         this.profileService.generateOtp(formJson).subscribe((response: any) => {
           if (response) {
-            this.router.navigate(['/auth/otp'], { state: { type: "forgotPassword", formData: formJson } });
+            this.router.navigate(['/auth/otp'], { state: { formData: formJson, service: 'profileService', redirectUrl: '/home', method: 'updatePassword' } });
           }
         })
       } else {
