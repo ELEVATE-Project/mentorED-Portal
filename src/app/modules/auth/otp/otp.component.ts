@@ -1,5 +1,5 @@
 import { Location } from "@angular/common";
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/core/services/auth/auth.service";
 import { ProfileService } from "src/app/core/services/profile/profile.service";
