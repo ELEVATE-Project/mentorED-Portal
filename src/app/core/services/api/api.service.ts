@@ -59,7 +59,12 @@ export class ApiService {
       );
   }
 
-  delete() { }
+  delete(config: any) { 
+    return this.http.delete(`${this.baseUrl}${config.url}`,{headers: this.httpHeaders})
+    .pipe(
+      catchError(this.handleError.bind(this))
+    )
+  }
 
   patch() { }
 

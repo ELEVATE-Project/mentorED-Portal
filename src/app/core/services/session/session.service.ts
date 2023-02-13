@@ -142,4 +142,16 @@ startSession(id: any){
       }),
     )
   }
+  deleteSession(id:any){
+    const config = {
+      url: API_CONSTANTS.CREATE_SESSION + `/${id}`,
+      payload: {}
+    };
+    return this.apiService.delete(config).pipe(
+      map((result:any) => {
+        this.toastService.showMessage(result.message, 'success')
+        return result.result
+      })
+    )
+  }
 }
