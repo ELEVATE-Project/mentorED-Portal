@@ -2,9 +2,7 @@ import { Location } from "@angular/common";
 import { Component, OnInit, ViewChild} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/core/services/auth/auth.service";
-import { LocalStorageService } from "src/app/core/services/local-storage/local-storage.service";
 import { ProfileService } from "src/app/core/services/profile/profile.service";
-import { ToastService } from "src/app/core/services/toast/toast.service";
 import { CountdownTimerComponent } from "src/app/shared/components";
 
 @Component({
@@ -15,7 +13,7 @@ import { CountdownTimerComponent } from "src/app/shared/components";
 export class OtpComponent implements OnInit {
   @ViewChild("otpForm", { static: false }) otpFormRef: any;
   @ViewChild("timer") timerRef: CountdownTimerComponent;
-
+  this: any;
   checked = false;
   timeLimit = 60;
   formData = {
@@ -34,43 +32,42 @@ export class OtpComponent implements OnInit {
     ],
   };
   resetPasswordData : any;
-  signupData: any;
+  state: any;
   enableResendOtp: boolean = false;
-
+  forgotPasswordData: any;
+  otp: any;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private localStorage: LocalStorageService,
-    private route: ActivatedRoute,
     private profileService: ProfileService,
-    private toast: ToastService,
     private location: Location
 
   ) {
     if(!this.router.getCurrentNavigation()?.extras.state){
       this.location.back();
     }
-    this.signupData = this.router.getCurrentNavigation()?.extras.state;
+    this.state = this.router.getCurrentNavigation()?.extras.state;
   }
 
   ngOnInit(): void {}
 
   async onSubmit() {
-    this.signupData.formData.otp = this.otpFormRef.myForm.value.otp;
-    (await this.authService.createAccount(this.signupData.formData)).subscribe(async (response: any) => {
-      this.router.navigate(['/home']);
-        })
+    this['state']['formData']['otp'] = this.otpFormRef.myForm.value.otp;
+    const that: any = this;
+    that[this.state.service][this.state.method](this.state.formData).subscribe((response: any) => {
+      this.router.navigate([this.state.redirectUrl])
+    })
   }
   
   async resendOTP() {
     this.timerRef.startCountdown();
     this.enableResendOtp = false;
-    if(this.signupData.type == "signup"){
-      this.profileService.registrationOtp(this.signupData.formData).subscribe((response => {
+    if(this.state.type == "signup"){
+      this.profileService.registrationOtp(this.state.formData).subscribe((response => {
       }))
     }else{
-      this.profileService.generateOtp({ email: this.signupData.formData.email, password:  this.signupData.formData.password})
+      this.profileService.generateOtp({ email: this.state.formData.email, password: this.state.formData.password})
       .subscribe((response => {
       }))
     }

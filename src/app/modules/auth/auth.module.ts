@@ -16,6 +16,7 @@ import {MatDividerModule} from '@angular/material/divider';
 
 import { MatCardModule } from '@angular/material/card';
 import { OtpComponent } from './otp/otp.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 @NgModule({
   declarations: [
     AuthComponent,
@@ -23,6 +24,7 @@ import { OtpComponent } from './otp/otp.component';
     RegisterComponent,
     RoleSelectionComponent,
     OtpComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     CommonModule,

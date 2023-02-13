@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
-import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { DynamicFormComponent } from 'src/app/shared/components';
 
 @Component({
@@ -47,7 +46,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private toastService: ToastService,
     private localStorage: LocalStorageService) { }
 
   ngOnInit(): void {

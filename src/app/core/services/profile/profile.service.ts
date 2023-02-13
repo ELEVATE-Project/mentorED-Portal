@@ -118,4 +118,16 @@ export class ProfileService {
       })
     );
   }
+  updatePassword(formData: any) {
+    const config = {
+      url: API_CONSTANTS.RESET_PASSWORD,
+      payload: formData
+    };
+    return this.apiService.post(config).pipe(
+      map((result: any) => {
+        this.toastService.showMessage(result.message, 'success')
+        return result;
+      })
+    );
+  }
 }
