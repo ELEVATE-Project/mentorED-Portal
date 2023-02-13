@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 import { PageTitleService } from 'src/app/core/services/page-title/page-title.service';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
+import { SessionService } from 'src/app/core/services/session/session.service';
 import { SharePopupComponent } from 'src/app/shared/components/share-popup/share-popup.component';
 
 
@@ -38,22 +39,26 @@ export class PageNavigatorComponent implements OnInit {
   url: any;
   showShareButton: any;
   subscription: any;
+  buttonConfig:any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private translate: TranslateService, private profileService: ProfileService, private titleService: Title, private location: Location,private pLocation: PlatformLocation,public dialog: MatDialog,private pageTitleService: PageTitleService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,   private sessionService: SessionService,private translate: TranslateService, private profileService: ProfileService, private titleService: Title, private location: Location,private pLocation: PlatformLocation,public dialog: MatDialog,private pageTitleService: PageTitleService) {
     this.setTitle().then(()=>{
       this.subscription = this.pageTitleService.newTitle$.subscribe((title)=>{
         if(title){
           this.pageTitle = title;
         }
       })
-    })
+    }) 
   }
   
   ngOnInit(): void {
     this.profileService.profileDetails().then((userDetails) => {
       this.userDetails = userDetails;
       this.navigationArray = (userDetails.isAMentor)?this.mentorNavigationArray:this.menteeNavigationArray;
-    })
+    }) 
+    this.pageTitleService.newButtonConfig$.subscribe((buttonConfig)=>{
+     this.buttonConfig = buttonConfig;
+    }) 
   }
 
   async setTitle() {
@@ -79,4 +84,7 @@ export class PageNavigatorComponent implements OnInit {
        });
   }
 
+  startSession(){
+    this.sessionService.startSession(this.buttonConfig.id).subscribe((result) => {})
+  }
 }

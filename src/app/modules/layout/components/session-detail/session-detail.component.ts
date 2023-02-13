@@ -64,7 +64,8 @@ export class SessionDetailComponent implements OnInit {
   published: any;
   userDetails: any;
   isCreator: boolean;
-
+  buttonConfigData:any;
+  isEnabled:any;
   constructor(
     private router: Router,
     private sessionService: SessionService,
@@ -88,6 +89,8 @@ export class SessionDetailComponent implements OnInit {
       (this.details.form[0].key=='description')? false: this.details.form.unshift({title: response.title, key: 'description'})
       let readableStartDate = moment.unix(response.startDate).format("DD/MM/YYYY");
       let readableStartTime = moment.unix(response.startDate).format("hh:MM");
+      let currentTimeInSeconds = Math.floor(Date.now() / 1000)
+      this.isEnabled = (response.startDate - currentTimeInSeconds) < 300 ? true : false
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate;
       this.details.data.startTime = readableStartTime;
@@ -100,7 +103,7 @@ export class SessionDetailComponent implements OnInit {
     this.router.events.subscribe(
       event => {
         this.pageTitle.editTItle('');
-      });
+      });    
   }
   onEnroll() {
     let result = this.sessionService.enrollSession(this.id).subscribe(() =>{
@@ -129,6 +132,12 @@ export class SessionDetailComponent implements OnInit {
     if(this.userDetails){
       this.isCreator = this.userDetails._id == response.userId ? true : false;
     }
+    this.buttonConfigData = {
+      id: this.id,
+      isCreator: this.isCreator,
+      isEnable: this.isEnabled
+    }
+    this.pageTitle.editButtonConfig(this.buttonConfigData)
   }
   editSession(){
     this.router.navigate(['/create-session'])
