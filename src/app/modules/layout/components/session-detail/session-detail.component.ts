@@ -6,6 +6,8 @@ import * as moment from "moment";
 import { PageTitleService } from "src/app/core/services/page-title/page-title.service";
 import { MatDialog } from '@angular/material/dialog';
 import { ExitPopupComponent } from "src/app/shared/components/exit-popup/exit-popup.component";
+import { LocalStorageService } from "src/app/core/services/local-storage/local-storage.service";
+import { localKeys } from "src/app/core/constants/localStorage.keys";
 
 @Component({
   selector: "app-session-detail",
@@ -18,6 +20,8 @@ export class SessionDetailComponent implements OnInit {
   details = {
     enrollButton: "Enroll",
     unEnrollButton: "Un-enroll",
+    editSession: "Edit session",
+    DeleteSession: "Delete session",
     form: [
       {
         title: "RECOMENDED_FOR",
@@ -58,20 +62,25 @@ export class SessionDetailComponent implements OnInit {
   title: any;
   isEnrolled: any;
   published: any;
+  userDetails: any;
+  isCreator: boolean;
 
   constructor(
     private router: Router,
     private sessionService: SessionService,
     private route: ActivatedRoute,
-    private pageTitle: PageTitleService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private localStorage:LocalStorageService,
+    private pageTitle: PageTitleService
   ) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
     })
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const details = await this.localStorage.getLocalData(localKeys.USER_DETAILS);
+    this.userDetails = JSON.parse(details)
     this.sessionDetailApi()
   }
   sessionDetailApi(){
@@ -80,10 +89,12 @@ export class SessionDetailComponent implements OnInit {
       let readableStartDate = moment.unix(response.startDate).format("DD/MM/YYYY");
       let readableStartTime = moment.unix(response.startDate).format("hh:MM");
       this.details.data = Object.assign({}, response);
-      this.details.data.startDate = readableStartDate
-      this.details.data.startTime = readableStartTime
+      this.details.data.startDate = readableStartDate;
+      this.details.data.startTime = readableStartTime;
       this.isEnrolled = response.isEnrolled;
-      this.published = response.status
+      this.published = response.status;
+      var response = response;
+      (response)?this.creator(response):false;
       this.pageTitle.editTItle(response.title)
     });
     this.router.events.subscribe(
@@ -114,8 +125,20 @@ export class SessionDetailComponent implements OnInit {
       this.sessionDetailApi()
     })
   }
+  creator(response:any){
+    if(this.userDetails){
+      this.isCreator = this.userDetails._id == response.userId ? true : false;
+    }
+  }
+  editSession(){
+    this.router.navigate(['/create-session'])
+  }
+  deleteSession(){
+
+  }
 
    ngOnDestroy(){
     this.pageTitle.editTItle('');
    }
+
 }
