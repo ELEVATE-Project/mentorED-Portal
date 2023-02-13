@@ -66,6 +66,7 @@ export class SessionDetailComponent implements OnInit {
   isCreator: boolean;
   buttonConfigData:any;
   isEnabled:any;
+  pastSession:any;
   constructor(
     private router: Router,
     private sessionService: SessionService,
@@ -90,7 +91,8 @@ export class SessionDetailComponent implements OnInit {
       let readableStartDate = moment.unix(response.startDate).format("DD/MM/YYYY");
       let readableStartTime = moment.unix(response.startDate).format("hh:MM");
       let currentTimeInSeconds = Math.floor(Date.now() / 1000)
-      this.isEnabled = (response.startDate - currentTimeInSeconds) < 300 ? true : false
+      this.isEnabled = ((response.startDate - currentTimeInSeconds) < 300) ? true : false
+      this.pastSession = (response.endDate < currentTimeInSeconds) ? false : true
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate;
       this.details.data.startTime = readableStartTime;
@@ -135,7 +137,8 @@ export class SessionDetailComponent implements OnInit {
     this.buttonConfigData = {
       id: this.id,
       isCreator: this.isCreator,
-      isEnable: this.isEnabled
+      isEnable: this.isEnabled,
+      pastSession: this.pastSession
     }
     this.pageTitle.editButtonConfig(this.buttonConfigData)
   }
