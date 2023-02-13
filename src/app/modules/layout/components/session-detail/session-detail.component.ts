@@ -103,7 +103,7 @@ export class SessionDetailComponent implements OnInit {
     this.router.events.subscribe(
       event => {
         this.pageTitle.editTItle('');
-      });    
+      });
   }
   onEnroll() {
     let result = this.sessionService.enrollSession(this.id).subscribe(() =>{
