@@ -5,6 +5,8 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import * as moment from "moment";
 import { MatDialog } from '@angular/material/dialog';
 import { ExitPopupComponent } from "src/app/shared/components/exit-popup/exit-popup.component";
+import { LocalStorageService } from "src/app/core/services/local-storage/local-storage.service";
+import { localKeys } from "src/app/core/constants/localStorage.keys";
 
 @Component({
   selector: "app-session-detail",
@@ -17,6 +19,8 @@ export class SessionDetailComponent implements OnInit {
   details = {
     enrollButton: "Enroll",
     unEnrollButton: "Un-enroll",
+    editSession: "Edit session",
+    DeleteSession: "Delete session",
     form: [
       {
         title: "RECOMENDED_FOR",
@@ -57,19 +61,24 @@ export class SessionDetailComponent implements OnInit {
   title: any;
   isEnrolled: any;
   published: any;
+  userDetails: any;
+  isCreator: boolean;
 
   constructor(
     private router: Router,
     private sessionService: SessionService,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private localStorage:LocalStorageService,
   ) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
     })
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const details = await this.localStorage.getLocalData(localKeys.USER_DETAILS);
+    this.userDetails = JSON.parse(details)
     this.sessionDetailApi()
   }
   sessionDetailApi(){
@@ -81,7 +90,9 @@ export class SessionDetailComponent implements OnInit {
       this.details.data.startDate = readableStartDate;
       this.details.data.startTime = readableStartTime;
       this.isEnrolled = response.isEnrolled;
-      this.published = response.status
+      this.published = response.status;
+      var response = response;
+      (response)?this.creator(response):false;
     });
   }
   onEnroll() {
@@ -106,5 +117,16 @@ export class SessionDetailComponent implements OnInit {
     let result = this.sessionService.unEnrollSession(this.id).subscribe(() => {
       this.sessionDetailApi()
     })
+  }
+  creator(response:any){
+    if(this.userDetails){
+      this.isCreator = this.userDetails._id == response.userId ? true : false;
+    }
+  }
+  editSession(){
+    this.router.navigate(['/create-session'])
+  }
+  deleteSession(){
+
   }
 }
