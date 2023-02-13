@@ -13,6 +13,8 @@ import { DynamicFormComponent } from 'src/app/shared';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
+import { localKeys } from 'src/app/core/constants/localStorage.keys';
 
 @Component({
   selector: 'app-create-session',
@@ -34,7 +36,12 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     appearance: 'fill',
     floatLabel: 'always'
   }
-  constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService) { }
+  showForm: any = false;
+  sessionDetails: any;
+  constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
+    private router: Router) { 
+    this.sessionDetails = this.router.getCurrentNavigation()?.extras.state;
+  }
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.isSaved && this.createSession.myForm.dirty  || (!this.imgData.isUploaded) ) {
@@ -47,6 +54,11 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     this.form.getForm(CREATE_SESSION_FORM).subscribe((form)=>{
       this.formData = form;
       this.changeDetRef.detectChanges();
+      if(this.sessionDetails){
+        this.imgData.image = (this.sessionDetails.image) ? this.sessionDetails.image : '';
+        this.preFillData(this.sessionDetails);
+        this.changeDetRef.detectChanges();
+      }
     })  
   }
  
@@ -79,7 +91,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         form.timeZone = timezone;
         this.createSession.myForm.markAsPristine();
-        this.sessionService.createSession(form).subscribe((result)=>{
+        this.sessionService.createSession(form,this.sessionDetails?._id).subscribe((result)=>{
           this.location.back();
         });
       }
@@ -105,5 +117,13 @@ export class CreateSessionComponent implements OnInit,CanLeave {
       },
     };
     return this.http.put(path.signedUrl, file);
+  }
+  preFillData(existingData: any) {
+    this.imgData.image = (existingData['image']) ? existingData['image'] : '';
+    for (let i = 0; i < this.formData.controls.length; i++) {
+      this.formData.controls[i].value = existingData[this.formData.controls[i].name];
+      this.formData.controls[i].options = _.unionBy(this.formData.controls[i].options, this.formData.controls[i].value, 'value');
+    }
+    this.showForm = true;
   }
 }

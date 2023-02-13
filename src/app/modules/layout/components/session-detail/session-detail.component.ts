@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ExitPopupComponent } from "src/app/shared/components/exit-popup/exit-popup.component";
 import { LocalStorageService } from "src/app/core/services/local-storage/local-storage.service";
 import { localKeys } from "src/app/core/constants/localStorage.keys";
+import { Location} from '@angular/common';
 
 @Component({
   selector: "app-session-detail",
@@ -19,7 +20,7 @@ export class SessionDetailComponent implements OnInit {
 
   details = {
     enrollButton: "Enroll",
-    unEnrollButton: "Un-enroll",
+    confirmButton: "Un-enroll",
     editSession: "Edit session",
     DeleteSession: "Delete session",
     form: [
@@ -71,7 +72,8 @@ export class SessionDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private localStorage:LocalStorageService,
-    private pageTitle: PageTitleService
+    private pageTitle: PageTitleService,
+    private location: Location
   ) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
@@ -91,8 +93,6 @@ export class SessionDetailComponent implements OnInit {
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate;
       this.details.data.startTime = readableStartTime;
-      this.isEnrolled = response.isEnrolled;
-      this.published = response.status;
       var response = response;
       (response)?this.creator(response):false;
       this.pageTitle.editTItle(response.title)
@@ -112,7 +112,7 @@ export class SessionDetailComponent implements OnInit {
       data: {
         header: "UN_ENROLL_SESSION",
         label: "ARE_YOU_SURE_WANT_TO_UN_ENROLL",
-        unEnrollButton: "UN_ENROLL",
+        confirmButton: "UN_ENROLL",
         cancelButton: 'CANCEL'
       }
     });
@@ -131,14 +131,29 @@ export class SessionDetailComponent implements OnInit {
     }
   }
   editSession(){
-    this.router.navigate(['/create-session'])
+    this.router.navigate(['/create-session'], {state: this.details.data})
   }
   deleteSession(){
-
+    let dialogRef = this.dialog.open(ExitPopupComponent, {
+      data: {
+        header: "DELETE_SESSION",
+        label: "ARE_YOU_SURE_WANT_TO_DELETE_SESSION",
+        confirmButton: "YES_DELETE",
+        cancelButton: 'CANCEL'
+      }
+    });
+    const result = dialogRef.componentInstance.buttonClick.subscribe(()=> {
+      this.deleteSessions()
+    })
   }
 
    ngOnDestroy(){
     this.pageTitle.editTItle('');
    }
-
+   deleteSessions(){
+    let result = this.sessionService.deleteSession(this.id).subscribe(() => {
+      this.sessionDetailApi()
+      this.location.back()
+    })
+   }
 }
