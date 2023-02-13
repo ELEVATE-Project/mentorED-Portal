@@ -3,6 +3,7 @@ import * as _ from "lodash";
 import { SessionService } from "src/app/core/services/session/session.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import * as moment from "moment";
+import { PageTitleService } from "src/app/core/services/page-title/page-title.service";
 import { MatDialog } from '@angular/material/dialog';
 import { ExitPopupComponent } from "src/app/shared/components/exit-popup/exit-popup.component";
 import { LocalStorageService } from "src/app/core/services/local-storage/local-storage.service";
@@ -70,6 +71,7 @@ export class SessionDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private localStorage:LocalStorageService,
+    private pageTitle: PageTitleService
   ) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
@@ -93,7 +95,12 @@ export class SessionDetailComponent implements OnInit {
       this.published = response.status;
       var response = response;
       (response)?this.creator(response):false;
+      this.pageTitle.editTItle(response.title)
     });
+    this.router.events.subscribe(
+      event => {
+        this.pageTitle.editTItle('');
+      });
   }
   onEnroll() {
     let result = this.sessionService.enrollSession(this.id).subscribe(() =>{
@@ -129,4 +136,9 @@ export class SessionDetailComponent implements OnInit {
   deleteSession(){
 
   }
+
+   ngOnDestroy(){
+    this.pageTitle.editTItle('');
+   }
+
 }

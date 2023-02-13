@@ -122,6 +122,10 @@
     "TOTAL_SESSION_CREATED":"Total session created",
     "SESSION_OVERVIEW":"Session Overview",
     "SHARE_SESSION": "Share session",
+    "TOTAL_SESSION_ENROLLED": "Total session enrolled",
+    "TOTAL_SESSION_ATTENDED": "Total session attended",
+    "ENROLL_FOR_SESSION_TO_FILL_SPACE":"Enroll for sessions to fill this space",
+    "CONDUCT_LIVE_SESSION_TO_FILL_SPACE":"Conduct live sessions to fill this space",
     "UN_ENROLL": "Un-enroll",
     "ARE_YOU_SURE_WANT_TO_UN_ENROLL": "Are you sure you want to un-enroll from this session ?",
     "UN_ENROLL_SESSION": "Un-enroll session"

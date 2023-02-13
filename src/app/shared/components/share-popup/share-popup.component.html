@@ -7,9 +7,10 @@
         <div class="url text-ellipse">
             {{data.defaultValue}}
         </div>
-        <div class="copy-link" fxLayoutAlign="center" [ngClass]="(this.copyLink== 'COPIED_LINK') ? 'class-green': 'hover-class'"   
-        (click)="copyToClipBoard()">
-                {{copyLink | translate}}         
+        <div class="copy-link" fxLayoutAlign="center center" [ngClass]="(this.copyLink== 'COPIED_LINK') ? 'class-green': 'hover-class'"   
+        (click)="copyToClipBoard()"  fxLayout="row" fxLayoutGap="3px">
+        <mat-icon fxLayoutAlign="center center" class="copy-link-icon" *ngIf="this.copyLink== 'COPIED_LINK'">check_circle_outline</mat-icon>
+        <span fxLayoutAlign="center center">{{copyLink | translate}} </span>   
         </div>
     </div>
 </div>

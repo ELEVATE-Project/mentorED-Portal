@@ -14,31 +14,33 @@ import { ProfileService } from 'src/app/core/services/profile/profile.service'
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  segment: any="mentee"
+  segment: any = 'mentee'
   dataAvailable: any
-  isMentor:boolean=false
-  selectedFilter = "WEEKLY";
+  isMentor: boolean = false
+  selectedFilter = 'WEEKLY'
   buttonEnable = false
+  selectedButton: any = 'MENTOR_LABEL'
+  noData: any = 'Conduct live sessions to fill this space'
   filters: any = [
     {
       key: 'WEEKLY',
-      value: 'WEEKLY'
+      value: 'WEEKLY',
     },
     {
       key: 'MONTHLY',
-      value: 'MONTHLY'
+      value: 'MONTHLY',
     },
     {
       key: 'QUARTERLY',
-      value: 'QUARTERLY'
-    }
-  ];
-  buttonConfig:any=[
-    {label:"MENTOR_LABEL",value:"mentor"},
-    {label:"MENTEE_LABEL",value:"mentee"}
+      value: 'QUARTERLY',
+    },
   ]
-  loading: boolean = false;
-  data:any;
+  buttonConfig: any = [
+    { label: 'MENTOR_LABEL', value: 'mentor' },
+    { label: 'MENTEE_LABEL', value: 'mentee' },
+  ]
+  loading: boolean = false
+  data: any
   chartData: any = {
     chart: {
       data: {
@@ -47,24 +49,27 @@ export class DashboardComponent implements OnInit {
           {
             data: [],
             backgroundColor: ['#ffab00', '#BEBEBE'],
-          }
-        ]
-      }
-    }
-  };
+          },
+        ],
+      },
+    },
+  }
   constructor(
-    private translate:TranslateService,
-    private profileService:ProfileService,
-    private apiService:ApiService,
-    private localStorage:LocalStorageService
+    private translate: TranslateService,
+    private profileService: ProfileService,
+    private apiService: ApiService,
+    private localStorage: LocalStorageService,
   ) {}
 
   ngOnInit(): void {
-    this.localStorage.getLocalData(localKeys.USER_DETAILS).then((user:any)=>{
-      this.segment = JSON.parse(user).isAMentor?"mentor":this.segment
-      this.isMentor=JSON.parse(user).isAMentor
+    this.localStorage.getLocalData(localKeys.USER_DETAILS).then((user: any) => {
+      this.segment = JSON.parse(user).isAMentor ? 'mentor' : this.segment
+      this.isMentor = JSON.parse(user).isAMentor
       this.getReports().subscribe()
     })
+    this.segment = 'mentee'
+      ? this.noData = 'ENROLL_FOR_SESSION_TO_FILL_SPACE'
+      : 'CONDUCT_LIVE_SESSION_TO_FILL_SPACE'
   }
 
   getReports() {
@@ -74,10 +79,10 @@ export class DashboardComponent implements OnInit {
         ? API_CONSTANTS.MENTOR_REPORTS
         : API_CONSTANTS.MENTEE_REPORTS
     const config = {
-      url: url+this.selectedFilter.toUpperCase(),
-    };
+      url: url + this.selectedFilter.toUpperCase(),
+    }
     return this.apiService.get(config).pipe(
-      map((result:any)=>{
+      map((result: any) => {
         let chartObj
         this.chartData.chart.data.labels.length = 0
         this.chartData.chart.data.datasets[0].data.length = 0
@@ -110,11 +115,15 @@ export class DashboardComponent implements OnInit {
     )
   }
   buttonClick(button: any) {
+    this.selectedButton = button.label
     this.segment = button.value
+    this.noData =
+      button.value == 'mentor'
+        ? 'CONDUCT_LIVE_SESSION_TO_FILL_SPACE'
+        : 'ENROLL_FOR_SESSION_TO_FILL_SPACE'
     this.getReports().subscribe()
   }
   filterChangeHandler(event: any) {
-    console.log('Filter changed', event)
     this.selectedFilter = event
     this.getReports().subscribe()
   }
