@@ -100,11 +100,18 @@ export class SessionDetailComponent implements OnInit {
       this.published = response.status;
       var response = response;
       (response)?this.creator(response):false;
-      this.pageTitle.editTItle(response.title)
+      this.buttonConfigData = {
+        id: this.id,
+        title:response.title,
+        isCreator: this.isCreator,
+        isEnable: this.isEnabled,
+        pastSession: this.pastSession
+      }
+      this.pageTitle.editButtonConfig(this.buttonConfigData)
     });
     this.router.events.subscribe(
       event => {
-        this.pageTitle.editTItle('');
+        this.pageTitle.editButtonConfig({})
       });
   }
   onEnroll() {
@@ -133,14 +140,7 @@ export class SessionDetailComponent implements OnInit {
   creator(response:any){
     if(this.userDetails){
       this.isCreator = this.userDetails._id == response.userId ? true : false;
-    }
-    this.buttonConfigData = {
-      id: this.id,
-      isCreator: this.isCreator,
-      isEnable: this.isEnabled,
-      pastSession: this.pastSession
-    }
-    this.pageTitle.editButtonConfig(this.buttonConfigData)
+    }  
   }
   editSession(){
     this.router.navigate(['/create-session'])
@@ -150,7 +150,7 @@ export class SessionDetailComponent implements OnInit {
   }
 
    ngOnDestroy(){
-    this.pageTitle.editTItle('');
+    this.pageTitle.editButtonConfig({})
    }
 
 }

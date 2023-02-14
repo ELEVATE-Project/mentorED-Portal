@@ -43,11 +43,10 @@ export class PageNavigatorComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,   private sessionService: SessionService,private translate: TranslateService, private profileService: ProfileService, private titleService: Title, private location: Location,private pLocation: PlatformLocation,public dialog: MatDialog,private pageTitleService: PageTitleService) {
     this.setTitle().then(()=>{
-      this.subscription = this.pageTitleService.newTitle$.subscribe((title)=>{
-        if(title){
-          this.pageTitle = title;
-        }
-      })
+      this.subscription = this.pageTitleService.newButtonConfig$.subscribe((buttonConfig)=>{
+        this.buttonConfig = buttonConfig;
+        this.pageTitle = this.buttonConfig.title
+       }) 
     }) 
   }
   
@@ -55,9 +54,6 @@ export class PageNavigatorComponent implements OnInit {
     this.profileService.profileDetails().then((userDetails) => {
       this.userDetails = userDetails;
       this.navigationArray = (userDetails.isAMentor)?this.mentorNavigationArray:this.menteeNavigationArray;
-    }) 
-    this.pageTitleService.newButtonConfig$.subscribe((buttonConfig)=>{
-     this.buttonConfig = buttonConfig;
     }) 
   }
 
