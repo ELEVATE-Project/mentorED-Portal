@@ -14,7 +14,7 @@ export class ExitPopupComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onUnEnroll() {
+  confirmButton() {
     this.buttonClick.emit()
   }
 }
