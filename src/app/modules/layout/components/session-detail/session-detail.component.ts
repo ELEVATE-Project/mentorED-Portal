@@ -143,7 +143,8 @@ export class SessionDetailComponent implements OnInit {
     }  
   }
   editSession(){
-    this.router.navigate(['/edit-session'], {state: this.details.data})
+    console.log(this.details.data)
+    this.router.navigate(['/edit-session', this.id])
   }
   deleteSession(){
     let dialogRef = this.dialog.open(ExitPopupComponent, {

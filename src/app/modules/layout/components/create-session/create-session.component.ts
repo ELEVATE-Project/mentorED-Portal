@@ -42,9 +42,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
     private router: Router,
     private route: ActivatedRoute) {
-    this.route.queryParamMap.subscribe(params => {
-      this.sessionId = params.get("sessionID")
-    })
+    this.sessionId = this.route.snapshot.paramMap.get('id')
   }
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
