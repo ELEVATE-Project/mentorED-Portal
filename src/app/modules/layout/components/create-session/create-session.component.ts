@@ -11,7 +11,7 @@ import { FormService } from 'src/app/core/services/form/form.service';
 import { SessionService } from 'src/app/core/services/session/session.service';
 import { DynamicFormComponent } from 'src/app/shared';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
@@ -38,9 +38,13 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   }
   showForm: any = false;
   sessionDetails: any;
+  sessionId: any;
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
-    private router: Router) { 
-    this.sessionDetails = this.router.getCurrentNavigation()?.extras.state;
+    private router: Router,
+    private route: ActivatedRoute) {
+    this.route.queryParamMap.subscribe(params => {
+      this.sessionId = params.get("sessionID")
+    })
   }
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -51,15 +55,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
      }
    }
   ngOnInit(): void {
-    this.form.getForm(CREATE_SESSION_FORM).subscribe((form)=>{
-      this.formData = form;
-      this.changeDetRef.detectChanges();
-      if(this.sessionDetails){
-        this.imgData.image = (this.sessionDetails.image) ? this.sessionDetails.image : '';
-        this.preFillData(this.sessionDetails);
-        this.changeDetRef.detectChanges();
-      }
-    })  
+    this.sessionDetailApi() 
   }
  
   imageEvent(event: any) {
@@ -117,6 +113,20 @@ export class CreateSessionComponent implements OnInit,CanLeave {
       },
     };
     return this.http.put(path.signedUrl, file);
+  }
+  sessionDetailApi(){
+    this.sessionService.getSessionDetailsAPI(this.sessionId).subscribe((response: any) =>{
+      this.sessionDetails = response;
+      this.form.getForm(CREATE_SESSION_FORM).subscribe((form)=>{
+        this.formData = form;
+        this.changeDetRef.detectChanges();
+        if(this.sessionDetails){
+          this.imgData.image = (this.sessionDetails.image) ? this.sessionDetails.image : '';
+          this.preFillData(this.sessionDetails);
+          this.changeDetRef.detectChanges();
+        }
+      }) 
+    })
   }
   preFillData(existingData: any) {
     this.imgData.image = (existingData['image']) ? existingData['image'] : '';
