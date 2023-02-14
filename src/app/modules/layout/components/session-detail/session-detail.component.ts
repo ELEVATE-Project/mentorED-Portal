@@ -65,7 +65,9 @@ export class SessionDetailComponent implements OnInit {
   published: any;
   userDetails: any;
   isCreator: boolean;
-
+  paginatorConfigData:any;
+  isEnabled:any;
+  pastSession:any;
   constructor(
     private router: Router,
     private sessionService: SessionService,
@@ -90,16 +92,26 @@ export class SessionDetailComponent implements OnInit {
       (this.details.form[0].key=='description')? false: this.details.form.unshift({title: response.title, key: 'description'})
       let readableStartDate = moment.unix(response.startDate).format("DD/MM/YYYY");
       let readableStartTime = moment.unix(response.startDate).format("hh:MM");
+      let currentTimeInSeconds = Math.floor(Date.now() / 1000)
+      this.isEnabled = ((response.startDate - currentTimeInSeconds) < 300) ? true : false
+      this.pastSession = (response.endDate < currentTimeInSeconds) ? false : true
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate;
       this.details.data.startTime = readableStartTime;
       var response = response;
       (response)?this.creator(response):false;
-      this.pageTitle.editTItle(response.title)
+      this.paginatorConfigData = {
+        id: this.id,
+        title:response.title,
+        isCreator: this.isCreator,
+        isEnable: this.isEnabled,
+        pastSession: this.pastSession
+      }
+      this.pageTitle.editButtonConfig(this.paginatorConfigData)
     });
     this.router.events.subscribe(
       event => {
-        this.pageTitle.editTItle('');
+        this.pageTitle.editButtonConfig({})
       });
   }
   onEnroll() {
@@ -128,10 +140,10 @@ export class SessionDetailComponent implements OnInit {
   creator(response:any){
     if(this.userDetails){
       this.isCreator = this.userDetails._id == response.userId ? true : false;
-    }
+    }  
   }
   editSession(){
-    this.router.navigate(['/create-session'], {state: this.details.data})
+    this.router.navigate(['/edit-session'], {state: this.details.data})
   }
   deleteSession(){
     let dialogRef = this.dialog.open(ExitPopupComponent, {
@@ -148,7 +160,7 @@ export class SessionDetailComponent implements OnInit {
   }
 
    ngOnDestroy(){
-    this.pageTitle.editTItle('');
+    this.pageTitle.editButtonConfig({})
    }
    deleteSessions(){
     let result = this.sessionService.deleteSession(this.id).subscribe(() => {

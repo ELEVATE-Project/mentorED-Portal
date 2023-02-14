@@ -15,8 +15,11 @@ export class SessionCardComponent implements OnInit {
   @Input() status: any;
   buttonConfig:any;
   userData: any;
+  selectedPage:any;
   @Input() isCreator: any
-  constructor(private localStorage:LocalStorageService,private translate: TranslateService, private router: Router) { }
+  constructor(private localStorage:LocalStorageService,private translate: TranslateService, private router: Router) { 
+    this.selectedPage = router.url
+  }
   @Output() buttonClick = new EventEmitter()
 
   async ngOnInit() {
@@ -43,8 +46,9 @@ export class SessionCardComponent implements OnInit {
   }
   
   onCardClick(cardData: any){
+    let id = this.selectedPage == '/enrolled-sessions' ? cardData.sessionId : cardData._id
     let value = {
-      data: cardData._id,
+      data: id,
       type: 'cardSelect',
     }
     this.router.navigate([`/${"session-detail"}/${value.data}`])
