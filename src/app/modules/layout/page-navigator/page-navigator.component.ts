@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 import { PageTitleService } from 'src/app/core/services/page-title/page-title.service';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
+import { SessionService } from 'src/app/core/services/session/session.service';
 import { SharePopupComponent } from 'src/app/shared/components/share-popup/share-popup.component';
 
 
@@ -38,22 +39,24 @@ export class PageNavigatorComponent implements OnInit {
   url: any;
   showShareButton: any;
   subscription: any;
+  paginatorConfig:any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private translate: TranslateService, private profileService: ProfileService, private titleService: Title, private location: Location,private pLocation: PlatformLocation,public dialog: MatDialog,private pageTitleService: PageTitleService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,   private sessionService: SessionService,private translate: TranslateService, private profileService: ProfileService, private titleService: Title, private location: Location,private pLocation: PlatformLocation,public dialog: MatDialog,private pageTitleService: PageTitleService) {
     this.setTitle().then(()=>{
-      this.subscription = this.pageTitleService.newTitle$.subscribe((title)=>{
-        if(title){
-          this.pageTitle = title;
+      this.subscription = this.pageTitleService.newButtonConfig$.subscribe((paginatorConfig)=>{
+        this.paginatorConfig = paginatorConfig;
+        if(this.paginatorConfig.title){
+          this.pageTitle = this.paginatorConfig.title
         }
-      })
-    })
+       }) 
+    }) 
   }
   
   ngOnInit(): void {
     this.profileService.profileDetails().then((userDetails) => {
       this.userDetails = userDetails;
       this.navigationArray = (userDetails.isAMentor)?this.mentorNavigationArray:this.menteeNavigationArray;
-    })
+    }) 
   }
 
   async setTitle() {
@@ -79,4 +82,7 @@ export class PageNavigatorComponent implements OnInit {
        });
   }
 
+  startSession(){
+    this.sessionService.startSession(this.paginatorConfig.id).subscribe((result) => {})
+  }
 }

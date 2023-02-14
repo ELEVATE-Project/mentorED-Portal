@@ -70,6 +70,12 @@ const routes: Routes = [
         data: {title: 'CREATE_NEW_SESSION', onBackUrl:"/created-sessions"},
         canDeactivate: [CanDeactivateGuard]
       },
+      {
+        path: 'edit-session',
+        component: CreateSessionComponent,
+        data: {title: 'EDIT_SESSION', onBackUrl:"/created-sessions"},
+        canDeactivate: [CanDeactivateGuard]
+      },
       { path: 'edit-profile',
         component: EditProfileComponent,
         data: {title: 'EDIT_YOUR_PROFILE', onBackUrl:'/profile'},

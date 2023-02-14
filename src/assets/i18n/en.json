@@ -134,5 +134,6 @@
     "UN_ENROLL_SESSION": "Un-enroll session",
     "DELETE_SESSION": "Delete session",
     "ARE_YOU_SURE_WANT_TO_DELETE_SESSION": "Are you sure you want to delete the session ?",
-    "YES_DELETE":"Yes delete"
+    "YES_DELETE":"Yes delete",
+    "EDIT_SESSION":"Edit session details"
 }
