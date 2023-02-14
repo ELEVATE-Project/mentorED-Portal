@@ -65,7 +65,7 @@ export class SessionDetailComponent implements OnInit {
   published: any;
   userDetails: any;
   isCreator: boolean;
-  buttonConfigData:any;
+  paginatorConfigData:any;
   isEnabled:any;
   pastSession:any;
   constructor(
@@ -100,14 +100,14 @@ export class SessionDetailComponent implements OnInit {
       this.details.data.startTime = readableStartTime;
       var response = response;
       (response)?this.creator(response):false;
-      this.buttonConfigData = {
+      this.paginatorConfigData = {
         id: this.id,
         title:response.title,
         isCreator: this.isCreator,
         isEnable: this.isEnabled,
         pastSession: this.pastSession
       }
-      this.pageTitle.editButtonConfig(this.buttonConfigData)
+      this.pageTitle.editButtonConfig(this.paginatorConfigData)
     });
     this.router.events.subscribe(
       event => {

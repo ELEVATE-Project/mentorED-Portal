@@ -39,14 +39,14 @@ export class PageNavigatorComponent implements OnInit {
   url: any;
   showShareButton: any;
   subscription: any;
-  buttonConfig:any;
+  paginatorConfig:any;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,   private sessionService: SessionService,private translate: TranslateService, private profileService: ProfileService, private titleService: Title, private location: Location,private pLocation: PlatformLocation,public dialog: MatDialog,private pageTitleService: PageTitleService) {
     this.setTitle().then(()=>{
-      this.subscription = this.pageTitleService.newButtonConfig$.subscribe((buttonConfig)=>{
-        this.buttonConfig = buttonConfig;
-        if(this.buttonConfig.title){
-          this.pageTitle = this.buttonConfig.title
+      this.subscription = this.pageTitleService.newButtonConfig$.subscribe((paginatorConfig)=>{
+        this.paginatorConfig = paginatorConfig;
+        if(this.paginatorConfig.title){
+          this.pageTitle = this.paginatorConfig.title
         }
        }) 
     }) 
@@ -83,6 +83,6 @@ export class PageNavigatorComponent implements OnInit {
   }
 
   startSession(){
-    this.sessionService.startSession(this.buttonConfig.id).subscribe((result) => {})
+    this.sessionService.startSession(this.paginatorConfig.id).subscribe((result) => {})
   }
 }

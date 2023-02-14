@@ -5,12 +5,12 @@ import { BehaviorSubject } from 'rxjs'
   providedIn: 'root'
 })
 export class PageTitleService {
-  private buttonConfig = new BehaviorSubject<object>({});
-  newButtonConfig$ = this.buttonConfig.asObservable();
+  private paginatorConfig = new BehaviorSubject<object>({});
+  newButtonConfig$ = this.paginatorConfig.asObservable();
 
   constructor() { }
   
-  editButtonConfig(buttonConfig:object){
-    this.buttonConfig.next(buttonConfig)
+  editButtonConfig(paginatorConfig:object){
+    this.paginatorConfig.next(paginatorConfig)
   }
 }

@@ -5,7 +5,7 @@
         </button>
         <h1 *ngIf="pageTitle" fxLayoutAlign="start center" fxFlex="62" fxFlex.xs="30">{{pageTitle|translate}}
         </h1>
-        <button mat-raised-button fxFlex="12" *ngIf="buttonConfig.isCreator && showShareButton && buttonConfig.pastSession" class="startButton" [disabled]="!buttonConfig.isEnable" (click)="startSession()">
+        <button mat-raised-button fxFlex="12" *ngIf="paginatorConfig.isCreator && showShareButton && paginatorConfig.pastSession" class="startButton" [disabled]="!paginatorConfig.isEnable" (click)="startSession()">
             Start
         </button>
         <button
