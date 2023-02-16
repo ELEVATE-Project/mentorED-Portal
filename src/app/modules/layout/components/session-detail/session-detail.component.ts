@@ -143,7 +143,6 @@ export class SessionDetailComponent implements OnInit {
     }  
   }
   editSession(){
-    console.log(this.details.data)
     this.router.navigate(['/edit-session', this.id])
   }
   deleteSession(){

@@ -15,6 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-create-session',
@@ -36,7 +37,6 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     appearance: 'fill',
     floatLabel: 'always'
   }
-  showForm: any = false;
   sessionDetails: any;
   sessionId: any;
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
@@ -53,7 +53,22 @@ export class CreateSessionComponent implements OnInit,CanLeave {
      }
    }
   ngOnInit(): void {
-    this.sessionDetailApi() 
+    if(this.sessionId){
+      this.sessionDetailApi()
+    }else {
+      this.getFormDetails()
+    }
+  }
+  getFormDetails(){
+    this.form.getForm(CREATE_SESSION_FORM).subscribe((form)=>{
+      this.formData = form;
+      this.changeDetRef.detectChanges();
+      if(this.sessionDetails){
+        this.imgData.image = (this.sessionDetails.image) ? this.sessionDetails.image : '';
+        this.preFillData(this.sessionDetails);
+        this.changeDetRef.detectChanges();
+      }
+    }) 
   }
  
   imageEvent(event: any) {
@@ -115,23 +130,14 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   sessionDetailApi(){
     this.sessionService.getSessionDetailsAPI(this.sessionId).subscribe((response: any) =>{
       this.sessionDetails = response;
-      this.form.getForm(CREATE_SESSION_FORM).subscribe((form)=>{
-        this.formData = form;
-        this.changeDetRef.detectChanges();
-        if(this.sessionDetails){
-          this.imgData.image = (this.sessionDetails.image) ? this.sessionDetails.image : '';
-          this.preFillData(this.sessionDetails);
-          this.changeDetRef.detectChanges();
-        }
-      }) 
+      this.getFormDetails()
     })
   }
   preFillData(existingData: any) {
     this.imgData.image = (existingData['image']) ? existingData['image'] : '';
     for (let i = 0; i < this.formData.controls.length; i++) {
-      this.formData.controls[i].value = existingData[this.formData.controls[i].name];
+      this.formData.controls[i].value = (this.formData.controls[i].type == 'date')? moment.unix(existingData[this.formData.controls[i].name]).format():existingData[this.formData.controls[i].name];
       this.formData.controls[i].options = _.unionBy(this.formData.controls[i].options, this.formData.controls[i].value, 'value');
     }
-    this.showForm = true;
   }
 }
