@@ -71,7 +71,7 @@ const routes: Routes = [
         canDeactivate: [CanDeactivateGuard]
       },
       {
-        path: 'edit-session',
+        path: 'edit-session/:id',
         component: CreateSessionComponent,
         data: {title: 'EDIT_SESSION', onBackUrl:"/created-sessions"},
         canDeactivate: [CanDeactivateGuard]
