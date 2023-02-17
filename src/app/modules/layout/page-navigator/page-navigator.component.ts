@@ -79,6 +79,6 @@ export class PageNavigatorComponent implements OnInit {
   
   onClickSession(buttonConfig:any){
     const that: any = this;
-    that[buttonConfig.service][buttonConfig.method](buttonConfig.passingParameter)
+    that[buttonConfig.service][buttonConfig.method](buttonConfig?.passingParameter)
   }
 }

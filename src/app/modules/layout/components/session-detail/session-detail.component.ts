@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ExitPopupComponent } from "src/app/shared/components/exit-popup/exit-popup.component";
 import { LocalStorageService } from "src/app/core/services/local-storage/local-storage.service";
 import { localKeys } from "src/app/core/constants/localStorage.keys";
-import { Location, PlatformLocation} from '@angular/common';
+import { Location} from '@angular/common';
 
 @Component({
   selector: "app-session-detail",
@@ -76,7 +76,6 @@ export class SessionDetailComponent implements OnInit {
     private localStorage:LocalStorageService,
     private pageTitle: PageTitleService,
     private location: Location,
-    private pLocation: PlatformLocation
   ) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
@@ -103,12 +102,11 @@ export class SessionDetailComponent implements OnInit {
       (response)?this.creator(response):false;
       let  buttonName = this.isCreator ? 'START':'JOIN'
       let method = this.isCreator ? 'startSession':'joinSession'
-      let url = (this.pLocation as any).location.href;
       let showButton = (this.details?.data?.isEnrolled && this.details.data.status ==='published' || this.isCreator) && this.pastSession
       this.paginatorConfigData = {
         title:response.title,
         buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:!this.isEnabled, service: 'sessionService', method: method, passingParameter:this.id, showButton:showButton},
-        {buttonName:'SHARE_SESSION',cssClass:"shareButton", matIconName:'share', isDisable:false,service: 'utilService', method: 'shareButton', passingParameter:url,showButton:true}]
+        {buttonName:'SHARE_SESSION',cssClass:"shareButton", matIconName:'share', isDisable:false,service: 'utilService', method: 'shareButton',showButton:true}]
       }
       this.pageTitle.editButtonConfig(this.paginatorConfigData)
     });
