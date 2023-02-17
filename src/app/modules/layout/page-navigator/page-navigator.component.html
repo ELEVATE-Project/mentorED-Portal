@@ -5,21 +5,13 @@
         </button>
         <h1 *ngIf="pageTitle" fxLayoutAlign="start center" fxFlex="62" fxFlex.xs="30">{{pageTitle|translate}}
         </h1>
-        <button mat-raised-button fxFlex="12" *ngIf="paginatorConfig.isCreator && showShareButton && paginatorConfig.pastSession" class="startButton" [disabled]="!paginatorConfig.isEnable" (click)="startSession()">
-            Start
-        </button>
-        <button
-            class="shareButton"
-            mat-raised-button
-            *ngIf="showShareButton"
-            fxFlex="15"
-            fxFlex.xs="40"
-            fxFlex.sm="25"
-            fxFlex.gt-sm="16"
-            (click)="shareButton()">
-            <mat-icon color="primary">share</mat-icon>
-            {{'SHARE_SESSION' | translate}}
-        </button>
+        <div *ngFor="let buttonConfig of paginatorConfig.buttonConfig" class="button-container">
+            <button mat-raised-button fxFlex="12" fxLayoutAlign="center center" *ngIf="buttonConfig.showButton" [class]="buttonConfig.cssClass" [disabled]="buttonConfig.isDisable" (click)="onClickSession(buttonConfig)">
+                <mat-icon *ngIf="buttonConfig.matIconName" color="primary">{{buttonConfig.matIconName}}</mat-icon>   
+                {{buttonConfig.buttonName | translate}}   
+            </button>
+        </div>
+        
     </div>
 </div>
 <div *ngIf="!pageTitle" class="conatiner" fxFlex="71%" fxFlex.xs="100%" fxFlex.sm="90%" fxFlex.md="90%">

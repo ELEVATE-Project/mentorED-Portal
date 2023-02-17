@@ -8,6 +8,7 @@ import { filter } from 'rxjs';
 import { PageTitleService } from 'src/app/core/services/page-title/page-title.service';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
 import { SessionService } from 'src/app/core/services/session/session.service';
+import { UtilService } from 'src/app/core/services/util/util.service';
 import { SharePopupComponent } from 'src/app/shared/components/share-popup/share-popup.component';
 
 
@@ -41,7 +42,7 @@ export class PageNavigatorComponent implements OnInit {
   subscription: any;
   paginatorConfig:any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute,   private sessionService: SessionService,private translate: TranslateService, private profileService: ProfileService, private titleService: Title, private location: Location,private pLocation: PlatformLocation,public dialog: MatDialog,private pageTitleService: PageTitleService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,  private utilService:UtilService, private sessionService: SessionService,private translate: TranslateService, private profileService: ProfileService, private titleService: Title, private location: Location,private pageTitleService: PageTitleService) {
     this.setTitle().then(()=>{
       this.subscription = this.pageTitleService.newButtonConfig$.subscribe((paginatorConfig)=>{
         this.paginatorConfig = paginatorConfig;
@@ -75,14 +76,9 @@ export class PageNavigatorComponent implements OnInit {
       this.location.back()
     }
   }
-  shareButton() {
-    this.url = (this.pLocation as any).location.href;
-    this.dialog.open(SharePopupComponent, {
-      data: { defaultValue: this.url},
-       });
-  }
-
-  startSession(){
-    this.sessionService.startSession(this.paginatorConfig.id).subscribe((result) => {})
+  
+  onClickSession(buttonConfig:any){
+    const that: any = this;
+    that[buttonConfig.service][buttonConfig.method](buttonConfig?.passingParameter)
   }
 }

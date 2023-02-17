@@ -75,7 +75,7 @@ export class SessionDetailComponent implements OnInit {
     private dialog: MatDialog,
     private localStorage:LocalStorageService,
     private pageTitle: PageTitleService,
-    private location: Location
+    private location: Location,
   ) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
@@ -100,12 +100,13 @@ export class SessionDetailComponent implements OnInit {
       this.details.data.startTime = readableStartTime;
       var response = response;
       (response)?this.creator(response):false;
+      let  buttonName = this.isCreator ? 'START':'JOIN'
+      let method = this.isCreator ? 'startSession':'joinSession'
+      let showButton = (this.details?.data?.isEnrolled && this.details.data.status ==='published' || this.isCreator) && this.pastSession
       this.paginatorConfigData = {
-        id: this.id,
         title:response.title,
-        isCreator: this.isCreator,
-        isEnable: this.isEnabled,
-        pastSession: this.pastSession
+        buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:!this.isEnabled, service: 'sessionService', method: method, passingParameter:this.id, showButton:showButton},
+        {buttonName:'SHARE_SESSION',cssClass:"shareButton", matIconName:'share', isDisable:false,service: 'utilService', method: 'shareButton',showButton:true}]
       }
       this.pageTitle.editButtonConfig(this.paginatorConfigData)
     });

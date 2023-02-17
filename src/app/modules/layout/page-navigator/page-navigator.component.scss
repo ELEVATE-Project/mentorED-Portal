@@ -36,14 +36,14 @@ h1 {
 }
 .shareButton{
   border-radius: 5%;
-  padding: 0%;
-  border-radius: 25px;
+   border-radius: 25px;
   color: $theme;
+  padding: 0 10px 0 10px;
   min-width: fit-content !important;
 }
 .startButton{
   border-radius: 5%;
-  padding: 0%;
+  padding: 0 20px 0 20px;
   border-radius: 28px;
   min-width: fit-content !important;
   color: $white;
