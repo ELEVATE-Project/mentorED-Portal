@@ -82,7 +82,8 @@ export class PageNavigatorComponent implements OnInit {
        });
   }
 
-  startSession(){
-    this.sessionService.startSession(this.paginatorConfig.id).subscribe((result) => {})
+  onClickSession(){
+    const that: any = this;
+    that[this.paginatorConfig.buttonConfig[0].service][this.paginatorConfig.buttonConfig[0].method](this.paginatorConfig.id).subscribe((result:any) => {})
   }
 }

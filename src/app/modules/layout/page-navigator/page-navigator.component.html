@@ -5,20 +5,20 @@
         </button>
         <h1 *ngIf="pageTitle" fxLayoutAlign="start center" fxFlex="62" fxFlex.xs="30">{{pageTitle|translate}}
         </h1>
-        <button mat-raised-button fxFlex="12" *ngIf="paginatorConfig.isCreator && showShareButton && paginatorConfig.pastSession" class="startButton" [disabled]="!paginatorConfig.isEnable" (click)="startSession()">
-            Start
+        <button mat-raised-button fxFlex="12" *ngIf="showShareButton && paginatorConfig.pastSession && paginatorConfig.buttonConfig[0]" [class]="paginatorConfig.buttonConfig[0].cssClass" [disabled]="!paginatorConfig.buttonConfig[0].isEnable" (click)="onClickSession()">
+            {{paginatorConfig.buttonConfig[0].buttonName | translate}}   
         </button>
         <button
-            class="shareButton"
+            [class]="paginatorConfig.shareProfile.cssClass"
             mat-raised-button
-            *ngIf="showShareButton"
+            *ngIf="paginatorConfig.shareProfile"
             fxFlex="15"
             fxFlex.xs="40"
             fxFlex.sm="25"
             fxFlex.gt-sm="16"
             (click)="shareButton()">
             <mat-icon color="primary">share</mat-icon>
-            {{'SHARE_SESSION' | translate}}
+            {{paginatorConfig.shareProfile.buttonName | translate}} 
         </button>
     </div>
 </div>
