@@ -56,14 +56,15 @@ mat-card {
 .button-wrapper {
   justify-content: center;
 }
-.options {
-  color: white !important;
-  font-size: 12px;
-}
 .piechart {
   max-height: 90%;
 }
 .no-data-image {
   width: 100%;
   margin-top: 10%;
+}
+
+::ng-deep  .filter .mat-select-value-text,  ::ng-deep .filter .mat-select-arrow{
+  color: $white !important;
+  font-size: 13px;
 }

@@ -36,16 +36,15 @@
         <h2 class="session">{{ 'SESSION_OVERVIEW' | translate }}</h2>
 
         <mat-select
-          class="options"
           fxFlexAlign="center"
           class="filter"
-          fxFlex="13%"
+          fxFlex="12%"
           [(ngModel)]="selectedFilter"
         >
           <mat-option
             [value]="filter.key"
+            fxLayoutAlign="center"
             *ngFor="let filter of filters"
-            class="label"
             (click)="filterChangeHandler(filter.key)"
           >
             {{ filter.key }}
