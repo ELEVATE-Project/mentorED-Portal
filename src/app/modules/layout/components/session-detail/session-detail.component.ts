@@ -100,13 +100,13 @@ export class SessionDetailComponent implements OnInit {
       this.details.data.startTime = readableStartTime;
       var response = response;
       (response)?this.creator(response):false;
-      let  buttonName = this.isCreator == true ? 'START':'JOIN'
-      let method = this.isCreator == true ? 'startSession':'joinSession'
+      let  buttonName = this.isCreator ? 'START':'JOIN'
+      let method = this.isCreator ? 'startSession':'joinSession'
+      let showButton = this.details?.data?.isEnrolled && this.details.data.status ==='published' || this.isCreator
       this.paginatorConfigData = {
         id: this.id,
         title:response.title,
-        isCreator: this.isCreator,
-        isEnable: this.isEnabled,
+        showButton:showButton,
         pastSession: this.pastSession,
         shareProfile:{buttonName:'SHARE_SESSION',cssClass:"shareButton"},
         buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isEnable:this.isEnabled, service: 'sessionService', method: method}]
