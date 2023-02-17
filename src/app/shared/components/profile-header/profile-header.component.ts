@@ -5,6 +5,7 @@ import { MentorService } from 'src/app/core/services/mentor/mentor.service';
 import { SharePopupComponent } from '../share-popup/share-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PlatformLocation } from '@angular/common';
+import { UtilService } from 'src/app/core/services/util/util.service';
 
 @Component({
   selector: 'app-profile-header',
@@ -17,7 +18,7 @@ export class ProfileHeaderComponent implements OnInit {
   @Input() mentorDirectory:any
   selectedPage:any
   url: any;
-  constructor(private translate:TranslateService,public dialog: MatDialog,private pLocation: PlatformLocation,private router: Router, private mentorService:MentorService) { 
+  constructor(private translate:TranslateService,private utilService:UtilService, public dialog: MatDialog,private pLocation: PlatformLocation,private router: Router, private mentorService:MentorService) { 
     this.selectedPage = router.url
   }
   public isArray(arr:any ) {
@@ -30,9 +31,7 @@ export class ProfileHeaderComponent implements OnInit {
   }
   shareProfile(){
     this.url = (this.pLocation as any).location.href;
-    this.dialog.open(SharePopupComponent, {
-      data: { defaultValue: this.url},
-       });
+    this.utilService.shareButton(this.url)
   }
 
 }

@@ -92,7 +92,6 @@ export class MentorProfileComponent implements OnInit {
         let id = event.data._id;
         this.sessionService
           .joinSession(id)
-          .subscribe((result) => {})
         break
     }
   }

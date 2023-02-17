@@ -100,7 +100,6 @@ export class SessionListingComponent implements OnInit {
         let id = this.selectedPage == '/enrolled-sessions' ? event.data.sessionId : event.data._id
         this.sessionService
           .joinSession(id)
-          .subscribe((result) => {})
         break
     }
   }
