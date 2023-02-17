@@ -91,7 +91,7 @@ export class SessionDetailComponent implements OnInit {
     this.sessionService.getSessionDetailsAPI(this.id).subscribe((response: any) => {
       (this.details.form[0].key=='description')? false: this.details.form.unshift({title: response.title, key: 'description'})
       let readableStartDate = moment.unix(response.startDate).format("DD/MM/YYYY");
-      let readableStartTime = moment.unix(response.startDate).format("hh:MM");
+      let readableStartTime = moment.unix(response.startDate).format("hh:mm A");
       let currentTimeInSeconds = Math.floor(Date.now() / 1000)
       this.isEnabled = ((response.startDate - currentTimeInSeconds) < 300) ? true : false
       this.pastSession = (response.endDate < currentTimeInSeconds) ? false : true
