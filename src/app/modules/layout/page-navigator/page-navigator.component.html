@@ -1,17 +1,18 @@
-<div *ngIf="pageTitle" class="conatiner" fxFlex="71%" fxFlex.xs="100%" fxFlex.sm="90%" fxFlex.md="90%">
-    <div class="navigation-container" fxLayoutAlign="start center" fxLayoutGap="5%">
-        <button class="back-button" mat-fab color="white" fxFlex="70px" (click)="onBack()">
-            <mat-icon>arrow_back</mat-icon>
-        </button>
-        <h1 *ngIf="pageTitle" fxLayoutAlign="start center" fxFlex="62" fxFlex.xs="30">{{pageTitle|translate}}
-        </h1>
-        <div *ngFor="let buttonConfig of paginatorConfig.buttonConfig" class="button-container">
+<div *ngIf="pageTitle" class="conatiner" fxFlex="71%" fxFlex.xs="100%" fxFlex.sm="90%" fxFlex.md="90%" fxLayout.xs="row wrap">
+    <div class="main-div" fxLayoutAlign="space-between start" fxLayoutGap="5%" fxLayout.xs="row wrap">
+        <div class="navigation-container" fxLayoutAlign="start center" fxLayoutGap="5%">
+            <button class="back-button" mat-fab color="white" fxFlex="70px" (click)="onBack()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <h1 *ngIf="pageTitle" fxLayoutAlign="start center" fxFlex="62" fxFlex.xs="60%">{{pageTitle|translate}}
+            </h1>
+        </div>
+        <div *ngFor="let buttonConfig of paginatorConfig.buttonConfig" class="button-container" fxLayoutGap="5%" fxLayoutAlign="end center">
             <button mat-raised-button fxFlex="12" fxLayoutAlign="center center" *ngIf="buttonConfig.showButton" [class]="buttonConfig.cssClass" [disabled]="buttonConfig.isDisable" (click)="onClickSession(buttonConfig)">
                 <mat-icon *ngIf="buttonConfig.matIconName" color="primary">{{buttonConfig.matIconName}}</mat-icon>   
                 {{buttonConfig.buttonName | translate}}   
             </button>
         </div>
-        
     </div>
 </div>
 <div *ngIf="!pageTitle" class="conatiner" fxFlex="71%" fxFlex.xs="100%" fxFlex.sm="90%" fxFlex.md="90%">
