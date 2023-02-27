@@ -1,4 +1,4 @@
-<mat-card fxLayout="row" fxLayoutGap="10px" class="mat-card-container">
+<mat-card fxLayout="row" fxLayoutGap="10px" class="mat-card-container" (click)="onClickCiewProfile(cardData)">
     <div class="card-images" fxFlex="35%" fxLayout="column" fxLayoutGap="10px"> 
         <div fxFlex="50%">
             <ng-template [ngIf]="cardData.image" [ngIfElse]="loggedOut">
