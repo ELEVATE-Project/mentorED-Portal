@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit {
         if (this.segment === 'mentor') {
           this.chartData.chart.data.labels.push(
             'Total Sessions Created',
-            'Total Sessions Hosted',
+            'Total sessions conducted',
           )
           this.chartData.chart.data.datasets[0].data.push(
             result.result.totalSessionCreated || 0,
