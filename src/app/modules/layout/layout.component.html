@@ -1,30 +1,32 @@
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer class="drawer" position="end">
     <div fxLayout="column" fxLayoutAlign="center">
-      <div class="menu-button" fxLayoutAlign="space-evenly center">
-        <mat-icon class="icon">language</mat-icon>
-        <mat-select fxFlexAlign="center" [(value)]="selectedLanguage" (selectionChange)="languageEvent()">
-          <mat-option fxFlex class="options" [value]="option.value" *ngFor="let option of options">
-            {{ option.label }}
-          </mat-option>
-        </mat-select>
+      <div class="menu-button" >
+          <mat-button fxFlex="100%" fxLayout="row">
+            <mat-icon fxFlex="40%" fxLayoutAlign="center center" class="icon">language</mat-icon>
+            <mat-select fxLayoutAlign="center center" [(value)]="selectedLanguage" fxLayoutAlign="center center"  (selectionChange)="languageEvent()">
+              <mat-option [value]="option.value" *ngFor="let option of options">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-button>   
       </div>
-      <div class="menu-button" fxLayoutAlign="space-evenly center">
-        <mat-button fxFlex="100%" fxLayoutAlign="space-evenly center" (click)="goToProfile();drawer.toggle()">
-          <mat-icon>account_circle</mat-icon>
-          <span>{{"MY_PROFILE"|translate}}</span>
+      <div class="menu-button">
+        <mat-button fxFlex="100%" fxLayout="row"  (click)="goToProfile();drawer.toggle()">
+          <mat-icon fxFlex="40%" fxLayoutAlign="center center" class="icon">account_circle</mat-icon>
+          <span fxLayoutAlign="center center" class="button-text">{{"MY_PROFILE"|translate}}</span>
         </mat-button>
       </div>
-      <div class="menu-button" fxLayoutAlign="space-evenly center">
-        <mat-button fxFlex="100%" fxLayoutAlign="space-evenly center" (click)="goToDashboard();drawer.toggle()">
-          <mat-icon>assessment</mat-icon>
-          <span>{{"DASHBOARD"|translate}}</span>
+      <div class="menu-button">
+        <mat-button fxFlex="100%" fxLayout="row" (click)="goToDashboard();drawer.toggle()">
+          <mat-icon  fxFlex="40%" fxLayoutAlign="center center" class="icon">assessment</mat-icon>
+          <span  fxLayoutAlign="center center" class="button-text">{{"DASHBOARD"|translate}}</span>
         </mat-button>
       </div>
-      <div class="menu-button" fxLayoutAlign="space-evenly center">
-        <mat-button fxFlex="100%" fxLayoutAlign="space-evenly center" (click)="onLogout()">
-          <mat-icon class="icon">exit_to_app</mat-icon>
-          {{"LOGOUT"|translate}}
+      <div class="menu-button">
+        <mat-button fxFlex="100%" fxLayout="row" (click)="onLogout()">
+          <mat-icon  fxFlex="40%" fxLayoutAlign="center center" class="icon">exit_to_app</mat-icon>
+          <span  fxLayoutAlign="center center" class="button-text"> {{"LOGOUT"|translate}}</span>
         </mat-button>
       </div>
     </div>
