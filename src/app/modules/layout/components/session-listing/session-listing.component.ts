@@ -27,7 +27,8 @@ export class SessionListingComponent implements OnInit {
   selectedPage: any;
   page: any=1;
   limit: any = 4;
-  noData: any
+  noData: any = { image : '/assets/images/no-data.png', 
+content:""}
   loading: boolean = false;
   userDetails: any;
   sessionsCount = 0
@@ -73,7 +74,7 @@ export class SessionListingComponent implements OnInit {
       map((data: any) => {
         this.cardDetails = this.cardDetails.concat(data?.result[0]?.data)
         if (!this.cardDetails.length) {
-          this.noData =
+          this.noData.content=
             this.selectedPage == '/enrolled-sessions'
               ? 'NO_ENROLL_SESSION_CONTENT'
               : 'NO_ALL_SESSION_CONTENT'

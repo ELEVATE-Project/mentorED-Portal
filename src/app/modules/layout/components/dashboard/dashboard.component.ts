@@ -20,7 +20,8 @@ export class DashboardComponent implements OnInit {
   selectedFilter = 'WEEKLY'
   buttonEnable = false
   selectedButton: any = 'MENTOR_LABEL'
-  noData: any = 'Conduct live sessions to fill this space'
+  noData: any = { image : '/assets/images/no-data-available.png', 
+  content:'Conduct live sessions to fill this space'}
   filters: any = [
     {
       key: 'WEEKLY',
@@ -68,7 +69,7 @@ export class DashboardComponent implements OnInit {
       this.getReports().subscribe()
     })
     this.segment = 'mentee'
-      ? this.noData = 'ENROLL_FOR_SESSION_TO_FILL_SPACE'
+      ? this.noData.content = 'ENROLL_FOR_SESSION_TO_FILL_SPACE'
       : 'CONDUCT_LIVE_SESSION_TO_FILL_SPACE'
   }
 
@@ -117,7 +118,7 @@ export class DashboardComponent implements OnInit {
   buttonClick(button: any) {
     this.selectedButton = button.label
     this.segment = button.value
-    this.noData =
+    this.noData.content =
       button.value == 'mentor'
         ? 'CONDUCT_LIVE_SESSION_TO_FILL_SPACE'
         : 'ENROLL_FOR_SESSION_TO_FILL_SPACE'
