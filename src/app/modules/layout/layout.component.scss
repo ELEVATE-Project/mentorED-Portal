@@ -57,11 +57,12 @@ mat-select {
   font-weight: 500px;
   color: $theme;
   width: auto;
-  padding: 2%;
 }
 .icon {
-  padding: 2px;
   font-size: 27px;
+}
+.button-text{
+  font-size: 16px;
 }
 mat-button {
   padding-right: 22px;
