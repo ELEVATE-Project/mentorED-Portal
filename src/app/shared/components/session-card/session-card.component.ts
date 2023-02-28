@@ -37,7 +37,7 @@ export class SessionCardComponent implements OnInit {
     }
     let currentTimeInSeconds = Math.floor(Date.now() / 1000)
     this.buttonConfig.isEnabled =
-      (this.cardData.startDate - currentTimeInSeconds) < 300 ? true : false
+      (this.cardData.startDate - currentTimeInSeconds) < 600 ? true : false
     this.cardData.startDate = (this.cardData.startDate>0)?moment.unix(this.cardData.startDate).toLocaleString():this.cardData.startDate;
   }
   buttonClicked(action: any, data: any) {

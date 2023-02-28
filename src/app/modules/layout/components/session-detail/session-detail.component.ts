@@ -93,7 +93,7 @@ export class SessionDetailComponent implements OnInit {
       let readableStartDate = moment.unix(response.startDate).format("DD/MM/YYYY");
       let readableStartTime = moment.unix(response.startDate).format("hh:mm A");
       let currentTimeInSeconds = Math.floor(Date.now() / 1000)
-      this.isEnabled = ((response.startDate - currentTimeInSeconds) < 300) ? true : false
+      this.isEnabled = ((response.startDate - currentTimeInSeconds) < 600) ? true : false
       this.pastSession = (response.endDate < currentTimeInSeconds) ? false : true
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate;
