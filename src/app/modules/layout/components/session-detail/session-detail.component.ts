@@ -152,7 +152,7 @@ export class SessionDetailComponent implements OnInit {
         header: "DELETE_SESSION",
         label: "ARE_YOU_SURE_WANT_TO_DELETE_SESSION",
         confirmButton: "YES_DELETE",
-        cancelButton: 'CANCEL'
+        cancelButton: 'NO_DO_NOT_DELETE'
       }
     });
     const result = dialogRef.componentInstance.buttonClick.subscribe(()=> {

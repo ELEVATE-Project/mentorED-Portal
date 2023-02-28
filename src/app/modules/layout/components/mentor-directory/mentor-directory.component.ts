@@ -18,7 +18,8 @@ export class MentorDirectoryComponent implements OnInit {
   selectedAlphabet:any = "All"
   selectedMentors:any;
   allMentors:any = [];
-  noData:any = 'NO_MENTOR_IN_MENTOR_DIRECTORY_CONTENT'
+  noData:any = { image : '/assets/images/results-not-found.png', 
+  content:'NO_MENTOR_IN_MENTOR_DIRECTORY_CONTENT'}
   noselectedMentors:any = false;
   alphabetsArray:any = ["All","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
   constructor(private mentorService:MentorService, private apiService: ApiService, private router: Router) { }
