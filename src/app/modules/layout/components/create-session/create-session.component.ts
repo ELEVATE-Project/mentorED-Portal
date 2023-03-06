@@ -64,7 +64,6 @@ export class CreateSessionComponent implements OnInit,CanLeave {
       this.formData = form;
       this.changeDetRef.detectChanges();
       if(this.sessionDetails){
-        this.imgData.image = (this.sessionDetails.image[0]) ? this.sessionDetails.image[0] : '';
         this.preFillData(this.sessionDetails);
         this.changeDetRef.detectChanges();
       }
@@ -83,6 +82,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
       this.toast.showMessage("IMAGE_ADDED_SUCCESSFULLY", "success")
     } else {
       this.localImage = this.imgData.image = '';
+      this.createSession.myForm.value.image = [];
       this.imgData.isUploaded = true;
       this.toast.showMessage("IMAGE_REMOVED_SUCCESSFULLY", "success")
     }
