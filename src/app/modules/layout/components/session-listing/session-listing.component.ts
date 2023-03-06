@@ -27,7 +27,7 @@ export class SessionListingComponent implements OnInit {
   selectedPage: any;
   page: any=1;
   limit: any = 4;
-  noData: any = { image : '/assets/images/no-data.png', 
+  noData: any = { image : '', 
 content:""}
   loading: boolean = false;
   userDetails: any;
@@ -78,6 +78,7 @@ content:""}
             this.selectedPage == '/enrolled-sessions'
               ? 'NO_ENROLL_SESSION_CONTENT'
               : 'NO_ALL_SESSION_CONTENT'
+            this.noData.image = this.selectedPage == '/enrolled-sessions' ? '/assets/images/no-data.png':'/assets/images/new-sessions-coming-soon.png'
         }
         this.loading = false
 
