@@ -25,7 +25,7 @@ export class ForgotPasswordComponent implements OnInit {
         value: '',
         type: 'email',
         placeHolder: 'yourname@email.com',
-        errorMessage: 'Please enter registered email ID',
+        errorMessage: 'Enter valid Email Id',
         validators: {
           required: true,
           pattern: '[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'
@@ -37,7 +37,7 @@ export class ForgotPasswordComponent implements OnInit {
         value: '',
         type: 'password',
         placeHolder: 'Enter new password',
-        errorMessage: 'Please enter your new password',
+        errorMessage: 'Enter minimum 8 characters',
         validators: {
           required: true,
           minLength: 8,
@@ -50,7 +50,7 @@ export class ForgotPasswordComponent implements OnInit {
         value: '',
         placeHolder: 'Enter password again',
         type: 'password',
-        errorMessage: 'Please enter same password as above',
+        errorMessage: 'Enter minimum 8 characters',
         validators: {
           required: true,
           minLength: 8,
