@@ -64,7 +64,6 @@ export class CreateSessionComponent implements OnInit,CanLeave {
       this.formData = form;
       this.changeDetRef.detectChanges();
       if(this.sessionDetails){
-        this.imgData.image = (this.sessionDetails.image) ? this.sessionDetails.image : '';
         this.preFillData(this.sessionDetails);
         this.changeDetRef.detectChanges();
       }
@@ -83,6 +82,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
       this.toast.showMessage("IMAGE_ADDED_SUCCESSFULLY", "success")
     } else {
       this.localImage = this.imgData.image = '';
+      this.createSession.myForm.value.image = [];
       this.imgData.isUploaded = true;
       this.toast.showMessage("IMAGE_REMOVED_SUCCESSFULLY", "success")
     }
@@ -134,7 +134,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     })
   }
   preFillData(existingData: any) {
-    this.imgData.image = (existingData['image']) ? existingData['image'] : '';
+    this.imgData.image = (existingData['image']) ? existingData['image'][0] : '';
     for (let i = 0; i < this.formData.controls.length; i++) {
       this.formData.controls[i].value = (this.formData.controls[i].type == 'date')? moment.unix(existingData[this.formData.controls[i].name]).format():existingData[this.formData.controls[i].name];
       this.formData.controls[i].options = _.unionBy(this.formData.controls[i].options, this.formData.controls[i].value, 'value');
