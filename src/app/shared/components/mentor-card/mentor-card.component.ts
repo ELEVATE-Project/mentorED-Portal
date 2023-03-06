@@ -12,7 +12,7 @@ export class MentorCardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {}
-  onClickCiewProfile(mentor:any){
+  onClickViewProfile(mentor:any){
     let value = {
       data: mentor,
       type: 'cardSelect',

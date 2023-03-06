@@ -1,4 +1,4 @@
-<mat-card fxLayout="row" fxLayoutGap="10px" class="mat-card-container">
+<mat-card fxLayout="row" fxLayoutGap="10px" class="mat-card-container" (click)="onClickViewProfile(cardData)">
     <div class="card-images" fxFlex="35%" fxLayout="column" fxLayoutGap="10px"> 
         <div fxFlex="50%">
             <ng-template [ngIf]="cardData.image" [ngIfElse]="loggedOut">
@@ -33,7 +33,7 @@
         </div>
     </div>
     <div fxFlex="20%">
-        <button  class="view-button" mat-raised-button color="primary" (click)="onClickCiewProfile(cardData)">View profile</button>   
+        <button  class="view-button" mat-raised-button color="primary" (click)="onClickViewProfile(cardData)">View profile</button>   
   </div>  
     </div>
     

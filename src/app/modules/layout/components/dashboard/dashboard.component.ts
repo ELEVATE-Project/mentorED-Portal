@@ -17,22 +17,22 @@ export class DashboardComponent implements OnInit {
   segment: any = 'mentee'
   dataAvailable: any
   isMentor: boolean = false
-  selectedFilter = 'WEEKLY'
+  selectedFilter = 'Weekly'
   buttonEnable = false
   selectedButton: any = 'MENTOR_LABEL'
   noData: any = { image : '/assets/images/no-data-available.png', 
   content:'Conduct live sessions to fill this space'}
   filters: any = [
     {
-      key: 'WEEKLY',
+      key: 'Weekly',
       value: 'WEEKLY',
     },
     {
-      key: 'MONTHLY',
+      key: 'Monthly',
       value: 'MONTHLY',
     },
     {
-      key: 'QUARTERLY',
+      key: 'Quarterly',
       value: 'QUARTERLY',
     },
   ]
@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
         datasets: [
           {
             data: [],
-            backgroundColor: ['#ffab00', '#BEBEBE'],
+            backgroundColor: ['#ffdf00', '#7b7b7b'],
           },
         ],
       },
@@ -89,8 +89,8 @@ export class DashboardComponent implements OnInit {
         this.chartData.chart.data.datasets[0].data.length = 0
         if (this.segment === 'mentor') {
           this.chartData.chart.data.labels.push(
-            'Total Sessions Created',
-            'Total Sessions Hosted',
+            'Total sessions created',
+            'Total sessions conducted',
           )
           this.chartData.chart.data.datasets[0].data.push(
             result.result.totalSessionCreated || 0,
@@ -98,8 +98,8 @@ export class DashboardComponent implements OnInit {
           )
         } else {
           this.chartData.chart.data.labels.push(
-            'Total Sessions Enrolled',
-            'Total Sessions Attended',
+            'Total sessions enrolled',
+            'Total sessions attended',
           )
           this.chartData.chart.data.datasets[0].data.push(
             result.result.totalSessionEnrolled || 0,

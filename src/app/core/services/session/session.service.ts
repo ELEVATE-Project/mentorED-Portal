@@ -121,7 +121,6 @@ startSession(id: any){
     };
     return this.apiService.post(config).pipe(
       map((result: any) => {
-        this.toastService.showMessage(result.message, 'success')
         return result;
       }),
     )

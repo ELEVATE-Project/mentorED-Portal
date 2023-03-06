@@ -134,7 +134,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     })
   }
   preFillData(existingData: any) {
-    this.imgData.image = (existingData['image']) ? existingData['image'][0] : '';
+    this.imgData.image = (existingData['image'][0]) ? existingData['image'][0] : '';
     for (let i = 0; i < this.formData.controls.length; i++) {
       this.formData.controls[i].value = (this.formData.controls[i].type == 'date')? moment.unix(existingData[this.formData.controls[i].name]).format():existingData[this.formData.controls[i].name];
       this.formData.controls[i].options = _.unionBy(this.formData.controls[i].options, this.formData.controls[i].value, 'value');
