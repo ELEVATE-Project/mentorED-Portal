@@ -24,7 +24,7 @@ export class OtpComponent implements OnInit {
         value: "",
         type: "tel",
         placeHolder: "Enter OTP",
-        errorMessage: "please enter valid OTP",
+        errorMessage: "Please enter valid OTP",
         validators: {
           required: true,
         },
