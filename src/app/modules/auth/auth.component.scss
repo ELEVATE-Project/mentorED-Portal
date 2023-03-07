@@ -4,7 +4,8 @@
   .body {display: grid !important;}
 }
 .shadow {
-  min-height: 110px;
+  margin: 0;
+  overflow: hidden;
   width: 100%;
   background-color: $white;
   display: flex;
@@ -16,7 +17,7 @@
   }
 }
 .header-logo {
-  max-width: 68px;
+  max-width: 55px;
   margin-top: 0px;
   height: min-content;
 }
