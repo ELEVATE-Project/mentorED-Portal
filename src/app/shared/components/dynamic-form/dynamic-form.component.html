@@ -12,7 +12,7 @@
                     [formControlName]="control?.name" 
                     [maxlength]="control?.validators.maxLength" 
                     [required]="control?.validators?.required"
-                    autocomplete="off">
+                    autocomplete="doNotAutoComplete">
                 <mat-icon matSuffix 
                     *ngIf="control?.type === 'password' || control?.showPasswordIcon"
                     (click)="hideShowPassword(control)">
@@ -42,7 +42,7 @@
                     [maxlength]="control?.validators.maxLength" 
                     [required]="control?.validators?.required"
                     numberOnly
-                    autocomplete="off">
+                    autocomplete="doNotAutoComplete">
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
                         class="error-icon-info" 
