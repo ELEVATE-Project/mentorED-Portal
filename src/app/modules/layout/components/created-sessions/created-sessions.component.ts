@@ -16,7 +16,8 @@ interface item {
   styleUrls: ['./created-sessions.component.scss']
 })
 export class CreatedSessionsComponent implements OnInit {
-  noData: any = "NO_CREATED_SESSION_CONTENT"
+  noData: any = { image : '/assets/images/no-data.png', 
+  content:"NO_CREATED_SESSION_CONTENT"}
   start: any = 0;
   lastIndexUpcomingSessions: any = 2;
   lastIndexPastSessions: any = 2;
