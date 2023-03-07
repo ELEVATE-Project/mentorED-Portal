@@ -110,6 +110,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
       
     } else {
       this.localImage = this.imgData.image = '';
+      this.editProfile.myForm.value.image = '';
       this.imgData.isUploaded = true;
       this.toastService.showMessage("IMAGE_REMOVED_SUCCESSFULLY", "success")
     }

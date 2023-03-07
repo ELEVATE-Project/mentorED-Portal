@@ -5,6 +5,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  -webkit-user-drag: none !important;
+  user-select: none !important;
 }
 .mat-card-container{
     height: 180px;

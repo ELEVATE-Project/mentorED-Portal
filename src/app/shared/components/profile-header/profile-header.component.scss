@@ -7,6 +7,8 @@
   background-size: cover;
   background-position: center;
   margin-top: 10px;
+  -webkit-user-drag: none !important;
+  user-select: none !important;
 }
 .title {
   font-weight: 400;

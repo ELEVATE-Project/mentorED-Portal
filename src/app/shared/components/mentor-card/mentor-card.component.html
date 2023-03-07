@@ -3,7 +3,7 @@
         <div fxFlex="50%">
             <ng-template [ngIf]="cardData.image" [ngIfElse]="loggedOut">
               <div fxLayoutAlign="center">
-                <img class="image restrict-drag" [ngClass]="{'round-image restrict-drag':cardData?.image}" [src]="cardData?.image" alt="profilepic" />
+                <img class="image" [ngClass]="{'round-image':cardData?.image}" [src]="cardData?.image" alt="profilepic" />
               </div>
             </ng-template>
             

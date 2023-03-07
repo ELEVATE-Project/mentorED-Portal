@@ -2,7 +2,7 @@
   <div>
     <ng-template [ngIf]="details.data.image" [ngIfElse]="loggedOut">
       <div>
-        <img class="image restrict-drag" [ngClass]="{'round-image restrict-drag':details?.data?.image}" [src]="details?.data?.image" alt="profilepic" />
+        <img class="image" [ngClass]="{'round-image':details?.data?.image}" [src]="details?.data?.image" alt="profilepic" />
       </div>
     </ng-template>
     

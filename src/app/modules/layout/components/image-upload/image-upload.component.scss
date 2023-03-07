@@ -30,6 +30,8 @@ hr {
     background-size: cover;
     background-position: center;
     margin-top: 10px;
+    -webkit-user-drag: none;
+    user-select: none;
   }
   .round-image {
     border-radius: 100px;
