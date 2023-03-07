@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         value: '',
         type: 'password',
         placeHolder: 'Enter password',
-        errorMessage: 'Please enter your password',
+        errorMessage: 'Please enter your registered password',
         validators: {
           required: true,
           minLength: 8,
