@@ -33,6 +33,10 @@
     font-weight: 100;
 
 }
+.mat-raised-button[disabled] {
+    background-color: rgb(104,104,104);
+    color: $white;
+  }
 
 .card-session-date,
 .card-session-time {
