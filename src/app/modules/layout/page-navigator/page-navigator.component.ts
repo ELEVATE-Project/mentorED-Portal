@@ -46,9 +46,6 @@ export class PageNavigatorComponent implements OnInit {
     this.setTitle().then(()=>{
       this.subscription = this.pageTitleService.newButtonConfig$.subscribe((paginatorConfig)=>{
         this.paginatorConfig = paginatorConfig;
-        if(this.paginatorConfig.title){
-          this.pageTitle = this.paginatorConfig.title
-        }
        }) 
     }) 
   }
