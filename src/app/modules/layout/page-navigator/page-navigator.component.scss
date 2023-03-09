@@ -37,16 +37,20 @@ h1 {
     font-size: 25px;
   }
 }
+.mat-raised-button[disabled] {
+  background-color: rgb(104,104,104);
+  color: $white;
+}
 .shareButton{
   border-radius: 5%;
    border-radius: 25px;
   color: $theme;
   padding: 0 10px 0 10px;
   min-width: fit-content !important;
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
 }
 .startButton{
-  border-radius: 5%;
-  padding: 0 20px 0 20px;
+  padding: 0 40px 0 40px;
   border-radius: 28px;
   min-width: fit-content !important;
   color: $white;

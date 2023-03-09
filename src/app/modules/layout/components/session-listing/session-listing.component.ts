@@ -78,7 +78,7 @@ content:""}
             this.selectedPage == '/enrolled-sessions'
               ? 'NO_ENROLL_SESSION_CONTENT'
               : 'NO_ALL_SESSION_CONTENT'
-            this.noData.image = this.selectedPage == '/enrolled-sessions' ? '/assets/images/no-data.png':'/assets/images/new-sessions-coming-soon.png'
+            this.noData.image = this.selectedPage == '/enrolled-sessions' ? '/assets/images/no-data.png':'/assets/images/new-session-are-coming-soon.svg'
         }
         this.loading = false
 
