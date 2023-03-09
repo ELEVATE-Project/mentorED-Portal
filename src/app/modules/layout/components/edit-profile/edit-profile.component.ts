@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog';
 import * as _ from 'lodash';
-import { map, Observable } from 'rxjs';
+import { fromEvent, map, Observable, Subject, takeUntil } from 'rxjs';
 import { API_CONSTANTS } from 'src/app/core/constants/apiUrlConstants';
 import { EDIT_PROFILE_FORM } from 'src/app/core/constants/formConstant';
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
@@ -37,12 +37,18 @@ export class EditProfileComponent implements OnInit, CanLeave {
     floatLabel: 'always'
   }
   isSaved: any = false;
-  constructor(private formService: FormService, private profileService: ProfileService, private localStorage: LocalStorageService, private apiService: ApiService, private http: HttpClient, private changeDetRef: ChangeDetectorRef, private toastService: ToastService) {
+  private unsubscriber: Subject<void> = new Subject<void>();
+  constructor(private formService: FormService, private profileService: ProfileService, private localStorage: LocalStorageService, private apiService: ApiService, private http: HttpClient, private changeDetRef: ChangeDetectorRef, private toastService: ToastService, private dialog: MatDialog, private location: Location) {
   }
 
   ngOnInit(): void {
+    fromEvent(window, 'popstate')
+      .pipe(takeUntil(this.unsubscriber))
+      .subscribe((_) => {
+        history.pushState(null, '');
+      });
     this.formService.getForm(EDIT_PROFILE_FORM).subscribe((form) => {
-      this.formData = form  
+      this.formData = form
       this.localStorage.getLocalData(localKeys.USER_DETAILS).then((user) => {
         if (user) {
           this.imgData.image = (user.image) ? user.image : '';
@@ -53,9 +59,22 @@ export class EditProfileComponent implements OnInit, CanLeave {
     })
   }
   @HostListener('window:beforeunload')
- canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.isSaved && this.editProfile.myForm.dirty || (!this.imgData.isUploaded) ) {
-      return window.confirm("Are you sure you want to exit? your data will not be saved.");
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (!this.isSaved && this.editProfile.myForm.dirty || (!this.imgData.isUploaded)) {
+      let dialog = this.dialog.open(ExitPopupComponent, {
+        width: '300px',
+        data: {
+          label: "Are you sure you want to exit? your data will not be saved.",
+          confirmButton: "OK",
+          cancelButton: 'CANCEL'
+        }
+      })
+      return dialog.afterClosed().pipe(
+        map(((res) => {
+            console.log(res)
+            return res
+          }))
+      )
     } else {
       return true;
     }
@@ -123,5 +142,10 @@ export class EditProfileComponent implements OnInit, CanLeave {
       this.formData.controls[i].options = _.unionBy(this.formData.controls[i].options, this.formData.controls[i].value, 'value');
     }
     this.showForm = true;
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscriber.next();
+    this.unsubscriber.complete();
   }
 }

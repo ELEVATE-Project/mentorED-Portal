@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
-import { map, Observable } from 'rxjs';
+import { fromEvent, map, Observable, Subject, takeUntil } from 'rxjs';
 import { API_CONSTANTS } from 'src/app/core/constants/apiUrlConstants';
 import { CREATE_SESSION_FORM } from 'src/app/core/constants/formConstant';
 import { CanLeave } from '../../../../core/interfaces/canLeave';
@@ -16,6 +16,8 @@ import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
 import * as moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
+import { ExitPopupComponent } from 'src/app/shared/components/exit-popup/exit-popup.component';
 
 @Component({
   selector: 'app-create-session',
@@ -39,20 +41,40 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   }
   sessionDetails: any;
   sessionId: any;
+  private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private dialog: MatDialog) {
     this.sessionId = this.route.snapshot.paramMap.get('id')
   }
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.isSaved && this.createSession.myForm.dirty  || (!this.imgData.isUploaded) ) {
-       return window.confirm("Are you sure you want to exit? your data will not be saved.");
+      let dialog = this.dialog.open(ExitPopupComponent, {
+        width: '300px',
+        data: {
+          label: "Are you sure you want to exit? your data will not be saved.",
+          confirmButton: "OK",
+          cancelButton: 'CANCEL'
+        }
+      })
+      return dialog.afterClosed().pipe(
+        map(((res) => {
+            console.log(res)
+            return res
+          }))
+      )
      } else {
        return true;
      }
    }
   ngOnInit(): void {
+    fromEvent(window, 'popstate')
+      .pipe(takeUntil(this.unsubscriber))
+      .subscribe((_) => {
+        history.pushState(null, '');
+      });
     if(this.sessionId){
       this.sessionDetailApi()
     }else {
@@ -139,5 +161,9 @@ export class CreateSessionComponent implements OnInit,CanLeave {
       this.formData.controls[i].value = (this.formData.controls[i].type == 'date')? moment.unix(existingData[this.formData.controls[i].name]).format():existingData[this.formData.controls[i].name];
       this.formData.controls[i].options = _.unionBy(this.formData.controls[i].options, this.formData.controls[i].value, 'value');
     }
+  }
+  ngOnDestroy(): void {
+    this.unsubscriber.next();
+    this.unsubscriber.complete();
   }
 }
