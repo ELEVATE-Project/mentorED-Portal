@@ -38,10 +38,8 @@ export class PageNavigatorComponent implements OnInit {
   navigationArray: any;
   onBackUrl:any;
   url: any;
-  showShareButton: any;
   subscription: any;
   paginatorConfig:any;
-
   constructor(private router: Router, private activatedRoute: ActivatedRoute,  private utilService:UtilService, private sessionService: SessionService,private translate: TranslateService, private profileService: ProfileService, private titleService: Title, private location: Location,private pageTitleService: PageTitleService) {
     this.setTitle().then(()=>{
       this.subscription = this.pageTitleService.newButtonConfig$.subscribe((paginatorConfig)=>{
@@ -63,13 +61,12 @@ export class PageNavigatorComponent implements OnInit {
       const child: any = this.activatedRoute.firstChild;
       this.pageTitle = child.snapshot.data['title'] || "";
       this.onBackUrl = child.snapshot.data['onBackUrl'] || "";
-      this.showShareButton = child.snapshot.data['showShareButton']
     })
   }
   onBack(){
     if(this.onBackUrl){
       this.router.navigate([this.onBackUrl], { replaceUrl: true })
-    } else {
+    } else {     
       this.location.back()
     }
   }

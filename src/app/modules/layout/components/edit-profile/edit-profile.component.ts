@@ -43,10 +43,10 @@ export class EditProfileComponent implements OnInit, CanLeave {
 
   ngOnInit(): void {
     fromEvent(window, 'popstate')
-      .pipe(takeUntil(this.unsubscriber))
-      .subscribe((_) => {
-        history.pushState(null, '');
-      });
+    .pipe(takeUntil(this.unsubscriber))
+    .subscribe((_) => {
+      history.pushState(null, '');
+    });
     this.formService.getForm(EDIT_PROFILE_FORM).subscribe((form) => {
       this.formData = form
       this.localStorage.getLocalData(localKeys.USER_DETAILS).then((user) => {
@@ -56,13 +56,12 @@ export class EditProfileComponent implements OnInit, CanLeave {
           this.changeDetRef.detectChanges();
         }
       })
-    })
+    }) 
   }
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.isSaved && this.editProfile.myForm.dirty || (!this.imgData.isUploaded)) {
       let dialog = this.dialog.open(ExitPopupComponent, {
-        width: '300px',
         data: {
           label: "Are you sure you want to exit? your data will not be saved.",
           confirmButton: "OK",

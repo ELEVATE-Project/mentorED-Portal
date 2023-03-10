@@ -52,7 +52,6 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.isSaved && this.createSession.myForm.dirty  || (!this.imgData.isUploaded) ) {
       let dialog = this.dialog.open(ExitPopupComponent, {
-        width: '300px',
         data: {
           label: "Are you sure you want to exit? your data will not be saved.",
           confirmButton: "OK",
