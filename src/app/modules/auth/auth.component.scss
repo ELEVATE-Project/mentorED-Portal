@@ -12,6 +12,8 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 2px;
+  position: fixed;
+  z-index:99 ;
   &.bottom {
     box-shadow: 0px 9px 10px -15px $black;
   }
@@ -27,9 +29,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 40% 60%;
-}
-.body-height {
-  height: calc(100vh - 66px);
+  overflow-y: auto;
 }
 .body-content{
   display: flex;
@@ -44,6 +44,7 @@
   background-position: bottom center;
   min-height: 50vh;
   align-items: center;
+  height: 100vh;
 }
 .text{
   color: $white;
@@ -59,6 +60,8 @@ label.text{
 }
 .right-div{
   background-color: $white;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 .right-div-mobile {
