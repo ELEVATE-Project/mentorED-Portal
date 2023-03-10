@@ -4,15 +4,14 @@
             <h1 class="text-exit-page">{{data.header | translate}}</h1>
             <h2>{{data.label | translate}}</h2>
         </div>
-        <mat-icon class="mat-cancel-icon" mat-dialog-close>cancel_circle_outline</mat-icon>
+        <mat-icon class="mat-cancel-icon" [mat-dialog-close]="false">cancel_circle_outline</mat-icon>
     </div>
     <div fxLayout="row" class="exit-conatiner" fxLayoutAlign="space-between center">
         <div mat-dialog-actions>
-            <button class="exit-cancel-button" mat-button mat-dialog-close (click)="confirmButton()">{{data.confirmButton | translate}}</button>
+            <button class="exit-cancel-button" mat-button [mat-dialog-close]="true" (click)="confirmButton()">{{data.confirmButton | translate}}</button>
         </div>
         <div mat-dialog-actions class="cancel-button-container">
-            <button class="cancel-button exit-cancel-button" mat-button mat-dialog-close 
+            <button class="cancel-button exit-cancel-button" mat-button [mat-dialog-close]="false" 
              >{{data.cancelButton | translate}}</button>
         </div>
     </div>
-</div>

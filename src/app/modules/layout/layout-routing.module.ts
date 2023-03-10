@@ -49,7 +49,7 @@ const routes: Routes = [
       },
       { path: 'profile',
         component: ProfilePageComponent,
-        data: {title: 'MY_PROFILE'}
+        data: {title: 'MY_PROFILE', onBackUrl:"/home"}
       },
       { path: 'dashboard',
         component: DashboardComponent,
@@ -73,7 +73,7 @@ const routes: Routes = [
       {
         path: 'edit-session/:id',
         component: CreateSessionComponent,
-        data: {title: 'EDIT_SESSION', onBackUrl:"/created-sessions"},
+        data: {title: 'EDIT_SESSION'},
         canDeactivate: [CanDeactivateGuard]
       },
       { path: 'edit-profile',
@@ -83,7 +83,7 @@ const routes: Routes = [
       },
       { path: 'session-detail/:id',
         component: SessionDetailComponent,
-        data: {title: 'SESSION_DETAIL', showShareButton: true}
+        data: {title: 'SESSION_DETAIL',onBackUrl:"/created-sessions"}
       },
       {
         path: '',
