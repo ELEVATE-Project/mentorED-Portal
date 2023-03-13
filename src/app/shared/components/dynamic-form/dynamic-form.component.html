@@ -1,5 +1,5 @@
 <div *ngIf="showForm">
-    <form [formGroup]="myForm" (keyup.enter)="onSubmit()">
+    <form [formGroup]="myForm" (keyup.enter)="onSubmit()" autocomplete="off">
         <div *ngFor="let control of jsonFormData?.controls" class="form-group">
 
             <!-- field -->
@@ -12,7 +12,7 @@
                     [formControlName]="control?.name" 
                     [maxlength]="control?.validators.maxLength" 
                     [required]="control?.validators?.required"
-                    autocomplete="off">
+                >
                 <mat-icon matSuffix 
                     *ngIf="control?.type === 'password' || control?.showPasswordIcon"
                     (click)="hideShowPassword(control)">
@@ -24,6 +24,7 @@
                 </mat-icon>
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
+                        *ngIf="control?.errorMessage"
                         class="error-icon-info" 
                         matPrefix>
                         error_outline
@@ -42,9 +43,10 @@
                     [maxlength]="control?.validators.maxLength" 
                     [required]="control?.validators?.required"
                     numberOnly
-                    autocomplete="off">
+                >
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
+                        *ngIf="control?.errorMessage"
                         class="error-icon-info" 
                         matPrefix>
                         error_outline
@@ -64,6 +66,7 @@
                 </textarea>
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
+                        *ngIf="control?.errorMessage"
                         class="error-icon-info" 
                         matPrefix>
                         error_outline
@@ -88,6 +91,7 @@
                 </mat-select>
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
+                        *ngIf="control?.errorMessage"
                         class="error-icon-info" 
                         matPrefix>
                         error_outline
@@ -109,6 +113,7 @@
                 </textarea>
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
+                        *ngIf="control?.errorMessage"
                         class="error-icon-info" 
                         matPrefix>
                         error_outline
@@ -131,14 +136,15 @@
                     [required]="control?.validators?.required"
                     hidden>
                 </textarea>
-                <!-- <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
+                <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
+                        *ngIf="control?.errorMessage"
                         class="error-icon-info" 
                         matPrefix>
                         error_outline
                     </mat-icon>
                     {{control?.errorMessage}}
-                </mat-error> -->
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field *ngIf="control?.type==='chip'" [appearance]="uiConfig.appearance" [floatLabel]='uiConfig.floatLabel'>
@@ -152,6 +158,7 @@
                 </textarea>
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
+                        *ngIf="control?.errorMessage"
                         class="error-icon-info" 
                         matPrefix>
                         error_outline
@@ -172,6 +179,7 @@
                 </textarea>
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
+                        *ngIf="control?.errorMessage"
                         class="error-icon-info" 
                         matPrefix>
                         error_outline
@@ -182,7 +190,7 @@
 
             <mat-form-field *ngIf="control?.type==='date'" [appearance]="uiConfig.appearance" [floatLabel]='uiConfig.floatLabel'>
                 <mat-label [ngClass]="{'large':uiConfig.appearance=='fill'}">{{control?.label}}</mat-label>
-                <input class="date-input" matInput autocomplete="off"
+                <input class="date-input" matInput
                     #date
                     [ngClass]="{'field-large':uiConfig.appearance=='fill'}"
                     [owlDateTimeTrigger]="dt"
@@ -199,14 +207,6 @@
                     [hour12Timer]="true"
                     (afterPickerClosed)="dateSelected(control, date)">
                 </owl-date-time>
-                <!-- <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
-                    <mat-icon 
-                        class="error-icon-info" 
-                        matPrefix>
-                        error_outline
-                    </mat-icon>
-                    {{control?.errorMessage}}
-                </mat-error> -->
             </mat-form-field>
         </div>
     </form>
