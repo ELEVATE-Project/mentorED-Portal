@@ -1,6 +1,6 @@
 <div class="container">
   <div fxLayout="column" fxLayoutAlign="space-between stretch">
-    <div class="signup-link" fxLayout="row" fxLayoutAlign="end" fxFlexOffset.xs="60%" fxFlexOffset="calc(25% + 15px)">
+    <div class="signup-link" fxLayout="row" fxLayoutAlign="end">
       <small>
         <a routerLink="/auth/login">
           {{ 'ALREADY_HAVE_AN_ACCOUNT' | translate }}
@@ -10,7 +10,7 @@
     <div fxLayoutAlign="center">
       <h1>{{ 'CREATE_NEW_ACCOUNT' | translate }}</h1>
     </div>
-    <div fxLayoutAlign="center" fxFlexOffset="20px">
+    <div fxLayoutAlign="center">
       <app-dynamic-form
         [jsonFormData]="formData"
         #signup
