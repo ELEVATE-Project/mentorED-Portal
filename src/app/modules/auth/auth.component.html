@@ -1,52 +1,11 @@
-<!-- <mat-toolbar class="shadow bottom">
-  <mat-toolbar-row>
-    <img class="header-logo" src="/assets/images/MentorEd-logo.svg" />
-  </mat-toolbar-row>
-</mat-toolbar> -->
-<!-- <div class="body" [ngClass]="{'body-height': !isPhone}"  fxlayout="row" fxlayout.md="column" fxLayout.xs="column">
-  <div
-    class="body-content left-div"
-    fxLayout="column"
-    fxFlex.lt-md="column"
-    fxlayout.md="column"
-    fxLayout.xs="column"
-    fxLayoutAligmnet="space-between center"
-    fxFlex.xs="85"
-    fxFlexOffset.xs="15%"
-  >
-    <h1 class="text">
-      {{ header | translate }}
-    </h1>
-    <label class=text>
-      {{subHeader | translate}}
-    </label>
-  </div>
-  <div
-    class="body-content "
-    [ngClass]= "{'right-div': !isPhone,'right-div-mobile': isPhone }"
-    fxFlex.lt-md="column"
-    fxlayout.md="column"
-    fxLayout.xs="column"
-    fxLayoutAlign="center stretch"
-    fxLayout="column"
-    fxFlex.xs="85"
-  >
-    <div
-      fxLayout="column"
-      fxLayoutAlign="center space-evently"
-    >
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div> -->
 <div>
   <mat-toolbar class="toolbar" class="shadow bottom">
     <mat-toolbar-row>
       <img class="header-logo" src="/assets/images/MentorEd-logo.svg" />
     </mat-toolbar-row>
   </mat-toolbar>
-  <div fxLayout="row" fxLayout.xs="column">
-    <div fxLayout="column" fxFlex="40" class="left-div" fxLayoutAlign="center center">
+  <div fxLayout="row" fxLayout.xs="column"  fxLayout.sm="column">
+    <div class="left-div" fxLayout="column" fxFlex="40" fxLayoutAlign="center center">
       <h1 class="text">
         {{ header | translate }}
       </h1>
@@ -54,7 +13,7 @@
         {{subHeader | translate}}
       </label>
     </div>
-    <div fxFlex="60" class="right-div">
+    <div class="right-div" fxFlex="60">
       <div class="router-outlets">
         <router-outlet></router-outlet>
       </div>
