@@ -44,7 +44,7 @@ label.text{
 .right-div{
   background-color: $white;
   height: 87vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .router-outlets{
   padding-top: 50px;
