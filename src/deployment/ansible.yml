@@ -29,6 +29,6 @@
     - name: Change directory
       shell: chdir {{project_path}}
     - name: Build app
-      command: "ng build"
+      shell: "cd {{project_path }} && ng build"
     - name: Start pm2
       command: "pm2 restart 32"
