@@ -28,6 +28,8 @@
     - debug: msg=" cred {{ envConfig }} "
     - name: Change directory
       shell: chdir {{project_path}}
+    - name: Remove dist folder
+      shell: rm -rf {{project_path}}/dist
     - name: Build app
       shell: "cd {{project_path }} && ng build"
     - name: Start pm2
