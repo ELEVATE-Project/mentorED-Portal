@@ -26,6 +26,8 @@
       shell: cat {{ project_path }}/data2.json | {{ project_path }}/src/scripts/json2env.sh > {{ project_path }}/src/environments.ts
       register: envConfig 
     - debug: msg=" cred {{ envConfig }} "
+    - name: Change directory
+      shell: cd {{project_path}}
     - name: path
       shell: pwd
       register: pwd
