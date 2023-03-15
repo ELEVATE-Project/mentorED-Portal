@@ -28,9 +28,6 @@
     - debug: msg=" cred {{ envConfig }} "
     - name: Change directory
       shell: cd {{project_path}}
-    - name: path
-      shell: pwd
-      register: pwd
     - debug: msg="{{pwd}}" 
     - name: Build app
       shell: ng build
