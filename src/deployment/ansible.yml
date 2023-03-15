@@ -23,7 +23,7 @@
     - name: set permission
       shell: chmod 744 {{ project_path }}/src/scripts/json2env.sh  
     - name: generate .env
-      shell: cat {{ project_path }}/data2.json | {{ project_path }}/src/scripts/json2env.sh > {{ project_path }}/src/environments
+      shell: cat {{ project_path }}/data2.json | {{ project_path }}/src/scripts/json2env.sh > {{ project_path }}/src/environments.ts
       register: envConfig 
     - debug: msg=" cred {{ envConfig }} "
     - name: Build app
