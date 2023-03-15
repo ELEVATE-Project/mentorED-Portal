@@ -27,6 +27,6 @@
       register: envConfig 
     - debug: msg=" cred {{ envConfig }} "
     - name: Build app
-      shell: sudo ng build
+      shell: ng build
     - name: Start pm2
-      command: “sudo pm2 restart 32”
+      command: “pm2 restart 32”
