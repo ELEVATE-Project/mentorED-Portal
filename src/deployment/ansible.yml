@@ -27,9 +27,8 @@
       register: envConfig 
     - debug: msg=" cred {{ envConfig }} "
     - name: Change directory
-      shell: cd {{project_path}}
-    - debug: msg="{{pwd}}" 
+      command: "chdir={{project_path}}"
     - name: Build app
-      shell: ng build
+      command: "ng build"
     - name: Start pm2
-      command: “pm2 restart 32”
+      command: "pm2 restart 32"
