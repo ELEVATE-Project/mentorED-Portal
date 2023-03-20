@@ -1,8 +1,5 @@
 @import "/src/variables";
 
-@media only screen and (min-width: 600px) {
-  .body {display: grid !important;}
-}
 .shadow {
   margin: 0;
   overflow: hidden;
@@ -12,38 +9,17 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 2px;
+  z-index:99 ;
   &.bottom {
     box-shadow: 0px 9px 10px -15px $black;
   }
+  height: 85px;
 }
+
 .header-logo {
-  max-width: 55px;
+  max-width: 68px;
   margin-top: 0px;
   height: min-content;
-}
-
-.body{
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 40% 60%;
-}
-.body-height {
-  height: calc(100vh - 66px);
-}
-.body-content{
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-
-}
-.left-div{
-  background: url(/assets/images/IsolationMode.svg) 13% 108% no-repeat,$theme-gradient;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  min-height: 50vh;
-  align-items: center;
 }
 .text{
   color: $white;
@@ -57,10 +33,19 @@ label.text{
   font-weight: normal;
   line-height: 35px;
 }
+.left-div{
+  background: url(/assets/images/IsolationMode.svg) 13% 108% no-repeat,$theme-gradient;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  height: 87vh;
+  min-height: 50vh;
+}
 .right-div{
   background-color: $white;
+  height: 87vh;
+  overflow-y: auto;
 }
-
-.right-div-mobile {
-  background-color: $white;
+.router-outlets{
+  padding-top: 50px;
 }
