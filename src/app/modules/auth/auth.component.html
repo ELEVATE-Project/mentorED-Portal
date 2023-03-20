@@ -1,11 +1,13 @@
-<div>
-  <mat-toolbar class="shadow bottom">
-    <mat-toolbar-row>
-      <img class="header-logo" src="/assets/images/MentorEd-logo.svg" />
-    </mat-toolbar-row>
-  </mat-toolbar>
-  <div fxLayout="row" fxLayout.xs="column"  fxLayout.sm="column">
-    <div class="left-div" fxLayout="column" fxFlex="40" fxLayoutAlign="center center">
+<div fxLayout="column" fxFlex="100" class="container">
+  <div fxLayout="row" fxFlex="10">
+    <mat-toolbar class="shadow bottom">
+      <mat-toolbar-row>
+        <img class="header-logo" src="/assets/images/MentorEd-logo.svg" />
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div fxLayout="row" fxLayout.xs="column"  fxLayout.sm="column" fxFlex="90">
+    <div class="left-div" fxLayout="column" fxFlex="40" fxLayoutAlign="center center" fxFlexFill>
       <h1 class="text">
         {{ header | translate }}
       </h1>
@@ -13,7 +15,7 @@
         {{subHeader | translate}}
       </label>
     </div>
-    <div class="right-div" fxFlex="60">
+    <div class="right-div" fxFlex="60" fxFlexFill>
       <div class="router-outlets">
         <router-outlet></router-outlet>
       </div>
