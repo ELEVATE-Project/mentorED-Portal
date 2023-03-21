@@ -1,4 +1,4 @@
-<div fxLayout="column" fxFlex="100" class="container">
+<div fxLayout="column" fxFlex.xs="100" class="container" fxLayout.xs="column">
   <div fxLayout="row" fxFlex="10">
     <mat-toolbar class="shadow bottom">
       <mat-toolbar-row>
@@ -6,8 +6,8 @@
       </mat-toolbar-row>
     </mat-toolbar>
   </div>
-  <div fxLayout="row" fxLayout.xs="column"  fxLayout.sm="column" fxFlex="90">
-    <div class="left-div" fxLayout="column" fxFlex="40" fxLayoutAlign="center center" fxFlexFill>
+  <div fxLayout="row" fxLayout.sm="column" fxFlex="90" fxLayout.xs="column">
+    <div class="left-div" fxLayout="column" fxFlex="40" fxLayoutAlign="center center">
       <h1 class="text">
         {{ header | translate }}
       </h1>
@@ -15,7 +15,7 @@
         {{subHeader | translate}}
       </label>
     </div>
-    <div class="right-div" fxFlex="60" fxFlexFill>
+    <div class="right-div" fxFlex="60" [ngStyle.xs]="{'overflow-y': 'unset'}" [ngStyle.sm]="{'overflow-y': 'unset'}">
       <div class="router-outlets">
         <router-outlet></router-outlet>
       </div>

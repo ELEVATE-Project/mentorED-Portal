@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
         errorMessage:'Please enter valid email ID',
         validators: {
           required: true,
-          pattern: '[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'
+          pattern: "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
         },
       },
       {
