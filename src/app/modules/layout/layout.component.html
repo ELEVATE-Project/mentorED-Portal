@@ -13,7 +13,10 @@
       </div>
       <div class="menu-button">
         <mat-button fxFlex="100%" fxLayout="row"  (click)="goToProfile();drawer.toggle()">
-          <mat-icon fxFlex="40%" fxLayoutAlign="center center" class="icon">account_circle</mat-icon>
+          <div fxFlex="40%" fxLayoutAlign="center center" class="icon">
+            <ng-container><img *ngIf="profileImage" class="profile-icon" [src]='profileImage'></ng-container>
+            <ng-container *ngIf="!profileImage"><mat-icon >account_circle</mat-icon></ng-container>
+          </div>
           <span fxLayoutAlign="center center" class="button-text">{{"MY_PROFILE"|translate}}</span>
         </mat-button>
       </div>
