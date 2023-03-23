@@ -20,7 +20,7 @@ export class SessionDetailComponent implements OnInit {
 
   details = {
     enrollButton: "Enroll",
-    confirmButton: "Un-enroll",
+    confirmButton: "Unenroll",
     editSession: "Edit session",
     DeleteSession: "Delete session",
     form: [
