@@ -29,9 +29,9 @@
     - name: Change directory
       shell: chdir {{project_path}}
     - name: Delete old pm2 process
-      command: "pm2 delete MentorED portal"
+      command: "pm2 delete mentorED-Portal"
       ignore_errors: yes
     - name: Build app
-      shell: "cd {{project_path }} && ng build"
+      shell: "cd {{project_path }}"
     - name: Start pm2
-      command: "pm2 start ng serve --host=0.0.0.0 --port=7601 --disable-host-check  --name=MentorED portal"
+      command: "pm2 start ng serve --host=0.0.0.0 --port=7601 --disable-host-check  --name=mentorED-Portal"
