@@ -23,7 +23,7 @@ import {
   ProfileHeaderComponent
 } from './components/index';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoDataFoundComponent } from './components/no-data-found/no-data-found.component';
@@ -36,7 +36,7 @@ import { NumberOnlyDirective } from './directives/onlyNumbers';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
 import { MentorCardComponent } from './components/mentor-card/mentor-card.component';
 import { SharePopupComponent } from './components/share-popup/share-popup.component';
-
+import { PopupDialogComponent } from './components/popup-dialog/popup-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +52,7 @@ import { SharePopupComponent } from './components/share-popup/share-popup.compon
     InputDialogueBoxComponent,
     NumberOnlyDirective,
     ToastMessageComponent,
+    PopupDialogComponent,
     MentorCardComponent,
     SharePopupComponent
   ],

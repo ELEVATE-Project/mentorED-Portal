@@ -6,7 +6,7 @@
       </mat-toolbar-row>
     </mat-toolbar>
   </div>
-  <div fxLayout="row" fxLayout.sm="column" fxFlex="90" fxLayout.xs="column">
+  <div fxLayout="row" fxFlex="90" fxLayout.xs="column">
     <div class="left-div" fxLayout="column" fxFlex="40" fxLayoutAlign="center center">
       <h1 class="text">
         {{ header | translate }}
@@ -15,8 +15,8 @@
         {{subHeader | translate}}
       </label>
     </div>
-    <div class="right-div" fxFlex="60" [ngStyle.xs]="{'overflow-y': 'unset'}" [ngStyle.sm]="{'overflow-y': 'unset'}">
-      <div class="router-outlets">
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.md="column" class="right-div" fxFlex.xs="fxFill" fxFlex="60" fxFlexOffset.xs="4" fxLayoutAlign.md="center" fxLayoutAlign.sm="center" fxLayoutAlign="center center" [ngStyle.xs]="{'overflow-y': 'unset'}">
+      <div class="router-outlets" fxFlex="100%" fxFlex.sm="60" fxFlex.md="100" fxFlexOffset.md="5">
         <router-outlet></router-outlet>
       </div>
     </div>

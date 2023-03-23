@@ -1,5 +1,5 @@
-<div class="container">
-  <div fxLayout="column" fxLayoutAlign="space-between stretch">
+<div class="container" fxLayout="column">
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxFlexOffset.lg="8" fxFlexOffset.md="5">
     <div class="signup-link" fxLayout="row" fxLayoutAlign="end">
       <small>
         <a routerLink="/auth/login">
@@ -20,7 +20,7 @@
         (keyup.enter)="onSignUp()"
       ></app-dynamic-form>
     </div>
-    <div fxLayoutAlign="center" class="signup-button">
+    <div fxLayoutAlign="center" class="signup-button" fxFlexOffset="2">
       <button
         fxFlex="50"
         fxFlex.sm="80"

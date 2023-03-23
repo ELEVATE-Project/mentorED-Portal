@@ -22,12 +22,13 @@ export class OtpComponent implements OnInit {
         name: "otp",
         label: "OTP",
         value: "",
-        type: "tel",
+        type: "text",
         placeHolder: "Enter OTP",
         errorMessage: "Please enter valid OTP",
+        isNumberOnly: true,
         validators: {
           required: true,
-          pattern: "^[0-9]{6,6}$"
+          minLength: 6,
         },
       },
     ],
