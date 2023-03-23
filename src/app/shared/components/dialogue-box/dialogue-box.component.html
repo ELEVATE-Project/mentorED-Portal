@@ -3,7 +3,7 @@
 <mat-label mat-dialog-title class="sub-header">{{dialogueData?.subHeader | translate}}<span *ngIf="dialogueData?.subHeader" class="star-required">*</span></mat-label>
 <div mat-dialog-content>
   <mat-form-field appearance="outline">
-    <input matInput [(ngModel)]="data" [required]="dialogueData?.required" [maxlength]="50">
+    <input matInput [(ngModel)]="data" [required]="dialogueData?.required" [maxlength]="50" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')">
   </mat-form-field>
 </div>
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between">
