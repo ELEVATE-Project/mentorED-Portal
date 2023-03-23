@@ -28,7 +28,7 @@ export class OtpComponent implements OnInit {
         isNumberOnly: true,
         validators: {
           required: true,
-          pattern: "^[0-9]{6,6}$"
+          minLength: 6,
         },
       },
     ],
