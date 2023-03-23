@@ -5,6 +5,8 @@ import * as moment from 'moment';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupDialogComponent } from '../popup-dialog/popup-dialog.component';
 
 interface JsonFormValidators {
   min?: number;
@@ -68,7 +70,7 @@ export class DynamicFormComponent implements OnInit {
   dependedParent: any;
   dependedParentDate: any;
 
-  constructor(private fb: FormBuilder,private toastService: ToastService,private translate: TranslateService) { }
+  constructor(private fb: FormBuilder,private toastService: ToastService,public dialog: MatDialog,private translate: TranslateService) { }
 
 
   ngOnInit() {
@@ -164,7 +166,10 @@ export class DynamicFormComponent implements OnInit {
   }
 
   alertToast(control: any){
-    this.toastService.showIconMessage(control,'warning')
+    let dialog = this.dialog.open(PopupDialogComponent, {
+      data: control,
+      position:{bottom: '50px', right:'20px'} 
+    })
   }
 
   dateSelected(control:any, date:any) {
