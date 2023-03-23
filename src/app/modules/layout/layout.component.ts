@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import * as _ from 'lodash';
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
@@ -23,6 +24,9 @@ export class LayoutComponent implements OnInit {
     window.scrollTo(0, 0);
     this.localStorage.getLocalData(localKeys.USER_DETAILS).then((data)=>{
       this.profileImage = JSON.parse(data).image
+      this.profileService.newImage$.subscribe((res)=>{
+        this.profileImage = _.isEqual(res,{}) ? this.profileImage : res.image;
+      })
     })
    }
 
