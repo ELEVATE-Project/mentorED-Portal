@@ -1,10 +1,12 @@
-<div>
-  <mat-toolbar class="toolbar" class="shadow bottom">
-    <mat-toolbar-row>
-      <img class="header-logo" src="/assets/images/MentorEd-logo.svg" />
-    </mat-toolbar-row>
-  </mat-toolbar>
-  <div fxLayout="row" fxLayout.xs="column"  fxLayout.sm="column">
+<div fxLayout="column" fxFlex.xs="100" class="container" fxLayout.xs="column">
+  <div fxLayout="row" fxFlex="10">
+    <mat-toolbar class="shadow bottom">
+      <mat-toolbar-row>
+        <img class="header-logo" src="/assets/images/MentorEd-logo.svg" />
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div fxLayout="row" fxLayout.sm="column" fxFlex="90" fxLayout.xs="column">
     <div class="left-div" fxLayout="column" fxFlex="40" fxLayoutAlign="center center">
       <h1 class="text">
         {{ header | translate }}
@@ -13,7 +15,7 @@
         {{subHeader | translate}}
       </label>
     </div>
-    <div class="right-div" fxFlex="60">
+    <div class="right-div" fxFlex="60" [ngStyle.xs]="{'overflow-y': 'unset'}" [ngStyle.sm]="{'overflow-y': 'unset'}">
       <div class="router-outlets">
         <router-outlet></router-outlet>
       </div>
