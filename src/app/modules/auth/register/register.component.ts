@@ -76,7 +76,7 @@ export class RegisterComponent implements OnInit {
     value: '',
     placeHolder: 'Enter valid secret code',
     type: 'secretCode',
-    errorMessage:'Please enter secret code',
+    errorMessage:'Please refer to the on-boarding email for your secret code',
     toastMsg: 'SECRET_CODE_TOAST_MESSAGE',
     toastIcon: 'info',
     validators: {

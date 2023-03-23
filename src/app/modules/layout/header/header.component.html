@@ -80,8 +80,13 @@
         <button mat-icon-button [matMenuTriggerFor]="menu" class="name" mat-fab>{{letter|titlecase}}</button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="goToProfile()">
-            <mat-icon>account_circle</mat-icon>
-            <span>{{"MY_PROFILE"|translate}}</span>
+            <div fxLayout="row" fxLayoutGap="15px" >
+              <div fxLayoutAlign="center center">
+                <ng-container ><img *ngIf="profileImage" class="profile-icon" [src]='profileImage'></ng-container>
+                <ng-container fxLayoutAlign="center center" *ngIf="!profileImage"><img class="profile-icon" src="/assets/images/user-circle-add.svg" /> </ng-container>
+              </div>
+              <span>{{"MY_PROFILE"|translate}}</span>
+            </div>       
           </button>
           <button mat-menu-item (click)="goToDashboard()">
             <mat-icon>assessment</mat-icon>

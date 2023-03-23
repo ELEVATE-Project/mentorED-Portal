@@ -15,6 +15,7 @@ import { ToastService } from 'src/app/core/services/toast/toast.service'
 export class HeaderComponent implements OnInit {
   @Output() menuToggleEvent = new EventEmitter()
   letter:any;
+  profileImage:any;
   options = [
     { label: 'English', value: 'en' },
     { label: 'Hindi', value: 'hi' },
@@ -32,6 +33,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.localStorage.getLocalData(localKeys.USER_DETAILS).then((data)=>{
       this.letter = data?JSON.parse(data).name[0]:'U';
+      this.profileImage = JSON.parse(data).image
     })
   }
   onClick() {

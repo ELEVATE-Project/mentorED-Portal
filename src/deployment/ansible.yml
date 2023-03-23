@@ -17,15 +17,21 @@
         repo: https://github.com/ELEVATE-Project/mentorED-Portal.git
         dest: "{{ project_path }}"
         version: "{{ gitBranch }}"
+        force: yes
     - name: Update npm
       shell: npm i
     - name: set permission
       shell: chmod 744 {{ project_path }}/src/scripts/json2env.sh  
     - name: generate .env
-      shell: cat {{ project_path }}/data2.json | {{ project_path }}/src/scripts/json2env.sh > {{ project_path }}/src/environments
+      shell: cat {{ project_path }}/data2.json | {{ project_path }}/src/scripts/json2env.sh > {{ project_path }}/src/environments.ts
       register: envConfig 
     - debug: msg=" cred {{ envConfig }} "
+    - name: Change directory
+      shell: chdir {{project_path}}
+    - name: Delete old pm2 process
+      command: "pm2 delete MentorED-portal"
+      ignore_errors: yes
     - name: Build app
-      shell: sudo ng build
+      shell: "ng build"
     - name: Start pm2
-      command: “sudo pm2 restart 32”
+      command: "pm2 start --port=7601 --disable-host-check  --name='MentorED-portal'"

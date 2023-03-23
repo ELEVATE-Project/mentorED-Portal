@@ -53,8 +53,9 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     if (!this.isSaved && this.createSession.myForm.dirty  || (!this.imgData.isUploaded) ) {
       let dialog = this.dialog.open(ExitPopupComponent, {
         data: {
+          header: "Exit this page?",
           label: "Are you sure you want to exit? your data will not be saved.",
-          confirmButton: "OK",
+          confirmButton: "EXIT",
           cancelButton: 'CANCEL'
         }
       })
