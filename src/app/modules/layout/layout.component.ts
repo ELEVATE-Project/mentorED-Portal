@@ -16,10 +16,14 @@ export class LayoutComponent implements OnInit {
 
   options=[{label:"English",value:"en"},{label:"Hindi",value:"hi"}]
   selectedLanguage="en"
+  profileImage:any;
   constructor(private localStorage: LocalStorageService,private profileService:ProfileService,private router: Router, private translate: TranslateService, private toast: ToastService) { }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    this.localStorage.getLocalData(localKeys.USER_DETAILS).then((data)=>{
+      this.profileImage = JSON.parse(data).image
+    })
    }
 
    onLogout(){
