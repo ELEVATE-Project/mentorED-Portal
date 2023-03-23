@@ -1,4 +1,4 @@
-<mat-card class="card-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px" (click)="onCardClick(cardData)">
+<mat-card class="card-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px" (click)="onCardClick($event, cardData)">
    
     <div class="card-images" fxFlex="40%">
         <div class="image"
@@ -24,9 +24,9 @@
             </div>
         </div>
         <div class="sub-card-details" fxLayout="row">
-            <p class="sub-card-view-details" (click)="onCardClick(cardData)">View details</p>
+            <p class="sub-card-view-details" (click)="onCardClick($event, cardData)">View details</p>
             <button *ngIf="cardData?.status != 'completed'" class="sub-card-details-button" mat-raised-button
-              [ngClass]=" buttonConfig?.label=='ENROLL' ? 'primary' : 'secondary'" [disabled]="!buttonConfig?.isEnabled && buttonConfig?.label !='ENROLL'"  (click)="buttonClicked(buttonConfig,cardData)">{{ buttonConfig?.label | translate}}</button>
+              [ngClass]=" buttonConfig?.label=='ENROLL' ? 'primary' : 'secondary'" [disabled]="!buttonConfig?.isEnabled && buttonConfig?.label !='ENROLL'"  (click)="buttonClicked($event, buttonConfig, cardData)">{{ buttonConfig?.label | translate}}</button>
         
             </div>
         
