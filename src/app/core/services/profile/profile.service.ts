@@ -15,8 +15,8 @@ import { UserService } from "../user/user.service";
   providedIn: "root",
 })
 export class ProfileService {
-  private profileImage$ = new BehaviorSubject<any>({});
-  newImage$ = this.profileImage$.asObservable();
+  private profile$ = new BehaviorSubject<any>({});
+  newProfile$ = this.profile$.asObservable();
   constructor(
     private localStorage: LocalStorageService,
     private apiService: ApiService,
@@ -72,7 +72,7 @@ export class ProfileService {
           localKeys.USER_DETAILS,
           JSON.stringify(data)
         ).then(() =>{
-          this.profileImage$.next(data)
+          this.profile$.next(data)
           return data;
         })
       })
