@@ -27,7 +27,7 @@ export class OtpComponent implements OnInit {
         errorMessage: "Please enter valid OTP",
         validators: {
           required: true,
-          minLength: 6,
+          pattern: "^[0-9]{6,6}$"
         },
       },
     ],

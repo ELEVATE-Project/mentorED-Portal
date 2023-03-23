@@ -55,7 +55,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
         data: {
           header: "Exit this page?",
           label: "Are you sure you want to exit? your data will not be saved.",
-          confirmButton: "OK",
+          confirmButton: "EXIT",
           cancelButton: 'CANCEL'
         }
       })
