@@ -40,12 +40,14 @@ export class SessionCardComponent implements OnInit {
       (this.cardData.startDate - currentTimeInSeconds) < 600 ? true : false
     this.cardData.startDate = (this.cardData.startDate>0)?moment.unix(this.cardData.startDate).toLocaleString():this.cardData.startDate;
   }
-  buttonClicked(action: any, data: any) {
+  buttonClicked(event:any, action: any, data: any) {
+    event.stopPropagation();
     let detail: any = { action: action, data: data }
     this.buttonClick.emit(detail)
   }
   
-  onCardClick(cardData: any){
+  onCardClick(event:any, cardData: any){
+    event.stopPropagation();
     let id = this.selectedPage == '/enrolled-sessions' ? cardData.sessionId : cardData._id
     let value = {
       data: id,
