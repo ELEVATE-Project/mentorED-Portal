@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { TranslateService } from "@ngx-translate/core";
 import * as _ from "lodash";
-import { map } from "rxjs";
+import { BehaviorSubject, map } from "rxjs";
 import { API_CONSTANTS } from "../../constants/apiUrlConstants";
 import { localKeys } from "../../constants/localStorage.keys";
 import { ApiService } from "../api/api.service";
@@ -15,6 +15,8 @@ import { UserService } from "../user/user.service";
   providedIn: "root",
 })
 export class ProfileService {
+  private profile$ = new BehaviorSubject<any>({});
+  newProfile$ = this.profile$.asObservable();
   constructor(
     private localStorage: LocalStorageService,
     private apiService: ApiService,
@@ -70,6 +72,7 @@ export class ProfileService {
           localKeys.USER_DETAILS,
           JSON.stringify(data)
         ).then(() =>{
+          this.profile$.next(data)
           return data;
         })
       })

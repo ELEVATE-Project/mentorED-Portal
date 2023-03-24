@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core'
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
+import * as _ from 'lodash'
 import { filter } from 'rxjs'
 import { localKeys } from 'src/app/core/constants/localStorage.keys'
 import { AuthService } from 'src/app/core/services/auth/auth.service'
@@ -15,7 +16,7 @@ import { ToastService } from 'src/app/core/services/toast/toast.service'
 export class HeaderComponent implements OnInit {
   @Output() menuToggleEvent = new EventEmitter()
   letter:any;
-  profileImage:any;
+  user:any;
   options = [
     { label: 'English', value: 'en' },
     { label: 'Hindi', value: 'hi' },
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
   showSearchbar = false;
   searchText: string
 
-  constructor(private translate: TranslateService, private authService: AuthService, private localStorage: LocalStorageService, private router: Router, private activatedRoute: ActivatedRoute, private toast: ToastService,private profileService: ProfileService) {
+  constructor(private translate: TranslateService, private profile: ProfileService, private localStorage: LocalStorageService, private router: Router, private activatedRoute: ActivatedRoute, private toast: ToastService,private profileService: ProfileService) {
     this.checkForSearchbar();
     this.localStorage.getLocalData(localKeys.SELECTED_LANGUAGE).then((lang)=>{
       if(lang)this.selectedLanguage = lang;
@@ -33,7 +34,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.localStorage.getLocalData(localKeys.USER_DETAILS).then((data)=>{
       this.letter = data?JSON.parse(data).name[0]:'U';
-      this.profileImage = JSON.parse(data).image
+      this.user = JSON.parse(data)
+      this.profile.newProfile$.subscribe((res)=>{
+        this.user = _.isEqual(res,{}) ? this.user : res;
+      })
     })
   }
   onClick() {
