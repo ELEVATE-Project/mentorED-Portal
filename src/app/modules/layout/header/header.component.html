@@ -83,7 +83,7 @@
             <div fxLayout="row" fxLayoutGap="15px" >
               <div fxLayoutAlign="center center">
                 <ng-container ><img *ngIf="user?.image" class="profile-icon" [src]='user?.image'></ng-container>
-                <ng-container fxLayoutAlign="center center" *ngIf="!user?.image"><img class="profile-icon" src="/assets/images/user-circle-add.svg" /> </ng-container>
+                <ng-container *ngIf="!user?.image"><img class="profile-icon" src="/assets/images/user-circle-add.svg" /> </ng-container>
               </div>
               <span>{{"MY_PROFILE"|translate}}</span>
             </div>       
