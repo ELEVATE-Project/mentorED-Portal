@@ -32,6 +32,6 @@
       command: "pm2 delete MentorED-portal"
       ignore_errors: yes
     - name: Build app
-      shell: "ng build"
+      shell: ng build
     - name: Start pm2
       command: "pm2 start --port=7601 --disable-host-check  --name='MentorED-portal'"
