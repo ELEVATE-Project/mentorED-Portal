@@ -47,6 +47,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     private route: ActivatedRoute,
     private dialog: MatDialog) {
     this.sessionId = this.route.snapshot.paramMap.get('id')
+    router.canceledNavigationResolution = 'computed';
   }
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -70,11 +71,6 @@ export class CreateSessionComponent implements OnInit,CanLeave {
      }
    }
   ngOnInit(): void {
-    fromEvent(window, 'popstate')
-      .pipe(takeUntil(this.unsubscriber))
-      .subscribe((_) => {
-        history.pushState(null, '');
-      });
     if(this.sessionId){
       this.sessionDetailApi()
     }else {
