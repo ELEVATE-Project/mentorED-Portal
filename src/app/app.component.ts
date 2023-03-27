@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { localKeys } from './core/constants/localStorage.keys';
 import { ApiService } from './core/services';
@@ -13,7 +14,8 @@ import { UserService } from './core/services/user/user.service';
 })
 export class AppComponent {
 
-  constructor(private translate: TranslateService, private localStorage: LocalStorageService, private userService: UserService, private apiService: ApiService, private form: FormService) {
+  constructor(private translate: TranslateService, private localStorage: LocalStorageService, private userService: UserService, private apiService: ApiService, private form: FormService, private router: Router) {
+    router.canceledNavigationResolution = 'computed';
     this.initializeApp();
   }
 

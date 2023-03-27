@@ -39,8 +39,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
   }
   isSaved: any = false;
   private unsubscriber: Subject<void> = new Subject<void>();
-  constructor(private formService: FormService, private profileService: ProfileService, private localStorage: LocalStorageService, private apiService: ApiService, private http: HttpClient, private changeDetRef: ChangeDetectorRef, private toastService: ToastService, private dialog: MatDialog, private router: Router) {
-    router.canceledNavigationResolution = 'computed';
+  constructor(private formService: FormService, private profileService: ProfileService, private localStorage: LocalStorageService, private apiService: ApiService, private http: HttpClient, private changeDetRef: ChangeDetectorRef, private toastService: ToastService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
