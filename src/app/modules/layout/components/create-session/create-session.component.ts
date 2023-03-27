@@ -43,13 +43,10 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   sessionId: any;
   private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
-    private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog) {
     this.sessionId = this.route.snapshot.paramMap.get('id')
-    router.canceledNavigationResolution = 'computed';
   }
-  @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.isSaved && this.createSession.myForm.dirty  || (!this.imgData.isUploaded) ) {
       let dialog = this.dialog.open(ExitPopupComponent, {

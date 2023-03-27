@@ -39,8 +39,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
   }
   isSaved: any = false;
   private unsubscriber: Subject<void> = new Subject<void>();
-  constructor(private formService: FormService, private profileService: ProfileService, private localStorage: LocalStorageService, private apiService: ApiService, private http: HttpClient, private changeDetRef: ChangeDetectorRef, private toastService: ToastService, private dialog: MatDialog, private router: Router) {
-    router.canceledNavigationResolution = 'computed';
+  constructor(private formService: FormService, private profileService: ProfileService, private localStorage: LocalStorageService, private apiService: ApiService, private http: HttpClient, private changeDetRef: ChangeDetectorRef, private toastService: ToastService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -55,7 +54,6 @@ export class EditProfileComponent implements OnInit, CanLeave {
       })
     }) 
   }
-  @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.isSaved && this.editProfile.myForm.dirty || (!this.imgData.isUploaded)) {
       let dialog = this.dialog.open(ExitPopupComponent, {
