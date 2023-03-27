@@ -55,7 +55,6 @@ export class EditProfileComponent implements OnInit, CanLeave {
       })
     }) 
   }
-  @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.isSaved && this.editProfile.myForm.dirty || (!this.imgData.isUploaded)) {
       let dialog = this.dialog.open(ExitPopupComponent, {

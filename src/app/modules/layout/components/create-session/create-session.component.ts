@@ -49,7 +49,6 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     this.sessionId = this.route.snapshot.paramMap.get('id')
     router.canceledNavigationResolution = 'computed';
   }
-  @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.isSaved && this.createSession.myForm.dirty  || (!this.imgData.isUploaded) ) {
       let dialog = this.dialog.open(ExitPopupComponent, {
