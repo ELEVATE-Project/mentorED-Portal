@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
         errorMessage:'Please enter registered email ID',
         validators: {
           required: true,
-          pattern: '[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'
+          pattern: '[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'
         },
       },
       {
