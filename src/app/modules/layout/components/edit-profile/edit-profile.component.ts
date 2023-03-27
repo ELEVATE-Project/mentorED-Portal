@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import * as _ from 'lodash';
 import { fromEvent, map, Observable, Subject, takeUntil } from 'rxjs';
 import { API_CONSTANTS } from 'src/app/core/constants/apiUrlConstants';
@@ -38,15 +39,10 @@ export class EditProfileComponent implements OnInit, CanLeave {
   }
   isSaved: any = false;
   private unsubscriber: Subject<void> = new Subject<void>();
-  constructor(private formService: FormService, private profileService: ProfileService, private localStorage: LocalStorageService, private apiService: ApiService, private http: HttpClient, private changeDetRef: ChangeDetectorRef, private toastService: ToastService, private dialog: MatDialog, private location: Location) {
+  constructor(private formService: FormService, private profileService: ProfileService, private localStorage: LocalStorageService, private apiService: ApiService, private http: HttpClient, private changeDetRef: ChangeDetectorRef, private toastService: ToastService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    fromEvent(window, 'popstate')
-    .pipe(takeUntil(this.unsubscriber))
-    .subscribe((_) => {
-      history.pushState(null, '');
-    });
     this.formService.getForm(EDIT_PROFILE_FORM).subscribe((form) => {
       this.formData = form
       this.localStorage.getLocalData(localKeys.USER_DETAILS).then((user) => {
@@ -58,7 +54,6 @@ export class EditProfileComponent implements OnInit, CanLeave {
       })
     }) 
   }
-  @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.isSaved && this.editProfile.myForm.dirty || (!this.imgData.isUploaded)) {
       let dialog = this.dialog.open(ExitPopupComponent, {
