@@ -18,6 +18,7 @@
 ::ng-deep .mat-dialog-container{
     border-radius: 25px;
     box-shadow: 2px 2px 2px 2px $grey;
+    overflow: hidden;
 }
 ::ng-deep .mat-button{
     border-radius: 25px; 
