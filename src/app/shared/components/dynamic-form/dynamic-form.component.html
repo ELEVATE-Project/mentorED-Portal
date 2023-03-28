@@ -43,7 +43,6 @@
                     [maxlength]="control?.validators.maxLength" 
                     [required]="control?.validators?.required"
                     numberOnly
-                    oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')"
                 >
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
