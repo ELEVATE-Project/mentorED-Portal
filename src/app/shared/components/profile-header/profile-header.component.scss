@@ -12,7 +12,7 @@
 }
 .title {
   font-weight: 400;
-  padding-top: 14px;
+  padding-top: 10px;
   font-size: 20px;
   text-align: center;
 }
@@ -20,7 +20,10 @@
 .text-ellipse{
   width:300px;
   text-overflow: ellipsis;
+  white-space: nowrap;
   overflow: hidden;
+  display: block;
+  height: 30px;
 }
 
 .edit-button {
