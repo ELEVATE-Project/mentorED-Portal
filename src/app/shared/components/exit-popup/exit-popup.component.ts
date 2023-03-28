@@ -10,8 +10,10 @@ export class ExitPopupComponent implements OnInit {
 
   @Output() buttonClick = new EventEmitter()
 
-  constructor(public dialogRef: MatDialogRef<ExitPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
-
+  constructor(public dialogRef: MatDialogRef<ExitPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    dialogRef.disableClose = true;  
+   }
+   
   ngOnInit(): void {
   }
   confirmButton() {
