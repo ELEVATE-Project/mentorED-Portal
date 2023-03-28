@@ -12,8 +12,7 @@
                     [formControlName]="control?.name" 
                     [maxlength]="control?.validators.maxLength" 
                     [required]="control?.validators?.required"
-                    autocomplete="new-password"
-                    oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')">
+                    autocomplete="new-password">
                 <mat-icon matSuffix 
                     *ngIf="control?.type === 'password' || control?.showPasswordIcon"
                     (click)="hideShowPassword(control)">
@@ -44,7 +43,6 @@
                     [maxlength]="control?.validators.maxLength" 
                     [required]="control?.validators?.required"
                     numberOnly
-                    oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')"
                 >
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
@@ -64,8 +62,7 @@
                     [formControlName]="control?.name"
                     [placeholder]="control?.placeHolder"
                     [maxlength]="control?.validators?.maxLength"
-                    [required]="control?.validators?.required"
-                    oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')">
+                    [required]="control?.validators?.required">
                 </textarea>
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
