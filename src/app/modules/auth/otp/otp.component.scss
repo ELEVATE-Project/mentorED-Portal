@@ -10,6 +10,7 @@ h1 {
     color: $blue;
     padding: 5px;
     cursor: pointer;
+    pointer-events: none;
 }
 .checkbox {
     margin-top: 10px;
