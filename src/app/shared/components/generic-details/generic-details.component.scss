@@ -15,6 +15,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.text-center{
+  text-align: center;
+}
 mat-chip {
   border: 1px solid $theme;
   text-align: center;

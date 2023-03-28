@@ -18,9 +18,9 @@
 }
 
 .text-ellipse{
-  width:200px;
+  width:300px;
   text-overflow: ellipsis;
-  overflow-y: visible;
+  overflow: hidden;
 }
 
 .edit-button {
