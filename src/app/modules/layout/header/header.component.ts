@@ -83,4 +83,7 @@ export class HeaderComponent implements OnInit {
   async getDetails() {
     return await this.profileService.profileDetails()
   }
+  goHome(){
+    this.router.navigate(['/home'])
+  }
 }
