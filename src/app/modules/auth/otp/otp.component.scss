@@ -7,9 +7,8 @@ h1 {
     margin-top: 10px;
 }
 .resend-otp {
-    color: $blue;
+    color: $grey;
     padding: 5px;
-    cursor: pointer;
     pointer-events: none;
 }
 .checkbox {
@@ -33,6 +32,8 @@ h1 {
 }
 
 .enable {
+    color: $blue;
+    cursor: pointer;
     pointer-events: all;
 }
 
