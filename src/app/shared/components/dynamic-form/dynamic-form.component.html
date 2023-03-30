@@ -12,7 +12,8 @@
                     [formControlName]="control?.name" 
                     [maxlength]="control?.validators.maxLength" 
                     [required]="control?.validators?.required"
-                    autocomplete="new-password">
+                    autocomplete="new-password"
+                    (keydown)="removeSpace($event)">
                 <mat-icon matSuffix 
                     *ngIf="control?.type === 'password' || control?.showPasswordIcon"
                     (click)="hideShowPassword(control)">
@@ -62,7 +63,8 @@
                     [formControlName]="control?.name"
                     [placeholder]="control?.placeHolder"
                     [maxlength]="control?.validators?.maxLength"
-                    [required]="control?.validators?.required">
+                    [required]="control?.validators?.required"
+                    (keydown)="removeSpace($event)">
                 </textarea>
                 <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
                     <mat-icon 
