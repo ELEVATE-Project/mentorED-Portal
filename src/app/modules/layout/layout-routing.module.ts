@@ -60,7 +60,7 @@ const routes: Routes = [
         component: LogoutComponent
       },
       {
-        path: 'mentor-profile',
+        path: 'mentor-profile/:id',
         component: MentorProfileComponent,
         data: {title: 'MENTOR_PROFILE'}
       },

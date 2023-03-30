@@ -110,8 +110,8 @@ export class CreateSessionComponent implements OnInit,CanLeave {
         this.getImageUploadUrl(this.localImage).subscribe()
       } else {
         const form = Object.assign({}, this.createSession.myForm.value);
-        form.startDate = new Date(form.startDate).getTime() / 1000.0;
-        form.endDate = new Date(form.endDate).getTime() / 1000.0;
+        form.startDate = new Date(moment(form.startDate).seconds(0).toISOString()).getTime()/1000;
+        form.endDate = new Date(moment(form.endDate).seconds(0).toISOString()).getTime()/1000;
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         form.timeZone = timezone;
         this.createSession.myForm.markAsPristine();
