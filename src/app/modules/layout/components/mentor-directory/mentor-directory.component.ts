@@ -44,7 +44,7 @@ export class MentorDirectoryComponent implements OnInit {
   eventAction(event:any) {
     switch (event.type) {
       case 'cardSelect':
-        this.router.navigate(["/mentor-profile"], { queryParams: { mentorID: event.data._id } })
+        this.router.navigate([`/${"mentor-profile"}/${event.data._id}`])
         break;
     }
   }
