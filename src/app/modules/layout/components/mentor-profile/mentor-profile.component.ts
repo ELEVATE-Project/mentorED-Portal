@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MentorService } from 'src/app/core/services/mentor/mentor.service';
 import { SessionService } from 'src/app/core/services/session/session.service';
 
@@ -53,20 +53,19 @@ export class MentorProfileComponent implements OnInit {
   noData:any = { image : '/assets/images/no-upcoming-sessions.svg', 
   content:'NO_MENTOR_UPCOMING_SESSIONS_CONTENT'}
   constructor(private router: Router, private route: ActivatedRoute, private mentorProfile: MentorService, private sessionService: SessionService) {
-    this.route.queryParams.subscribe(
-      params => {
-        this.mentorId = params;
-      }
-    )}
+    this.route.params.subscribe((params: Params) => {
+      this.mentorId = params['id'];
+    })
+  }
   ngOnInit(): void {
-    this.mentorProfile.getMentorDetails(this.mentorId.mentorID).subscribe((data:any)=>{
+    this.mentorProfile.getMentorDetails(this.mentorId).subscribe((data:any)=>{
       this.details.data = data;
     })
     this.getUpcomingSession()
   }
   getUpcomingSession() {
     let obj = {
-      "id": this.mentorId.mentorID,
+      "id": this.mentorId,
       "page": this.page,
       "limit": this.limit
     }
