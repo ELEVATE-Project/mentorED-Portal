@@ -151,6 +151,11 @@ export class DynamicFormComponent implements OnInit {
     this.isFormValid();
     this.onEnter.emit(this.isFormValid())
   }
+  removeSpace(event: any){
+    if(event.target.selectionStart === 0 && event.code === "Space"){
+      event.preventDefault();
+    }
+  }
   
   reset() {
     this.myForm.reset();
