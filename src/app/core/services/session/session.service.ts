@@ -44,7 +44,7 @@ startSession(id: any){
   }
   return this.apiService.get(config).subscribe((result: any) => {
       this.toastService.showMessage(result.message, 'success')
-      window.open(result.result.link)
+      window.location.replace(result.result.link)
     })
 }
   createSession(formData:any, id?: string) {
