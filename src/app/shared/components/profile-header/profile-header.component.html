@@ -12,7 +12,7 @@
       </div>
     </ng-template>
   </div>
-  <div class="title text-ellipse">{{ details?.data?.name | titlecase }}</div>
+  <div fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center"  fxLayoutAlign="{{layoutAlign}}" class="title text-ellipse mentor-name">{{ details?.data?.name | titlecase }}</div>
   <div
     fxLayout="row"
     class="title"
