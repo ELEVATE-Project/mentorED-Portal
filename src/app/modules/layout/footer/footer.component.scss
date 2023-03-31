@@ -61,3 +61,8 @@
 .footer-address{
     padding-right: 30px;
 }
+
+img, a{
+    -webkit-user-drag: none !important;
+    user-select: none !important;
+}
