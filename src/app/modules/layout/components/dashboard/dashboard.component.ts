@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
 import { result } from 'lodash-es'
 import { map } from 'rxjs'
@@ -14,6 +14,7 @@ import { ProfileService } from 'src/app/core/services/profile/profile.service'
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild('selectDropdown') selectDropdown: any;
   segment: any = 'mentee'
   dataAvailable: any
   isMentor: boolean = false
@@ -63,6 +64,9 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    document.addEventListener('scroll', () => {
+      this.selectDropdown.close();
+    })
     this.localStorage.getLocalData(localKeys.USER_DETAILS).then((user: any) => {
       this.segment = JSON.parse(user).isAMentor ? 'mentor' : this.segment
       this.isMentor = JSON.parse(user).isAMentor

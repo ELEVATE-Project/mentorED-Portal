@@ -201,7 +201,7 @@
                     [placeholder]="control?.placeHolder"
                     [formControlName]="control?.name"
                     [value]="control?.value"
-                    [max]="(dependedParentDate && control.name === dependedParent)?dependedParentDate:maxDate"
+                    [max]="maxDate"
                     [min]="(control.name === dependedChild)?dependedChildDate:currentDate"
                     [readonly]="control?.readonly"
                     [required]="control?.validators?.required">

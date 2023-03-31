@@ -41,6 +41,7 @@
           class="filter"
           fxFlex="12%"
           [(ngModel)]="selectedFilter"
+          #selectDropdown
         >
           <mat-option
             [value]="filter.key"
