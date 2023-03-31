@@ -7,7 +7,6 @@ import { DbService } from 'src/app/core/services/db/db.service';
 import { SessionService } from 'src/app/core/services/session/session.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
-import { ProfileService } from 'src/app/core/services/profile/profile.service';
 
 interface item {
   userId?: string;
@@ -43,7 +42,6 @@ content:""}
     private form: FormService,
     private sessionService: SessionService,
     private localStorage:LocalStorageService,
-    private profileService: ProfileService
   ) {
     this.selectedPage = router.url
   }
@@ -52,7 +50,7 @@ content:""}
     this.localStorage
       .getLocalData(localKeys.USER_DETAILS)
       .then((userDetails) => {
-        this.userDetails = userDetails
+        this.userDetails = JSON.parse(userDetails) 
         this.getAllSession().subscribe()
       })
     this.cardHeading =
@@ -91,8 +89,7 @@ content:""}
     )
   }
   buttonClick(event: any) {
-    this.getDetails().then((userDetails)=>{
-      if(userDetails.about){
+      if(this.userDetails.about){
         switch (event.action.type) {
           case 'enrollAction':
             this.sessionService
@@ -110,11 +107,6 @@ content:""}
         }
       }else{
          this.router.navigate(['/edit-profile'])
-      }
-    })
-   
-  }
-  async getDetails() {
-    return await this.profileService.profileDetails()
+      } 
   }
 }

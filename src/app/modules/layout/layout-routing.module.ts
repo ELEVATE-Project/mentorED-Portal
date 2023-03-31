@@ -78,7 +78,7 @@ const routes: Routes = [
       },
       { path: 'edit-profile',
         component: EditProfileComponent,
-        data: {title: 'EDIT_YOUR_PROFILE', onBackUrl:'/home'},
+        data: {title: 'EDIT_YOUR_PROFILE', onBackUrl:'/profile'},
         canDeactivate: [CanDeactivateGuard]
       },
       { path: 'session-detail/:id',
