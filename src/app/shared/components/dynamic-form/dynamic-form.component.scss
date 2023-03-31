@@ -21,12 +21,7 @@ mat-error {
 .error-icon-info{
   margin-right: 5px;
 }
-.required::after {
-  content: "*";
-  color: $red;
-  font-size: 20px;
-  margin-left: 10px;
-}
+
 mat-slider{
   width: 100%;
 }
