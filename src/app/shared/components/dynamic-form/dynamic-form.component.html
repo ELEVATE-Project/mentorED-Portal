@@ -209,6 +209,15 @@
                     [hour12Timer]="true"
                     (afterPickerClosed)="dateSelected(control, date)">
                 </owl-date-time>
+                <mat-error *ngIf="myForm.get(control?.name)?.touched && myForm.get(control?.name)?.invalid">
+                    <mat-icon 
+                        *ngIf="control?.errorMessage"
+                        class="error-icon-info" 
+                        matPrefix>
+                        error_outline
+                    </mat-icon>
+                    {{control?.errorMessage}}
+                </mat-error>
             </mat-form-field>
         </div>
     </form>
