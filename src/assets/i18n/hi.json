@@ -137,5 +137,6 @@
     "ARE_YOU_SURE_WANT_TO_DELETE_SESSION": "Are you sure you want to delete the session ?",
     "YES_DELETE":"हाँ हटाएं",
     "EDIT_SESSION":"Edit session details",
-    "VIEW_PROFILE":"प्रोफ़ाइल देखें"
+    "VIEW_PROFILE":"प्रोफ़ाइल देखें",
+    "NO_PROFILE_MESSAGE": "No information found. Please click on 'Edit Profile' to update your profile."
 }
