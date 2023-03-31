@@ -33,8 +33,7 @@ export class SessionService {
       payload: {},
     }
    this.apiService.get(config).subscribe((result: any) => {
-        this.toastService.showMessage(result.message, 'success')
-        window.open(result.result.link)
+        window.location.replace(result.result.link)
       })
   }
 startSession(id: any){
@@ -43,8 +42,7 @@ startSession(id: any){
     payload: {},
   }
   return this.apiService.get(config).subscribe((result: any) => {
-      this.toastService.showMessage(result.message, 'success')
-      window.open(result.result.link)
+      window.location.replace(result.result.link)
     })
 }
   createSession(formData:any, id?: string) {
