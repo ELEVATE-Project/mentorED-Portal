@@ -7,6 +7,7 @@ import { DbService } from 'src/app/core/services/db/db.service';
 import { SessionService } from 'src/app/core/services/session/session.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
+import { ProfileService } from 'src/app/core/services/profile/profile.service';
 
 interface item {
   userId?: string;
@@ -42,6 +43,7 @@ content:""}
     private form: FormService,
     private sessionService: SessionService,
     private localStorage:LocalStorageService,
+    private profileService: ProfileService
   ) {
     this.selectedPage = router.url
   }
@@ -89,20 +91,30 @@ content:""}
     )
   }
   buttonClick(event: any) {
-    switch (event.action.type) {
-      case 'enrollAction':
-        this.sessionService
-          .enrollSession(event.data._id)
-          .subscribe((result) => {
-            this.cardDetails = []
-            this.getAllSession().subscribe()
-          })
-        break
-      case 'joinAction':
-        let id = this.selectedPage == '/enrolled-sessions' ? event.data.sessionId : event.data._id
-        this.sessionService
-          .joinSession(id)
-        break
-    }
+    this.getDetails().then((userDetails)=>{
+      if(userDetails.about){
+        switch (event.action.type) {
+          case 'enrollAction':
+            this.sessionService
+              .enrollSession(event.data._id)
+              .subscribe((result) => {
+                this.cardDetails = []
+                this.getAllSession().subscribe()
+              })
+            break
+          case 'joinAction':
+            let id = this.selectedPage == '/enrolled-sessions' ? event.data.sessionId : event.data._id
+            this.sessionService
+              .joinSession(id)
+            break
+        }
+      }else{
+         this.router.navigate(['/edit-profile'])
+      }
+    })
+   
+  }
+  async getDetails() {
+    return await this.profileService.profileDetails()
   }
 }
