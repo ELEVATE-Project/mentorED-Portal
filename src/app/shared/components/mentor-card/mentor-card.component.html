@@ -28,12 +28,12 @@
     <div fxLayout="column" class="card-details">
       <div fxFlex="80%"fxLayout="column">
         <div   >
-            <h3 class="card-data-heading">About</h3>
+            <h3 class="card-data-heading">{{"ABOUT" | translate}}</h3>
             <p class="about-container">{{cardData?.about}}</p>
         </div>
     </div>
     <div fxFlex="20%">
-        <button  class="view-button" mat-raised-button color="primary" (click)="onClickViewProfile(cardData)">View profile</button>   
+        <button  class="view-button" mat-raised-button color="primary" (click)="onClickViewProfile(cardData)">{{"VIEW_PROFILE" | translate}}</button>   
   </div>  
     </div>
     

@@ -50,7 +50,7 @@ content:""}
     this.localStorage
       .getLocalData(localKeys.USER_DETAILS)
       .then((userDetails) => {
-        this.userDetails = userDetails
+        this.userDetails = JSON.parse(userDetails) 
         this.getAllSession().subscribe()
       })
     this.cardHeading =
@@ -89,20 +89,24 @@ content:""}
     )
   }
   buttonClick(event: any) {
-    switch (event.action.type) {
-      case 'enrollAction':
-        this.sessionService
-          .enrollSession(event.data._id)
-          .subscribe((result) => {
-            this.cardDetails = []
-            this.getAllSession().subscribe()
-          })
-        break
-      case 'joinAction':
-        let id = this.selectedPage == '/enrolled-sessions' ? event.data.sessionId : event.data._id
-        this.sessionService
-          .joinSession(id)
-        break
-    }
+      if(this.userDetails.about){
+        switch (event.action.type) {
+          case 'enrollAction':
+            this.sessionService
+              .enrollSession(event.data._id)
+              .subscribe((result) => {
+                this.cardDetails = []
+                this.getAllSession().subscribe()
+              })
+            break
+          case 'joinAction':
+            let id = this.selectedPage == '/enrolled-sessions' ? event.data.sessionId : event.data._id
+            this.sessionService
+              .joinSession(id)
+            break
+        }
+      }else{
+         this.router.navigate(['/edit-profile'])
+      } 
   }
 }

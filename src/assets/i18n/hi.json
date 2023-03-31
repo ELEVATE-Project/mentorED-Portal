@@ -24,7 +24,7 @@
     "HOME": "होम",
     "ENROLLED_SESSIONS": "नामांकित सत्र",
     "CREATED_SESSIONS": "सृजित सत्र",
-    "MENTOR_DIRECTORY": "Mentor directory",
+    "MENTOR_DIRECTORY": "मेंटर निर्देशिका",
     "FOOTER_SIGNUP_TEXT": "Connect to a community of Mentor and Mentees anywhere, anytime, with just one App!",
     "FOOTER_SIGNUP_CONTAINS": "MentorED is a NDEAR Compliant offering that is also available on Playstore.",
     "DOWNLOAD_NOW": "अब डाउनलोड करें",
@@ -136,5 +136,6 @@
     "DELETE_SESSION": "सत्र मिटाएँ",
     "ARE_YOU_SURE_WANT_TO_DELETE_SESSION": "Are you sure you want to delete the session ?",
     "YES_DELETE":"हाँ हटाएं",
-    "EDIT_SESSION":"Edit session details"
+    "EDIT_SESSION":"Edit session details",
+    "VIEW_PROFILE":"प्रोफ़ाइल देखें"
 }

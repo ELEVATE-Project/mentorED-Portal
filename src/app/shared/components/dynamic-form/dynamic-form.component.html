@@ -87,7 +87,7 @@
                     [required]="control?.validators?.required">
                     <mat-option
                         *ngFor="let option of control?.options"
-                        [value]="option">
+                        [value]="[option]">
                         {{option.label}}
                     </mat-option>
                 </mat-select>
