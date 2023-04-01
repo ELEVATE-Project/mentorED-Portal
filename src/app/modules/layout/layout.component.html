@@ -4,7 +4,7 @@
       <div class="menu-button" >
           <mat-button fxFlex="100%" fxLayout="row">
             <mat-icon fxFlex="40%" fxLayoutAlign="center center" class="icon">language</mat-icon>
-            <mat-select fxLayoutAlign="center center" [(value)]="selectedLanguage" fxLayoutAlign="center center"  (selectionChange)="languageEvent()">
+            <mat-select fxLayoutAlign="center center" [(value)]="selectedLanguage" fxLayoutAlign="center center" disableOptionCentering panelClass="myPanelClassDrawer" (selectionChange)="languageEvent()">
               <mat-option [value]="option.value" *ngFor="let option of options">
                 {{ option.label }}
               </mat-option>
