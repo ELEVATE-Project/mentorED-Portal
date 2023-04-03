@@ -68,6 +68,7 @@
           fxFlexAlign="center"
           [(ngModel)]="selectedLanguage"
           (selectionChange)="languageEvent()"
+          disableOptionCentering panelClass="myPanelClassHeader"
         >
           <mat-option [value]="option.value" *ngFor="let option of options">
             {{ option.label }}
