@@ -18,16 +18,18 @@ export class DbService {
 
   getById(storeName:string, id:string) {
     return this.db.getByID(storeName, id).pipe(
-      map((form)=>{
-        return form
+      map((form:any)=>{
+        if(form)
+          return form
       })
     )
   }
 
   getAll(storeName:string) {
     return this.db.getAll(storeName).pipe(
-      map((forms)=>{
-        return forms
+      map((form:any)=>{
+        if(form)
+          return form
       })
     )
   }
