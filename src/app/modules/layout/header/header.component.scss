@@ -3,6 +3,7 @@
   max-width: 68px;
   margin-top: 9px;
   height: min-content;
+  cursor: pointer;
 }
 mat-toolbar {
   min-height: 110px;
@@ -134,4 +135,9 @@ mat-select {
 }
 ::ng-deep form {
   opacity: 1 !important;
+}
+
+img, div{
+  -webkit-user-drag: none !important;
+  user-select: none !important;
 }

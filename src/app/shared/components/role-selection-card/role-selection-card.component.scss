@@ -37,3 +37,8 @@ mat-card {
   text-align:center;
   font-size: medium
 }
+
+a, div, img{
+  -webkit-user-drag: none !important;
+  user-select: none !important;
+}

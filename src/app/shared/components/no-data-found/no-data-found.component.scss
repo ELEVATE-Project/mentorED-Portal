@@ -5,3 +5,7 @@
     height: 100%;
     width: 100%;
 }
+a, div,img{
+    -webkit-user-drag: none !important;
+    user-select: none !important;
+  }

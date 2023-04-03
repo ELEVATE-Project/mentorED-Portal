@@ -18,3 +18,8 @@
     text-decoration: none;
     font-weight: 500
 }
+
+a, div{
+    -webkit-user-drag: none !important;
+    user-select: none !important;
+  }

@@ -46,3 +46,8 @@ label.text{
   background-color: $white;
   overflow-y: auto;
 }
+
+img, div{
+  -webkit-user-drag: none !important;
+  user-select: none !important;
+}
