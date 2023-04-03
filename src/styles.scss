@@ -108,3 +108,8 @@ mat-chip{
 .myPanelClassDrawer{
   margin-top: 25px ;
 }
+
+a, div, img{
+  -webkit-user-drag: none !important;
+  user-select: none !important;
+}
