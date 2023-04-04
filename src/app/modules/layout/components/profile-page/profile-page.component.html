@@ -1,14 +1,11 @@
-<div *ngIf="!details.data?.about" fxLayoutAlign="center" class="no-details">
-  {{'NO_PROFILE_MESSAGE' | translate}}
- </div>
-<div *ngIf="details.data?.about" fxLayoutAlign="center">
+<div fxLayoutAlign="center">
   <mat-card fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%" class="card" fxLayout="column" fxLayoutAlign="center">
     
     <app-profile-header [details]="details"  [layoutAlign]= "layoutAlign"></app-profile-header>
 
     <span layout="row"><hr flex /></span>
-    <mat-card-content fxLayoutAlign="center center">
+    <mat-card-content  fxLayoutAlign="center center">
       <app-generic-details [details]="details" [layoutAlign]= "layoutAlign"></app-generic-details>
-    </mat-card-content>
+    </mat-card-content>  
   </mat-card>
 </div>
