@@ -4,7 +4,10 @@
     <app-profile-header [details]="details"  [layoutAlign]= "layoutAlign"></app-profile-header>
 
     <span layout="row"><hr flex /></span>
-    <mat-card-content  fxLayoutAlign="center center">
+    <div *ngIf="!details.data?.about" fxLayoutAlign="center center" class="no-details">
+      {{'NO_PROFILE_MESSAGE' | translate}}
+     </div>
+    <mat-card-content  *ngIf="details?.data?.about" fxLayoutAlign="center center">
       <app-generic-details [details]="details" [layoutAlign]= "layoutAlign"></app-generic-details>
     </mat-card-content>  
   </mat-card>
