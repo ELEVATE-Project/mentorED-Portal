@@ -33,7 +33,7 @@ export class ForgotPasswordComponent implements OnInit {
       },
       {
         name: 'password',
-        label: 'Password',
+        label: 'New password',
         value: '',
         type: 'password',
         placeHolder: 'Enter new password',
