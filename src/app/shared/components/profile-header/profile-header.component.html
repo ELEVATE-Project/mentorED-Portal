@@ -17,12 +17,14 @@
     <div
       fxLayout="row"
       class="title"
+      fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center"
+      fxLayoutAlign="{{layoutAlign}}"
       *ngFor="let location of details?.data?.location"
     >
       <mat-icon class="location-icon">room</mat-icon>
       <div class="inline-label">{{ location?.label }}</div>
     </div>
-    <div fxLayout="row" class="title" *ngIf="details?.data?.isAMentor && !mentorDirectory">
+    <div fxLayout="row" class="title" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" *ngIf="details?.data?.isAMentor && !mentorDirectory">
       <mat-icon *ngIf="details?.data?.rating?.average" class="star-icon">grade</mat-icon>
       <label class="inline-label">
         <span *ngIf="details?.data?.rating?.average">{{ details?.data?.rating?.average + '  ' }}</span>({{
@@ -30,7 +32,7 @@
         }})
       </label>
     </div>
-    <div fxLayout="row" class="title" *ngIf="details?.data?.isAMentor && mentorDirectory && details?.data?.rating?.average">
+    <div fxLayout="row" class="title" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" *ngIf="details?.data?.isAMentor && mentorDirectory && details?.data?.rating?.average">
       <mat-icon *ngIf="details?.data?.rating?.average" class="star-icon">grade</mat-icon>
       <label class="inline-label" >
         <span *ngIf="details?.data?.rating?.average">{{ details?.data?.rating?.average + '  ' }}</span>({{
@@ -38,10 +40,10 @@
         }})
       </label>
     </div>
-    <div *ngIf="!details?.data?.isAMentor" fxLayout="row" class="title">
+    <div *ngIf="!details?.data?.isAMentor" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" fxLayout="row" class="title">
       {{ details?.data?.sessionsAttended  + ('SESSIONS_ATTENDED' | translate)}}
     </div>
-    <div *ngIf="details?.data?.isAMentor && mentorDirectory" fxLayout="row" fxLayoutGap="3px" class="title">
+    <div *ngIf="details?.data?.isAMentor && mentorDirectory" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" fxLayout="row" fxLayoutGap="3px" class="title">
       <mat-icon class="location-icon">videocam</mat-icon>
       <span>{{ details?.data?.sessionsHosted}}
         {{('SESSIONS_HOSTED' | translate)}}</span>

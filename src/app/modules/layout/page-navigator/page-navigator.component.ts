@@ -63,12 +63,8 @@ export class PageNavigatorComponent implements OnInit {
       this.onBackUrl = child.snapshot.data['onBackUrl'] || "";
     })
   }
-  onBack(){
-    if(this.onBackUrl){
-      this.router.navigate([this.onBackUrl], { replaceUrl: true })
-    } else {     
+  onBack(){    
       this.location.back()
-    }
   }
   
   onClickSession(buttonConfig:any){
