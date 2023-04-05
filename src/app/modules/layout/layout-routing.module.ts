@@ -49,7 +49,7 @@ const routes: Routes = [
       },
       { path: 'profile',
         component: ProfilePageComponent,
-        data: {title: 'MY_PROFILE', onBackUrl:"/home"}
+        data: {title: 'MY_PROFILE'}
       },
       { path: 'dashboard',
         component: DashboardComponent,
@@ -67,7 +67,7 @@ const routes: Routes = [
       {
         path: 'create-session',
         component: CreateSessionComponent,
-        data: {title: 'CREATE_NEW_SESSION', onBackUrl:"/created-sessions"},
+        data: {title: 'CREATE_NEW_SESSION'},
         canDeactivate: [CanDeactivateGuard]
       },
       {
@@ -78,12 +78,12 @@ const routes: Routes = [
       },
       { path: 'edit-profile',
         component: EditProfileComponent,
-        data: {title: 'EDIT_YOUR_PROFILE', onBackUrl:'/profile'},
+        data: {title: 'EDIT_YOUR_PROFILE'},
         canDeactivate: [CanDeactivateGuard]
       },
       { path: 'session-detail/:id',
         component: SessionDetailComponent,
-        data: {title: 'SESSION_DETAIL',onBackUrl:"/home"}
+        data: {title: 'SESSION_DETAIL'}
       },
       {
         path: '',
