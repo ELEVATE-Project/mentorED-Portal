@@ -41,7 +41,7 @@ export class ForgotPasswordComponent implements OnInit {
         validators: {
           required: true,
           minLength: 8,
-          pattern: "^[a-zA-Z0-9!@#%$&()\\-`.+,/\"]*$"
+          pattern: "^[a-zA-Z0-9!@#%$&~*^()\\-`.+,/\"]*$"
         },
       },
       {
@@ -54,7 +54,7 @@ export class ForgotPasswordComponent implements OnInit {
         validators: {
           required: true,
           minLength: 8,
-          pattern: "^[a-zA-Z0-9!@#%$&()\\-`.+,/\"]*$",
+          pattern: "^[a-zA-Z0-9!@#%$&~*^()\\-`.+,/\"]*$",
         }
       }
     ]
