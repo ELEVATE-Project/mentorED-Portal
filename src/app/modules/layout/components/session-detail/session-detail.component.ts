@@ -116,9 +116,13 @@ export class SessionDetailComponent implements OnInit {
       });
   }
   onEnroll() {
-    let result = this.sessionService.enrollSession(this.id).subscribe(() =>{
-      this.sessionDetailApi()
-    })
+    if(this.userDetails.about){
+      let result = this.sessionService.enrollSession(this.id).subscribe(() =>{
+        this.sessionDetailApi()
+      })
+    }else{
+      this.router.navigate(['/edit-profile'])
+    }
   }
   unEnrollDialogBox(){
     let dialogRef = this.dialog.open(ExitPopupComponent, {
