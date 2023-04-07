@@ -21,7 +21,7 @@
   padding-left: 10px;
 }
 .text-ellipse{
-  width:300px;
+  width:200px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -48,6 +48,7 @@
   transform: scale(0.6);
   font-size: 26px;
   font-weight: bold;
+  min-width: 25px
 }
 .location-icon {
   color: $theme;
