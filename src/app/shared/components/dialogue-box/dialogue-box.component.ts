@@ -12,8 +12,4 @@ export class InputDialogueBoxComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  cancel() {
-    this.dialogRef.close();
-  }
 }
