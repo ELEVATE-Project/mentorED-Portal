@@ -49,6 +49,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     this.sessionId = this.route.snapshot.paramMap.get('id')
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    console.log(this.isSaved, this.createSession.myForm.dirty, this.imageChanged)
     if (!this.isSaved && this.createSession.myForm.dirty  || (this.imageChanged) ) {
       let dialog = this.dialog.open(ExitPopupComponent, {
         data: {
@@ -107,6 +108,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   }
 
   onSubmit() {
+    this.imageChanged = false
     this.isSaved = true;
     if (this.createSession.myForm.valid) {
       if (this.imgData.image && !this.imgData.isUploaded) {
