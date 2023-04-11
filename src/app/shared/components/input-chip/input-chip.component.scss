@@ -16,7 +16,7 @@ mat-chip {
 }
 mat-icon {
     font-size: 20px;
-    margin-right: 4px;
+    margin-right: 2px;
     z-index: 1;
 }
 ::placeholder {
@@ -45,8 +45,12 @@ input {
     max-width: 100%;
 }
 .mat-chip-remove.mat-icon{
-    width: 25px !important;
+    min-width: 30px !important;
 }
 ::ng-deep .mat-chip-list-wrapper {
     justify-content: left;
+}
+
+::ng-deep .mat-standard-chip .mat-chip-remove, .mat-standard-chip .mat-chip-trailing-icon{
+    margin: 0%;
 }

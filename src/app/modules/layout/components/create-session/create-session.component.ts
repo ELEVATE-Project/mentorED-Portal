@@ -41,6 +41,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   }
   sessionDetails: any;
   sessionId: any;
+  imageChanged:any = false;
   private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
     private route: ActivatedRoute,
@@ -48,7 +49,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     this.sessionId = this.route.snapshot.paramMap.get('id')
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.isSaved && this.createSession.myForm.dirty  || (!this.imgData.isUploaded) ) {
+    if (!this.isSaved && this.createSession.myForm.dirty  || (this.imageChanged) ) {
       let dialog = this.dialog.open(ExitPopupComponent, {
         data: {
           header: "Exit this page?",
@@ -93,17 +94,20 @@ export class CreateSessionComponent implements OnInit,CanLeave {
       reader.onload = (file: any) => {
         this.imgData.image = file.target.result
         this.imgData.isUploaded = false;
+        this.imageChanged = true
       }
       this.toast.showMessage("IMAGE_ADDED_SUCCESSFULLY", "success")
     } else {
       this.localImage = this.imgData.image = '';
       this.createSession.myForm.value.image = [];
       this.imgData.isUploaded = true;
+      this.imageChanged = true
       this.toast.showMessage("IMAGE_REMOVED_SUCCESSFULLY", "success")
     }
   }
 
   onSubmit() {
+    this.imageChanged = false;
     this.isSaved = true;
     if (this.createSession.myForm.valid) {
       if (this.imgData.image && !this.imgData.isUploaded) {

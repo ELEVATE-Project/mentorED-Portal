@@ -94,7 +94,6 @@ export class SessionDetailComponent implements OnInit {
       let readableStartTime = moment.unix(response.startDate).format("hh:mm A");
       let currentTimeInSeconds = Math.floor(Date.now() / 1000)
       this.isEnabled = ((response.startDate - currentTimeInSeconds) < 600) ? true : false
-      this.pastSession = (response.endDate < currentTimeInSeconds) ? false : true
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate;
       this.details.data.startTime = readableStartTime;
@@ -102,8 +101,9 @@ export class SessionDetailComponent implements OnInit {
       (response)?this.creator(response):false;
       let  buttonName = this.isCreator ? 'START':'JOIN'
       let method = this.isCreator ? 'startSession':'joinSession'
-      let showButton = (this.details?.data?.isEnrolled && this.details.data.status ==='published' || this.isCreator) && this.pastSession
-      let showShareButton = (this.details.data.status ==='published' || this.isCreator) && this.pastSession
+      this.pastSession = (this.details.data.status ==='completed') ? false : true
+      let showButton = (this.details?.data?.isEnrolled && (this.details.data.status ==='published'|| this.details.data.status ==='live') || this.isCreator) && this.pastSession
+      let showShareButton = ((this.details.data.status ==='published'|| this.details.data.status ==='live')  || this.isCreator) && this.pastSession
       this.paginatorConfigData = {
         buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:!this.isEnabled, service: 'sessionService', method: method, passingParameter:this.id, showButton:showButton},
         {buttonName:'SHARE_SESSION',cssClass:"shareButton", matIconName:'share', isDisable:false,service: 'utilService', method: 'shareButton',showButton:showShareButton}]
@@ -116,9 +116,13 @@ export class SessionDetailComponent implements OnInit {
       });
   }
   onEnroll() {
-    let result = this.sessionService.enrollSession(this.id).subscribe(() =>{
-      this.sessionDetailApi()
-    })
+    if(this.userDetails.about){
+      let result = this.sessionService.enrollSession(this.id).subscribe(() =>{
+        this.sessionDetailApi()
+      })
+    }else{
+      this.router.navigate(['/edit-profile'])
+    }
   }
   unEnrollDialogBox(){
     let dialogRef = this.dialog.open(ExitPopupComponent, {

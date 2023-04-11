@@ -1,6 +1,6 @@
 <div fxLayout="column">
-<div *ngIf="details" fxLayoutAlign="center" class="mentor-profile-container">
-    <mat-card class="card" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%">
+<div *ngIf="details" fxLayoutAlign="center" fxFlex="25%" class="mentor-profile-container">
+    <mat-card class="card" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxFlex="70%" fxFlex.sm="80%" fxFlex.xs="98%" fxFlex.md="80%">
       <div class="profile-header-conatiner" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="left">
         <app-profile-header  [details]="details" [mentorDirectory]="mentorDirectory"></app-profile-header>     
       </div>
@@ -14,7 +14,7 @@
         </div>
     </mat-card>
   </div>
-<div fxLayoutAlign="center center" >
+<div fxLayoutAlign="center center"  fxFlex="75%" >
   <div fxLayout="column"  fxFlex="80%">
     <h3 class="create-sessions-text">{{'UPCOMING_SESSIONS_BY_MENTOR' | translate}}</h3>
     <div *ngIf="!mentorUpComingSession.length" fxFlex="80%">

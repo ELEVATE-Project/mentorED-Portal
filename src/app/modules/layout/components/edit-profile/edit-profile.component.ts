@@ -38,6 +38,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
     floatLabel: 'always'
   }
   isSaved: any = false;
+  imageChanged:any = false;
   private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private formService: FormService, private profileService: ProfileService, private localStorage: LocalStorageService, private apiService: ApiService, private http: HttpClient, private changeDetRef: ChangeDetectorRef, private toastService: ToastService, private dialog: MatDialog) {
   }
@@ -55,7 +56,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
     }) 
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.isSaved && this.editProfile.myForm.dirty || (!this.imgData.isUploaded)) {
+    if (!this.isSaved && this.editProfile.myForm.dirty || (this.imageChanged)) {
       let dialog = this.dialog.open(ExitPopupComponent, {
         data: {
           header: "Exit this page?",
@@ -75,6 +76,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
     }
   }
   onSubmit() {
+    this.imageChanged = false
     this.isSaved = true;
     if (this.editProfile.myForm.valid) {
       if (this.imgData.image && !this.imgData.isUploaded) {
@@ -119,6 +121,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
       reader.onload = (file: any) => {
         this.imgData.image = file.target.result
         this.imgData.isUploaded = false;
+        this.imageChanged = true
       }
       this.toastService.showMessage("IMAGE_ADDED_SUCCESSFULLY", "success")
       
@@ -126,6 +129,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
       this.localImage = this.imgData.image = '';
       this.editProfile.myForm.value.image = '';
       this.imgData.isUploaded = true;
+      this.imageChanged = true
       this.toastService.showMessage("IMAGE_REMOVED_SUCCESSFULLY", "success")
     }
   }
