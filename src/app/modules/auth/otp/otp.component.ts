@@ -25,10 +25,10 @@ export class OtpComponent implements OnInit {
         type: "text",
         placeHolder: "Enter OTP",
         errorMessage: "Please enter valid OTP",
-        isNumberOnly: true,
         validators: {
           required: true,
           minLength: 6,
+          pattern: "^[0-9]*$"
         },
       },
     ],

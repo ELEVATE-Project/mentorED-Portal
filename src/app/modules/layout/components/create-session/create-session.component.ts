@@ -107,7 +107,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   }
 
   onSubmit() {
-    this.imageChanged = false
+    this.imageChanged = false;
     this.isSaved = true;
     if (this.createSession.myForm.valid) {
       if (this.imgData.image && !this.imgData.isUploaded) {
