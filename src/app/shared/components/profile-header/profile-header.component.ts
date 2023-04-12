@@ -28,7 +28,7 @@ export class ProfileHeaderComponent implements OnInit {
     this.router.navigate(["./edit-profile"])
   }
   shareProfile(){
-    this.utilService.shareButton()
+    this.utilService.shareButton("SHARE_PROFILE")
   }
 
 }
