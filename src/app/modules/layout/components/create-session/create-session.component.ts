@@ -44,7 +44,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   imageChanged:any = false;
   private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, private router: Router,
     private dialog: MatDialog) {
     this.sessionId = this.route.snapshot.paramMap.get('id')
   }
@@ -120,7 +120,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
         form.timeZone = timezone;
         this.createSession.myForm.markAsPristine();
         this.sessionService.createSession(form,this.sessionDetails?._id).subscribe((result)=>{
-          this.location.back();
+          result._id ? this.router.navigate([`/${"session-detail"}/${result._id}`]): this.location.back();
         });
       }
     }
