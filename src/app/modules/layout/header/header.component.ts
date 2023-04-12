@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   @Output() menuToggleEvent = new EventEmitter()
   letter:any;
   user:any;
+  selectFontStyle = 'bold';
   options = [
     { label: 'English', value: 'en' },
     { label: 'हिंदी', value: 'hi' },
