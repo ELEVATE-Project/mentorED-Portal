@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   user:any;
   options = [
     { label: 'English', value: 'en' },
-    { label: 'Hindi', value: 'hi' },
+    { label: 'हिंदी', value: 'hi' },
   ]
   selectedLanguage: string = 'en';
   showSearchbar = false;
