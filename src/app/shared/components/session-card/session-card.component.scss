@@ -5,6 +5,8 @@
 
 .card-container {
     padding: 0.5%;
+    height: 100%;
+    max-height: 100%;
     cursor: pointer;
 }
 
@@ -34,7 +36,10 @@
     justify-content: center;
     color: $white;
     font-weight: 100;
-
+    width: 50px;
+    height: 40px;
+    align-self: flex-end;
+    margin: 10px !important;
 }
 .mat-raised-button[disabled] {
     background-color: rgb(104,104,104);
