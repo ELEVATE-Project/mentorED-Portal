@@ -70,13 +70,15 @@ mat-chip{
   letter-spacing: .3px;
 }
 .mat-badge-content {
-  min-width: 45px !important;
-  max-height: 20px !important;
+  min-width: 42px !important;
+  max-height: 16px !important;
   border-radius: 0px !important;
-  margin-top: 10px;
   font-size: 11px !important;
   font-weight: 500 !important;
   background-color: $light-blue !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center;
 }
 .mat-dialog-container {
   border-radius: 25px !important;
