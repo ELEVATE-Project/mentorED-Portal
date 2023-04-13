@@ -61,8 +61,9 @@
         class="menu-button"
         fxLayoutAlign="space-around center"
       >
-        <mat-icon class="language-icon">language</mat-icon>
+        <mat-icon class="language-icon" (click)="language.toggle()">language</mat-icon>
         <mat-select
+          #language
           class="options"
           fxFlex
           fxFlexAlign="center"
