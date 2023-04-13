@@ -120,7 +120,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
         form.timeZone = timezone;
         this.createSession.myForm.markAsPristine();
         this.sessionService.createSession(form,this.sessionDetails?._id).subscribe((result)=>{
-          result._id ? this.router.navigate([`/${"session-detail"}/${result._id}`]): this.location.back();
+          result._id ? this.router.navigate([`/${"session-detail"}/${result._id}`], {replaceUrl: true}): this.location.back();
         });
       }
     }
