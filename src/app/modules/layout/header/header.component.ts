@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   @Output() menuToggleEvent = new EventEmitter()
   letter:any;
   user:any;
+  selectFontStyle = 'bold';
   options = [
     { label: 'English', value: 'en' },
     { label: 'हिंदी', value: 'hi' },
@@ -27,9 +28,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(private translate: TranslateService, private profile: ProfileService, private localStorage: LocalStorageService, private router: Router, private activatedRoute: ActivatedRoute, private toast: ToastService,private profileService: ProfileService) {
     this.checkForSearchbar();
-    this.localStorage.getLocalData(localKeys.SELECTED_LANGUAGE).then((lang)=>{
-      if(lang)this.selectedLanguage = lang;
-    })
   }
   ngOnInit(): void {
     this.localStorage.getLocalData(localKeys.USER_DETAILS).then((data)=>{
@@ -38,6 +36,9 @@ export class HeaderComponent implements OnInit {
       this.profile.newProfile$.subscribe((res)=>{
         this.user = _.isEqual(res,{}) ? this.user : res;
       })
+    });
+    this.localStorage.getLocalData(localKeys.SELECTED_LANGUAGE).then((lang)=>{
+      if(lang)this.selectedLanguage = lang;
     })
   }
   onClick() {
