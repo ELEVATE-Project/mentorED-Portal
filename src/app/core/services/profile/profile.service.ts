@@ -73,6 +73,8 @@ export class ProfileService {
           JSON.stringify(data)
         ).then(() =>{
           this.profile$.next(data)
+          this.translate.use(data.preferredLanguage)
+          this.apiService.setHeader()
           return data;
         })
       })

@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   constructor(private translate: TranslateService, private profile: ProfileService, private localStorage: LocalStorageService, private router: Router, private activatedRoute: ActivatedRoute, private toast: ToastService,private profileService: ProfileService) {
     this.checkForSearchbar();
     this.localStorage.getLocalData(localKeys.SELECTED_LANGUAGE).then((lang)=>{
-      if(lang)this.selectedLanguage = lang;
+      this.selectedLanguage = lang ? lang : this.translate.currentLang;
     })
   }
   ngOnInit(): void {
