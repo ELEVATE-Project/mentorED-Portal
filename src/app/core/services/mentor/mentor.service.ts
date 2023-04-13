@@ -17,7 +17,7 @@ export class MentorService {
 
   getMentorDirectory(obj:any){
     const config = {
-      url: API_CONSTANTS.MENTORS_DIRECTORY + '&page=' +obj?.page + '&limit=' + obj?.limit 
+      url: API_CONSTANTS.MENTORS_DIRECTORY + '&page=' +obj?.page + '&limit=' + obj?.limit + '&search=' + obj?.search+ '&match=startsWith'
     };
     return this.apiService.get(config).pipe(
       map((data: any) => {

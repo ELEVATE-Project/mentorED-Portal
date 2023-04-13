@@ -106,7 +106,7 @@ export class SessionDetailComponent implements OnInit {
       let showShareButton = ((this.details.data.status ==='published'|| this.details.data.status ==='live')  || this.isCreator) && this.pastSession
       this.paginatorConfigData = {
         buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:!this.isEnabled, service: 'sessionService', method: method, passingParameter:this.id, showButton:showButton},
-        {buttonName:'SHARE_SESSION',cssClass:"shareButton", matIconName:'share', isDisable:false,service: 'utilService', method: 'shareButton',showButton:showShareButton}]
+        {buttonName:'SHARE_SESSION',cssClass:"shareButton", matIconName:'share', isDisable:false,service: 'utilService', method: 'shareButton',passingParameter:"SHARE_SESSION",showButton:showShareButton}]
       }
       this.pageTitle.editButtonConfig(this.paginatorConfigData)
     });

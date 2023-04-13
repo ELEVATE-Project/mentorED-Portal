@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { MentorService } from 'src/app/core/services/mentor/mentor.service';
-import { ProfileService } from 'src/app/core/services/profile/profile.service';
-import { API_CONSTANTS } from "../../../../core/constants/apiUrlConstants";
 import { ApiService } from '../../../../core/services/api/api.service'
 @Component({
   selector: 'app-mentor-directory',
@@ -12,12 +10,14 @@ import { ApiService } from '../../../../core/services/api/api.service'
 })
 export class MentorDirectoryComponent implements OnInit {
   page: any = 1;
-  limit: any = 1000;
+  limit: any = 6;
   mentors:any = [];
   mentorsCount:any;
   selectedAlphabet:any = "All"
   selectedMentors:any;
   allMentors:any = [];
+  search:any = ''
+  showLoadMoreButton: boolean = false
   noData:any = { image : '/assets/images/results-not-found.png', 
   content:'NO_MENTOR_IN_MENTOR_DIRECTORY_CONTENT'}
   noselectedMentors:any = false;
@@ -30,16 +30,25 @@ export class MentorDirectoryComponent implements OnInit {
   getMentor(){
     let obj={
       "page":this.page,
-      "limit":this.limit
+      "limit":this.limit,
+      "search":this.search
     }
     return this.mentorService.getMentorDirectory(obj).pipe(
       map((data: any) => {
         this.mentors = data.result.data;
-        data.result.data.forEach((data:any) => {
+        this.mentors.forEach((data:any) => {
           this.allMentors = this.allMentors.concat(data.values)
         });
-        this.mentorsCount = data.result.count;
+        this.mentorsCount = data?.result?.count;
+        this.showLoadMoreButton = this.allMentors?.length === this.mentorsCount ? false : true
+        if(this.allMentors?.length == 0){
+              this.noselectedMentors = true;
+            }
       }))
+  }
+  onClickViewMore(){
+    this.page = this.page+1;
+    this.getMentor().subscribe();
   }
   eventAction(event:any) {
     switch (event.type) {
@@ -52,17 +61,9 @@ export class MentorDirectoryComponent implements OnInit {
     this.noselectedMentors = false;
     this.selectedMentors =[]
     this.selectedAlphabet = a;
-    if (this.selectedAlphabet == 'All') {
-      this.selectedMentors = this.mentors
-    } else {
-      this.mentors.forEach((ele: any) => {
-        if (ele.key == this.selectedAlphabet) {
-          this.selectedMentors = ele;
-        }
-      });
-      if(this.selectedMentors.length == 0){
-        this.noselectedMentors = true;
-      }
-    }
+    this.page=1
+    this.allMentors=[]
+    this.search=(this.selectedAlphabet=='All')?'':btoa(this.selectedAlphabet)
+    this.getMentor().subscribe()
   }
 }
