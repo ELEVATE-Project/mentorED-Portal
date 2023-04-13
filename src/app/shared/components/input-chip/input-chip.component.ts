@@ -27,7 +27,6 @@ export class InputChipComponent implements ControlValueAccessor {
   disabled = false;
   selectedChips: any;
   _selectAll: any;
-  lowerCaseLabel: any;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   addOnBlur = true;
 
@@ -37,9 +36,7 @@ export class InputChipComponent implements ControlValueAccessor {
 
   onTouched = () => {};
 
-  ngOnInit() { 
-    this.lowerCaseLabel = 'Add new '+ this.control.label.toLowerCase();
-  }
+  ngOnInit() {}
 
   writeValue(value: any[]) {
     this.selectedChips = new Set();
@@ -109,8 +106,8 @@ export class InputChipComponent implements ControlValueAccessor {
   openDialogue() {
     const dialogRef = this.dialog.open(InputDialogueBoxComponent, {
       data: {
-        header: this.lowerCaseLabel,
-        subHeader: (this.control.name=='recommendedFor')?'WHO_IS_THIS_SESSION_FOR':'',
+        header: this.control.addNewPopupHeader,
+        subHeader: this.control.addNewPopupSubHeader,
         required: this.control.validators.required,
         buttonText: {
           ok: 'OK',
