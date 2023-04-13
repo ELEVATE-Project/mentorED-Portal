@@ -8,7 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class SharePopupComponent implements OnInit {
   copyLink: any = 'COPY_LINK'
   constructor(@Inject(MAT_DIALOG_DATA)
-  public data: { defaultValue: any }, public dialogRef: MatDialogRef<SharePopupComponent>
+  public data: { heading:any, defaultValue: any }, public dialogRef: MatDialogRef<SharePopupComponent>
   ) { }
 
   ngOnInit(): void {

@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   @Output() menuToggleEvent = new EventEmitter()
   letter:any;
   user:any;
+  selectFontStyle = 'bold';
   options = [
     { label: 'English', value: 'en' },
     { label: 'हिंदी', value: 'hi' },
@@ -38,6 +39,9 @@ export class HeaderComponent implements OnInit {
       this.profile.newProfile$.subscribe((res)=>{
         this.user = _.isEqual(res,{}) ? this.user : res;
       })
+    });
+    this.localStorage.getLocalData(localKeys.SELECTED_LANGUAGE).then((lang)=>{
+      if(lang)this.selectedLanguage = lang;
     })
   }
   onClick() {

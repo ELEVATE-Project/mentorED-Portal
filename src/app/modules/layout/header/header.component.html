@@ -70,6 +70,7 @@
           [(ngModel)]="selectedLanguage"
           (selectionChange)="languageEvent()"
           disableOptionCentering panelClass="myPanelClassHeader"
+          [style.font-weight]="selectFontStyle"
         >
           <mat-option [value]="option.value" *ngFor="let option of options">
             {{ option.label }}
