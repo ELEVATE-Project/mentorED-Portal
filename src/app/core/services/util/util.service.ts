@@ -8,9 +8,10 @@ import { SharePopupComponent } from 'src/app/shared/components/share-popup/share
 })
 export class UtilService {
   constructor(public dialog: MatDialog, private pLocation:PlatformLocation) { }
-  shareButton(url = (this.pLocation as any).location.href) {
+  shareButton(heading?:any, url = (this.pLocation as any).location.href) {
     this.dialog.open(SharePopupComponent, {
-      data: { defaultValue: url},
+      data: { heading:heading,
+          defaultValue: url},
        });
   }
 }

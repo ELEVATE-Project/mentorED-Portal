@@ -12,8 +12,8 @@
       </div>
     </ng-template>
   </div>
+  <div fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center"  fxLayoutAlign="{{layoutAlign}}" class="title text-ellipse mentor-name">{{ details?.data?.name }}</div>
   <div *ngIf="details?.data.about">
-    <div fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center"  fxLayoutAlign="{{layoutAlign}}" class="title text-ellipse mentor-name">{{ details?.data?.name }}</div>
     <div
       fxLayout="row"
       class="title"

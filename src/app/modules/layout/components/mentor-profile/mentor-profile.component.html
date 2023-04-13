@@ -16,7 +16,7 @@
   </div>
 <div fxLayoutAlign="center center"  fxFlex="75%" >
   <div fxLayout="column"  fxFlex="80%">
-    <h3 class="create-sessions-text">{{'UPCOMING_SESSIONS_BY_MENTOR' | translate}}</h3>
+    <h3 class="create-sessions-text">{{'UPCOMING_SESSIONS_BY_MENTOR' | translate}}{{ details?.data?.name }}</h3>
     <div *ngIf="!mentorUpComingSession.length" fxFlex="80%">
       <app-no-data-found [data]="noData" fxLayoutAlign="center"></app-no-data-found>
     </div>
