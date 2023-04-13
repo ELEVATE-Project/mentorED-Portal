@@ -27,16 +27,15 @@ export class ApiService {
     this.setHeader();
   }
 
-  async setHeader(): Promise<any> {
+  async setHeader(lang?:string): Promise<any> {
     return new Promise(async (resolve) => {
       try {
         let userToken = (await this.userService.getUserToken()) ? 'bearer ' + (await this.userService.getUserToken()).access_token : '';
-        let preferredLanguage = JSON.parse(await this.localStorage.getLocalData(localKeys.USER_DETAILS)).preferredLanguage
         const headers = {
           'X-auth-token': userToken ? userToken : '',
           'Content-Type': 'application/json',
           'timeZone': this.timeZone,
-          'accept-language': preferredLanguage ? preferredLanguage: 'en'
+          'accept-language': lang ? lang : 'en'
         };
         this.httpHeaders = headers;
         resolve(true)
