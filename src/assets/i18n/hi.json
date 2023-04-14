@@ -130,13 +130,13 @@
     "TOTAL_SESSION_ATTENDED": "कुल सत्र जिनमें भाग लिया गया है",
     "ENROLL_FOR_SESSION_TO_FILL_SPACE":"Enroll for sessions to fill this space",
     "CONDUCT_LIVE_SESSION_TO_FILL_SPACE":"Conduct live sessions to fill this space",
-    "UN_ENROLL": "Unenroll",
+    "UN_ENROLL": "नामांकन हटाएं",
     "ARE_YOU_SURE_WANT_TO_UN_ENROLL": "Are you sure you want to unenroll from this session ?",
     "UN_ENROLL_SESSION": "Unenroll session",
     "DELETE_SESSION": "सत्र मिटाएँ",
     "ARE_YOU_SURE_WANT_TO_DELETE_SESSION": "Are you sure you want to delete the session ?",
     "YES_DELETE":"हाँ हटाएं",
-    "EDIT_SESSION":"Edit session details",
+    "EDIT_SESSION":"संपादित करें",
     "VIEW_PROFILE":"प्रोफ़ाइल देखें",
     "NO_PROFILE_MESSAGE": "No information found. Please click on 'Edit Profile' to update your profile."
 }
