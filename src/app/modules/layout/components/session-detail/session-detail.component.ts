@@ -19,10 +19,10 @@ export class SessionDetailComponent implements OnInit {
   cardData: any;
 
   details = {
-    enrollButton: "Enroll",
-    confirmButton: "Unenroll",
-    editSession: "Edit session",
-    DeleteSession: "Delete session",
+    enrollButton: "ENROLL",
+    confirmButton: "UN_ENROLL",
+    editSession: "EDIT_SESSION",
+    DeleteSession: "DELETE_SESSION",
     form: [
       {
         title: "RECOMENDED_FOR",

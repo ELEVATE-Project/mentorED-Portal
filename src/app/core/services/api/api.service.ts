@@ -27,7 +27,7 @@ export class ApiService {
     this.setHeader();
   }
 
-  async setHeader(): Promise<any> {
+  async setHeader(lang?:string): Promise<any> {
     return new Promise(async (resolve) => {
       try {
         let userToken = (await this.userService.getUserToken()) ? 'bearer ' + (await this.userService.getUserToken()).access_token : '';
@@ -35,7 +35,7 @@ export class ApiService {
           'X-auth-token': userToken ? userToken : '',
           'Content-Type': 'application/json',
           'timeZone': this.timeZone,
-          'accept-language': 'en'
+          'accept-language': lang ? lang : 'en'
         };
         this.httpHeaders = headers;
         resolve(true)
