@@ -35,7 +35,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MentorProfileComponent } from './components/mentor-profile/mentor-profile.component';
 import { SlReportsLibraryModule} from '@shikshalokam/sl-reports-library'
 import { SessionDetailComponent } from './components/session-detail/session-detail.component';
-
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatRadioModule} from '@angular/material/radio';
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -77,7 +78,9 @@ import { SessionDetailComponent } from './components/session-detail/session-deta
     MatCardModule,
     MatDialogModule,
     MatCardModule,
-    SlReportsLibraryModule
+    SlReportsLibraryModule,
+    MatStepperModule,
+    MatRadioModule
   ]
 
 

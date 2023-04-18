@@ -139,5 +139,6 @@
     "EDIT_SESSION":"Edit session",
     "VIEW_PROFILE":"View profile",
     "NO_PROFILE_MESSAGE": "No information found. Please click on 'Edit Profile' to update your profile.",
-    "EDIT_SESSION_DETAILS": "Edit session details"
+    "EDIT_SESSION_DETAILS": "Edit session details",
+    "SKIP":"Set it later"
 }

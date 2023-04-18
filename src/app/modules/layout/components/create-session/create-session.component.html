@@ -1,11 +1,53 @@
-<div fxLayoutAlign="center">
-    <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%" fxLayoutAlign="center center">
-        <app-image-upload [imgData]="imgData" (imageEvent)="imageEvent($event)"></app-image-upload>
-        <div class="form-wrapper" fxFlex="80%">
-            <app-dynamic-form *ngIf="formData" [jsonFormData]="formData" [uiConfig]="uiConfig" #createSession></app-dynamic-form>
+<mat-stepper linear #stepper>
+    <mat-step>
+        <ng-template matStepLabel>Create session</ng-template>
+        <div fxLayoutAlign="center">
+            <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
+                fxLayoutAlign="center center">
+                <app-image-upload [imgData]="imgData" (imageEvent)="imageEvent($event)"></app-image-upload>
+                <div class="form-wrapper" fxFlex="80%">
+                    <app-dynamic-form *ngIf="formData" [jsonFormData]="formData" [uiConfig]="uiConfig"
+                        #createSession></app-dynamic-form>
+                </div>
+                <div fxLayoutAlign="center center">
+                    <button mat-raised-button class="button-shadow" color="primary"
+                        [disabled]="createSession && !createSession.myForm.valid" (click)="onSubmit()">{{"PUBLISH" |
+                        translate}}</button>
+                </div>
+            </mat-card>
         </div>
-        <div fxLayoutAlign="center center">
-            <button mat-raised-button class="button-shadow" color="primary" [disabled]="createSession && !createSession.myForm.valid" (click)="onSubmit()">{{"PUBLISH" | translate}}</button>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Custom video conference</ng-template>
+        <div fxLayoutAlign="center">
+            <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
+                fxLayoutAlign="center center" fxLayoutGap="10px">
+                <h2>Select the meeting platform</h2>
+                <div>
+                    <mat-radio-group (change)="onRadioButtonChange($event)" fxLayoutGap="100px">
+                        <mat-radio-button value="1">BBB</mat-radio-button>
+                        <mat-radio-button value="2">Other</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div *ngIf="isDropdownShown">
+                    <div>
+                        <mat-select #link class="options" fxFlex fxFlexAlign="center" [(ngModel)]="selectedLink">
+                            <mat-option [value]="option" *ngFor="let option of options">
+                                {{ option }}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+                <div>
+                    
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10%">
+                    <button mat-raised-button class="button-shadow" color="primary">{{"SUBMIT" | translate}}</button>
+                    <button mat-raised-button class="button-shadow skip-button">{{"SKIP" | translate}}</button>
+                </div>
+            </mat-card>
         </div>
-    </mat-card>
-</div>  
+        <div>
+        </div>
+    </mat-step>
+</mat-stepper>
