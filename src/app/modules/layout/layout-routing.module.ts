@@ -73,7 +73,7 @@ const routes: Routes = [
       {
         path: 'edit-session/:id',
         component: CreateSessionComponent,
-        data: {title: 'EDIT_SESSION'},
+        data: {title: 'EDIT_SESSION_DETAILS'},
         canDeactivate: [CanDeactivateGuard]
       },
       { path: 'edit-profile',
