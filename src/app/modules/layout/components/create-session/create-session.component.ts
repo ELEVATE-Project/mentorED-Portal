@@ -39,9 +39,14 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     appearance: 'fill',
     floatLabel: 'always'
   }
+  sessionResult:any ;
+  isDropdownShown:any = false
+  publishSession:any = true;
   sessionDetails: any;
   sessionId: any;
   imageChanged:any = false;
+  options:any = ['Meet','Zoom']
+  selectedLink:any = 'Meet'
   private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
     private route: ActivatedRoute, private router: Router,
@@ -120,6 +125,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
         form.timeZone = timezone;
         this.createSession.myForm.markAsPristine();
         this.sessionService.createSession(form,this.sessionDetails?._id).subscribe((result)=>{
+          this.sessionResult = result;
           result._id ? this.router.navigate([`/${"session-detail"}/${result._id}`], {replaceUrl: true}): this.location.back();
         });
       }
@@ -162,5 +168,17 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   ngOnDestroy(): void {
     this.unsubscriber.next();
     this.unsubscriber.complete();
+  }
+
+  setItLater(){
+    this.sessionResult._id ? this.router.navigate([`/${"session-detail"}/${this.sessionResult._id}`], {replaceUrl: true}): this.location.back(); 
+  }
+
+  onRadioButtonChange(event:any) { 
+    this.isDropdownShown = false;
+    if(event.value == 2){
+      this.isDropdownShown = true;
+    }
+    console.log("event.value=" + event.value);
   }
 }
