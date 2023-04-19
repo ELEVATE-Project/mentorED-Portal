@@ -118,3 +118,8 @@ a, div, img{
 .mat-typography p{
   margin: 0 0 10px !important;
 }
+.mat-horizontal-stepper-header-container {
+  width: 50%;
+  display: flex;
+  align-self: center;
+}

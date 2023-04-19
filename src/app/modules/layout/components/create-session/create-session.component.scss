@@ -31,3 +31,15 @@ mat-card{
     background-color: rgb(131,41,21);
     color: white;
 }
+h2 {
+    margin: 20px 0px !important;
+}
+mat-radio-group {
+    margin: 20px 0px !important;
+}
+.radio-group {
+    margin: 15px 0px 25px 0px!important;
+}
+::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}

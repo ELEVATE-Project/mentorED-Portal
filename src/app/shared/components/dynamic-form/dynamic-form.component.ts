@@ -75,6 +75,7 @@ export class DynamicFormComponent implements OnInit {
 
   ngOnInit() {
     this.isScreenTouchable = this.deviceRegexp.test(navigator.userAgent)
+    console.log(this.jsonFormData)
     this.jsonFormData.controls.find((element: any, index: number) => {
       if(element.type == "select"){
         this.jsonFormData.controls[index].options = _.sortBy(this.jsonFormData.controls[index].options, ['label']);
