@@ -45,8 +45,56 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   sessionDetails: any;
   sessionId: any;
   imageChanged:any = false;
-  options:any = ['Meet','Zoom']
-  selectedLink:any = 'Meet'
+  options:any = ['Gmeet','Zoom']
+  selectedLink:any = 'Gmeet'
+  gmeetForm = {controls: [
+    {
+      name: 'link',
+      label: 'Meet link',
+      value: '',
+      type: 'text',
+      placeHolder: 'Eg: https://meet.google.com/abc-abcd-abc',
+      errorMessage:'Please provide a valid meet link',
+      validators: {},
+    }
+  ]}
+  zoomForm = {controls: [
+    {
+      "name": "link",
+      "label": "Zoom link",
+      "value": "",
+      "class": "ion-no-margin",
+      "type": "text",
+      "placeHolder": "Eg: https://us05web.zoom.us/j/8545020401?pwd=bU0rRXZyUVpEZ0RXbjdLMTNpOFZ6QT09",
+      "position": "floating",
+      "errorMessage": "Please provide meeting link",
+      "validators": {
+          // "required": true
+      }
+    },
+    {
+      "name": "meetingId",
+      "label": "Meeting ID",
+      "value": "",
+      "class": "ion-no-margin",
+      "type": "number",
+      "placeHolder": "Eg: 123 456 7890",
+      "position": "floating",
+      "errorMessage": "Please provide meeting ID",
+      "validators": {
+          // "required": true
+      }
+    },
+    {
+      name: 'password',
+      label: 'Passcode',
+      value: '',
+      type: 'text',
+      placeHolder: 'Eg: aBc1de',
+      errorMessage:'Please provide valid passcode',
+      validators: {},
+    }
+  ]}
   private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
     private route: ActivatedRoute, private router: Router,
@@ -126,7 +174,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
         this.createSession.myForm.markAsPristine();
         this.sessionService.createSession(form,this.sessionDetails?._id).subscribe((result)=>{
           this.sessionResult = result;
-          result._id ? this.router.navigate([`/${"session-detail"}/${result._id}`], {replaceUrl: true}): this.location.back();
+          // result._id ? this.router.navigate([`/${"session-detail"}/${result._id}`], {replaceUrl: true}): this.location.back();
         });
       }
     }
@@ -171,7 +219,8 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   }
 
   setItLater(){
-    this.sessionResult._id ? this.router.navigate([`/${"session-detail"}/${this.sessionResult._id}`], {replaceUrl: true}): this.location.back(); 
+    this.toast.showMessage("Skipped platform selection. Please provide a meeting platform before starting the session")
+    this.router.navigate([`/${"session-detail"}/${this.sessionResult._id}`], {replaceUrl: true})
   }
 
   onRadioButtonChange(event:any) { 
@@ -179,6 +228,5 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     if(event.value == 2){
       this.isDropdownShown = true;
     }
-    console.log("event.value=" + event.value);
   }
 }
