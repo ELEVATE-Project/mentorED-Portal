@@ -1,8 +1,8 @@
 <div fxLayout="column">
 <div *ngIf="details" fxLayoutAlign="center" fxFlex="25%" class="mentor-profile-container">
-    <mat-card class="card" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxFlex="70%" fxFlex.sm="80%" fxFlex.xs="98%" fxFlex.md="80%">
+    <mat-card class="card" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxFlex="80%" fxFlex.sm="80%" fxFlex.xs="98%" fxFlex.md="80%">
       <div class="profile-header-conatiner" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="left">
-        <app-profile-header  [details]="details" [mentorDirectory]="mentorDirectory"></app-profile-header>     
+        <app-profile-header  [details]="details" [mentorDirectory]="mentorDirectory" [layoutAlign]="layout"></app-profile-header>     
       </div>
       <div class="vertical-line"></div>
       <span layout="row"><hr flex /></span>

@@ -10,7 +10,7 @@ import { ApiService } from '../../../../core/services/api/api.service'
 })
 export class MentorDirectoryComponent implements OnInit {
   page: any = 1;
-  limit: any = 6;
+  limit: any = 9;
   mentors:any = [];
   mentorsCount:any;
   selectedAlphabet:any = "All"

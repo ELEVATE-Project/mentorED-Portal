@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}">
+<div fxLayout="column" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" fxLayoutGap="10px">
   <div>
     <ng-template [ngIf]="details.data.image" [ngIfElse]="loggedOut">
       <div>
@@ -12,8 +12,13 @@
       </div>
     </ng-template>
   </div>
-  <div fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center"  fxLayoutAlign="{{layoutAlign}}" class="title text-ellipse mentor-name">{{ details?.data?.name }}</div>
-  <div *ngIf="details?.data.about">
+  <div  class="mentor-name">
+    <div  fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" >
+      <div class="title text-ellipse" >{{ details?.data?.name }}</div>
+    </div>
+  </div>
+  
+  <div *ngIf="details?.data.about"  fxLayout="column" fxLayoutGap="10px">
     <div
       fxLayout="row"
       class="title"
