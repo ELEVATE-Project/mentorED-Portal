@@ -1,0 +1,16 @@
+<div class="share-popup-conatiner" fxLayout="column">
+    <div fxLayout="row">
+        <h2 fxFlex="95%">{{data.heading | translate}}</h2>
+        <mat-icon class="mat-cancel-icon" mat-dialog-close (click)="onClickCancel()">cancel_circle_outline</mat-icon>
+    </div>
+    <div class="url-container" fxLayout="row" fxLayoutGap="0px">
+        <div class="url text-ellipse">
+            {{data.defaultValue}}
+        </div>
+        <div class="copy-link" fxLayoutAlign="center center" [ngClass]="(this.copyLink== 'COPIED_LINK') ? 'class-green': 'hover-class'"   
+        (click)="copyToClipBoard()"  fxLayout="row" fxLayoutGap="3px">
+        <mat-icon fxLayoutAlign="center center" class="copy-link-icon" *ngIf="this.copyLink== 'COPIED_LINK'">check_circle_outline</mat-icon>
+        <span fxLayoutAlign="center center">{{copyLink | translate}} </span>   
+        </div>
+    </div>
+</div>

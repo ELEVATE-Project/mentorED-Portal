@@ -1,1 +1,37 @@
-<p>register works!</p>
+<div class="container" fxLayout="column">
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxFlexOffset.lg="8" fxFlexOffset.md="5">
+    <div class="signup-link" fxLayout="row" fxLayoutAlign="end">
+      <small>
+        <a routerLink="/auth/login">
+          {{ 'ALREADY_HAVE_AN_ACCOUNT' | translate }}
+        </a>
+      </small>
+    </div>
+    <div fxLayoutAlign="center">
+      <h1>{{ 'CREATE_NEW_ACCOUNT' | translate }}</h1>
+    </div>
+    <div fxLayoutAlign="center">
+      <app-dynamic-form
+        [jsonFormData]="formData"
+        #signup
+        fxFlex="50"
+        fxFlex.sm="80"
+        fxFlex.xs="95"
+        (keyup.enter)="onSignUp()"
+      ></app-dynamic-form>
+    </div>
+    <div fxLayoutAlign="center" class="signup-button" fxFlexOffset="2">
+      <button
+        fxFlex="50"
+        fxFlex.sm="80"
+        fxFlex.xs="95"
+        mat-raised-button
+        color="primary"
+        [disabled]="!signup.myForm.valid"
+        (click)="onSignUp()"
+      >
+        {{ 'SIGN_UP' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

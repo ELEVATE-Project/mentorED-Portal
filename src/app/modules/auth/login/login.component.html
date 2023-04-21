@@ -1,1 +1,44 @@
-<p>login works!</p>
+<div class="container" fxLayoutAlign="center stretch" fxLayout="column">
+  <div fxLayout="column" fxLayoutAlign="center space-evently">
+    <div>
+      <h1>
+        {{ "WELCOME_BACK" | translate }}
+      </h1>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <div fxFlex="50" fxFlex.sm="80" fxFlex.xs="95" fxLayout="column">
+        <app-dynamic-form [jsonFormData]="formData" #loginForm fxFlex="100" (onEnter)="onSubmit()"></app-dynamic-form>
+        <button mat-raised-button color="primary" [disabled]="!loginForm.myForm.valid" class="btn login"
+          (click)="onSubmit()" fxFlex="100">
+          {{ "LOGIN" | translate }}
+        </button>
+        <div  fxLayout="row" fxLayoutAlign="space-between" class="wrapper" >
+          <mat-checkbox class="remember-me" [(ngModel)]="rememberMe">
+            {{"REMEMBER_ME" | translate}}
+          </mat-checkbox>
+          <a routerLink="/auth/forgotPassword" class="forgot-password">{{ "FORGOT_PASSWORD" | translate }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center space-evently">
+    <div fxLayoutAlign="center center">
+      <div class="divider" fxLayoutAlign="center center">
+        <div class="line">
+          <mat-divider></mat-divider>
+        </div>
+        <div class="text mat-typography">
+          {{ "NEW_TO_MENTORED" | translate }}
+        </div>
+        <div class="line">
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <button fxFlex="50" fxFlex.sm="80" fxFlex.xs="95" class="btn-signup" mat-raised-button color="primary" routerLink="/auth/role-selection">
+        {{ "SIGN_UP" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

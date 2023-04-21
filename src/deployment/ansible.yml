@@ -1,0 +1,37 @@
+---
+- hosts: elevate
+  vars:
+    project_path: /opt/frontend/mentorED-Portal
+  tasks:
+    - name: Slurp hosts file
+      slurp:
+        src: "/opt/backend/deployment/.token"
+      register: slurpfile
+    - name: Run vault credentials
+      shell: "curl --location --request GET '{{ vaultAddress }}v1/elevate/mentored-portal' --header 'X-Vault-Token: {{ slurpfile['content'] | b64decode }}' | jq '.data' > '{{ project_path }}/data2.json'"
+      register: vaultCurl
+    - name: Change directory
+      shell: cd {{project_path}}
+    - name: pull latest code
+      git:
+        repo: https://github.com/ELEVATE-Project/mentorED-Portal.git
+        dest: "{{ project_path }}"
+        version: "{{ gitBranch }}"
+        force: yes
+    - name: Update npm
+      shell: npm i
+    - name: set permission
+      shell: chmod 744 {{ project_path }}/src/scripts/json2env.sh  
+    - name: generate .env
+      shell: cat {{ project_path }}/data2.json | {{ project_path }}/src/scripts/json2env.sh > {{ project_path }}/src/environments.ts
+      register: envConfig 
+    - debug: msg=" cred {{ envConfig }} "
+    - name: Change directory
+      shell: chdir {{project_path}}
+    - name: Delete old pm2 process
+      shell: pm2 delete MentorEd-portal
+      ignore_errors: yes
+    - name: Change dir
+      shell: cd {{ project_path }}
+    - name: Start pm2
+      shell: cd {{ project_path }} && pm2 start "ng serve --host=0.0.0.0 --port=7601 --disable-host-check"  --name='MentorEd-Portal'

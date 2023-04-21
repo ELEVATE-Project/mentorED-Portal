@@ -1,0 +1,19 @@
+<div class="home-container" fxLayoutAlign="center">
+    <div *ngIf="!cardDetails?.length && !loading" fxLayout="column"  fxLayoutAlign="center" fxFlex="90%">
+        <app-no-data-found [data]="noData"  fxLayoutAlign="center"></app-no-data-found>
+    </div>
+    <div class="session-listing-container" *ngIf="cardDetails?.length" fxLayout="column" fxFlex="90%" fxFlex.xs="100%" fxLayoutAlign="center">
+        <h3 class="all-section">{{cardHeading | translate}}</h3>
+        <div fxLayout="row wrap" fxLayoutGap="20px grid">
+            <div *ngFor='let item of cardDetails' fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="100%"
+                fxFlex.md="50%">
+                <app-session-card [cardData]="item" [isCreator]="userDetails?._id==item?.userId" (buttonClick)="buttonClick($event)"></app-session-card>
+            </div>
+        </div>
+        <div fxFlex="50%" fxLayoutAlign="center" *ngIf="showLoadMoreButton">
+            <button class="view-more" fxFlex="50%" mat-raised-button color="primary"
+                (click)="onClickViewMore()">{{"VIEW_MORE"|translate}}</button>
+        </div>
+    </div>
+
+</div>

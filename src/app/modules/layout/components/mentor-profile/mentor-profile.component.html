@@ -1,0 +1,36 @@
+<div fxLayout="column">
+<div *ngIf="details" fxLayoutAlign="center" fxFlex="25%" class="mentor-profile-container">
+  <mat-card class="card" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxFlex="80%" fxFlex.sm="80%" fxFlex.xs="98%" fxFlex.md="80%">
+    <div class="profile-header-conatiner" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="left">
+      <app-profile-header  [details]="details" [mentorDirectory]="mentorDirectory" [layoutAlign]="layout"></app-profile-header>     
+    </div>
+      <div class="vertical-line"></div>
+      <span layout="row"><hr flex /></span>
+       <div class="profile-details-conatiner"  > 
+        <div fxLayoutAlign.sm="center" fxLayoutAlign.xs="center center">
+          <app-generic-details [details]="details" [layoutAlign]="layout"></app-generic-details>
+
+        </div>
+        </div>
+    </mat-card>
+  </div>
+<div fxLayoutAlign="center center"  fxFlex="75%" >
+  <div fxLayout="column"  fxFlex="80%">
+    <h3 class="create-sessions-text">{{'UPCOMING_SESSIONS_BY_MENTOR' | translate}}{{ details?.data?.name }}</h3>
+    <div *ngIf="!mentorUpComingSession.length" fxFlex="80%">
+      <app-no-data-found [data]="noData" fxLayoutAlign="center"></app-no-data-found>
+    </div>
+    <div fxLayout="row wrap" fxLayoutGap="20px grid" *ngIf="mentorUpComingSession.length">
+        <div *ngFor='let item of mentorUpComingSession' fxFlex="50%"
+            fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="50%">
+            <app-session-card [cardData]="item" (buttonClick)="buttonClick($event)">
+            </app-session-card>
+        </div>
+    </div>
+    <div fxFlex="50%" fxLayoutAlign="center" class="view-more-button-container" *ngIf="showLoadMoreButtonUpcomingSession && mentorUpComingSession.length">
+        <button class="view-more" fxFlex="50%" mat-raised-button color="primary"
+            (click)="onClickViewMoreUpcomingSessions()">{{"VIEW_MORE"|translate}}</button>
+    </div>
+  </div>
+</div>
+</div>

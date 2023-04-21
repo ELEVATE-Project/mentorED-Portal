@@ -1,0 +1,86 @@
+<div fxLayout="column" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" fxLayoutGap="10px">
+  <div>
+    <ng-template [ngIf]="details.data.image" [ngIfElse]="loggedOut">
+      <div>
+        <img class="image" [ngClass]="{'round-image':details?.data?.image}" [src]="details?.data?.image" alt="profilepic" />
+      </div>
+    </ng-template>
+    
+    <ng-template #loggedOut>
+      <div>
+        <img class="image" src="/assets/images/user-circle-add.svg" /> 
+      </div>
+    </ng-template>
+  </div>
+  <div  class="mentor-name">
+    <div  fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" >
+      <div class="title text-ellipse" >{{ details?.data?.name }}</div>
+    </div>
+  </div>
+
+  <div *ngIf="details?.data.about"  fxLayout="column" fxLayoutGap="10px">
+    <div
+      fxLayout="row"
+      class="title"
+      fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center"
+      fxLayoutAlign="{{layoutAlign}}"
+      *ngFor="let location of details?.data?.location"
+    >
+      <mat-icon class="location-icon">room</mat-icon>
+      <div class="inline-label">{{ location?.label }}</div>
+    </div>
+    <div fxLayout="row" class="title" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" *ngIf="details?.data?.isAMentor && !mentorDirectory">
+      <mat-icon *ngIf="details?.data?.rating?.average" class="star-icon">grade</mat-icon>
+      <label class="inline-label">
+        <span *ngIf="details?.data?.rating?.average">{{ details?.data?.rating?.average + '  ' }}</span>({{
+          details?.data?.sessionsHosted + ('SESSIONS' | translate)
+        }})
+      </label>
+    </div>
+    <div fxLayout="row" class="title" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" *ngIf="details?.data?.isAMentor && mentorDirectory && details?.data?.rating?.average">
+      <mat-icon *ngIf="details?.data?.rating?.average" class="star-icon">grade</mat-icon>
+      <label class="inline-label" >
+        <span *ngIf="details?.data?.rating?.average">{{ details?.data?.rating?.average + '  ' }}</span>({{
+          ('RATING' | translate)
+        }})
+      </label>
+    </div>
+    <div *ngIf="!details?.data?.isAMentor" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" fxLayout="row" class="title">
+      {{ details?.data?.sessionsAttended  + ('SESSIONS_ATTENDED' | translate)}}
+    </div>
+    <div *ngIf="details?.data?.isAMentor && mentorDirectory" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayoutAlign="{{layoutAlign}}" fxLayout="row" fxLayoutGap="3px" class="title">
+      <mat-icon class="location-icon">videocam</mat-icon>
+      <span>{{ details?.data?.sessionsHosted}}
+        {{('SESSIONS_HOSTED' | translate)}}</span>
+    </div>
+  </div>
+  <button
+    class="edit-button"
+    fxLayoutAlign="center center"
+    fxLayout="row"
+    fxFlex.md="10%"
+    fxFlex.lt-md="10%"
+    (click)="editProfile()"
+    *ngIf="!mentorDirectory"
+  >
+    <mat-icon class="edit-icon">
+      mode_edit_outline
+    </mat-icon>
+    <div class="edit-text">{{details?.buttonLabel|translate}}</div>
+  </button>
+  <button
+    class="edit-button"
+    fxLayoutAlign="center center"
+    fxLayoutGap="5px" 
+    fxLayout="row"
+    fxFlex.md="10%"
+    fxFlex.lt-md="10%"
+    (click)="shareProfile()"
+    *ngIf="mentorDirectory"
+  >
+    <mat-icon class="edit-icon">
+      share
+    </mat-icon>
+    <div class="edit-text">{{'SHARE_PROFILE'|translate}}</div>
+  </button>
+</div>

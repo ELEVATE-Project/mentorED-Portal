@@ -1,0 +1,5 @@
+<div class="star-wrapper">
+<div *ngFor="let star of range;let i=index">
+    <mat-icon class="star" (click)="onRate(i+1)">{{showIcon(i)}}</mat-icon>
+</div>
+</div>

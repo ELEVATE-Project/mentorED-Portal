@@ -1,0 +1,38 @@
+@import "/src/variables";
+
+.container {
+  padding-bottom: 6%;
+}
+.container h1 {
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 2px;
+  color: $theme;
+}
+.forgot-password {
+  color: $blue;
+  text-decoration: none;
+  padding-top: 2%;
+}
+.wrapper{
+  padding-top: 3%;
+}
+mat-divider {
+  border-top-color: $theme;
+}
+.divider {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: $black;
+  width: 80%;
+}
+.line {
+  flex: 1;
+}
+.text {
+  padding: 0 7%;
+}
+.remember-me {
+  margin-top: 5px;
+}
+

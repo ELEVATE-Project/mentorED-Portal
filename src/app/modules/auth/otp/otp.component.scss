@@ -1,0 +1,42 @@
+@import "../../../../variables";
+
+h1 {
+    letter-spacing: 1px;
+    color: $theme;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.resend-otp {
+    color: $grey;
+    padding: 5px;
+    pointer-events: none;
+}
+.checkbox {
+    margin-top: 10px;
+    font-size: 15px;
+}
+::ng-deep .mat-checkbox-layout {
+    white-space: normal !important;
+}
+::ng-deep .mat-checkbox-layout .mat-checkbox-label{
+    margin-left: 12px;
+    font-weight: 500;
+}
+.text-blue {
+    color: $light-blue;
+    text-decoration: none;
+}
+
+.login-button {
+    margin: 25px auto;
+}
+
+.enable {
+    color: $blue;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+::ng-deep .mat-checkbox-layout .mat-checkbox-label a{
+    font-weight: normal !important;
+}

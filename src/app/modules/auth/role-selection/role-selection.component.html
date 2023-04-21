@@ -1,0 +1,29 @@
+<div fxLayout="column" >
+  <div
+    fxLayout="row"
+    fxLayout.sm="row"
+    fxLayout.lt-sm="column"
+    fxLayoutGap="10%"
+    fxLayoutAlign="center"
+  >
+    <app-role-selection-card
+      *ngFor="let role of roleList"
+      [isSelected]="role.role == selectedRole"
+      [role]="role"
+      (cardOneSelected)="cardOneSelected($event)"
+    fxFlex.lt-md="39%"
+    ></app-role-selection-card>
+  </div>
+
+  <div  fxLayoutAlign="center">
+    <button fxFlex="30%" mat-raised-button color="primary" mat-raised-button
+    [ngClass]="{
+      'button-enabled': buttonEnable
+    }"
+    class="button"
+    type="submit"
+    [disabled]="!buttonEnable"
+    (click)="buttonClick()"
+        >{{"NEXT" | translate}}</button>
+</div>
+</div>

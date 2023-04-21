@@ -1,0 +1,9 @@
+@import "../../../../variables";
+.button {
+  min-width: 70%;
+  margin: 6% 0 4% 0;
+}
+.button-enabled{
+  background:$theme-gradient !important;
+  color: $white;
+}

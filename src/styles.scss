@@ -34,6 +34,87 @@ $mentorEd-portal-theme: mat.define-light-theme((
 @include mat.all-component-themes($mentorEd-portal-theme);
 
 /* You can add global styles to this file, and also import other style files */
-
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import "/src/variables";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.snack_bar{
+  background-color: $red !important;
+  color: $white !important;
+}
+.snack_icon{
+  color: $white !important;
+}
+.warning{
+  background: $red !important;
+  color: $white !important;
+  max-width: 100% !important;
+}
+.mat-chip {
+  height: 45px !important;
+  color: $theme !important;
+  font-size: 16px !important;
+  border-radius: 25px !important;
+  background-color: $white !important;
+}
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+  color: $white !important;
+  background-color: $theme !important;
+}
+mat-chip{
+  text-align: center;
+}
+.mat-select-value-text{
+  font-size: 16px;
+  color: $black;
+  letter-spacing: .3px;
+}
+.mat-badge-content {
+  min-width: 42px !important;
+  max-height: 16px !important;
+  border-radius: 0px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  background-color: $light-blue !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center;
+}
+.mat-dialog-container {
+  border-radius: 25px !important;
+}
+.owl-dt-popup {
+  max-width: 65% !important;
+  overflow: scroll !important;
+  max-height: 65% !important;
+}
+.owl-dt-container {
+  border: 1px solid black;
+  height: fit-content !important;
+}
+@media only screen and (orientation: landscape) {
+  .owl-dt-container {
+    height: fit-content !important;
+    border: 1px solid black;
+  }
+}
+.mat-chip-list-wrapper{
+  justify-content: center;
+}
+.myPanelClass{
+  margin-top: 20px ; 
+}
+.myPanelClassHeader{
+  margin-top: 30px ;
+}
+.myPanelClassDrawer{
+  margin-top: 25px ;
+}
+
+a, div, img{
+  -webkit-user-drag: none !important;
+  user-select: none !important;
+}
+.mat-typography p{
+  margin: 0 0 10px !important;
+}

@@ -1,0 +1,63 @@
+@import "../../../../variables";
+.image {
+    width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  -webkit-user-drag: none !important;
+  user-select: none !important;
+}
+.mat-card-container{
+    height: 180px;
+    cursor: pointer;
+}
+.vertical-line{
+    border-left: 1px solid $black;
+}
+.view-button{
+    float: right;
+    border-radius: 100px;
+    padding: 0 30px 0 30px;
+    color: rgb(248, 248, 248);
+}
+.card-data-heading {
+    font-size: medium;
+    font-weight: 500;
+}
+.mentor-designation{
+    font-size: small;
+}
+.session-font{
+    font-size: small;
+}
+.star-icon{
+    color: gold;;
+}
+.round-image {
+    border-radius: 100px;
+}
+.card-details{
+    width: 100%;
+}
+
+::ng-deep .mat-card{
+    padding: 10px !important;
+}
+.text-ellipse{
+    max-width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0%;
+    
+}
+.about-container{
+    display: -webkit-box;
+    max-width: 200px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgb(45,43,41);
+}

@@ -1,0 +1,40 @@
+@import "../../../../../variables";
+
+.created-session-container {
+    padding: 2%;
+}
+
+.create-sessions-text {
+    padding-left: 12%;
+    font-weight: 500;
+}
+.create-session-button {
+    padding: 0.5% 3% 0.5% 3%;
+    background-color: $green ;
+    color: $white;
+    border-radius: 10px;
+    font-weight: 400;
+    box-shadow: 2px 2px 2px 2px $light-grey;
+    font-size: large;
+}
+
+.create-new-session-text {
+    padding-left: 16%;
+    font-weight: 500;
+}
+
+.view-more {
+    margin-top: 2%;
+}
+
+.create-session-button-icon {
+    padding-right: 20px;
+}
+
+.view-more-button-container {
+    margin: 3% 0 2% 0;
+}
+
+.create-session-horizontal-line {
+    margin: 2% 0 1% 0;
+}

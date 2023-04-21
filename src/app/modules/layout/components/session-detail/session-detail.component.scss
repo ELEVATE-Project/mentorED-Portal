@@ -1,0 +1,39 @@
+@import "/src/_variables.scss";
+
+.main-div{
+    padding: 3% 5%;
+    background-color: $grey-bg;
+    height: 100%;
+    border-radius: 3%;
+}
+.container{
+    background-color: $white;
+}
+.card-images {
+    padding: 10px;
+}
+.image {   
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5%;
+}
+.image-inside{
+    width: 100%;
+    border-radius: 4%;
+    height: 100%;
+}
+.enroll-button{
+    width: 100%;
+}
+.btn{
+    border: 1px solid;
+    background-color: $white;
+    border-color: $theme;
+}
+.session-data{
+    margin-left: 15px;
+}
+mat-icon{
+    padding-right: 5%;
+}

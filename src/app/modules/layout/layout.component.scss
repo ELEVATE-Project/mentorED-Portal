@@ -1,0 +1,80 @@
+@import "../../../variables";
+.layout-sections {
+  background-color: $grey-bg;
+  border-radius: 2rem 2rem 0 0;
+}
+.router-container {
+  min-height: 60vh;
+  padding-top: 6rem;
+}
+.static-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index:2;
+  background-color: $white;
+}
+.footer {
+  padding-top: 11%;
+  background-color: $grey-bg;
+}
+.drawer {
+  width: 45%;
+}
+.profile-icon{
+  max-width: 25px;
+  min-height: 25px;
+  border-radius: 100%;
+}
+.select {
+  max-height: 50px;
+  border-radius: 50px;
+  box-shadow: 1px 2px 2px 1px $light-grey;
+}
+.select-button {
+  border-radius: 20px;
+  padding: 0px 25px;
+  border: none;
+  box-shadow: 2px 2px 1px 1px $lighter-grey;
+}
+
+.menu-button {
+  border-radius: 25px;
+  box-shadow: 2px 2px 1px 1px $light-grey;
+  width: 100%;
+  transition: all 0.4s ease-in-out;
+  margin-top: 20%;
+  padding: 2%;
+}
+.menu-button:hover {
+  cursor: pointer;
+  transform: scale(1.009, 1.009);
+  box-shadow: 3px 3px 1px 1px $grey;
+}
+
+::ng-deep .mat-select-placeholder {
+  font-size: 12px;
+  color: $black;
+}
+mat-select {
+  font-size: 12px;
+  font-weight: 500px;
+  color: $theme;
+  width: auto;
+}
+.icon {
+  font-size: 27px;
+}
+.button-text{
+  font-size: 16px;
+}
+mat-button {
+  padding-right: 22px;
+}
+mat-drawer-content{
+  background-color: $white;
+  overflow: none !important;
+}
+.mat-drawer-content{
+  overflow-x: hidden;
+}

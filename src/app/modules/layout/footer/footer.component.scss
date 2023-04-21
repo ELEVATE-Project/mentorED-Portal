@@ -1,0 +1,59 @@
+@import "../../../../variables";
+
+.footer{
+    box-shadow: 3px 3px 3px 3px rgb(202, 202, 202);
+    padding: 1%;
+
+}
+.footer-container{
+    width: 95%;
+}
+.footer-mobile-logo{
+ width: 100%;
+ height: 200px;
+
+}
+.footer-signup-container .footer-link-container .footer-get-in-touch-container{
+    margin-top: 2%;
+}
+.footer-signup-text{
+    font-weight: 500;
+}
+.footer-signup-contains{
+    font-size: smaller;
+    font-weight: 500;
+   padding-right: 30px;
+}
+.footer-signup-button{
+    color: white;
+    text-decoration: none;
+    background:$black ;
+    
+}
+
+.footer-quick-links{
+    font-weight: 500;
+}
+
+.footer-link{
+    font-size: x-small;
+    font-weight: 400;
+    color: black;
+
+}
+// .disable{
+//     color: $grey;
+//     pointer-events: none;
+// }
+
+
+.footer-get-in-touch{
+    font-weight: 500;
+}
+.footer-address-container{
+    margin:20px 0 20px 0;
+    font-size: smaller;
+}
+.footer-address{
+    padding-right: 30px;
+}

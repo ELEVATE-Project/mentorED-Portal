@@ -1,0 +1,122 @@
+<mat-toolbar class="bottom">
+  <div fxFlex fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+    <div
+      fxFlexAlign="center center"
+      fxLayoutAlign.sm="start center"
+      fxLayoutAlign.xs="start center"
+    >
+      <img class="header-logo" src="/assets/images/MentorEd-logo.svg" (click)="goHome()" />
+    </div>
+    <div
+      fxFlex="63%"
+      fxFlex.lt-lg="70%"
+      fxLayoutAlign="end center"
+      fxLayoutAlign.sm="center center"
+      fxLayoutAlign.xs="center center"
+      fxFlex.md="62%"
+      fxFlex.sm="78%"
+      fxFlex.lt-xs="70%"
+    >
+      <!-- <form fxFlex="53%" fxFlex.xs="80%" *ngIf="showSearchbar" fxLayout="row">
+        <mat-icon class="search-icon" matPrefix>search</mat-icon>
+        <input
+          fxFlex="70%"
+          fxFlex.lt-md="48%"
+          fxLayoutAlign="start center"
+          matInput
+          type="search"
+          placeholder="Search for sessions, mentor profile"
+          autocomplete="off"
+          class="search-input"
+          name="search"
+          (change)="checkInput()"
+          [(ngModel)]="searchText"
+        />
+        <button
+          fxFlex="13%"
+          fxFlex.lg="16%"
+          fxFlex.md="21%"
+          fxFlex.sm="25%"
+          fxFlex.xs="30%"
+          class="button"
+          (click)="onSearch()"
+        >
+          {{ 'SEARCH' | translate }}
+        </button>
+      </form> -->
+    </div>
+    <div
+      fxFlex
+      fxLayoutAlign="space-around center"
+      class="container"
+      [fxHide.sm]="true"
+      [fxHide.xs]="true"
+    >
+      <span fxFlex></span>
+      <div 
+        fxFlex.md="40%"
+        fxFlex="42%"
+        fxFlex.md="53%"
+        fxFlex.sm="35%"
+        class="menu-button"
+        fxLayoutAlign="space-around center"
+      >
+        <mat-icon class="language-icon" (click)="language.toggle()">language</mat-icon>
+        <mat-select
+          #language
+          class="options"
+          fxFlex
+          fxFlexAlign="center"
+          [(ngModel)]="selectedLanguage"
+          (selectionChange)="languageEvent()"
+          disableOptionCentering panelClass="myPanelClassHeader"
+          [style.font-weight]="selectFontStyle"
+        >
+          <mat-option [value]="option.value" *ngFor="let option of options">
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <span fxFlex></span>
+      <div class="letter">
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="name" mat-fab>{{letter|titlecase}}</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="goToProfile()">
+            <div fxLayout="row" fxLayoutGap="15px" >
+              <div fxLayoutAlign="center center">
+                <ng-container ><img *ngIf="user?.image" class="profile-icon" [src]='user?.image'></ng-container>
+                <ng-container *ngIf="!user?.image"><img class="profile-icon" src="/assets/images/user-circle-add.svg" /> </ng-container>
+              </div>
+              <span>{{"MY_PROFILE"|translate}}</span>
+            </div>       
+          </button>
+          <button mat-menu-item (click)="goToDashboard()">
+            <mat-icon>assessment</mat-icon>
+            <span>{{"DASHBOARD"|translate}}</span>
+          </button>
+          <button mat-menu-item (click)="onLogout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>{{"LOGOUT"|translate}}</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    <div fxLayoutAlign="center">
+      <mat-icon
+      fxFlex
+      fxFlexAlign="center"
+      class="menu-icon"
+      [fxHide.xl]="true"
+      [fxHide.lg]="true"
+      [fxHide.md]="true"
+      (click)="onClick()"
+      fxFlex.sm="100"
+      fxFlex.xs="100"
+    >
+      menu
+    </mat-icon>
+    </div>
+  </div>
+</mat-toolbar>
+

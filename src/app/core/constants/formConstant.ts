@@ -1,0 +1,36 @@
+import { IFORM } from '../interfaces/form';
+
+export const EDIT_PROFILE_FORM: IFORM = {
+  type: "profile",
+  subType: "profileForm",
+  action: "profileFields",
+  templateName: "defaultTemplate",
+};
+
+export const CREATE_SESSION_FORM: IFORM = {
+	type: "session",
+	subType: "sessionForm",
+	action: "sessionFields",
+	templateName: "defaultTemplate"
+}
+
+export const TERMS_AND_CONDITIONS_FORM: IFORM = {
+	type: "termsAndConditions",
+	subType: "termsAndConditionsForm",
+	action: "termsAndConditionsFields",
+	templateName: "defaultTemplate"
+}
+
+export const FAQ: IFORM = {
+	type: "faq",
+	subType: "faqPage",
+	action: "formFields",
+	templateName:"defaultTemplate"
+}
+
+export const HELP_VIDEOS: IFORM = {
+	type: "helpVideos",
+	subType: "videos",
+	action: "videoFields",
+    templateName:"defaultTemplate",
+}

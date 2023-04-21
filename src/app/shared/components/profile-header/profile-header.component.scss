@@ -1,0 +1,66 @@
+@import '../../../../variables';
+
+.image {
+  width: 125px;
+  height: 125px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-top: 10px;
+  -webkit-user-drag: none !important;
+  user-select: none !important;
+}
+.title {
+  font-weight: 400;
+  padding-top: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.mentor-name{
+  display:flex; 
+}
+.text-ellipse{
+  width:auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.edit-button {
+  margin: 1%;
+  max-width: 200px;
+  border-radius: 8px;
+  max-height: 35px;
+  padding-top: 14px;
+  background-color: $theme;
+  color: $white;
+  border: transparent;
+  padding: 5px 10px 5px 10px;
+}
+.edit-text {
+  font-size: 14px;
+  min-width: 80px
+}
+.edit-icon {
+  transform: scale(0.6);
+  font-size: 26px;
+  font-weight: bold;
+  min-width: 25px
+}
+.location-icon {
+  color: $theme;
+}
+.star-icon {
+  color: gold;
+  padding-bottom: 2%;
+  padding-right: 7px;
+}
+.inline-label{
+  white-space: nowrap;
+  font-size: 21px;
+}
+.round-image {
+  border-radius: 100px;
+}

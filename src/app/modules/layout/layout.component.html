@@ -1,0 +1,53 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer class="drawer" position="end">
+    <div fxLayout="column" fxLayoutAlign="center">
+      <div class="menu-button" >
+          <mat-button fxFlex="100%" fxLayout="row">
+            <mat-icon fxFlex="40%" fxLayoutAlign="center center" class="icon">language</mat-icon>
+            <mat-select fxLayoutAlign="center center" [(value)]="selectedLanguage" fxLayoutAlign="center center" disableOptionCentering panelClass="myPanelClassDrawer" (selectionChange)="languageEvent()">
+              <mat-option [value]="option.value" *ngFor="let option of options">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-button>   
+      </div>
+      <div class="menu-button">
+        <mat-button fxFlex="100%" fxLayout="row"  (click)="goToProfile();drawer.toggle()">
+          <div fxFlex="40%" fxLayoutAlign="center center" class="icon">
+            <ng-container><img *ngIf="user?.image" class="profile-icon" [src]='user?.image'></ng-container>
+            <ng-container *ngIf="!user?.image"><img class="profile-icon" src="/assets/images/user-circle-add.svg" /> </ng-container>
+          </div>
+          <span fxLayoutAlign="center center" class="button-text">{{"MY_PROFILE"|translate}}</span>
+        </mat-button>
+      </div>
+      <div class="menu-button">
+        <mat-button fxFlex="100%" fxLayout="row" (click)="goToDashboard();drawer.toggle()">
+          <mat-icon  fxFlex="40%" fxLayoutAlign="center center" class="icon">assessment</mat-icon>
+          <span  fxLayoutAlign="center center" class="button-text">{{"DASHBOARD"|translate}}</span>
+        </mat-button>
+      </div>
+      <div class="menu-button">
+        <mat-button fxFlex="100%" fxLayout="row" (click)="onLogout()">
+          <mat-icon  fxFlex="40%" fxLayoutAlign="center center" class="icon">exit_to_app</mat-icon>
+          <span  fxLayoutAlign="center center" class="button-text"> {{"LOGOUT"|translate}}</span>
+        </mat-button>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="static-header">
+      <app-header (menuToggleEvent)="drawer.toggle()"></app-header>
+    </div>
+    <div >
+      <div class="router-container">
+      <app-page-navigator fxLayout="row" fxLayoutAlign="center center"></app-page-navigator>
+      <div class="layout-sections">
+        <router-outlet ></router-outlet>
+      </div>
+      </div>
+      <div class="footer">
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

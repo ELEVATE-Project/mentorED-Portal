@@ -1,0 +1,30 @@
+@import '../../../../variables';
+.title {
+  font-weight: 500;
+  font-size: medium;
+}
+.data {
+  padding: 7px 0px;
+}
+.description{
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+.text-center{
+  text-align: center;
+}
+mat-chip {
+  border: 1px solid $theme;
+  text-align: center;
+  max-width: 100%;
+  display: block;
+  float: left;
+  clear: left;
+}
+.mat-chip-container {
+  overflow: hidden;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+  max-height: 45px;
+}

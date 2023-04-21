@@ -1,0 +1,48 @@
+@import "../../../../variables";
+.exit-popup-container{
+   width: 100%;
+}
+.mat-cancel-icon{
+    float: right;
+    color: $theme;
+    background-color: $white;
+    cursor: pointer;
+}
+.mat-cancel-icon :hover{
+    background-color: $white;
+}
+.text-exit-page{
+    font-weight:600 ;
+    font-size: 20px;
+}
+::ng-deep .mat-dialog-container{
+    border-radius: 25px;
+    box-shadow: 2px 2px 2px 2px $grey;
+    overflow: hidden;
+}
+::ng-deep .mat-button{
+    border-radius: 25px; 
+}
+.exit-conatiner{
+    width: 100%;
+}
+.exit-cancel-button{
+    box-shadow: 1px 1px 1px 1px $grey;
+    text-align: center;
+    font-size: 16px;
+}
+.cancel-button{
+    color:$white;
+    background-color:$theme;
+ }
+button {
+    outline: none;
+  }
+  ::ng-deep .mat-button-focus-overlay {
+    display: none;
+  }
+.exit-button:hover,  .cancel-button:hover{
+    background-color:$theme;
+}
+
+

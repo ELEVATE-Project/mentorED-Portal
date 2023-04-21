@@ -1,0 +1,36 @@
+<div fxLayoutAlign="center stretch" fxLayout="column">
+    <ng-cntainer fxLayoutAlign="center center">
+        <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center space-evenly">
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayoutAlign="center center" fxFlex="50%" fxFlex.lt-sm="75">
+                    <h1>{{"OTP_LABEL_REGISTER"|translate}}</h1>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <app-dynamic-form [jsonFormData]="formData" #otpForm fxFlex="50%" fxFlex.lt-sm="75"></app-dynamic-form>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <app-countdown-timer [timeLimit]="timeLimit" #timer (countTimer)="timerEvent()" fxFlex="50%"
+                    fxFlex.lt-sm="75"></app-countdown-timer>
+            </div>
+            <div fxLayoutAlign="center center">
+                <a class="resend-otp" [ngClass]="{'enable': enableResendOtp}" (click)="resendOTP()"
+                    fxLayout="row wrap">{{"RESEND_OTP"|translate}}</a>
+            </div>
+            <div fxLayoutAlign="center center">
+                <mat-checkbox class="checkbox" [(ngModel)]="checked" fxFlex="50%" fxFlex.lt-sm="75">
+                    {{"BY_CONTINUING_AGREE_TO_ACCEPT"|translate}} <a class='text-blue'
+                        href='https://shikshalokam.org/mentoring/privacy-policy' target="_blank"
+                        rel="noreferrer noopener">{{"PRIVACY_POLICY_CAPS"|translate}}</a> {{"AND"|translate}} <a
+                        class='text-blue' href='https://shikshalokam.org/mentoring/term-of-use' target="_blank"
+                        rel="noreferrer noopener">{{"TERMS_OF_USE"|translate}}</a> </mat-checkbox>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <button mat-raised-button color="primary" [disabled]="!checked || !otpForm.myForm.valid"
+                    class="login-button" fxFlex="50%" fxFlex.lt-sm="75" (click)="onSubmit()">
+                    {{ "VERIFY_AND_LOGIN" | translate }}
+                </button>
+            </div>
+        </div>
+    </ng-cntainer>
+</div>

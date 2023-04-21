@@ -1,0 +1,64 @@
+@import "../../../../variables";
+.conatiner{
+    background-color: $light-pink;
+    margin-top: 2%;
+    padding: 20px;
+    border-radius: 3rem 3rem 0 0;
+    overflow-x : auto;
+    min-height: 110px;
+}
+.main-div{
+  row-gap: 32px;
+}
+.navigation-container {
+  height: 55px;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+.page-navigator-button{
+    cursor: pointer;
+    font-weight: bold;
+    min-width :200px;
+    box-shadow: 3px 3px $light-grey;
+}
+.active{
+    background: $theme;
+    color: $white;
+}
+h1 {
+  font-weight: 500;
+  font-size: 26px;
+  margin: 0px;
+}
+.back-button{
+  width: 65px !important;
+  height: 65px !important;
+  mat-icon {
+    font-size: 25px;
+  }
+}
+.mat-raised-button[disabled] {
+  background-color: rgb(104,104,104);
+  color: $white;
+}
+.shareButton{
+  border-radius: 5%;
+   border-radius: 25px;
+  color: $theme;
+  padding: 0 10px 0 10px;
+  min-width: fit-content !important;
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
+}
+.startButton{
+  padding: 0 40px 0 40px;
+  border-radius: 28px;
+  min-width: fit-content !important;
+  color: $white;
+  background-color:$green;
+  font-weight: 100;
+}
+.page-title{
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 30px;
+}

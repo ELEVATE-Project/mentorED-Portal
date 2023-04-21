@@ -1,0 +1,4 @@
+<div *ngIf="timeLimit" fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="center center">
+    <mat-icon class="color-grey">timer</mat-icon>
+    <label class="counter-label color-grey">{{seconds | number:'2.0-0' }} {{'SECONDS_REMAINING'|translate}}</label>
+</div>
