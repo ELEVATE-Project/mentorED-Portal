@@ -32,6 +32,7 @@
                     </mat-icon>
                     {{control?.errorMessage}}
                 </mat-error>
+                <mat-hint> {{control?.hint}}</mat-hint>
             </mat-form-field>
 
             <mat-form-field *ngIf="control?.type === 'text' && control?.isNumberOnly" [appearance]="uiConfig.appearance" [floatLabel]='uiConfig.floatLabel'>

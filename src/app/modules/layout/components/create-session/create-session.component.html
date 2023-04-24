@@ -1,4 +1,4 @@
-<mat-stepper linear #stepper>
+<mat-stepper linear #stepper [ngClass]=" (!this.sessionId) ? 'stepper': '' ">
     <mat-step>
         <ng-template matStepLabel>Create session</ng-template>
         <div fxLayoutAlign="center">
@@ -23,28 +23,30 @@
             <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
                 fxLayoutAlign="center center" fxLayoutGap="10px">
                 <h2>Select the meeting platform</h2>
-                <div class="radio-group">
+                <!-- <div class="radio-group">
                     <mat-radio-group (change)="onRadioButtonChange($event)" fxLayoutGap="100px">
                         <mat-radio-button value="1">BBB</mat-radio-button>
                         <mat-radio-button value="2">Other</mat-radio-button>
                     </mat-radio-group>
-                </div>
-                <div style="min-width: 60%;">
-                    <div class="radio-group" fxFlex="100%">
+                </div> -->
+                <div class="platform-conatiner"  fxLayout="column" fxLayoutGap="10px">
+                    <div>
                         <mat-form-field fxFlex="100%">
                             <mat-icon class="icon">video_call</mat-icon>
-                            <mat-select #link class="options" fxFlex fxFlexAlign="center" [(ngModel)]="selectedLink">
-                                <mat-option [value]="option" *ngFor="let option of options">
-                                    {{ option }}
+                            <mat-select #link class="meetingPlatforms" fxFlex fxFlexAlign="center" [(value)]="selectedLink" [(ngModel)]="selectedLink">
+                                <mat-option [value]="option.name" *ngFor="let option of meetingPlatforms" (click)="clickOptions(option)">
+                                    {{ option.name }}
                                 </mat-option>
                             </mat-select>
-                        </mat-form-field>
+                              <mat-hint class="hint" fxLayoutAlign="center center"><mat-icon class="mat-icon-info">info</mat-icon>{{slectedHint}}</mat-hint>
+                        </mat-form-field> 
+                    </div>
+                    <div *ngFor="let option of meetingPlatforms" fxLayout="column" fxLayoutGap="10px">
+                        <app-dynamic-form *ngIf="selectedLink==option.name"   [jsonFormData]=option.form></app-dynamic-form>
+                        <!-- <app-dynamic-form *ngIf="selectedLink=='Zoom'" [jsonFormData]="zoomForm"></app-dynamic-form> -->
                     </div>
                 </div>
-                <div style="min-width: 60%;">
-                    <app-dynamic-form *ngIf="selectedLink=='Gmeet'" [jsonFormData]="gmeetForm"></app-dynamic-form>
-                    <app-dynamic-form *ngIf="selectedLink=='Zoom'" [jsonFormData]="zoomForm"></app-dynamic-form>
-                </div>
+                
                 <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10%">
                     <button mat-raised-button class="button-shadow" color="primary">{{"SUBMIT" | translate}}</button>
                     <button mat-raised-button class="button-shadow skip-button" (click)="setItLater()">{{"SKIP" | translate}}</button>

@@ -24,7 +24,7 @@ import { ExitPopupComponent } from 'src/app/shared/components/exit-popup/exit-po
   templateUrl: './create-session.component.html',
   styleUrls: ['./create-session.component.scss']
 })
-export class CreateSessionComponent implements OnInit,CanLeave {
+export class CreateSessionComponent implements OnInit, CanLeave {
   @ViewChild('createSession') createSession: DynamicFormComponent;
   imgData = {
     type: 'session',
@@ -34,67 +34,145 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   defaultImageArray = []
   formData: any;
   localImage: any;
-  isSaved:any = false;
+  isSaved: any = false;
   uiConfig = {
     appearance: 'fill',
     floatLabel: 'always'
   }
-  sessionResult:any ;
-  isDropdownShown:any = false
-  publishSession:any = true;
+  sessionResult: any;
+  isDropdownShown: any = false
+  publishSession: any = true;
   sessionDetails: any;
   sessionId: any;
-  imageChanged:any = false;
-  options:any = ['Gmeet','Zoom']
-  selectedLink:any = 'Gmeet'
-  gmeetForm = {controls: [
+  imageChanged: any = false;
+  selectedLink: any = 'Default'
+  slectedHint:any='some hint ';
+  meetingPlatforms: any = [
     {
-      name: 'link',
-      label: 'Meet link',
-      value: '',
-      type: 'text',
-      placeHolder: 'Eg: https://meet.google.com/abc-abcd-abc',
-      errorMessage:'Please provide a valid meet link',
-      validators: {},
-    }
-  ]}
-  zoomForm = {controls: [
+      name: 'Default',
+      hint: 'some hint ',
+      value: 'Default',
+      form:
+        {
+          controls: [
+          ]
+        }
+    },
     {
-      "name": "link",
-      "label": "Zoom link",
-      "value": "",
-      "class": "ion-no-margin",
-      "type": "text",
-      "placeHolder": "Eg: https://us05web.zoom.us/j/8545020401?pwd=bU0rRXZyUVpEZ0RXbjdLMTNpOFZ6QT09",
-      "position": "floating",
-      "errorMessage": "Please provide meeting link",
-      "validators": {
-          // "required": true
+      name: 'Gmeet',
+      hint: 'some hint Gmeet',
+      value: "Gmeet",
+      form: {
+        controls: [
+          {
+            name: 'link',
+            label: 'Meet link',
+            value: '',
+            type: 'text',
+            hint: 'Eg: https://meet.google.com/abc-abcd-abc',
+            errorMessage: 'Please provide a valid meet link',
+            validators: {},
+          }
+        ]
       }
     },
     {
-      "name": "meetingId",
-      "label": "Meeting ID",
-      "value": "",
-      "class": "ion-no-margin",
-      "type": "number",
-      "placeHolder": "Eg: 123 456 7890",
-      "position": "floating",
-      "errorMessage": "Please provide meeting ID",
-      "validators": {
-          // "required": true
+      name: 'Zoom',
+      hint: 'some hint Zoom',
+      value: "Zoom",
+      form: {
+        controls: [
+          {
+            "name": "link",
+            "label": "Zoom link",
+            "value": "",
+            "class": "ion-no-margin",
+            "type": "text",
+            "hint": "Eg: https://us05web.zoom.us/j/8545020401",
+            "position": "floating",
+            "errorMessage": "Please provide meeting link",
+            "validators": {
+              // "required": true
+            }
+          },
+          {
+            "name": "meetingId",
+            "label": "Meeting ID",
+            "value": "",
+            "class": "ion-no-margin",
+            "type": "number",
+            "hint": "Eg: 123 456 7890",
+            "position": "floating",
+            "errorMessage": "Please provide meeting ID",
+            "validators": {
+              // "required": true
+            }
+          },
+          {
+            name: 'password',
+            label: 'Passcode',
+            value: '',
+            type: 'text',
+            hint: 'Eg: aBc1de',
+            errorMessage: 'Please provide valid passcode',
+            validators: {},
+          }
+        ]
       }
-    },
-    {
-      name: 'password',
-      label: 'Passcode',
-      value: '',
-      type: 'text',
-      placeHolder: 'Eg: aBc1de',
-      errorMessage:'Please provide valid passcode',
-      validators: {},
     }
-  ]}
+  ]
+  // gmeetForm = {
+  //   controls: [
+  //     {
+  //       name: 'link',
+  //       label: 'Meet link',
+  //       value: '',
+  //       type: 'text',
+  //       placeHolder: 'Eg: https://meet.google.com/abc-abcd-abc',
+  //       errorMessage: 'Please provide a valid meet link',
+  //       validators: {},
+  //     }
+  //   ]
+  // }
+  // zoomForm = {
+  //   controls: [
+  //     {
+  //       "name": "link",
+  //       "label": "Zoom link",
+  //       "value": "",
+  //       "class": "ion-no-margin",
+  //       "type": "text",
+  //       "placeHolder": "Eg: https://us05web.zoom.us/j/8545020401?pwd=bU0rRXZyUVpEZ0RXbjdLMTNpOFZ6QT09",
+  //       "position": "floating",
+  //       "errorMessage": "Please provide meeting link",
+  //       "validators": {
+  //         // "required": true
+  //       }
+  //     },
+  //     {
+  //       "name": "meetingId",
+  //       "label": "Meeting ID",
+  //       "value": "",
+  //       "class": "ion-no-margin",
+  //       "type": "number",
+  //       "placeHolder": "Eg: 123 456 7890",
+  //       "position": "floating",
+  //       "errorMessage": "Please provide meeting ID",
+  //       "validators": {
+  //         // "required": true
+  //       }
+  //     },
+  //     {
+  //       name: 'password',
+  //       label: 'Passcode',
+  //       value: '',
+  //       type: 'text',
+  //       placeHolder: 'Eg: aBc1de',
+  //       errorMessage: 'Please provide valid passcode',
+  //       validators: {},
+  //     }
+  //   ]
+  // }
   private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
     private route: ActivatedRoute, private router: Router,
@@ -102,7 +180,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     this.sessionId = this.route.snapshot.paramMap.get('id')
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.isSaved && this.createSession.myForm.dirty  || (this.imageChanged) ) {
+    if (!this.isSaved && this.createSession.myForm.dirty || (this.imageChanged)) {
       let dialog = this.dialog.open(ExitPopupComponent, {
         data: {
           header: "Exit this page?",
@@ -113,34 +191,34 @@ export class CreateSessionComponent implements OnInit,CanLeave {
       })
       return dialog.afterClosed().pipe(
         map(((res) => {
-            console.log(res)
-            return res
-          }))
+          console.log(res)
+          return res
+        }))
       )
-     } else {
-       return true;
-     }
-   }
+    } else {
+      return true;
+    }
+  }
   ngOnInit(): void {
-    if(this.sessionId){
+    if (this.sessionId) {
       this.sessionDetailApi()
-    }else {
+    } else {
       this.getFormDetails()
     }
   }
-  getFormDetails(){
-    this.form.getForm(CREATE_SESSION_FORM).subscribe((form)=>{
+  getFormDetails() {
+    this.form.getForm(CREATE_SESSION_FORM).subscribe((form) => {
       this.formData = form;
       this.changeDetRef.detectChanges();
-      if(this.sessionDetails){
+      if (this.sessionDetails) {
         this.preFillData(this.sessionDetails);
         this.changeDetRef.detectChanges();
       }
-    }) 
+    })
   }
- 
+
   imageEvent(event: any) {
-    if(event){
+    if (event) {
       this.localImage = event.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -167,13 +245,14 @@ export class CreateSessionComponent implements OnInit,CanLeave {
         this.getImageUploadUrl(this.localImage).subscribe()
       } else {
         const form = Object.assign({}, this.createSession.myForm.value);
-        form.startDate = new Date(moment(form.startDate).seconds(0).toISOString()).getTime()/1000;
-        form.endDate = new Date(moment(form.endDate).seconds(0).toISOString()).getTime()/1000;
+        form.startDate = new Date(moment(form.startDate).seconds(0).toISOString()).getTime() / 1000;
+        form.endDate = new Date(moment(form.endDate).seconds(0).toISOString()).getTime() / 1000;
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         form.timeZone = timezone;
         this.createSession.myForm.markAsPristine();
-        this.sessionService.createSession(form,this.sessionDetails?._id).subscribe((result)=>{
+        this.sessionService.createSession(form, this.sessionDetails?._id).subscribe((result) => {
           this.sessionResult = result;
+          this.router.navigate([`/${"session-detail"}/${result._id}`])
           // result._id ? this.router.navigate([`/${"session-detail"}/${result._id}`], {replaceUrl: true}): this.location.back();
         });
       }
@@ -200,8 +279,8 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     };
     return this.http.put(path.signedUrl, file);
   }
-  sessionDetailApi(){
-    this.sessionService.getSessionDetailsAPI(this.sessionId).subscribe((response: any) =>{
+  sessionDetailApi() {
+    this.sessionService.getSessionDetailsAPI(this.sessionId).subscribe((response: any) => {
       this.sessionDetails = response;
       this.getFormDetails()
     })
@@ -209,7 +288,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   preFillData(existingData: any) {
     this.imgData.image = (existingData['image'][0]) ? existingData['image'][0] : '';
     for (let i = 0; i < this.formData.controls.length; i++) {
-      this.formData.controls[i].value = (this.formData.controls[i].type == 'date')? moment.unix(existingData[this.formData.controls[i].name]).format():existingData[this.formData.controls[i].name];
+      this.formData.controls[i].value = (this.formData.controls[i].type == 'date') ? moment.unix(existingData[this.formData.controls[i].name]).format() : existingData[this.formData.controls[i].name];
       this.formData.controls[i].options = _.unionBy(this.formData.controls[i].options, this.formData.controls[i].value, 'value');
     }
   }
@@ -218,15 +297,20 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     this.unsubscriber.complete();
   }
 
-  setItLater(){
+  setItLater() {
     this.toast.showMessage("Skipped platform selection. Please provide a meeting platform before starting the session")
-    this.router.navigate([`/${"session-detail"}/${this.sessionResult._id}`], {replaceUrl: true})
+    // this.router.navigate([`/${"session-detail"}/${this.sessionResult._id}`], { replaceUrl: true })
+    this.sessionResult?._id ? this.router.navigate([`/${"session-detail"}/${this.sessionResult._id}`], {replaceUrl: true}): this.location.back();
   }
 
-  onRadioButtonChange(event:any) { 
+  onRadioButtonChange(event: any) {
     this.isDropdownShown = false;
-    if(event.value == 2){
+    if (event.value == 2) {
       this.isDropdownShown = true;
     }
+  }
+
+  clickOptions(option:any){
+    this.slectedHint = option.hint;
   }
 }
