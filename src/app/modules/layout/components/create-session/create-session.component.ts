@@ -147,7 +147,6 @@ export class CreateSessionComponent implements OnInit, CanLeave {
       })
       return dialog.afterClosed().pipe(
         map(((res) => {
-          console.log(res)
           return res
         }))
       )
@@ -160,7 +159,6 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     this.route.queryParams.subscribe(
       params => {
         this.secondStepper = params['secondStepper']
-        console.log(this.secondStepper )
       }
     )
    
@@ -172,7 +170,6 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     
   }
   ngAfterViewInit() {
-    console.log(this.secondStepper )
     if( this.secondStepper){
       this.stepper.selectedIndex = 1; 
     }
@@ -224,7 +221,6 @@ export class CreateSessionComponent implements OnInit, CanLeave {
         this.createSession.myForm.markAsPristine();
         this.sessionService.createSession(form,this.sessionDetails?._id).subscribe((result)=>{
           this.sessionResult = result;
-          console.log(result)
           this.secondStepper = true;
           if(result?._id){
             this.router.navigate([`/${"edit-session"}/${result?._id}`], {replaceUrl: true,queryParams:{ secondStepper:this.secondStepper}})
