@@ -49,6 +49,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   imageChanged: any = false;
   selectedLink: any = 'Default'
   slectedHint:any='some hint ';
+  firstStepperTitle:any;
   meetingPlatforms: any = [
     {
       name: 'Default',
@@ -155,17 +156,20 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     }
   }
   ngOnInit(): void {
+    this.firstStepperTitle = (this.sessionId) ? 'Edit session':'Create session'
     this.route.queryParams.subscribe(
       params => {
         this.secondStepper = params['secondStepper']
         console.log(this.secondStepper )
       }
     )
+   
     if(this.sessionId){
       this.sessionDetailApi()
     }else {
       this.getFormDetails()
     }
+    
   }
   ngAfterViewInit() {
     console.log(this.secondStepper )
@@ -220,9 +224,13 @@ export class CreateSessionComponent implements OnInit, CanLeave {
         this.createSession.myForm.markAsPristine();
         this.sessionService.createSession(form,this.sessionDetails?._id).subscribe((result)=>{
           this.sessionResult = result;
+          console.log(result)
           this.secondStepper = true;
-          console.log(result._id)
-          this.router.navigate([`/${"edit-session"}/${result?._id}`], {replaceUrl: true,queryParams:{ secondStepper:this.secondStepper}})
+          if(result?._id){
+            this.router.navigate([`/${"edit-session"}/${result?._id}`], {replaceUrl: true,queryParams:{ secondStepper:this.secondStepper}})
+          }else{
+            this.router.navigate([`/${"edit-session"}/${this.sessionId}`], {replaceUrl: true,queryParams:{ secondStepper:this.secondStepper}})
+          }
         });
       }
     }

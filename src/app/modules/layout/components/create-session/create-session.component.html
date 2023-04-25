@@ -1,6 +1,6 @@
 <mat-stepper linear #stepper [ngClass]=" (!this.sessionId) ? 'stepper': '' ">
     <mat-step>
-        <ng-template matStepLabel>Create session</ng-template>
+        <ng-template matStepLabel>{{firstStepperTitle }}</ng-template>
         <div fxLayoutAlign="center">
             <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
                 fxLayoutAlign="center center">
@@ -10,9 +10,13 @@
                         #createSession></app-dynamic-form>
                 </div>
                 <div fxLayoutAlign="center center">
-                    <button mat-raised-button class="button-shadow" color="primary"
+                    <button mat-raised-button class="button-shadow" color="primary" *ngIf="!sessionId"
                         [disabled]="createSession && !createSession.myForm.valid" (click)="onSubmit()">{{"PUBLISH" |
-                        translate}}</button>
+                        translate}}
+                    </button>
+                    <button mat-raised-button class="button-shadow" color="primary" *ngIf="sessionId" matStepperNext
+                        [disabled]="createSession && !createSession.myForm.valid" (click)="onSubmit()">Save
+                    </button>    
                 </div>
             </mat-card>
         </div>
