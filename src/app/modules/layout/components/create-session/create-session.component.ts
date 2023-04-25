@@ -18,6 +18,7 @@ import { localKeys } from 'src/app/core/constants/localStorage.keys';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { ExitPopupComponent } from 'src/app/shared/components/exit-popup/exit-popup.component';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-create-session',
@@ -44,6 +45,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   publishSession: any = true;
   sessionDetails: any;
   sessionId: any;
+  secondStepper:any = false;
   imageChanged: any = false;
   selectedLink: any = 'Default'
   slectedHint:any='some hint ';
@@ -121,64 +123,17 @@ export class CreateSessionComponent implements OnInit, CanLeave {
       }
     }
   ]
-  // gmeetForm = {
-  //   controls: [
-  //     {
-  //       name: 'link',
-  //       label: 'Meet link',
-  //       value: '',
-  //       type: 'text',
-  //       placeHolder: 'Eg: https://meet.google.com/abc-abcd-abc',
-  //       errorMessage: 'Please provide a valid meet link',
-  //       validators: {},
-  //     }
-  //   ]
-  // }
-  // zoomForm = {
-  //   controls: [
-  //     {
-  //       "name": "link",
-  //       "label": "Zoom link",
-  //       "value": "",
-  //       "class": "ion-no-margin",
-  //       "type": "text",
-  //       "placeHolder": "Eg: https://us05web.zoom.us/j/8545020401?pwd=bU0rRXZyUVpEZ0RXbjdLMTNpOFZ6QT09",
-  //       "position": "floating",
-  //       "errorMessage": "Please provide meeting link",
-  //       "validators": {
-  //         // "required": true
-  //       }
-  //     },
-  //     {
-  //       "name": "meetingId",
-  //       "label": "Meeting ID",
-  //       "value": "",
-  //       "class": "ion-no-margin",
-  //       "type": "number",
-  //       "placeHolder": "Eg: 123 456 7890",
-  //       "position": "floating",
-  //       "errorMessage": "Please provide meeting ID",
-  //       "validators": {
-  //         // "required": true
-  //       }
-  //     },
-  //     {
-  //       name: 'password',
-  //       label: 'Passcode',
-  //       value: '',
-  //       type: 'text',
-  //       placeHolder: 'Eg: aBc1de',
-  //       errorMessage: 'Please provide valid passcode',
-  //       validators: {},
-  //     }
-  //   ]
-  // }
+
   private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
     private route: ActivatedRoute, private router: Router,
     private dialog: MatDialog) {
     this.sessionId = this.route.snapshot.paramMap.get('id')
+    
   }
+  @ViewChild('stepper') stepper: MatStepper;
+        
+ 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.isSaved && this.createSession.myForm.dirty || (this.imageChanged)) {
       let dialog = this.dialog.open(ExitPopupComponent, {
@@ -200,25 +155,38 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     }
   }
   ngOnInit(): void {
-    if (this.sessionId) {
+    this.route.queryParams.subscribe(
+      params => {
+        this.secondStepper = params['secondStepper']
+        console.log(this.secondStepper )
+      }
+    )
+    if(this.sessionId){
       this.sessionDetailApi()
-    } else {
+    }else {
       this.getFormDetails()
     }
   }
-  getFormDetails() {
-    this.form.getForm(CREATE_SESSION_FORM).subscribe((form) => {
+  ngAfterViewInit() {
+    console.log(this.secondStepper )
+    if( this.secondStepper){
+      this.stepper.selectedIndex = 1; 
+    }
+     
+  }
+  getFormDetails(){
+    this.form.getForm(CREATE_SESSION_FORM).subscribe((form)=>{
       this.formData = form;
       this.changeDetRef.detectChanges();
-      if (this.sessionDetails) {
+      if(this.sessionDetails){
         this.preFillData(this.sessionDetails);
         this.changeDetRef.detectChanges();
       }
-    })
+    }) 
   }
-
+ 
   imageEvent(event: any) {
-    if (event) {
+    if(event){
       this.localImage = event.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -245,15 +213,16 @@ export class CreateSessionComponent implements OnInit, CanLeave {
         this.getImageUploadUrl(this.localImage).subscribe()
       } else {
         const form = Object.assign({}, this.createSession.myForm.value);
-        form.startDate = new Date(moment(form.startDate).seconds(0).toISOString()).getTime() / 1000;
-        form.endDate = new Date(moment(form.endDate).seconds(0).toISOString()).getTime() / 1000;
+        form.startDate = new Date(moment(form.startDate).seconds(0).toISOString()).getTime()/1000;
+        form.endDate = new Date(moment(form.endDate).seconds(0).toISOString()).getTime()/1000;
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         form.timeZone = timezone;
         this.createSession.myForm.markAsPristine();
-        this.sessionService.createSession(form, this.sessionDetails?._id).subscribe((result) => {
+        this.sessionService.createSession(form,this.sessionDetails?._id).subscribe((result)=>{
           this.sessionResult = result;
-          this.router.navigate([`/${"session-detail"}/${result._id}`])
-          // result._id ? this.router.navigate([`/${"session-detail"}/${result._id}`], {replaceUrl: true}): this.location.back();
+          this.secondStepper = true;
+          console.log(result._id)
+          this.router.navigate([`/${"edit-session"}/${result?._id}`], {replaceUrl: true,queryParams:{ secondStepper:this.secondStepper}})
         });
       }
     }
@@ -279,8 +248,8 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     };
     return this.http.put(path.signedUrl, file);
   }
-  sessionDetailApi() {
-    this.sessionService.getSessionDetailsAPI(this.sessionId).subscribe((response: any) => {
+  sessionDetailApi(){
+    this.sessionService.getSessionDetailsAPI(this.sessionId).subscribe((response: any) =>{
       this.sessionDetails = response;
       this.getFormDetails()
     })
@@ -288,7 +257,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   preFillData(existingData: any) {
     this.imgData.image = (existingData['image'][0]) ? existingData['image'][0] : '';
     for (let i = 0; i < this.formData.controls.length; i++) {
-      this.formData.controls[i].value = (this.formData.controls[i].type == 'date') ? moment.unix(existingData[this.formData.controls[i].name]).format() : existingData[this.formData.controls[i].name];
+      this.formData.controls[i].value = (this.formData.controls[i].type == 'date')? moment.unix(existingData[this.formData.controls[i].name]).format():existingData[this.formData.controls[i].name];
       this.formData.controls[i].options = _.unionBy(this.formData.controls[i].options, this.formData.controls[i].value, 'value');
     }
   }
@@ -300,17 +269,12 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   setItLater() {
     this.toast.showMessage("Skipped platform selection. Please provide a meeting platform before starting the session")
     // this.router.navigate([`/${"session-detail"}/${this.sessionResult._id}`], { replaceUrl: true })
-    this.sessionResult?._id ? this.router.navigate([`/${"session-detail"}/${this.sessionResult._id}`], {replaceUrl: true}): this.location.back();
+    this.secondStepper ? this.router.navigate([`/${"session-detail"}/${this.sessionId}`], {replaceUrl: true}): this.location.back();
   }
 
-  onRadioButtonChange(event: any) {
-    this.isDropdownShown = false;
-    if (event.value == 2) {
-      this.isDropdownShown = true;
-    }
-  }
 
   clickOptions(option:any){
     this.slectedHint = option.hint;
   }
+  
 }
