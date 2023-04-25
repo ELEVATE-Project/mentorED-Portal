@@ -155,7 +155,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     }
   }
   ngOnInit(): void {
-    this.firstStepperTitle = (this.sessionId) ? 'Edit session':'Create session'
+    this.firstStepperTitle = (this.sessionId) ? "EDIT_SESSION":"CREATE_NEW_SESSION"
     this.route.queryParams.subscribe(
       params => {
         this.secondStepper = params['secondStepper']

@@ -1,6 +1,6 @@
 <mat-stepper linear #stepper [ngClass]=" (!this.sessionId) ? 'stepper': '' ">
     <mat-step>
-        <ng-template matStepLabel>{{firstStepperTitle }}</ng-template>
+        <ng-template matStepLabel>{{firstStepperTitle | translate}}</ng-template>
         <div fxLayoutAlign="center">
             <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
                 fxLayoutAlign="center center">
@@ -27,12 +27,6 @@
             <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
                 fxLayoutAlign="center center" fxLayoutGap="10px">
                 <h2>Select the meeting platform</h2>
-                <!-- <div class="radio-group">
-                    <mat-radio-group (change)="onRadioButtonChange($event)" fxLayoutGap="100px">
-                        <mat-radio-button value="1">BBB</mat-radio-button>
-                        <mat-radio-button value="2">Other</mat-radio-button>
-                    </mat-radio-group>
-                </div> -->
                 <div class="platform-conatiner"  fxLayout="column" fxLayoutGap="10px">
                     <div>
                         <mat-form-field fxFlex="100%">
@@ -47,7 +41,6 @@
                     </div>
                     <div *ngFor="let option of meetingPlatforms" fxLayout="column" fxLayoutGap="10px">
                         <app-dynamic-form *ngIf="selectedLink==option.name"   [jsonFormData]=option.form></app-dynamic-form>
-                        <!-- <app-dynamic-form *ngIf="selectedLink=='Zoom'" [jsonFormData]="zoomForm"></app-dynamic-form> -->
                     </div>
                 </div>
                 
