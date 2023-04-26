@@ -19,7 +19,7 @@
         version: "{{ gitBranch }}"
         force: yes
     - name: Update npm
-      shell: npm i
+      shell: cd {{ project_path }} && npm i
     - name: set permission
       shell: chmod 744 {{ project_path }}/src/scripts/json2env.sh  
     - name: generate .env
@@ -29,7 +29,7 @@
     - name: Change directory
       shell: chdir {{project_path}}
     - name: Delete old pm2 process
-      shell: pm2 delete MentorEd-portal
+      shell: pm2 delete MentorEd-Portal
       ignore_errors: yes
     - name: Change dir
       shell: cd {{ project_path }}
