@@ -19,6 +19,7 @@ import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { ExitPopupComponent } from 'src/app/shared/components/exit-popup/exit-popup.component';
 import { MatStepper } from '@angular/material/stepper';
+import { PLATFORMS } from 'src/app/core/constants/formConstant';
 
 @Component({
   selector: 'app-create-session',
@@ -50,80 +51,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   selectedLink: any = 'Default'
   slectedHint:any='some hint ';
   firstStepperTitle:any;
-  meetingPlatforms: any = [
-    {
-      name: 'Default',
-      hint: 'some hint ',
-      value: 'Default',
-      form:
-        {
-          controls: [
-          ]
-        }
-    },
-    {
-      name: 'Gmeet',
-      hint: 'some hint Gmeet',
-      value: "Gmeet",
-      form: {
-        controls: [
-          {
-            name: 'link',
-            label: 'Meet link',
-            value: '',
-            type: 'text',
-            hint: 'Eg: https://meet.google.com/abc-abcd-abc',
-            errorMessage: 'Please provide a valid meet link',
-            validators: {},
-          }
-        ]
-      }
-    },
-    {
-      name: 'Zoom',
-      hint: 'some hint Zoom',
-      value: "Zoom",
-      form: {
-        controls: [
-          {
-            "name": "link",
-            "label": "Zoom link",
-            "value": "",
-            "class": "ion-no-margin",
-            "type": "text",
-            "hint": "Eg: https://us05web.zoom.us/j/8545020401",
-            "position": "floating",
-            "errorMessage": "Please provide meeting link",
-            "validators": {
-              // "required": true
-            }
-          },
-          {
-            "name": "meetingId",
-            "label": "Meeting ID",
-            "value": "",
-            "class": "ion-no-margin",
-            "type": "number",
-            "hint": "Eg: 123 456 7890",
-            "position": "floating",
-            "errorMessage": "Please provide meeting ID",
-            "validators": {
-              // "required": true
-            }
-          },
-          {
-            name: 'password',
-            label: 'Passcode',
-            value: '',
-            type: 'text',
-            hint: 'Eg: aBc1de',
-            errorMessage: 'Please provide valid passcode',
-            validators: {},
-          }
-        ]
-      }
-    }
-  ]
+  meetingPlatforms:any ;
 
   private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
@@ -161,7 +89,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
         this.secondStepper = params['secondStepper']
       }
     )
-   
+    this.getPlatformFormDetails();
     if(this.sessionId){
       this.sessionDetailApi()
     }else {
@@ -177,7 +105,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   }
   getFormDetails(){
     this.form.getForm(CREATE_SESSION_FORM).subscribe((form)=>{
-      this.formData = form;
+      this.formData = form.fields;
       this.changeDetRef.detectChanges();
       if(this.sessionDetails){
         this.preFillData(this.sessionDetails);
@@ -185,6 +113,11 @@ export class CreateSessionComponent implements OnInit, CanLeave {
       }
     }) 
   }
+  getPlatformFormDetails(){
+    this.form.getForm(PLATFORMS).subscribe((form)=>{
+      this.meetingPlatforms = form.fields.forms;
+    })
+ }
  
   imageEvent(event: any) {
     if(event){

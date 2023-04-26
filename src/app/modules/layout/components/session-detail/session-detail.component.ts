@@ -25,23 +25,24 @@ export class SessionDetailComponent implements OnInit {
     DeleteSession: "DELETE_SESSION",
     form: [
       {
-        title: "RECOMENDED_FOR",
-        key: "recommendedFor",
-      },
-      {
-        title: "MEDIUM",
-        key: "medium",
-      },{
-        title: "MENTOR_NAME",
-        key: "mentorName",
-      },
-      {
         title: "SESSION_DATE",
         key: "startDate",
       },
       {
         title: "SESSION_TIME",
         key: "startTime",
+      },
+      {
+        title: "MENTOR_NAME",
+        key: "mentorName",
+      },
+      {
+        title: "RECOMENDED_FOR",
+        key: "recommendedFor",
+      },
+      {
+        title: "MEDIUM",
+        key: "medium",
       },
     ],
     data: {

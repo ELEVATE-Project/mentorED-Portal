@@ -22,11 +22,11 @@
         </div>
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>Meeting platform</ng-template>
+        <ng-template matStepLabel>{{'MEETING_LINK' | translate}}</ng-template>
         <div fxLayoutAlign="center">
-            <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
+            <mat-card *ngIf="meetingPlatforms" fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
                 fxLayoutAlign="center center" fxLayoutGap="10px">
-                <h2>Select the meeting platform</h2>
+                <h2>{{'ADD_MEETING_LINK' | translate}}</h2>
                 <div class="platform-conatiner"  fxLayout="column" fxLayoutGap="10px">
                     <div>
                         <mat-form-field fxFlex="100%">
