@@ -79,7 +79,7 @@ export class CreateSessionComponent implements OnInit,CanLeave {
     this.form.getForm(CREATE_SESSION_FORM).subscribe((form)=>{
       this.formData = form;
       this.changeDetRef.detectChanges();
-      if(this.sessionId){
+      if(this.sessionDetails){
         this.preFillData(this.sessionDetails);
         this.changeDetRef.detectChanges();
       }
