@@ -18,15 +18,14 @@
 }
 
 .mentor-name{
-  padding-left: 10px;
+  display:flex; 
 }
 .text-ellipse{
-  width:200px;
-  text-overflow: ellipsis;
+  width:auto;
   white-space: nowrap;
   overflow: hidden;
-  display: block;
-  height: 40px;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 
 .edit-button {
