@@ -12,7 +12,7 @@ export class DbService {
   add(storeName:string, data:any) {
     return this.db.add(storeName, data).pipe(
       map((form) => {
-        return form
+        return JSON.parse(JSON.stringify(form))
       }))
   }
 
@@ -20,7 +20,7 @@ export class DbService {
     return this.db.getByID(storeName, id).pipe(
       map((form:any)=>{
         if(form)
-          return form
+          return JSON.parse(JSON.stringify(form))
       })
     )
   }
@@ -29,7 +29,7 @@ export class DbService {
     return this.db.getAll(storeName).pipe(
       map((form:any)=>{
         if(form)
-          return form
+          return JSON.parse(JSON.stringify(form))
       })
     )
   }
