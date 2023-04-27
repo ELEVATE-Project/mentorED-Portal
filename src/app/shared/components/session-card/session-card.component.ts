@@ -26,18 +26,18 @@ export class SessionCardComponent implements OnInit {
     this.setButtonConfig(this.isCreator)
   }
   setButtonConfig(isCreator: boolean) {
+    let currentTimeInSeconds = Math.floor(Date.now() / 1000)
     if (isCreator) {
       this.buttonConfig = { label: 'START', type: 'startAction' }
+      this.buttonConfig.isEnabled = (this.cardData.startDate - currentTimeInSeconds) < 600 ? true : false
     } else {
+      this.buttonConfig.isEnabled = (this.cardData.startDate - currentTimeInSeconds) < 300 ? true : false
       this.buttonConfig =
         (!isCreator && this.cardData.isEnrolled) ||
         (!isCreator && this.cardData.sessionId)
           ? { label: 'JOIN', type: 'joinAction' }
           : { label: 'ENROLL', type: 'enrollAction' }
     }
-    let currentTimeInSeconds = Math.floor(Date.now() / 1000)
-    this.buttonConfig.isEnabled =
-      (this.cardData.startDate - currentTimeInSeconds) < 600 ? true : false
     this.cardData.startDate = (this.cardData.startDate>0)?moment.unix(this.cardData.startDate).toLocaleString():this.cardData.startDate;
   }
   buttonClicked(event:any, action: any, data: any) {
