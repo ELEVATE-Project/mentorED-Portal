@@ -205,7 +205,6 @@ export class CreateSessionComponent implements OnInit, CanLeave {
 
   setItLater() {
     this.toast.showMessage("Skipped platform selection. Please provide a meeting platform before starting the session")
-    // this.router.navigate([`/${"session-detail"}/${this.sessionResult._id}`], { replaceUrl: true })
     this.secondStepper ? this.router.navigate([`/${"session-detail"}/${this.sessionId}`], {replaceUrl: true}): this.location.back();
   }
 
