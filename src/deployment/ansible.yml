@@ -19,7 +19,7 @@
         version: "{{ gitBranch }}"
         force: yes
     - name: Update npm
-      shell: cd {{ project_path }} && npm i
+      shell: cd {{ project_path }} && npm i --legacy-peer-deps
     - name: set permission
       shell: chmod 744 {{ project_path }}/src/scripts/json2env.sh  
     - name: generate .env

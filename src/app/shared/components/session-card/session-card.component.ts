@@ -17,12 +17,14 @@ export class SessionCardComponent implements OnInit {
   userData: any;
   selectedPage:any;
   @Input() isCreator: any
+  currentTimeInSeconds: number;
   constructor(private localStorage:LocalStorageService,private translate: TranslateService, private router: Router) { 
     this.selectedPage = router.url
   }
   @Output() buttonClick = new EventEmitter()
 
   async ngOnInit() {
+    this.currentTimeInSeconds = Math.floor(Date.now() / 1000)
     this.setButtonConfig(this.isCreator)
   }
   setButtonConfig(isCreator: boolean) {
@@ -35,9 +37,8 @@ export class SessionCardComponent implements OnInit {
           ? { label: 'JOIN', type: 'joinAction' }
           : { label: 'ENROLL', type: 'enrollAction' }
     }
-    let currentTimeInSeconds = Math.floor(Date.now() / 1000)
     this.buttonConfig.isEnabled =
-      (this.cardData.startDate - currentTimeInSeconds) < 600 ? true : false
+      (this.cardData.startDate - this.currentTimeInSeconds) < 600 && isCreator || (this.cardData.startDate - this.currentTimeInSeconds) < 300 && !isCreator ? true : false
     this.cardData.startDate = (this.cardData.startDate>0)?moment.unix(this.cardData.startDate).toLocaleString():this.cardData.startDate;
   }
   buttonClicked(event:any, action: any, data: any) {

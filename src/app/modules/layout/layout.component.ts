@@ -15,7 +15,7 @@ import { ToastService } from 'src/app/core/services/toast/toast.service';
 })
 export class LayoutComponent implements OnInit {
 
-  options=[{label:"English",value:"en"},{label:"Hindi",value:"hi"}]
+  options=[{label:"English",value:"en"},{ label: 'हिंदी', value: 'hi' },]
   selectedLanguage="en"
   user:any;
   constructor(private localStorage: LocalStorageService,private profileService:ProfileService,private router: Router, private translate: TranslateService, private toast: ToastService) { }
@@ -27,6 +27,9 @@ export class LayoutComponent implements OnInit {
       this.profileService.newProfile$.subscribe((res)=>{
         this.user = _.isEqual(res,{}) ? this.user : res;
       })
+    })
+    this.localStorage.getLocalData(localKeys.SELECTED_LANGUAGE).then((lang)=>{
+      if(lang)this.selectedLanguage = lang;
     })
    }
 

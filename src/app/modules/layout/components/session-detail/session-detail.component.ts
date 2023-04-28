@@ -76,6 +76,7 @@ export class SessionDetailComponent implements OnInit {
   pastSession:any;
   sessionId:any
   snackbarRef:any;
+  isJoinEnabled: any;
   constructor(
     private router: Router,
     private sessionService: SessionService,
@@ -107,6 +108,7 @@ export class SessionDetailComponent implements OnInit {
       let readableStartTime = moment.unix(response.startDate).format("hh:mm A");
       let currentTimeInSeconds = Math.floor(Date.now() / 1000)
       this.isEnabled = ((response.startDate - currentTimeInSeconds) < 600) ? true : false
+      this.isJoinEnabled = ((response.startDate - currentTimeInSeconds) < 300) ? true : false
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate;
       this.details.data.startTime = readableStartTime;
@@ -119,7 +121,7 @@ export class SessionDetailComponent implements OnInit {
       let showButton = (this.details?.data?.isEnrolled && (this.details.data.status ==='published'|| this.details.data.status ==='live') || this.isCreator) && this.pastSession
       let showShareButton = ((this.details.data.status ==='published'|| this.details.data.status ==='live')  || this.isCreator) && this.pastSession
       this.paginatorConfigData = {
-        buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:!this.isEnabled, service: 'sessionService', method: method, passingParameter:this.id, showButton:showButton},
+        buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:this.isCreator ? !this.isEnabled: !this.isJoinEnabled, service: 'sessionService', method: method, passingParameter:this.id, showButton:showButton},
         {buttonName:'SHARE_SESSION',cssClass:"shareButton", matIconName:'share', isDisable:false,service: 'utilService', method: 'shareButton',passingParameter:"SHARE_SESSION",showButton:showShareButton}]
       }
       this.pageTitle.editButtonConfig(this.paginatorConfigData)

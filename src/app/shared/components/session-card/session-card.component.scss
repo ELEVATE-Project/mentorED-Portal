@@ -1,6 +1,8 @@
 @import "../../../../variables";
 .card-details {
     padding: 2%;
+    margin-bottom: 0px !important;
+    justify-content: center;
 }
 
 .card-container {
@@ -38,7 +40,7 @@
     min-width: fit-content !important;
     height: 40px;
     align-self: flex-end;
-    margin: 10px !important;
+    margin: 0px 10px 10px 0px!important;
 }
 .mat-raised-button[disabled] {
     background-color: rgb(104,104,104);
