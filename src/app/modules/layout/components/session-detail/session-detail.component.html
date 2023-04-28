@@ -9,7 +9,7 @@
             </div>
             <div fxFlex="25" fxLayoutGap="20px" fxLayout="column">
                 <button *ngIf="!details?.data?.isEnrolled && details.data.status != 'completed' && !isCreator" class="enroll-button" mat-raised-button color="primary" (click)="onEnroll()">{{details.enrollButton|translate}}</button>
-                <button *ngIf="details?.data?.isEnrolled && details.data.status ==='published' && !this.isEnabled" class="enroll-button" mat-raised-button color="primary" (click)="unEnrollDialogBox()">{{details.confirmButton|translate}}</button>
+                <button *ngIf="details?.data?.isEnrolled && details.data.status ==='published' && !this.isJoinEnabled" class="enroll-button" mat-raised-button color="primary" (click)="unEnrollDialogBox()">{{details.confirmButton|translate}}</button>
                 <button *ngIf="isCreator && details.data.status != 'completed' && !isEnabled" class="enroll-button" mat-raised-button color="primary" (click)="editSession()"><mat-icon>mode_edit_outline</mat-icon>{{details.editSession|translate}}</button>
                 <button *ngIf="isCreator && details.data.status != 'completed' && !isEnabled" class="enroll-button" mat-raised-button color="primary" (click)="deleteSession()"><mat-icon>delete_outline</mat-icon>{{details.DeleteSession|translate}}</button>
             </div>
