@@ -28,6 +28,8 @@ import { PLATFORMS } from 'src/app/core/constants/formConstant';
 })
 export class CreateSessionComponent implements OnInit, CanLeave {
   @ViewChild('createSession') createSession: DynamicFormComponent;
+  @ViewChild('platform') platform: DynamicFormComponent;
+  @ViewChild('stepper') stepper: MatStepper;
   imgData = {
     type: 'session',
     image: '',
@@ -60,7 +62,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     this.sessionId = this.route.snapshot.paramMap.get('id')
     
   }
-  @ViewChild('stepper') stepper: MatStepper;
+ 
         
  
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -204,7 +206,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   }
 
   setItLater() {
-    this.toast.showMessage("Skipped platform selection. Please provide a meeting platform before starting the session")
+    // this.toast.showMessage("Skipped platform selection. Please provide a meeting platform before starting the session")
     this.secondStepper ? this.router.navigate([`/${"session-detail"}/${this.sessionId}`], {replaceUrl: true}): this.location.back();
   }
 
@@ -213,4 +215,23 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     this.slectedHint = option.hint;
   }
   
+  onSubmitLink(){
+    if (this.platform.myForm.valid){
+      let meetingInfo = {
+        'meetingInfo':{
+        'platform': this.selectedLink,
+        'link': this.platform.myForm.value?.link,
+        "meta": {
+          "password": this.platform.myForm.value?.password,
+          "meetingId":this.platform.myForm.value?.id
+      }
+
+      }}
+      this.sessionService.createSession(meetingInfo,this.sessionId).subscribe((result:any)=>{
+        this.router.navigate([`/${"session-detail"}/${this.sessionId}`])
+
+      })
+     
+    }
+  }
 }

@@ -37,6 +37,7 @@ import { ToastMessageComponent } from './components/toast-message/toast-message.
 import { MentorCardComponent } from './components/mentor-card/mentor-card.component';
 import { SharePopupComponent } from './components/share-popup/share-popup.component';
 import { PopupDialogComponent } from './components/popup-dialog/popup-dialog.component';
+import { JoinDialogBoxComponent } from './components/join-dialog-box/join-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { PopupDialogComponent } from './components/popup-dialog/popup-dialog.com
     ToastMessageComponent,
     PopupDialogComponent,
     MentorCardComponent,
-    SharePopupComponent
+    SharePopupComponent,
+    JoinDialogBoxComponent
   ],
   imports: [
     CommonModule,
