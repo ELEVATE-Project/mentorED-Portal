@@ -36,7 +36,7 @@
                                     {{ option.name }}
                                 </mat-option>
                             </mat-select>
-                              <mat-hint class="hint" fxLayoutAlign="center center"><mat-icon class="mat-icon-info">info</mat-icon>{{slectedHint}}</mat-hint>
+                              <mat-hint class="hint" fxLayoutAlign="center center"><mat-icon class="mat-icon-info">info</mat-icon>{{selectedHint}}</mat-hint>
                         </mat-form-field> 
                     </div>
                     <div *ngFor="let option of meetingPlatforms" fxLayout="column" fxLayoutGap="10px">
@@ -45,8 +45,8 @@
                 </div>
                 
                 <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10%">
+                    <button mat-raised-button class="button-shadow skip-button" *nfIf="sessionDetails?.meetingInfo" (click)="setItLater()">{{"SKIP" | translate}}</button>
                     <button mat-raised-button class="button-shadow" [disabled]="platform && !platform.myForm.valid"  color="primary"  (click)="onSubmitLink()">{{"SUBMIT" | translate}}</button>
-                    <!-- <button mat-raised-button class="button-shadow skip-button" (click)="setItLater()">{{"SKIP" | translate}}</button> -->
                 </div>
             </mat-card>
         </div>

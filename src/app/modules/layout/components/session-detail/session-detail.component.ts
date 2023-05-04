@@ -33,7 +33,7 @@ export class SessionDetailComponent implements OnInit {
         key: "startTime",
       },
       {
-        title: "Meeting Platform",
+        title: "MEETING_PLATFORM",
         key: "meetingInfo",
       },
       {
@@ -121,7 +121,7 @@ export class SessionDetailComponent implements OnInit {
       let showButton = (this.details?.data?.isEnrolled && (this.details.data.status ==='published'|| this.details.data.status ==='live') || this.isCreator) && this.pastSession
       let showShareButton = ((this.details.data.status ==='published'|| this.details.data.status ==='live')  || this.isCreator) && this.pastSession
       this.paginatorConfigData = {
-        buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:this.isCreator ? !this.isEnabled: !this.isJoinEnabled, service: 'sessionService', method: method, passingParameter:this.id, showButton:showButton},
+        buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:this.isCreator ? !this.isEnabled: !this.isJoinEnabled, service: 'sessionService', method: method, passingParameter:{id : this?.id, data: response}, showButton:showButton},
         {buttonName:'SHARE_SESSION',cssClass:"shareButton", matIconName:'share', isDisable:false,service: 'utilService', method: 'shareButton',passingParameter:"SHARE_SESSION",showButton:showShareButton}]
       }
       this.pageTitle.editButtonConfig(this.paginatorConfigData)

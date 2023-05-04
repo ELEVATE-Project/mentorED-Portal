@@ -48,10 +48,11 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   publishSession: any = true;
   sessionDetails: any;
   sessionId: any;
+  meetinLinkIncludes:any;
   secondStepper:any = false;
   imageChanged: any = false;
-  selectedLink: any = 'Default'
-  slectedHint:any='some hint ';
+  selectedLink: any = 'Big blue button (Default)'
+  selectedHint:any="Big blue button is a default platform , if user didnt select other meeting platform then this will be as default.";
   firstStepperTitle:any;
   meetingPlatforms:any ;
 
@@ -195,6 +196,17 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   }
   preFillData(existingData: any) {
     this.imgData.image = (existingData['image'][0]) ? existingData['image'][0] : '';
+    for(let j=0;j<this?.meetingPlatforms.length;j++){
+     
+      if( existingData.meetingInfo.platform == this?.meetingPlatforms[j].name){
+         this.selectedLink = existingData.meetingInfo.platform;
+        let obj = this?.meetingPlatforms[j]?.form?.controls.find( (link:any) => link?.name == 'link')
+        if(existingData.meetingInfo.link){
+          obj.value = existingData?.meetingInfo?.link
+        }
+      }
+    }
+    
     for (let i = 0; i < this.formData.controls.length; i++) {
       this.formData.controls[i].value = (this.formData.controls[i].type == 'date')? moment.unix(existingData[this.formData.controls[i].name]).format():existingData[this.formData.controls[i].name];
       this.formData.controls[i].options = _.unionBy(this.formData.controls[i].options, this.formData.controls[i].value, 'value');
@@ -212,7 +224,8 @@ export class CreateSessionComponent implements OnInit, CanLeave {
 
 
   clickOptions(option:any){
-    this.slectedHint = option.hint;
+    this.selectedHint = option.hint;
+   this.meetinLinkIncludes = this.selectedLink == 'Google meet' ? 'meet':'zoom';
   }
   
   onSubmitLink(){
@@ -223,7 +236,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
         'link': this.platform.myForm.value?.link,
         "meta": {
           "password": this.platform.myForm.value?.password,
-          "meetingId":this.platform.myForm.value?.id
+          "meetingId":this.platform.myForm.value?.meetingId
       }
 
       }}

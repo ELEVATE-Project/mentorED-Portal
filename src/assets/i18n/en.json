@@ -142,5 +142,6 @@
     "EDIT_SESSION_DETAILS": "Edit session details",
     "SKIP":"Set it later",
     "MEETING_LINK":"Meeting link",
-    "ADD_MEETING_LINK":"Add Meeting Link"
+    "ADD_MEETING_LINK":"Add meeting link",
+    "MEETING_PLATFORM":"Meeting platform"
 }

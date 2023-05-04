@@ -4,6 +4,8 @@ import { map } from 'rxjs'
 import { ApiService } from '../api/api.service'
 import { ToastService } from '../toast/toast.service'
 import * as _ from 'lodash'
+import { MatDialog } from '@angular/material/dialog'
+import { JoinDialogBoxComponent } from 'src/app/shared/components/join-dialog-box/join-dialog-box.component'
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,7 @@ export class SessionService {
   constructor(
     private toastService: ToastService,
     private apiService: ApiService,
+    private dialog: MatDialog
   ) {}
 
   enrollSession(id: any) {
@@ -27,18 +30,24 @@ export class SessionService {
     )
   }
 
-  joinSession(id: any) {
+  joinSession(parameters: any) {
     const config = {
-      url: API_CONSTANTS.JOIN_SESSION + id,
+      url: API_CONSTANTS.JOIN_SESSION + parameters.id,
       payload: {},
     }
    this.apiService.get(config).subscribe((result: any) => {
-        window.location.replace(result.result.link)
+    let dialog = this.dialog.open(JoinDialogBoxComponent, {
+      data: {
+        result: result.result,
+        sessionData:parameters.data
+      }
+    })
       })
   }
-startSession(id: any){
+
+startSession(parameters: any){
   const config = {
-    url: API_CONSTANTS.START_SESSION + id,
+    url: API_CONSTANTS.START_SESSION + parameters?.id,
     payload: {},
   }
   return this.apiService.get(config).subscribe((result: any) => {
