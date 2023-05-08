@@ -18,14 +18,18 @@ import { localKeys } from 'src/app/core/constants/localStorage.keys';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { ExitPopupComponent } from 'src/app/shared/components/exit-popup/exit-popup.component';
+import { MatStepper } from '@angular/material/stepper';
+import { PLATFORMS } from 'src/app/core/constants/formConstant';
 
 @Component({
   selector: 'app-create-session',
   templateUrl: './create-session.component.html',
   styleUrls: ['./create-session.component.scss']
 })
-export class CreateSessionComponent implements OnInit,CanLeave {
+export class CreateSessionComponent implements OnInit, CanLeave {
   @ViewChild('createSession') createSession: DynamicFormComponent;
+  @ViewChild('platform') platform: DynamicFormComponent;
+  @ViewChild('stepper') stepper: MatStepper;
   imgData = {
     type: 'session',
     image: '',
@@ -34,22 +38,36 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   defaultImageArray = []
   formData: any;
   localImage: any;
-  isSaved:any = false;
+  isSaved: any = false;
   uiConfig = {
     appearance: 'fill',
     floatLabel: 'always'
   }
+  sessionResult: any;
+  isDropdownShown: any = false
+  publishSession: any = true;
   sessionDetails: any;
   sessionId: any;
-  imageChanged:any = false;
+  meetinLinkIncludes:any;
+  secondStepper:any = false;
+  imageChanged: any = false;
+  selectedLink: any;
+  selectedHint:any;
+  firstStepperTitle:any;
+  meetingPlatforms:any ;
+
   private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
     private route: ActivatedRoute, private router: Router,
     private dialog: MatDialog) {
     this.sessionId = this.route.snapshot.paramMap.get('id')
+    
   }
+ 
+        
+ 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.isSaved && this.createSession.myForm.dirty  || (this.imageChanged) ) {
+    if (!this.isSaved && this.createSession.myForm.dirty || (this.imageChanged)) {
       let dialog = this.dialog.open(ExitPopupComponent, {
         data: {
           header: "Exit this page?",
@@ -60,24 +78,37 @@ export class CreateSessionComponent implements OnInit,CanLeave {
       })
       return dialog.afterClosed().pipe(
         map(((res) => {
-            console.log(res)
-            return res
-          }))
+          return res
+        }))
       )
-     } else {
-       return true;
-     }
-   }
+    } else {
+      return true;
+    }
+  }
   ngOnInit(): void {
+    this.firstStepperTitle = (this.sessionId) ? "EDIT_SESSION":"CREATE_NEW_SESSION"
+    this.route.queryParams.subscribe(
+      params => {
+        this.secondStepper = params['secondStepper']
+      }
+    )
+    this.getPlatformFormDetails();
     if(this.sessionId){
       this.sessionDetailApi()
     }else {
       this.getFormDetails()
     }
+    
+  }
+  ngAfterViewInit() {
+    if( this.secondStepper){
+      this.stepper.selectedIndex = 1; 
+    }
+     
   }
   getFormDetails(){
     this.form.getForm(CREATE_SESSION_FORM).subscribe((form)=>{
-      this.formData = form;
+      this.formData = form.fields;
       this.changeDetRef.detectChanges();
       if(this.sessionDetails){
         this.preFillData(this.sessionDetails);
@@ -85,6 +116,13 @@ export class CreateSessionComponent implements OnInit,CanLeave {
       }
     }) 
   }
+  getPlatformFormDetails(){
+    this.form.getForm(PLATFORMS).subscribe((form)=>{
+      this.meetingPlatforms = form.fields.forms;
+      this.selectedLink = form.fields.forms[0].name;
+      this.selectedHint = form.fields.forms[0].hint;
+    })
+ }
  
   imageEvent(event: any) {
     if(event){
@@ -120,7 +158,13 @@ export class CreateSessionComponent implements OnInit,CanLeave {
         form.timeZone = timezone;
         this.createSession.myForm.markAsPristine();
         this.sessionService.createSession(form,this.sessionDetails?._id).subscribe((result)=>{
-          result._id ? this.router.navigate([`/${"session-detail"}/${result._id}`], {replaceUrl: true}): this.location.back();
+          this.sessionResult = result;
+          this.secondStepper = true;
+          if(result?._id){
+            this.router.navigate([`/${"edit-session"}/${result?._id}`], {replaceUrl: true,queryParams:{ secondStepper:this.secondStepper}})
+          }else{
+            this.router.navigate([`/${"edit-session"}/${this.sessionId}`], {replaceUrl: true,queryParams:{ secondStepper:this.secondStepper}})
+          }
         });
       }
     }
@@ -154,6 +198,17 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   }
   preFillData(existingData: any) {
     this.imgData.image = (existingData['image'][0]) ? existingData['image'][0] : '';
+    for(let j=0;j<this?.meetingPlatforms.length;j++){
+     
+      if( existingData.meetingInfo.platform == this?.meetingPlatforms[j].name){
+         this.selectedLink = existingData.meetingInfo.platform;
+        let obj = this?.meetingPlatforms[j]?.form?.controls.find( (link:any) => link?.name == 'link')
+        if(existingData.meetingInfo.link){
+          obj.value = existingData?.meetingInfo?.link
+        }
+      }
+    }
+    
     for (let i = 0; i < this.formData.controls.length; i++) {
       this.formData.controls[i].value = (this.formData.controls[i].type == 'date')? moment.unix(existingData[this.formData.controls[i].name]).format():existingData[this.formData.controls[i].name];
       this.formData.controls[i].options = _.unionBy(this.formData.controls[i].options, this.formData.controls[i].value, 'value');
@@ -162,5 +217,36 @@ export class CreateSessionComponent implements OnInit,CanLeave {
   ngOnDestroy(): void {
     this.unsubscriber.next();
     this.unsubscriber.complete();
+  }
+
+  setItLater() {
+    // this.toast.showMessage("Skipped platform selection. Please provide a meeting platform before starting the session")
+    this.secondStepper ? this.router.navigate([`/${"session-detail"}/${this.sessionId}`], {replaceUrl: true}): this.location.back();
+  }
+
+
+  clickOptions(option:any){
+    this.selectedHint = option.hint;
+   this.meetinLinkIncludes = this.selectedLink == 'Google meet' ? 'meet':'zoom';
+  }
+  
+  onSubmitLink(){
+    if (this.platform.myForm.valid){
+      let meetingInfo = {
+        'meetingInfo':{
+        'platform': this.selectedLink,
+        'link': this.platform.myForm.value?.link,
+        "meta": {
+          "password": this.platform.myForm.value?.password,
+          "meetingId":this.platform.myForm.value?.meetingId
+      }
+
+      }}
+      this.sessionService.createSession(meetingInfo,this.sessionId).subscribe((result:any)=>{
+        this.router.navigate([`/${"session-detail"}/${this.sessionId}`])
+
+      })
+     
+    }
   }
 }

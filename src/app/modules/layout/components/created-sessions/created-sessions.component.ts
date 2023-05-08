@@ -106,7 +106,7 @@ getSessions(){
     })
   }
   buttonClick(event: any){
-    this.sessionService.startSession(event.data._id)
+    this.sessionService.startSession({id: event.data._id})
   }
   createSession() {
     this.getDetails().then((userDetails)=>{

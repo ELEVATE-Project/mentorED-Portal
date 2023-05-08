@@ -1,0 +1,54 @@
+<div fxLayout="column" class="container">
+    <div fxLayout="row" class="heading-container" fxLayoutGap="10px">
+        <div>
+            <h1 class="title">{{data.sessionData.title}}</h1>
+       </div>
+        <div class="close-icon">
+            <mat-icon [mat-dialog-close]="false" >cancel_circle_outline</mat-icon>
+        </div>
+        
+    </div>
+    
+    
+    <div fxLayout="row" fxLayoutGap="10px">
+        <mat-icon fxLayoutAlign="start center">query_builder</mat-icon>
+        <p fxLayoutAlign="start center">{{data.sessionData?.startDate | date: 'EEEE, MMMM d'}} . {{data.sessionData?.startDate | date:'hh:mm'}} - {{data.sessionData?.endDate | date:'shortTime'}}</p>   
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+        <mat-icon fxLayoutAlign="start center">video_call</mat-icon>
+        <div>
+            <p fxLayoutAlign="start center" >{{'MEETING_PLATFORM' | translate}}: </p> 
+        </div>
+        <div>
+            <p fxLayoutAlign="start center" class="heading"> {{data.result.platform}}</p>
+        </div>
+    </div>
+   
+    <div fxLayout="column" *ngIf="data.result.meta.password">
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-icon fxLayoutAlign="start center">vpn_key</mat-icon>
+            <div>
+                <p fxLayoutAlign="start center" >{{'PASSWORD' | translate}}: </p>
+            </div>
+            <div>
+                <p fxLayoutAlign="start center" class="heading">{{data.result?.meta?.password}} <mat-icon fxLayoutAlign="start center" class="mat-icon-content-copy" (click)="copyToClipBoard()">content_copy</mat-icon></p>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-icon fxLayoutAlign="start center">vpn_key</mat-icon>
+            <div>
+                <p fxLayoutAlign="start center" >{{'MEETING_ID' | translate}}: </p>
+            </div>
+            <div>
+                <p fxLayoutAlign="start center" class="heading">{{data.result?.meta?.meetingId}} <mat-icon fxLayoutAlign="start center" class="mat-icon-content-copy" (click)="copyToClipBoard()">content_copy</mat-icon></p>
+            </div>
+        </div>
+       
+    </div>
+    <div>
+        <button mat-raised-button class="join-button" (click)="onClickJoin()">{{'JOIN' | translate}}</button>
+    </div>
+    
+</div>
+
+

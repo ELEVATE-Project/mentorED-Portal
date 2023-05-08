@@ -1,11 +1,56 @@
-<div fxLayoutAlign="center">
-    <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%" fxLayoutAlign="center center">
-        <app-image-upload [imgData]="imgData" (imageEvent)="imageEvent($event)"></app-image-upload>
-        <div class="form-wrapper" fxFlex="80%">
-            <app-dynamic-form *ngIf="formData" [jsonFormData]="formData" [uiConfig]="uiConfig" #createSession></app-dynamic-form>
+<mat-stepper linear #stepper [ngClass]=" (!this.sessionId) ? 'stepper': '' ">
+    <mat-step>
+        <ng-template matStepLabel>{{firstStepperTitle | translate}}</ng-template>
+        <div fxLayoutAlign="center">
+            <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
+                fxLayoutAlign="center center">
+                <app-image-upload [imgData]="imgData" (imageEvent)="imageEvent($event)"></app-image-upload>
+                <div class="form-wrapper" fxFlex="80%">
+                    <app-dynamic-form *ngIf="formData" [jsonFormData]="formData" [uiConfig]="uiConfig"
+                        #createSession></app-dynamic-form>
+                </div>
+                <div fxLayoutAlign="center center">
+                    <button mat-raised-button class="button-shadow" color="primary" *ngIf="!sessionId"
+                        [disabled]="createSession && !createSession.myForm.valid" (click)="onSubmit()">{{"PUBLISH_AND_ADD_LINK" |
+                        translate}}
+                    </button>
+                    <button mat-raised-button class="button-shadow" color="primary" *ngIf="sessionId" matStepperNext
+                        [disabled]="createSession && !createSession.myForm.valid" (click)="onSubmit()">Save
+                    </button>    
+                </div>
+            </mat-card>
         </div>
-        <div fxLayoutAlign="center center">
-            <button mat-raised-button class="button-shadow" color="primary" [disabled]="createSession && !createSession.myForm.valid" (click)="onSubmit()">{{"PUBLISH" | translate}}</button>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>{{'MEETING_LINK' | translate}}</ng-template>
+        <div fxLayoutAlign="center">
+            <mat-card *ngIf="meetingPlatforms" fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
+                fxLayoutAlign="center center" fxLayoutGap="10px">
+                <h2>{{'ADD_MEETING_LINK' | translate}}</h2>
+                <div class="platform-conatiner"  fxLayout="column" fxLayoutGap="10px">
+                    <div>
+                        <mat-form-field fxFlex="100%">
+                            <mat-icon class="icon">video_call</mat-icon>
+                            <mat-select #link class="meetingPlatforms" fxFlex fxFlexAlign="center" [(value)]="selectedLink" [(ngModel)]="selectedLink">
+                                <mat-option [value]="option.name" *ngFor="let option of meetingPlatforms" (click)="clickOptions(option)">
+                                    {{ option.name }}
+                                </mat-option>
+                            </mat-select>
+                              <mat-hint class="hint" fxLayoutAlign="center center"><mat-icon class="mat-icon-info">info</mat-icon>{{selectedHint}}</mat-hint>
+                        </mat-form-field> 
+                    </div>
+                    <div *ngFor="let option of meetingPlatforms" fxLayout="column" fxLayoutGap="10px">
+                        <app-dynamic-form *ngIf="selectedLink==option.name"   [jsonFormData]=option.form #platform></app-dynamic-form>
+                    </div>
+                </div>
+                
+                <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10%">
+                    <button mat-raised-button class="button-shadow skip-button" *ngIf="!sessionDetails?.meetingInfo" (click)="setItLater()">{{"SKIP" | translate}}</button>
+                    <button mat-raised-button class="button-shadow" [disabled]="platform && !platform.myForm.valid"  color="primary"  (click)="onSubmitLink()">{{"SUBMIT" | translate}}</button>
+                </div>
+            </mat-card>
         </div>
-    </mat-card>
-</div>  
+        <div>
+        </div>
+    </mat-step>
+</mat-stepper>

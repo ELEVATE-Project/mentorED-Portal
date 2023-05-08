@@ -147,7 +147,6 @@ export class DynamicFormComponent implements OnInit {
   }
   
   onSubmit() {
-    console.log(this.myForm.valid, this.myForm.value)
     this.isFormValid();
     this.onEnter.emit(this.isFormValid())
   }

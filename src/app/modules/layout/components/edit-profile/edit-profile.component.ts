@@ -45,7 +45,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
 
   ngOnInit(): void {
     this.formService.getForm(EDIT_PROFILE_FORM).subscribe((form) => {
-      this.formData = form
+      this.formData = form.fields;
       this.localStorage.getLocalData(localKeys.USER_DETAILS).then((user) => {
         if (user) {
           this.imgData.image = (user.image) ? user.image : '';
@@ -67,7 +67,6 @@ export class EditProfileComponent implements OnInit, CanLeave {
       })
       return dialog.afterClosed().pipe(
         map(((res) => {
-            console.log(res)
             return res
           }))
       )

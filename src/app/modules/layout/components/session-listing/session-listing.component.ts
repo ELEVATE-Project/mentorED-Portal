@@ -7,6 +7,8 @@ import { DbService } from 'src/app/core/services/db/db.service';
 import { SessionService } from 'src/app/core/services/session/session.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
+import { JoinDialogBoxComponent } from 'src/app/shared/components/join-dialog-box/join-dialog-box.component';
+import { MatDialog } from '@angular/material/dialog';
 
 interface item {
   userId?: string;
@@ -101,8 +103,8 @@ content:""}
             break
           case 'joinAction':
             let id = this.selectedPage == '/enrolled-sessions' ? event.data.sessionId : event.data._id
-            this.sessionService
-              .joinSession(id)
+             let passingParameters = {id : id, data :event.data }
+            this.sessionService.joinSession(passingParameters )
             break
         }
       }else{
