@@ -11,7 +11,7 @@
                 </div>
                 <div fxLayoutAlign="center center">
                     <button mat-raised-button class="button-shadow" color="primary" *ngIf="!sessionId"
-                        [disabled]="createSession && !createSession.myForm.valid" (click)="onSubmit()">{{"PUBLISH" |
+                        [disabled]="createSession && !createSession.myForm.valid" (click)="onSubmit()">{{"PUBLISH_AND_ADD_LINK" |
                         translate}}
                     </button>
                     <button mat-raised-button class="button-shadow" color="primary" *ngIf="sessionId" matStepperNext
@@ -45,7 +45,7 @@
                 </div>
                 
                 <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10%">
-                    <button mat-raised-button class="button-shadow skip-button" *nfIf="sessionDetails?.meetingInfo" (click)="setItLater()">{{"SKIP" | translate}}</button>
+                    <button mat-raised-button class="button-shadow skip-button" *ngIf="sessionDetails?.meetingInfo" (click)="setItLater()">{{"SKIP" | translate}}</button>
                     <button mat-raised-button class="button-shadow" [disabled]="platform && !platform.myForm.valid"  color="primary"  (click)="onSubmitLink()">{{"SUBMIT" | translate}}</button>
                 </div>
             </mat-card>
