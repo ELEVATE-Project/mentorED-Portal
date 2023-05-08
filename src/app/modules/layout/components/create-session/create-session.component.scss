@@ -53,7 +53,10 @@ mat-radio-group {
 }
 .mat-icon-info{
     padding: 0px 5px;
+    display: flex;
+    align-self: baseline;
 }
 .hint{
    word-wrap:break-word;
+   font-size: 12px;
 }
