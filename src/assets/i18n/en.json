@@ -143,5 +143,7 @@
     "SKIP":"Set it later",
     "MEETING_LINK":"Meeting link",
     "ADD_MEETING_LINK":"Add meeting link",
-    "MEETING_PLATFORM":"Meeting platform"
+    "MEETING_PLATFORM":"Meeting platform",
+    "PASSWORD":"Password",
+    "MEETING_ID":"Meeting id"
 }
