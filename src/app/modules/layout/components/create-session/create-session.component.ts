@@ -52,7 +52,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   secondStepper:any = false;
   imageChanged: any = false;
   selectedLink: any = 'Big blue button (Default)'
-  selectedHint:any="Big blue button is a default platform , if user didnt select other meeting platform then this will be as default.";
+  selectedHint:any="Big blue button is the default meeting platform.";
   firstStepperTitle:any;
   meetingPlatforms:any ;
 
