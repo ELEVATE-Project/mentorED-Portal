@@ -45,7 +45,7 @@
                 </div>
                 
                 <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10%">
-                    <button mat-raised-button class="button-shadow skip-button" *ngIf="sessionDetails?.meetingInfo" (click)="setItLater()">{{"SKIP" | translate}}</button>
+                    <button mat-raised-button class="button-shadow skip-button" *ngIf="!sessionDetails?.meetingInfo" (click)="setItLater()">{{"SKIP" | translate}}</button>
                     <button mat-raised-button class="button-shadow" [disabled]="platform && !platform.myForm.valid"  color="primary"  (click)="onSubmitLink()">{{"SUBMIT" | translate}}</button>
                 </div>
             </mat-card>
