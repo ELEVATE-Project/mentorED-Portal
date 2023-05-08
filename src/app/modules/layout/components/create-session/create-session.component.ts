@@ -51,8 +51,8 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   meetinLinkIncludes:any;
   secondStepper:any = false;
   imageChanged: any = false;
-  selectedLink: any = 'Big blue button (Default)'
-  selectedHint:any="Big blue button is the default meeting platform.";
+  selectedLink: any;
+  selectedHint:any;
   firstStepperTitle:any;
   meetingPlatforms:any ;
 
@@ -119,6 +119,8 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   getPlatformFormDetails(){
     this.form.getForm(PLATFORMS).subscribe((form)=>{
       this.meetingPlatforms = form.fields.forms;
+      this.selectedLink = form.fields.forms[0].name;
+      this.selectedHint = form.fields.forms[0].hint;
     })
  }
  
