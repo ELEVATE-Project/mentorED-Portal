@@ -202,9 +202,13 @@ export class CreateSessionComponent implements OnInit, CanLeave {
      
       if( existingData.meetingInfo.platform == this?.meetingPlatforms[j].name){
          this.selectedLink = existingData.meetingInfo.platform;
-        let obj = this?.meetingPlatforms[j]?.form?.controls.find( (link:any) => link?.name == 'link')
-        if(existingData.meetingInfo.link){
-          obj.value = existingData?.meetingInfo?.link
+        let link = this?.meetingPlatforms[j]?.form?.controls.find( (link:any) => link?.name == 'link')
+        let meetingId = this?.meetingPlatforms[j]?.form?.controls.find( (meetingId:any) => meetingId?.name == 'meetingId')
+        let password = this?.meetingPlatforms[j]?.form?.controls.find( (password:any) => password?.name == 'password')
+        if(existingData.meetingInfo){
+          link.value = existingData?.meetingInfo?.link
+          meetingId.value = existingData?.meetingInfo?.meta?.meetingId
+          password.value = existingData?.meetingInfo?.meta?.password
         }
       }
     }
