@@ -101,20 +101,20 @@ export class SessionDetailComponent implements OnInit {
     this.sessionService.getSessionDetailsAPI(this.id).subscribe((response: any) => {
       (this.details.form[0].key=='description')? false: this.details.form.unshift({title: response.title, key: 'description'})
       this.sessionId = response._id
-      if(!response.meetingInfo.platform){
-        this.openSnackBar('Meeting platform is not added, please add platform', 'Add meeting link')
-      }
       let readableStartDate = moment.unix(response.startDate).format("DD/MM/YYYY");
       let readableStartTime = moment.unix(response.startDate).format("hh:mm A");
       let currentTimeInSeconds = Math.floor(Date.now() / 1000)
-      this.isEnabled = ((response.startDate - currentTimeInSeconds) < 600) ? true : false
-      this.isJoinEnabled = ((response.startDate - currentTimeInSeconds) < 300) ? true : false
+      this.isEnabled = (((response.startDate - currentTimeInSeconds) < 600) && !(response?.meetingInfo?.platform == 'OFF'))? true : false
+      this.isJoinEnabled = (((response.startDate - currentTimeInSeconds) < 300) && !(response?.meetingInfo?.platform == 'OFF')) ? true : false
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate;
       this.details.data.startTime = readableStartTime;
       this.details.data.meetingInfo = response.meetingInfo.platform
       var response = response;
       (response)?this.creator(response):false;
+      if((response.meetingInfo.platform == 'OFF') && this.isCreator){
+        this.openSnackBar('Meeting platform is not added, please add platform', 'Add meeting link')
+      }
       let  buttonName = this.isCreator ? 'START':'JOIN'
       let method = this.isCreator ? 'startSession':'joinSession'
       this.pastSession = (this.details.data.status ==='completed') ? false : true
@@ -193,8 +193,8 @@ export class SessionDetailComponent implements OnInit {
 
    openSnackBar(message: any, action?: any) {
     this.snackbarRef = this._snackBar.open(message, action, {
-      horizontalPosition: 'center',
       verticalPosition: 'top',
+      panelClass: ['add-platform-snackbar'],
     });
     this.snackbarRef.onAction().subscribe(() =>{
       this.router.navigate([`/${"edit-session"}/${this.sessionId}`], {queryParams:{ secondStepper:true}})
