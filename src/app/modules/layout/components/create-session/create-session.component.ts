@@ -119,7 +119,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   getPlatformFormDetails(){
     this.form.getForm(PLATFORMS).subscribe((form)=>{
       this.meetingPlatforms = form?.fields?.forms;
-      if(this.sessionDetails.meetingInfo.platform == 'OFF' && this.sessionDetails){
+      if(this.sessionDetails.meetingInfo.platform == 'OFF' || !this.sessionId){
         this.selectedLink = form.fields?.forms[0]?.name;
         this.selectedHint = form.fields?.forms[0]?.hint;
       }
