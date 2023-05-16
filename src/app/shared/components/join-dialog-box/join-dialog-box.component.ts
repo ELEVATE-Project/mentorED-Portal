@@ -18,8 +18,8 @@ export class JoinDialogBoxComponent implements OnInit {
   onClickJoin(){
     window.location.replace(this.data.result.link)
   }
-  copyToClipBoard() {
-    navigator.clipboard.writeText(this.data.sessionData.meetingInfo?.meta?.password).then(() => {
+  copyToClipBoard(copyData:any) {
+    navigator.clipboard.writeText(copyData).then(() => {
       this.toast.showMessage('Copied successfully.')
     },() => {
       console.error('Failed to copy');

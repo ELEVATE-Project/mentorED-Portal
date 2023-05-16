@@ -31,7 +31,7 @@
                 <p fxLayoutAlign="start center" >{{'PASSWORD' | translate}}: </p>
             </div>
             <div>
-                <p fxLayoutAlign="start center" class="heading">{{data.result?.meta?.password}} <mat-icon fxLayoutAlign="start center" class="mat-icon-content-copy" (click)="copyToClipBoard()">content_copy</mat-icon></p>
+                <p fxLayoutAlign="start center" class="heading">{{data.result?.meta?.password}} <mat-icon fxLayoutAlign="start center" class="mat-icon-content-copy" (click)="copyToClipBoard(data.result?.meta?.password)">content_copy</mat-icon></p>
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="10px">
@@ -40,7 +40,7 @@
                 <p fxLayoutAlign="start center" >{{'MEETING_ID' | translate}}: </p>
             </div>
             <div>
-                <p fxLayoutAlign="start center" class="heading">{{data.result?.meta?.meetingId}} <mat-icon fxLayoutAlign="start center" class="mat-icon-content-copy" (click)="copyToClipBoard()">content_copy</mat-icon></p>
+                <p fxLayoutAlign="start center" class="heading">{{data.result?.meta?.meetingId}} <mat-icon fxLayoutAlign="start center" class="mat-icon-content-copy" (click)="copyToClipBoard(data.result?.meta?.meetingId)">content_copy</mat-icon></p>
             </div>
         </div>
        

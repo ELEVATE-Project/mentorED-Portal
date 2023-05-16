@@ -92,11 +92,11 @@ export class CreateSessionComponent implements OnInit, CanLeave {
         this.secondStepper = params['secondStepper']
       }
     )
-    this.getPlatformFormDetails();
     if(this.sessionId){
       this.sessionDetailApi()
     }else {
       this.getFormDetails()
+      this.getPlatformFormDetails();
     }
     
   }
@@ -118,9 +118,12 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   }
   getPlatformFormDetails(){
     this.form.getForm(PLATFORMS).subscribe((form)=>{
-      this.meetingPlatforms = form.fields.forms;
-      this.selectedLink = form.fields.forms[0].name;
-      this.selectedHint = form.fields.forms[0].hint;
+      this.meetingPlatforms = form?.fields?.forms;
+      if(this.sessionDetails.meetingInfo.platform == 'OFF' || !this.sessionId){
+        this.selectedLink = form.fields?.forms[0]?.name;
+        this.selectedHint = form.fields?.forms[0]?.hint;
+      }
+      this.changeDetRef.detectChanges();
     })
  }
  
@@ -193,19 +196,30 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   sessionDetailApi(){
     this.sessionService.getSessionDetailsAPI(this.sessionId).subscribe((response: any) =>{
       this.sessionDetails = response;
-      this.getFormDetails()
+      this.getPlatformFormDetails();
+      this.getFormDetails();
     })
   }
   preFillData(existingData: any) {
     this.imgData.image = (existingData['image'][0]) ? existingData['image'][0] : '';
     for(let j=0;j<this?.meetingPlatforms.length;j++){
      
-      if( existingData.meetingInfo.platform == this?.meetingPlatforms[j].name){
-         this.selectedLink = existingData.meetingInfo.platform;
-        let obj = this?.meetingPlatforms[j]?.form?.controls.find( (link:any) => link?.name == 'link')
-        if(existingData.meetingInfo.link){
-          obj.value = existingData?.meetingInfo?.link
+      if( existingData?.meetingInfo?.platform == this?.meetingPlatforms[j].name){
+        this.selectedLink = this?.meetingPlatforms[j].name;
+        this.selectedHint = this?.meetingPlatforms[j].hint;
+        let link = this?.meetingPlatforms[j]?.form?.controls.find( (link:any) => link?.name == 'link')
+        let meetingId = this?.meetingPlatforms[j]?.form?.controls.find( (meetingId:any) => meetingId?.name == 'meetingId')
+        let password = this?.meetingPlatforms[j]?.form?.controls.find( (password:any) => password?.name == 'password')
+        if(existingData?.meetingInfo?.link){
+          link.value = existingData?.meetingInfo?.link 
+          this.changeDetRef.detectChanges();
         }
+        if(existingData?.meetingInfo?.meta?.meetingId){
+          meetingId.value = existingData?.meetingInfo?.meta?.meetingId
+          password.value = existingData?.meetingInfo?.meta?.password
+          this.changeDetRef.detectChanges();
+        }
+        this.changeDetRef.detectChanges();
       }
     }
     
