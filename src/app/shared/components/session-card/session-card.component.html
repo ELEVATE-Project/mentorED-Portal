@@ -22,6 +22,10 @@
                 <mat-icon>alarm</mat-icon>
                 <p>Session time: {{cardData?.startDate | date:'shortTime'}}</p>
             </div>
+            <!-- <div class="card-session-time" *ngIf="cardData?.meetingInfo" fxLayout="row">
+                <mat-icon>video_call</mat-icon>
+                <p>meeting platform: {{cardData?.meetingInfo?.platform}} </p>
+            </div> -->
         </div>
         <div fxLayout="row">
             <p class="sub-card-view-details" (click)="onCardClick($event, cardData)">View details</p>

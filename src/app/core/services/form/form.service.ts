@@ -65,16 +65,16 @@ export class FormService {
     };
     return this.apiService.post(config).pipe(
       map((result: any) => {
-        let formData = _.pick(result, 'meta.formsVersion', 'result.data.fields.controls')
+        let formData = _.pick(result, 'meta.formsVersion', 'result.data')
         this.addFormToLocal(formBody.type, formData);
-        return result.result.data.fields;
+        return result.result.data;
       })
     )
   }
 
   // Storing form in local
   addFormToLocal(id: string, formData: any): any {
-    this.dbService.add('forms', { id: id, controls: formData.result.data.fields.controls }).subscribe((form) => {
+    this.dbService.add('forms', { id: id, fields: formData.result.data.fields }).subscribe((form) => {
       this.localStorage.saveLocalData(localKeys.FORM_VERSIONS, JSON.stringify(formData.meta.formsVersion))
     })
   }

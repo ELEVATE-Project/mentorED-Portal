@@ -80,7 +80,7 @@
     "ADD_IMAGE": "Add image",
     "REMOVE_IMAGE": "Remove image",
     "ADD_NEW": "Add new",
-    "PUBLISH": "Publish",
+    "PUBLISH_AND_ADD_LINK": "Publish and Add link",
     "MY_PROFILE": "My profile",
     "ADD": "Add",
     "CANCEL": "Cancel",
@@ -139,5 +139,11 @@
     "EDIT_SESSION":"Edit session",
     "VIEW_PROFILE":"View profile",
     "NO_PROFILE_MESSAGE": "No information found. Please click on 'Edit Profile' to update your profile.",
-    "EDIT_SESSION_DETAILS": "Edit session details"
+    "EDIT_SESSION_DETAILS": "Edit session details",
+    "SKIP":"Set it later",
+    "MEETING_LINK":"Meeting link",
+    "ADD_MEETING_LINK":"Add meeting link",
+    "MEETING_PLATFORM":"Meeting platform",
+    "PASSWORD":"Password",
+    "MEETING_ID":"Meeting id"
 }
