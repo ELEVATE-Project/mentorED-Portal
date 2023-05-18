@@ -22,10 +22,14 @@
                 <mat-icon>alarm</mat-icon>
                 <p>Session time: {{cardData?.startDate | date:'shortTime'}}</p>
             </div>
-            <!-- <div class="card-session-time" *ngIf="cardData?.meetingInfo" fxLayout="row">
+            <div class="card-session-time" *ngIf="cardData?.meetingInfo?.platform == 'OFF' && isCreator && cardData.status != 'completed'" fxLayout="row">
                 <mat-icon>video_call</mat-icon>
-                <p>meeting platform: {{cardData?.meetingInfo?.platform}} </p>
-            </div> -->
+                <p class="add-meeting-link" (click)="clickOnAddMeetingLink(cardData)">Add meeting link</p>
+            </div>
+            <div class="card-session-time" *ngIf="!(cardData?.meetingInfo?.platform == 'OFF')" fxLayout="row">
+                <mat-icon>video_call</mat-icon>
+                <p>Meeting platform: {{cardData?.meetingInfo?.platform}} </p>
+            </div>
         </div>
         <div fxLayout="row">
             <p class="sub-card-view-details" (click)="onCardClick($event, cardData)">View details</p>

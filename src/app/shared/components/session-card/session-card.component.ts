@@ -57,4 +57,9 @@ export class SessionCardComponent implements OnInit {
     this.router.navigate([`/${"session-detail"}/${value.data}`])
   }
 
+  clickOnAddMeetingLink(cardData:any){
+    let id = this.selectedPage == '/enrolled-sessions' ? cardData.sessionId : cardData._id
+    this.router.navigate([`/${"edit-session"}/${id}`], {queryParams:{ secondStepper:true}})
+  }
+  
 }

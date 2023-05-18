@@ -74,8 +74,9 @@ export class FormService {
 
   // Storing form in local
   addFormToLocal(id: string, formData: any): any {
-    this.dbService.add('forms', { id: id, fields: formData.result.data.fields }).subscribe((form) => {
-      this.localStorage.saveLocalData(localKeys.FORM_VERSIONS, JSON.stringify(formData.meta.formsVersion))
+    const formDatCopy = JSON.parse(JSON.stringify(formData))
+    this.dbService.add('forms', { id: id, fields: formDatCopy.result.data.fields }).subscribe((form) => {
+      this.localStorage.saveLocalData(localKeys.FORM_VERSIONS, JSON.stringify(formDatCopy.meta.formsVersion))
     })
   }
 }

@@ -16,7 +16,7 @@ export class JoinDialogBoxComponent implements OnInit {
   }
 
   onClickJoin(){
-    window.location.replace(this.data.result.link)
+    window.location.href = this.data.result.link
   }
   copyToClipBoard(copyData:any) {
     navigator.clipboard.writeText(copyData).then(() => {
