@@ -38,7 +38,7 @@ export class SessionCardComponent implements OnInit {
           : { label: 'ENROLL', type: 'enrollAction' }
     }
     this.buttonConfig.isEnabled =
-     (( (this.cardData.startDate - this.currentTimeInSeconds) < 600 && isCreator || (this.cardData.startDate - this.currentTimeInSeconds) < 300 && !isCreator) && !(this.cardData?.meetingInfo?.platform == 'OFF')) ? true : false
+     ( (this.cardData.startDate - this.currentTimeInSeconds) < 600 && !(this.cardData?.meetingInfo?.platform == 'OFF')) ? true : false
     this.cardData.startDate = (this.cardData.startDate>0)?moment.unix(this.cardData.startDate).toLocaleString():this.cardData.startDate;
   }
   buttonClicked(event:any, action: any, data: any) {
