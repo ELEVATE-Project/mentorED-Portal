@@ -40,12 +40,13 @@ mat-icon{
 
 ::ng-deep snack-bar-container.add-platform-snackbar{
     color: $white;
-    font-weight: 900;
-    background-color: rgb(212,70,24)
+    font-weight: 800;
+    background-color:$theme  
 }
 
 ::ng-deep snack-bar-container.add-platform-snackbar button{
+    cursor:pointer;
     color:$white;
-    font-weight: 900;
-    background-color: rgb(200,60,20);
+    font-weight: 500;
+    background-color: $green;
 }

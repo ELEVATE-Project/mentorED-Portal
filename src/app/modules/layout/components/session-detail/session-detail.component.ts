@@ -105,7 +105,6 @@ export class SessionDetailComponent implements OnInit {
       let readableStartTime = moment.unix(response.startDate).format("hh:mm A");
       let currentTimeInSeconds = Math.floor(Date.now() / 1000)
       this.isEnabled = (((response.startDate - currentTimeInSeconds) < 600) && !(response?.meetingInfo?.platform == 'OFF'))? true : false
-      this.isJoinEnabled = (((response.startDate - currentTimeInSeconds) < 300) && !(response?.meetingInfo?.platform == 'OFF')) ? true : false
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate;
       this.details.data.startTime = readableStartTime;
@@ -121,7 +120,7 @@ export class SessionDetailComponent implements OnInit {
       let showButton = (this.details?.data?.isEnrolled && (this.details.data.status ==='published'|| this.details.data.status ==='live') || this.isCreator) && this.pastSession
       let showShareButton = ((this.details.data.status ==='published'|| this.details.data.status ==='live')  || this.isCreator) && this.pastSession
       this.paginatorConfigData = {
-        buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:this.isCreator ? !this.isEnabled: !this.isJoinEnabled, service: 'sessionService', method: method, passingParameter:{id : this?.id, data: response}, showButton:showButton},
+        buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:!this.isEnabled, service: 'sessionService', method: method, passingParameter:{id : this?.id, data: response}, showButton:showButton},
         {buttonName:'SHARE_SESSION',cssClass:"shareButton", matIconName:'share', isDisable:false,service: 'utilService', method: 'shareButton',passingParameter:"SHARE_SESSION",showButton:showShareButton}]
       }
       this.pageTitle.editButtonConfig(this.paginatorConfigData)
