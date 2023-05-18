@@ -51,7 +51,7 @@ startSession(parameters: any){
     payload: {},
   }
   return this.apiService.get(config).subscribe((result: any) => {
-      window.location.replace(result.result.link)
+    window.location.href = result.result.link
     })
 }
   createSession(formData:any, id?: string) {
