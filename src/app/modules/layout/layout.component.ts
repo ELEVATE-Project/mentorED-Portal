@@ -38,11 +38,10 @@ export class LayoutComponent implements OnInit {
   }
 
   languageEvent() {
-    console.log(this.selectedLanguage)
     this.localStorage.saveLocalData(localKeys.SELECTED_LANGUAGE, this.selectedLanguage).then(()=>{
       this.translate.use(this.selectedLanguage).subscribe(()=>{
         this.toast.showMessage("LANGUAGE_CHANGED_SUCCESSFULLY", "success")
-        this.profileService.profileUpdate({preferredLanguage:this.selectedLanguage},false).subscribe();
+        this.profileService.profileUpdate({preferredLanguage:this.selectedLanguage},false,false).subscribe();
       })
     })
   }

@@ -111,8 +111,8 @@ export class SessionDetailComponent implements OnInit {
       this.details.data.meetingInfo = response.meetingInfo.platform
       var response = response;
       (response)?this.creator(response):false;
-      if((response.meetingInfo.platform == 'OFF') && this.isCreator){
-        this.openSnackBar('Meeting platform is not added, please add platform', 'Add meeting link')
+      if((response.meetingInfo.platform == 'OFF') && this.isCreator && response.status=='published'){
+        this.openSnackBar('Meeting link is not added, please add a link.', 'Add meeting link')
       }
       let  buttonName = this.isCreator ? 'START':'JOIN'
       let method = this.isCreator ? 'startSession':'joinSession'
