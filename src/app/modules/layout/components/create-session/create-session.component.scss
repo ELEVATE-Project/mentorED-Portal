@@ -56,3 +56,12 @@ mat-radio-group {
    word-wrap:break-word;
    font-size: 12px;
 }
+
+.edit-session{
+    ::ng-deep .mat-step-header .mat-step-icon {
+        background-color: $theme;
+    }
+    ::ng-deep .mat-step-text-label{
+        color: $black;
+    } 
+}
