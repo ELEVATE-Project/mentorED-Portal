@@ -1,4 +1,4 @@
-<mat-stepper linear #stepper [ngClass]=" (!this.sessionId) ? 'stepper': '' ">
+<mat-stepper linear #stepper [ngClass]=" (!this.sessionId) ? 'stepper': 'edit-session' ">
     <mat-step>
         <ng-template matStepLabel>{{firstStepperTitle | translate}}</ng-template>
         <div fxLayoutAlign="center">

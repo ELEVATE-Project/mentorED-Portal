@@ -26,7 +26,7 @@
                 <mat-icon>video_call</mat-icon>
                 <p class="add-meeting-link" (click)="clickOnAddMeetingLink(cardData)">Add meeting link</p>
             </div>
-            <div class="card-session-time" *ngIf="!(cardData?.meetingInfo?.platform == 'OFF')" fxLayout="row">
+            <div class="card-session-time" *ngIf="!(cardData?.meetingInfo?.platform == 'OFF') || !isCreator" fxLayout="row">
                 <mat-icon>video_call</mat-icon>
                 <p>Meeting platform: {{cardData?.meetingInfo?.platform}} </p>
             </div>
