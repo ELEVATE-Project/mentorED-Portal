@@ -53,6 +53,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   imageChanged: any = false;
   selectedLink: any;
   selectedHint:any;
+  selectedValue:any
   firstStepperTitle:any;
   meetingPlatforms:any ;
 
@@ -241,7 +242,9 @@ export class CreateSessionComponent implements OnInit, CanLeave {
 
   clickOptions(option:any){
     this.selectedHint = option.hint;
-   this.meetinLinkIncludes = this.selectedLink == 'Google meet' ? 'meet':'zoom';
+    this.selectedValue = option.value;
+    
+  //  this.meetinLinkIncludes = this.selectedLink == 'Google meet' ? 'meet':'zoom';
   }
   
   onSubmitLink(){
@@ -250,6 +253,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
         'meetingInfo':{
         'platform': this.selectedLink,
         'link': this.platform.myForm.value?.link,
+        'value': this.selectedValue ,
         "meta": {
           "password": this.platform.myForm.value?.password,
           "meetingId":this.platform.myForm.value?.meetingId
