@@ -1,5 +1,6 @@
-<mat-card class="card-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px" (click)="onCardClick($event, cardData)">
-   
+<mat-card class="card-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px"
+    (click)="onCardClick($event, cardData)">
+
     <div class="card-images" fxFlex="40%">
         <div class="image"
             [ngStyle]="{'background-image':(cardData?.image && cardData?.image.length) ? 'url(' + cardData?.image + ')' : 'url(\'/assets/images/session-default-img.png\')' }">
@@ -10,7 +11,7 @@
             <mat-icon class="status-badge" *ngIf="cardData?.status=='live'" matBadge="Live"></mat-icon>
             <p class="card-detail-bold text-ellipse">{{cardData?.title}}</p>
         </div>
- 
+
         <p class="card-detail-bold text-ellipse">{{cardData?.mentorName}}</p>
         <div>
             <div class="card-session-date" fxLayout="row">
@@ -22,11 +23,14 @@
                 <mat-icon>alarm</mat-icon>
                 <p>Session time: {{cardData?.startDate | date:'shortTime'}}</p>
             </div>
-            <div class="card-session-time" *ngIf="cardData?.meetingInfo?.platform == 'OFF' && isCreator && cardData.status != 'completed'" fxLayout="row">
+            <div class="card-session-time"
+                *ngIf="cardData?.meetingInfo?.platform == 'OFF' && isCreator && cardData.status != 'completed'"
+                fxLayout="row">
                 <mat-icon>video_call</mat-icon>
                 <p class="add-meeting-link" (click)="clickOnAddMeetingLink(cardData)">Add meeting link</p>
             </div>
-            <div class="card-session-time" *ngIf="!(cardData?.meetingInfo?.platform == 'OFF') || !isCreator" fxLayout="row">
+            <div class="card-session-time" *ngIf="!(cardData?.meetingInfo?.platform == 'OFF') || !isCreator"
+                fxLayout="row">
                 <mat-icon>video_call</mat-icon>
                 <p>Meeting platform: {{cardData?.meetingInfo?.platform}} </p>
             </div>
@@ -34,7 +38,9 @@
         <div fxLayout="row">
             <p class="sub-card-view-details" (click)="onCardClick($event, cardData)">View details</p>
             <button *ngIf="cardData?.status != 'completed'" class="sub-card-details-button" mat-raised-button
-        [ngClass]=" buttonConfig?.label=='ENROLL' ? 'primary' : 'secondary'" [disabled]="!buttonConfig?.isEnabled && buttonConfig?.label !='ENROLL'"  (click)="buttonClicked($event, buttonConfig, cardData)">{{ buttonConfig?.label | translate}}</button>
-        </div> 
-    </div> 
+                [ngClass]=" buttonConfig?.label=='ENROLL' ? 'primary' : 'secondary'"
+                [disabled]="!buttonConfig?.isEnabled && buttonConfig?.label !='ENROLL'"
+                (click)="buttonClicked($event, buttonConfig, cardData)">{{ buttonConfig?.label | translate}}</button>
+        </div>
+    </div>
 </mat-card>
