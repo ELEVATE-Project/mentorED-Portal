@@ -163,7 +163,7 @@ export class SessionDetailComponent implements OnInit {
     }  
   }
   editSession(){
-    this.router.navigate(['/edit-session', this.id])
+    this.router.navigate(['/edit-session', this.id], {queryParams:{details:true}})
   }
   deleteSession(){
     let dialogRef = this.dialog.open(ExitPopupComponent, {
@@ -196,7 +196,7 @@ export class SessionDetailComponent implements OnInit {
       panelClass: ['add-platform-snackbar'],
     });
     this.snackbarRef.onAction().subscribe(() =>{
-      this.router.navigate([`/${"edit-session"}/${this.sessionId}`], {queryParams:{ details:true}})
+      this.router.navigate([`/${"edit-session"}/${this.sessionId}`], {queryParams:{ secondStepper:true, details:true}})
     })
   }
  

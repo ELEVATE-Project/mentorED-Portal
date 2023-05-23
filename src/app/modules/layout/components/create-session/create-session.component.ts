@@ -104,7 +104,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     
   }
   ngAfterViewInit() {
-    if( this.secondStepper || this.details){
+    if( this.secondStepper){
       this.stepper.selectedIndex = 1; 
     }
      
@@ -263,10 +263,10 @@ export class CreateSessionComponent implements OnInit, CanLeave {
 
       }}
       this.sessionService.createSession(meetingInfo,this.sessionId).subscribe((result:any)=>{
-        if(this.secondStepper){
-          this.router.navigate([`/${"session-detail"}/${this.sessionId}`], {replaceUrl: true})
-        }else{
+        if(this.details){
           this.location.back();
+        }else{
+          this.router.navigate([`/${"session-detail"}/${this.sessionId}`], {replaceUrl: true})
         }
 
       })
