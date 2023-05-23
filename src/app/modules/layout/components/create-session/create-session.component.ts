@@ -92,7 +92,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     this.route.queryParams.subscribe(
       params => {
         this.secondStepper = params['secondStepper']
-        this.fromSessionDetails =params['details']
+        this.fromSessionDetails =params['from']
       }
     )
     if(this.sessionId){
