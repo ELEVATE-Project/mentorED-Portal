@@ -196,7 +196,7 @@ export class SessionDetailComponent implements OnInit {
       panelClass: ['add-platform-snackbar'],
     });
     this.snackbarRef.onAction().subscribe(() =>{
-      this.router.navigate([`/${"edit-session"}/${this.sessionId}`], {queryParams:{ secondStepper:true}})
+      this.router.navigate([`/${"edit-session"}/${this.sessionId}`], {queryParams:{ details:true}})
     })
   }
  

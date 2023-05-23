@@ -58,6 +58,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   meetingPlatforms:any ;
 
   private unsubscriber: Subject<void> = new Subject<void>();
+  details: any;
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
     private route: ActivatedRoute, private router: Router,
     private dialog: MatDialog) {
@@ -91,6 +92,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     this.route.queryParams.subscribe(
       params => {
         this.secondStepper = params['secondStepper']
+        this.details =params['details']
       }
     )
     if(this.sessionId){
@@ -102,7 +104,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     
   }
   ngAfterViewInit() {
-    if( this.secondStepper){
+    if( this.secondStepper || this.details){
       this.stepper.selectedIndex = 1; 
     }
      
@@ -261,7 +263,11 @@ export class CreateSessionComponent implements OnInit, CanLeave {
 
       }}
       this.sessionService.createSession(meetingInfo,this.sessionId).subscribe((result:any)=>{
-        this.router.navigate([`/${"session-detail"}/${this.sessionId}`])
+        if(this.secondStepper){
+          this.router.navigate([`/${"session-detail"}/${this.sessionId}`], {replaceUrl: true})
+        }else{
+          this.location.back();
+        }
 
       })
      
