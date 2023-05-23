@@ -56,9 +56,9 @@ export class CreateSessionComponent implements OnInit, CanLeave {
   selectedValue:any
   firstStepperTitle:any;
   meetingPlatforms:any ;
-
+  fromSessionDetails: any;
   private unsubscriber: Subject<void> = new Subject<void>();
-  details: any;
+  
   constructor(private form: FormService, private apiService: ApiService, private changeDetRef: ChangeDetectorRef, private http: HttpClient, private sessionService: SessionService, private location: Location, private toast: ToastService, private localStorage: LocalStorageService,
     private route: ActivatedRoute, private router: Router,
     private dialog: MatDialog) {
@@ -92,7 +92,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
     this.route.queryParams.subscribe(
       params => {
         this.secondStepper = params['secondStepper']
-        this.details =params['details']
+        this.fromSessionDetails =params['details']
       }
     )
     if(this.sessionId){
@@ -263,7 +263,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
 
       }}
       this.sessionService.createSession(meetingInfo,this.sessionId).subscribe((result:any)=>{
-        if(this.details){
+        if(this.fromSessionDetails){
           this.location.back();
         }else{
           this.router.navigate([`/${"session-detail"}/${this.sessionId}`], {replaceUrl: true})

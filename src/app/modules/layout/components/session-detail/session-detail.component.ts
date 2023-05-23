@@ -77,6 +77,7 @@ export class SessionDetailComponent implements OnInit {
   sessionId:any
   snackbarRef:any;
   isJoinEnabled: any;
+  fromSessionDetails = true;
   constructor(
     private router: Router,
     private sessionService: SessionService,
@@ -163,7 +164,7 @@ export class SessionDetailComponent implements OnInit {
     }  
   }
   editSession(){
-    this.router.navigate(['/edit-session', this.id], {queryParams:{details:true}})
+    this.router.navigate(['/edit-session', this.id], {queryParams:{from:this.fromSessionDetails}})
   }
   deleteSession(){
     let dialogRef = this.dialog.open(ExitPopupComponent, {
