@@ -77,6 +77,7 @@ export class SessionDetailComponent implements OnInit {
   sessionId:any
   snackbarRef:any;
   isJoinEnabled: any;
+  fromSessionDetails = true;
   constructor(
     private router: Router,
     private sessionService: SessionService,
@@ -163,7 +164,7 @@ export class SessionDetailComponent implements OnInit {
     }  
   }
   editSession(){
-    this.router.navigate(['/edit-session', this.id])
+    this.router.navigate(['/edit-session', this.id], {queryParams:{from:this.fromSessionDetails}})
   }
   deleteSession(){
     let dialogRef = this.dialog.open(ExitPopupComponent, {
@@ -196,7 +197,7 @@ export class SessionDetailComponent implements OnInit {
       panelClass: ['add-platform-snackbar'],
     });
     this.snackbarRef.onAction().subscribe(() =>{
-      this.router.navigate([`/${"edit-session"}/${this.sessionId}`], {queryParams:{ secondStepper:true}})
+      this.router.navigate([`/${"edit-session"}/${this.sessionId}`], {queryParams:{ secondStepper:true, from:this.fromSessionDetails}})
     })
   }
  
