@@ -1,17 +1,14 @@
 <div class="main-div" fxLayoutAlign="center center">
     <div fxLayout="row" fxFlex="79" fxLayoutGap="20px" class="container" fxFlexAlign="center center" fxLayout.xs="column" fxFlex.xs="100" fxFlex.sm="100">
         <div class="card-images" fxFlex="26%" fxFlex.sm="30%" fxFlexAlign="center center" fxLayout="column" fxLayoutGap="20px">
-            <div class="image" fxFlex="42">
-                <img class="image-inside" *ngIf="!details?.data?.image?.length || !details?.data?.image; else elseBlock" src="../../../assets/images/session-default-img.png"/>
-                <ng-template #elseBlock>
-                    <img class="image-inside" src="{{details.data.image}}"/>
-                </ng-template>
+            <div fxFlex="42%">
+                <div class="image" [ngStyle]="{'background-image':(details.data.image && details.data.image.length) ? 'url(' + details.data.image + ')' : 'url(\'/assets/images/session-default-img.png\')' }"></div>
             </div>
             <div fxFlex="25" fxLayoutGap="20px" fxLayout="column">
-                <button *ngIf="!details?.data?.isEnrolled && details.data.status != 'completed' && !isCreator" class="enroll-button" mat-raised-button color="primary" (click)="onEnroll()">{{details.enrollButton|translate}}</button>
-                <button *ngIf="details?.data?.isEnrolled && details.data.status ==='published' && !this.isJoinEnabled" class="enroll-button" mat-raised-button color="primary" (click)="unEnrollDialogBox()">{{details.confirmButton|translate}}</button>
-                <button *ngIf="isCreator && details.data.status != 'completed' && !isEnabled" class="enroll-button" mat-raised-button color="primary" (click)="editSession()"><mat-icon>mode_edit_outline</mat-icon>{{details.editSession|translate}}</button>
-                <button *ngIf="isCreator && details.data.status != 'completed' && !isEnabled" class="enroll-button" mat-raised-button color="primary" (click)="deleteSession()"><mat-icon>delete_outline</mat-icon>{{details.DeleteSession|translate}}</button>
+                <button *ngIf="!details?.data?.isEnrolled && details.data.status != 'completed' && !isCreator"class="enroll-button" mat-raised-button color="primary"(click)="onEnroll()">{{details.enrollButton|translate}}</button>
+                <button *ngIf="details?.data?.isEnrolled && details.data.status ==='published' && !this.isJoinEnabled"class="enroll-button" mat-raised-button color="primary"(click)="unEnrollDialogBox()">{{details.confirmButton|translate}}</button>
+                <button *ngIf="isCreator && details.data.status != 'completed' && !isEnabled" class="enroll-button"mat-raised-button color="primary"(click)="editSession()"><mat-icon>mode_edit_outline</mat-icon>{{details.editSession|translate}}</button>
+                <button *ngIf="isCreator && details.data.status != 'completed' && !isEnabled" class="enroll-button"mat-raised-button color="primary"(click)="deleteSession()"><mat-icon>delete_outline</mat-icon>{{details.DeleteSession|translate}}</button>
             </div>
             <div>
                 
