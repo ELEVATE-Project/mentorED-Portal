@@ -170,6 +170,7 @@ export class CreateSessionComponent implements OnInit, CanLeave {
             this.router.navigate([`/${"edit-session"}/${result?._id}`], {replaceUrl: true,queryParams:{ secondStepper:this.secondStepper}})
           }else{
             this.router.navigate([`/${"edit-session"}/${this.sessionId}`], {replaceUrl: true,queryParams:{ secondStepper:this.secondStepper}})
+            this.stepper.next();
           }
         });
       }
