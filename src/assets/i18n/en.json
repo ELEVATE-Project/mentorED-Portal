@@ -148,5 +148,6 @@
     "MEETING_ID":"Meeting id",
     "HELP":"Help",
     "REPORT_AN_ISSUE":"Report an issue",
-    "TELL_US_THE_PROBLEM":"Tell us more about the problem you faced"
+    "TELL_US_THE_PROBLEM":"Tell us more about the problem you faced",
+    "HAVING_TROUBLE_IN_LOGGING_IN":" Having trouble in logging in? Write to us"
 }
