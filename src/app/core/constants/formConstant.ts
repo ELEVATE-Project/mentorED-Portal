@@ -25,7 +25,7 @@ export const FAQ: IFORM = {
 	type: "faq",
 	subType: "faqPage",
 	action: "formFields",
-	templateName: "defaultTemplate"
+	templateName:"defaultTemplate"
 }
 
 export const HELP_VIDEOS: IFORM = {
