@@ -54,6 +54,17 @@ export class AuthService {
       })
     )
   }
+  getMailInfo(){
+    const config = {
+      url: API_CONSTANTS.GET_MAIL_INFO
+    };
+    return this.apiService.get(config).pipe(
+      map((data:any) => {
+        let result = _.get(data, 'result');
+        return result
+      })
+    )
+  }
 
   logoutAccount() {
     this.localStorage.removeLocalData([localKeys.USER_DETAILS,localKeys.TOKEN,localKeys.SELECTED_LANGUAGE]);

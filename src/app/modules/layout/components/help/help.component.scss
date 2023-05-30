@@ -1,0 +1,18 @@
+@import "../../../../../variables";
+mat-card{
+    margin-top: 2%;
+    padding: 0 auto;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 10px;
+}
+.button-shadow {
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
+    min-height: 45px;
+    font-size: 15px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    width: 230px;
+}
+.form-wrapper {
+    width: 80%;
+}

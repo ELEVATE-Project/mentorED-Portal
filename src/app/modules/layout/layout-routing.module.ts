@@ -14,6 +14,7 @@ import { LogoutComponent } from './components/logout/logout.component'
 import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { MentorProfileComponent } from './components/mentor-profile/mentor-profile.component'
 import { SessionDetailComponent } from './components/session-detail/session-detail.component'
+import { HelpComponent } from './components/help/help.component'
 
 const routes: Routes = [
   {
@@ -84,6 +85,10 @@ const routes: Routes = [
       { path: 'session-detail/:id',
         component: SessionDetailComponent,
         data: {title: 'SESSION_DETAIL'}
+      },
+      { path: 'help',
+        component: HelpComponent,
+        data: {title: 'HELP'}
       },
       {
         path: '',

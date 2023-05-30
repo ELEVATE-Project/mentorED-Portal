@@ -37,6 +37,7 @@ import { SlReportsLibraryModule} from '@shikshalokam/sl-reports-library'
 import { SessionDetailComponent } from './components/session-detail/session-detail.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
+import { HelpComponent } from './components/help/help.component';
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -56,7 +57,8 @@ import {MatRadioModule} from '@angular/material/radio';
     LogoutComponent,
     DashboardComponent,
     MentorProfileComponent,
-    SessionDetailComponent
+    SessionDetailComponent,
+    HelpComponent
   ],
   imports: [
     CommonModule,

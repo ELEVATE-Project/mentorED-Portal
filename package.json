@@ -37,6 +37,7 @@
     "moment": "^2.29.4",
     "ng-pick-datetime": "^7.0.0",
     "ng2-semantic-ui-v9": "^0.0.6",
+    "ngx-device-detector": "^4.0.1",
     "ngx-indexed-db": "^11.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
