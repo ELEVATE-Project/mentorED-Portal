@@ -18,6 +18,11 @@
           </mat-checkbox>
           <a routerLink="/auth/forgotPassword" class="forgot-password">{{ "FORGOT_PASSWORD" | translate }}</a>
         </div>
+        <div fxLayoutAlign="center" class="mailToContainer">
+          <a href="mailto:{{supportInfo?.reportIssue?.to}}?subject={{supportInfo?.reportIssue?.subject}}">
+            <span> Having trouble in logging in? Write to us</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

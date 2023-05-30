@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
       },
     ]
   };
+  supportInfo:any;
   formData :any= {controls: []}
   constructor(
     private router: Router,
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRemeberdDetails();
+    this.getMailInfo();
   }
 
   async getRemeberdDetails() {
@@ -64,6 +66,12 @@ export class LoginComponent implements OnInit {
     }
     this.formData.controls = this.controls.controls;
 
+  }
+  
+  getMailInfo(){
+      this.authService.getMailInfo().subscribe((result:any) =>{
+        this.supportInfo = result
+      })
   }
 
   onSubmit() {

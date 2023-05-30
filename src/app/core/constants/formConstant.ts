@@ -1,10 +1,10 @@
 import { IFORM } from '../interfaces/form';
 
 export const EDIT_PROFILE_FORM: IFORM = {
-  type: "profile",
-  subType: "profileForm",
-  action: "profileFields",
-  templateName: "defaultTemplate",
+	type: "profile",
+	subType: "profileForm",
+	action: "profileFields",
+	templateName: "defaultTemplate",
 };
 
 export const CREATE_SESSION_FORM: IFORM = {
@@ -25,19 +25,26 @@ export const FAQ: IFORM = {
 	type: "faq",
 	subType: "faqPage",
 	action: "formFields",
-	templateName:"defaultTemplate"
+	templateName: "defaultTemplate"
 }
 
 export const HELP_VIDEOS: IFORM = {
 	type: "helpVideos",
 	subType: "videos",
 	action: "videoFields",
-    templateName:"defaultTemplate",
+	templateName: "defaultTemplate",
 }
 
 export const PLATFORMS: IFORM = {
 	type: "platform",
 	subType: "platformForm",
 	action: "platformFields",
-	templateName: "defaultTemplate",	
+	templateName: "defaultTemplate",
+}
+
+export const HELP: IFORM = {
+	type: "help",
+	subType: "helpForm",
+	action: "helpFields",
+	templateName: "defaultTemplate"
 }
