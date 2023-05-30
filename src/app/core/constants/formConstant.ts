@@ -32,7 +32,7 @@ export const HELP_VIDEOS: IFORM = {
 	type: "helpVideos",
 	subType: "videos",
 	action: "videoFields",
-	templateName: "defaultTemplate",
+    templateName:"defaultTemplate",
 }
 
 export const PLATFORMS: IFORM = {
