@@ -10,13 +10,13 @@ import { ToastMessageComponent } from 'src/app/shared/components/toast-message/t
   providedIn: 'root'
 })
 export class ToastService {
-  durationInSeconds = 2;
+  durationInSeconds = 5;
   constructor(private _snackBar: MatSnackBar, private translate: TranslateService) { }
 
   showMessage(msg: any, cssclass: any = "success", options: any = {
     hp : 'center',
     vp : 'top', 
-    duration : 2
+    duration : 5
   }) {
     let texts: any;
     this.translate.get([msg]).subscribe(resp => {
