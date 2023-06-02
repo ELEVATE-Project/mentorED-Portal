@@ -55,7 +55,7 @@ export class HelpComponent implements OnInit {
 
   reportIssue(data:any){
     let config = {
-      url: API_CONSTANTS.GET_MAIL_INFO,
+      url: API_CONSTANTS.REPORT_ISSUE,
       payload:data
     }
      return this.apiService.post(config).pipe(
