@@ -119,7 +119,7 @@ a, div, img{
   margin: 0 0 10px !important;
 }
 .mat-horizontal-stepper-header-container {
-  width: 50%;
+  min-width: 50%;
   display: flex;
   align-self: center;
 }
