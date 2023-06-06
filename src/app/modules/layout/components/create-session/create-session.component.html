@@ -2,7 +2,7 @@
     <mat-step>
         <ng-template matStepLabel>{{firstStepperTitle | translate}}</ng-template>
         <div fxLayoutAlign="center">
-            <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
+            <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="100%" fxFlex.xs="100%" fxFlex.md="70%"
                 fxLayoutAlign="center center">
                 <app-image-upload [imgData]="imgData" (imageEvent)="imageEvent($event)"></app-image-upload>
                 <div class="form-wrapper" fxFlex="80%">
@@ -24,10 +24,10 @@
     <mat-step>
         <ng-template matStepLabel>{{'MEETING_LINK' | translate}}</ng-template>
         <div fxLayoutAlign="center">
-            <mat-card *ngIf="meetingPlatforms" fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
+            <mat-card *ngIf="meetingPlatforms" fxLayout="column" fxFlex="57%" fxFlex.sm="100%" fxFlex.xs="100%" fxFlex.md="70%"
                 fxLayoutAlign="center center" fxLayoutGap="10px">
                 <h2>{{'ADD_MEETING_LINK' | translate}}</h2>
-                <div class="platform-conatiner"  fxLayout="column" fxLayoutGap="10px">
+                <div class="platform-conatiner" fxLayout="column" fxLayoutGap="10px">
                     <div>
                         <mat-form-field fxFlex="100%">
                             <mat-icon class="icon">video_call</mat-icon>

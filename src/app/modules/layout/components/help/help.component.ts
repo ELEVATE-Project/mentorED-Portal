@@ -47,7 +47,7 @@ export class HelpComponent implements OnInit {
 
       }
  this.reportIssue(data).subscribe((result) =>{
-  this.toast.showMessage(result.message, "success")
+  
   this.location.back()
  })
      
@@ -60,6 +60,7 @@ export class HelpComponent implements OnInit {
     }
      return this.apiService.post(config).pipe(
       map((result: any) => {
+        this.toast.showMessage(result.message, "success")
         return result
       }),
     )
