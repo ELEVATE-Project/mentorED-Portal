@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/core/services/api/api.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { Location} from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-help',
@@ -24,7 +25,7 @@ export class HelpComponent implements OnInit {
   formData: any
   browserInfo:any
 
-  constructor(private form: FormService, private apiService: ApiService, private deviceService: DeviceDetectorService, private toast: ToastService,private location:Location) { }
+  constructor(private form: FormService, private apiService: ApiService, private deviceService: DeviceDetectorService, private toast: ToastService,private location:Location,private router: Router) { }
  
   ngOnInit(): void {
     this.getFormDetails()
@@ -47,8 +48,8 @@ export class HelpComponent implements OnInit {
 
       }
  this.reportIssue(data).subscribe((result) =>{
-  
-  this.location.back()
+  this.router.navigate([`/${"home"}`], {replaceUrl: true})
+  // this.location.back()
  })
      
   }
