@@ -58,13 +58,13 @@ export class SessionDetailComponent implements OnInit {
       title:"",
       startDate:"",
       startTime: "",
+      endDate:"",
       meetingInfo:""
     },
   };
   id: any;
   readableStartDate: any;
   startDate: any;
-  endDate: any;
   layout = 'start start'
   title: any;
   isEnrolled: any;
@@ -104,13 +104,14 @@ export class SessionDetailComponent implements OnInit {
       this.sessionId = response._id
       let readableStartDate = moment.unix(response.startDate).format("DD/MM/YYYY");
       let readableStartTime = moment.unix(response.startDate).format("hh:mm A");
+      this.details.data.endDate = moment.unix(response.endDate).format("DD/MM/YYYY");
       let currentTimeInSeconds = Math.floor(Date.now() / 1000)
       this.isEnabled = (((response.startDate - currentTimeInSeconds) < 600) && !(response?.meetingInfo?.platform == 'OFF'))? true : false
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate;
       this.details.data.startTime = readableStartTime;
       this.details.data.meetingInfo = response.meetingInfo.platform
-      var response = response;
+      var responseData = response;
       (response)?this.creator(response):false;
       if((response.meetingInfo.platform == 'OFF') && this.isCreator && response.status=='published'){
         this.openSnackBar('Meeting link is not added, please add a link.', 'Add meeting link')
@@ -120,8 +121,10 @@ export class SessionDetailComponent implements OnInit {
       this.pastSession = (this.details.data.status ==='completed') ? false : true
       let showButton = (this.details?.data?.isEnrolled && (this.details.data.status ==='published'|| this.details.data.status ==='live') || this.isCreator) && this.pastSession
       let showShareButton = ((this.details.data.status ==='published'|| this.details.data.status ==='live')  || this.isCreator) && this.pastSession
+      responseData.startDate = (response.startDate>0)?moment.unix(response.startDate).toLocaleString():response.startDate;
+      responseData.endDate = (response.endDate>0)?moment.unix(response.endDate).toLocaleString():response.endDate;
       this.paginatorConfigData = {
-        buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:!this.isEnabled, service: 'sessionService', method: method, passingParameter:{id : this?.id, data: response}, showButton:showButton},
+        buttonConfig:[{buttonName:buttonName,cssClass:"startButton",isDisable:!this.isEnabled, service: 'sessionService', method: method, passingParameter:{id : this?.id, data: responseData}, showButton:showButton},
         {buttonName:'SHARE_SESSION',cssClass:"shareButton", matIconName:'share', isDisable:false,service: 'utilService', method: 'shareButton',passingParameter:"SHARE_SESSION",showButton:showShareButton}]
       }
       this.pageTitle.editButtonConfig(this.paginatorConfigData)
