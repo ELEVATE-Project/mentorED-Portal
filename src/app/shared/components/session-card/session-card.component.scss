@@ -71,8 +71,9 @@
     background-position: center;
 }
 .status-badge {
-    margin-left: 10px !important;
-    height: 15px;
+    position: absolute;
+    top: 30px;
+    right: 10%;
 }
 .primary{
 background-color:$theme;
