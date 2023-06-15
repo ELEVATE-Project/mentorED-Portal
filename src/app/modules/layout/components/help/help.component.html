@@ -4,8 +4,19 @@
        <h2>{{"REPORT_AN_ISSUE" | translate}}</h2>
        <h3>{{"TELL_US_THE_PROBLEM" | translate}}</h3>
       <div class="form-wrapper" fxFlex="80%">
-        <app-dynamic-form *ngIf="formData" [jsonFormData]="formData" #help></app-dynamic-form>
+        <mat-form-field *ngIf="dropDownData" appearance="fill" floatLabel="always">
+          <mat-label class="large">{{dropDownData?.controls[0].label}}</mat-label>
+          <mat-select class="field-large" value="dropDownData?.controls[0].options[0]" (selectionChange)="valueChanged($event)">
+              <mat-option
+                  *ngFor="let option of dropDownData?.controls[0].options"
+                  [value]="[option]">
+                  {{option.label}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+      <app-dynamic-form *ngIf="selectedOption" [jsonFormData]="formData" #help></app-dynamic-form>
     </div>
-      <button mat-raised-button class="button-shadow" [disabled]="help && !help.myForm.valid" color="primary" (click)="onSubmit()">{{"SUBMIT" | translate}}</button>
+      <button  *ngIf="selectedOption?.name=='description'" mat-raised-button class="button-shadow" [disabled]="help && !help.myForm.valid" color="primary" (click)="onSubmit()">{{"SUBMIT" | translate}}</button>
+      <button *ngIf="selectedOption?.value=='delete'" mat-raised-button class="button-shadow" [disabled]="help && !help.myForm.valid" color="primary" (click)="onSubmit()">{{"DELETE_ACCOUNT" | translate}}</button>
     </mat-card>
 </div>
