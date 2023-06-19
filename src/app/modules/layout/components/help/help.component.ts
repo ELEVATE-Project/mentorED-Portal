@@ -63,8 +63,8 @@ export class HelpComponent implements OnInit {
       if(type == 'Request to delete my account'){
         let dialogRef = this.dialog.open(ExitPopupComponent, {
           data: {
-            header: "Delete account",
-            label: "Deleting your account will remove all your data from the app forever. You will have to create a new account if you decide to come back. Do you want to continue?",
+            header: "DELETE_ACCOUNT",
+            label: "DELETE_ACCOUNT_LABEL",
             confirmButton: "YES",
             cancelButton: 'NO'
           }
