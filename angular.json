@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mentorEd-portal": {
+    "AP-mentorEd-portal": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mentorEd-portal/browser",
+            "outputPath": "dist/AP-mentorEd-portal/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "mentorEd-portal:build:production"
+              "browserTarget": "AP-mentorEd-portal:build:production"
             },
             "development": {
-              "browserTarget": "mentorEd-portal:build:development"
+              "browserTarget": "AP-mentorEd-portal:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mentorEd-portal:build"
+            "browserTarget": "AP-mentorEd-portal:build"
           }
         },
         "test": {
@@ -106,7 +106,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/mentorEd-portal/server",
+            "outputPath": "dist/AP-mentorEd-portal/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss"
@@ -133,12 +133,12 @@
           "builder": "@nguniversal/builders:ssr-dev-server",
           "configurations": {
             "development": {
-              "browserTarget": "mentorEd-portal:build:development",
-              "serverTarget": "mentorEd-portal:server:development"
+              "browserTarget": "AP-mentorEd-portal:build:development",
+              "serverTarget": "AP-mentorEd-portal:server:development"
             },
             "production": {
-              "browserTarget": "mentorEd-portal:build:production",
-              "serverTarget": "mentorEd-portal:server:production"
+              "browserTarget": "AP-mentorEd-portal:build:production",
+              "serverTarget": "AP-mentorEd-portal:server:production"
             }
           },
           "defaultConfiguration": "development"
@@ -152,17 +152,20 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "mentorEd-portal:build:production",
-              "serverTarget": "mentorEd-portal:server:production"
+              "browserTarget": "AP-mentorEd-portal:build:production",
+              "serverTarget": "AP-mentorEd-portal:server:production"
             },
             "development": {
-              "browserTarget": "mentorEd-portal:build:development",
-              "serverTarget": "mentorEd-portal:server:development"
+              "browserTarget": "AP-mentorEd-portal:build:development",
+              "serverTarget": "AP-mentorEd-portal:server:development"
             }
           },
           "defaultConfiguration": "production"
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

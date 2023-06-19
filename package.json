@@ -7,10 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev:ssr": "ng run mentorEd-portal:serve-ssr",
-    "serve:ssr": "node dist/mentorEd-portal/server/main.js",
-    "build:ssr": "ng build && ng run mentorEd-portal:server",
-    "prerender": "ng run mentorEd-portal:prerender"
+    "dev:ssr": "ng run AP-mentorEd-portal:serve-ssr",
+    "serve:ssr": "node dist/AP-mentorEd-portal/server/main.js",
+    "build:ssr": "ng build && ng run AP-mentorEd-portal:server",
+    "prerender": "ng run AP-mentorEd-portal:prerender"
   },
   "private": true,
   "dependencies": {
@@ -38,10 +38,10 @@
     "ng-pick-datetime": "^7.0.0",
     "ng2-semantic-ui-v9": "^0.0.6",
     "ngx-device-detector": "^4.0.1",
-    "ngx-indexed-db": "^11.0.2",
+    "ngx-indexed-db": "^16.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "^0.11.8"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.6",
