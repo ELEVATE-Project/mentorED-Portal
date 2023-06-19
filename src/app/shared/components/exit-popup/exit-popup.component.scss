@@ -44,5 +44,9 @@ button {
 .exit-button:hover,  .cancel-button:hover{
     background-color:$theme;
 }
+.label-text{
+    max-width: 600px;
+    font-weight:400 ;
+}
 
 
