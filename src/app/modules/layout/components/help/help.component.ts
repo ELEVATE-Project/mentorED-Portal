@@ -23,7 +23,7 @@ import { ProfileService } from 'src/app/core/services/profile/profile.service';
 
 export class HelpComponent implements OnInit {
   @ViewChild('help') help: DynamicFormComponent;
-  userAmgent:any 
+  userAgent:any 
   userAgentDetails:any
   formData: any
   browserInfo:any
