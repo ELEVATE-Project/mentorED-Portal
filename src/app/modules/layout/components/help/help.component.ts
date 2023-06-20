@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { truncate } from 'lodash-es';
+import * as Bowser from "bowser";
 import { FormService } from 'src/app/core/services/form/form.service';
 import { HELP } from 'src/app/core/constants/formConstant';
 import { DynamicFormComponent } from 'src/app/shared/components/dynamic-form/dynamic-form.component';
