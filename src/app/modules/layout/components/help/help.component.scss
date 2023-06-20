@@ -36,3 +36,9 @@ mat-card{
   ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
     background-color: $white;
   }
+
+.message{
+  background-color: $light-pink;
+  padding: 10px;
+  border: 2px solid rgb(235, 143, 158);
+}

@@ -14,7 +14,7 @@
       </mat-form-field>
     </div>
     <div class="form-wrapper" *ngFor="let option of dropDownData" fxLayout="column">
-      <div fxLayoutAlign="start start" fxLayout="column" *ngIf="selectedOption==option.name && message" [innerHTML]="message"></div>
+      <div class="message" fxLayoutAlign="start start" fxLayout="column" *ngIf="selectedOption==option.name && message" [innerHTML]="message"></div>
       <app-dynamic-form class="text-area" *ngIf="selectedOption==option.name" [jsonFormData]=option.form #help></app-dynamic-form>
       <div fxLayoutAlign="center center">
         <button *ngIf="selectedOption==option.name" mat-raised-button class="button-shadow"
