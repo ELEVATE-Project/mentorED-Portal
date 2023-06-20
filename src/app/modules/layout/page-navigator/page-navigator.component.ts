@@ -64,7 +64,11 @@ export class PageNavigatorComponent implements OnInit {
     })
   }
   onBack(){    
-      this.location.back()
+      if(window.history.length>2){
+        this.location.back()
+      }else{
+        this.router.navigate(['/home'],{replaceUrl: true})
+      }
   }
   
   onClickSession(buttonConfig:any){

@@ -2,7 +2,7 @@
     <div fxLayout="row" >
         <div class="text-container" fxFlex="100">
             <h1 class="text-exit-page">{{data.header | translate}}</h1>
-            <h2>{{data.label | translate}}</h2>
+            <h2 class="label-text">{{data.label | translate}}</h2>
         </div>
         <mat-icon class="mat-cancel-icon" [mat-dialog-close]="false">cancel_circle_outline</mat-icon>
     </div>
@@ -15,3 +15,4 @@
              >{{data.cancelButton | translate}}</button>
         </div>
     </div>
+</div>

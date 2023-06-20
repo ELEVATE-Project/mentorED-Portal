@@ -1,11 +1,28 @@
 <div fxLayoutAlign="center" class="container">
-    <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
-        fxLayoutAlign="center center">
-       <h2>{{"REPORT_AN_ISSUE" | translate}}</h2>
-       <h3>{{"TELL_US_THE_PROBLEM" | translate}}</h3>
-      <div class="form-wrapper" fxFlex="80%">
-        <app-dynamic-form *ngIf="formData" [jsonFormData]="formData" #help></app-dynamic-form>
+  <mat-card fxLayout="column" fxFlex="57%" fxFlex.sm="77%" fxFlex.xs="98%" fxFlex.md="70%"
+    fxLayoutAlign="center center">
+    <!-- <h2>{{"REPORT_AN_ISSUE" | translate}}</h2>
+       <h3>{{"TELL_US_THE_PROBLEM" | translate}}</h3> -->
+    <div class="form-wrapper" fxFlex="80%">
+      <mat-form-field fxFlex="100%">
+        <mat-select #link fxFlex fxFlexAlign="center" [(value)]="selectedOption"
+          [(ngModel)]="selectedOption">
+          <mat-option [value]="option.name" *ngFor="let option of dropDownData" (click)="clickOptions(option)">
+            {{ option.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-      <button mat-raised-button class="button-shadow" [disabled]="help && !help.myForm.valid" color="primary" (click)="onSubmit()">{{"SUBMIT" | translate}}</button>
-    </mat-card>
+    <div class="form-wrapper" *ngFor="let option of dropDownData" fxLayout="column">
+      <div class="message" fxLayoutAlign="start start" fxLayout="column" *ngIf="selectedOption==option.name && message" [innerHTML]="message"></div>
+      <app-dynamic-form class="text-area" *ngIf="selectedOption==option.name" [jsonFormData]=option.form #help></app-dynamic-form>
+      <div fxLayoutAlign="center center">
+        <button *ngIf="selectedOption==option.name" mat-raised-button class="button-shadow"
+          [disabled]="help && !help.myForm.valid" color="primary" (click)="onSubmit(option.value)">{{option.buttonText |
+          translate}}</button>
+      </div>
+     
+    </div>
+  </mat-card>
 </div>
+

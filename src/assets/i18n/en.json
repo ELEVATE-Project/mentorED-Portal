@@ -149,5 +149,9 @@
     "HELP":"Help",
     "REPORT_AN_ISSUE":"Report an issue",
     "TELL_US_THE_PROBLEM":"Tell us more about the problem you faced",
-    "HAVING_TROUBLE_IN_LOGGING_IN":"Having trouble in logging in/signing up? Write to us."
+    "HAVING_TROUBLE_IN_LOGGING_IN":"Having trouble in logging in/signing up? Write to us.",
+    "DELETE_ACCOUNT":"Delete account",
+    "YES":"Yes",
+    "NO":"No",
+    "DELETE_ACCOUNT_LABEL":"Deleting your account will remove all your data from the app forever. You will have to create a new account if you decide to come back. Do you want to continue?"
 }
