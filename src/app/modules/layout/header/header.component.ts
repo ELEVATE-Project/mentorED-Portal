@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit {
       this.user = JSON.parse(data)
       this.profile.newProfile$.subscribe((res)=>{
         this.user = _.isEqual(res,{}) ? this.user : res;
+        this.letter = _.isEqual(res,{}) ? this.user.name[0] : res.name[0];
       })
     });
     this.localStorage.getLocalData(localKeys.SELECTED_LANGUAGE).then((lang)=>{
