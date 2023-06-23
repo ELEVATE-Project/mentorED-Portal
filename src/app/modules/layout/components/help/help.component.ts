@@ -47,7 +47,7 @@ export class HelpComponent implements OnInit {
     this.form.getForm(HELP).subscribe((form)=>{
       this.dropDownData = form.fields.forms;
       this.selectedOption = form.fields?.forms[0]?.name;
-      this.message = (this.userDetails.isAMentor)?form.fields?.forms[0]?.menterMessage:form.fields?.forms[0]?.menteeMessage;
+      this.message = (this.userDetails.isAMentor)?form.fields?.forms[0]?.mentorMessage:form.fields?.forms[0]?.menteeMessage;
     }) 
   }
 
