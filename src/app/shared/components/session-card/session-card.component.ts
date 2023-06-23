@@ -40,6 +40,7 @@ export class SessionCardComponent implements OnInit {
     this.buttonConfig.isEnabled =
      ( (this.cardData.startDate - this.currentTimeInSeconds) < 600 && !(this.cardData?.meetingInfo?.platform == 'OFF')) ? true : false
     this.cardData.startDate = (this.cardData.startDate>0)?moment.unix(this.cardData.startDate).toLocaleString():this.cardData.startDate;
+    this.cardData.endDate = (this.cardData.endDate>0)?moment.unix(this.cardData.endDate).toLocaleString():this.cardData.endDate;
   }
   buttonClicked(event:any, action: any, data: any) {
     event.stopPropagation();

@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { truncate } from 'lodash-es';
+import * as Bowser from "bowser";
 import { FormService } from 'src/app/core/services/form/form.service';
 import { HELP } from 'src/app/core/constants/formConstant';
 import { DynamicFormComponent } from 'src/app/shared/components/dynamic-form/dynamic-form.component';
@@ -22,8 +24,6 @@ export class HelpComponent implements OnInit {
   userAgentDetails:any
   formData: any
   browserInfo:any
-  dropDownData: any;
-  selectedOption: any;
 
   constructor(private form: FormService, private apiService: ApiService, private deviceService: DeviceDetectorService, private toast: ToastService,private location:Location,private router: Router) { }
  
@@ -34,7 +34,7 @@ export class HelpComponent implements OnInit {
 
   getFormDetails(){
     this.form.getForm(HELP).subscribe((form)=>{
-      this.dropDownData = form.fields;
+      this.formData = form.fields;
     }) 
   }
 
@@ -65,10 +65,5 @@ export class HelpComponent implements OnInit {
         return result
       }),
     )
-  }
-
-  valueChanged(event:any){
-    this.selectedOption = event.value[0]
-    this.formData = {controls: event.value}
   }
 }
