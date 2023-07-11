@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { localKeys } from './core/constants/localStorage.keys';
@@ -14,6 +14,13 @@ import { UserService } from './core/services/user/user.service';
 })
 export class AppComponent {
 
+  deferredPrompt: any;
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  onbeforeinstallprompt(e:any) {
+    e.preventDefault();
+    this.deferredPrompt = e;
+  }
+  
   constructor(private translate: TranslateService, private localStorage: LocalStorageService, private userService: UserService, private apiService: ApiService, private form: FormService, private router: Router) {
     router.canceledNavigationResolution = 'computed';
     this.initializeApp();
