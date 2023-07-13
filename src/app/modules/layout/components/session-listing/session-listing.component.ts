@@ -9,6 +9,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage/local-s
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
 import { JoinDialogBoxComponent } from 'src/app/shared/components/join-dialog-box/join-dialog-box.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 interface item {
   userId?: string;
@@ -36,7 +37,8 @@ content:""}
   sessionsCount = 0
   showLoadMoreButton: boolean = false
   dataCount = 0
-  isEnrolledSessions: any
+  isEnrolledSessions: any;
+  state:any;
 
   constructor(
     private router: Router,
@@ -44,8 +46,10 @@ content:""}
     private form: FormService,
     private sessionService: SessionService,
     private localStorage:LocalStorageService,
+    private authService: AuthService,
   ) {
     this.selectedPage = router.url
+    this.state = this.router.getCurrentNavigation()?.extras.state;
   }
 
   ngOnInit(){
@@ -55,6 +59,9 @@ content:""}
         this.userDetails = JSON.parse(userDetails) 
         this.getAllSession().subscribe()
       })
+     if(this.state.type == 'signup'){
+       this.authService.acceptTermsAndConditions().subscribe();
+     }
     this.cardHeading =
       this.selectedPage == '/enrolled-sessions' ? 'ENROLLED_SESSIONS' : 'ALL_SESSIONS'
   }
