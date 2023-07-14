@@ -59,9 +59,6 @@ content:""}
         this.userDetails = JSON.parse(userDetails) 
         this.getAllSession().subscribe()
       })
-     if(this.state.type == 'signup'){
-       this.authService.acceptTermsAndConditions().subscribe();
-     }
     this.cardHeading =
       this.selectedPage == '/enrolled-sessions' ? 'ENROLLED_SESSIONS' : 'ALL_SESSIONS'
   }

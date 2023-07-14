@@ -35,7 +35,9 @@ export class AuthService {
     return this.apiService.post(config).pipe(
       map((result:any) => {
           this.setUserInLocal(result).then(()=>{
-          return result;
+        this.acceptTermsAndConditions().subscribe((res:any)=>{ 
+            return result;
+          })
         })
       })
     )

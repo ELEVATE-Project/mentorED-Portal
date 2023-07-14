@@ -58,7 +58,7 @@ export class OtpComponent implements OnInit {
     this['state']['formData']['otp'] = this.otpFormRef.myForm.value.otp;
     const that: any = this;
     that[this.state.service][this.state.method](this.state.formData).subscribe((response: any) => {
-      this.router.navigate([this.state.redirectUrl],{ state: { type: this.state.type } })
+      this.router.navigate([this.state.redirectUrl])
     })
   }
   
