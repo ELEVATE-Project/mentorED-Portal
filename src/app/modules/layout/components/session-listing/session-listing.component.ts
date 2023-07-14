@@ -37,7 +37,7 @@ content:""}
   sessionsCount = 0
   showLoadMoreButton: boolean = false
   dataCount = 0
-  isEnrolledSessions: any;
+  isEnrolledSessions: any
 
   constructor(
     private router: Router,
