@@ -38,7 +38,6 @@ content:""}
   showLoadMoreButton: boolean = false
   dataCount = 0
   isEnrolledSessions: any;
-  state:any;
 
   constructor(
     private router: Router,
@@ -49,7 +48,6 @@ content:""}
     private authService: AuthService,
   ) {
     this.selectedPage = router.url
-    this.state = this.router.getCurrentNavigation()?.extras.state;
   }
 
   ngOnInit(){
