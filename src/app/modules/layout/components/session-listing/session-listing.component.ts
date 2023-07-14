@@ -9,7 +9,6 @@ import { LocalStorageService } from 'src/app/core/services/local-storage/local-s
 import { localKeys } from 'src/app/core/constants/localStorage.keys';
 import { JoinDialogBoxComponent } from 'src/app/shared/components/join-dialog-box/join-dialog-box.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 interface item {
   userId?: string;
@@ -44,8 +43,7 @@ content:""}
     private apiService: ApiService,
     private form: FormService,
     private sessionService: SessionService,
-    private localStorage:LocalStorageService,
-    private authService: AuthService,
+    private localStorage:LocalStorageService
   ) {
     this.selectedPage = router.url
   }
