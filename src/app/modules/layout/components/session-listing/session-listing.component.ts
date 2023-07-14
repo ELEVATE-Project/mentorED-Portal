@@ -43,7 +43,7 @@ content:""}
     private apiService: ApiService,
     private form: FormService,
     private sessionService: SessionService,
-    private localStorage:LocalStorageService
+    private localStorage:LocalStorageService,
   ) {
     this.selectedPage = router.url
   }
