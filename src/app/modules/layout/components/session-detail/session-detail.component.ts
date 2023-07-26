@@ -189,7 +189,6 @@ export class SessionDetailComponent implements OnInit {
    }
    deleteSessions(){
     let result = this.sessionService.deleteSession(this.id).subscribe(() => {
-      this.sessionDetailApi()
       this.router.navigate(['/created-sessions'])
     })
    }
