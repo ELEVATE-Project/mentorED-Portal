@@ -34,9 +34,10 @@ export class AuthService {
     };
     return this.apiService.post(config).pipe(
       map((result:any) => {
-        this.toastService.showMessage(result.message,'success')
           this.setUserInLocal(result).then(()=>{
-          return result;
+        this.acceptTermsAndConditions().subscribe((res:any)=>{ 
+            return result;
+          })
         })
       })
     )
@@ -84,5 +85,15 @@ export class AuthService {
     return this.profile.getProfileDetailsWithRole(data.result.user._id, data.result.user.isAMentor).subscribe((user)=>{
       return user
     })
+  }
+
+  acceptTermsAndConditions() {
+    const config = {
+      url: API_CONSTANTS.TERMS_CONDITIONS,
+      payload: {},
+    };
+    return this.apiService.post(config).pipe(
+
+    )
   }
 }

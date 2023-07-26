@@ -39,6 +39,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
   }
   isSaved: any = false;
   imageChanged:any = false;
+  userDetails:any ;
   private unsubscriber: Subject<void> = new Subject<void>();
   constructor(private formService: FormService, private profileService: ProfileService, private localStorage: LocalStorageService, private apiService: ApiService, private http: HttpClient, private changeDetRef: ChangeDetectorRef, private toastService: ToastService, private dialog: MatDialog) {
   }
@@ -48,7 +49,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
       this.formData = form.fields;
       this.localStorage.getLocalData(localKeys.USER_DETAILS).then((user) => {
         if (user) {
-          this.imgData.image = (user.image) ? user.image : '';
+          this.userDetails = JSON.parse(user);
           this.preFillData(JSON.parse(user));
           this.changeDetRef.detectChanges();
         }
@@ -90,7 +91,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
   }
   getImageUploadUrl(file: any) {
     let config = {
-      url: API_CONSTANTS.GET_IMAGE_UPLOAD_URL + file.name.replaceAll(/[^A-Z0-9]+/ig, "_").toLowerCase()
+      url: API_CONSTANTS.GET_IMAGE_UPLOAD_URL + file.name.replaceAll(/[^A-Z0-9]+/ig, "_").toLowerCase() + "&dynamicPath=users/" + this.userDetails._id
     }
     return this.apiService.get(config).pipe(
       map((result: any) => {

@@ -16,3 +16,29 @@ mat-card{
 .form-wrapper {
     width: 80%;
 }
+.text-area{
+  margin: 20px 0px;
+}
+.large {
+    font-size: 24px !important;
+  }
+
+  mat-form-field {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ::ng-deep .mat-form-field-label span{
+    color: $red;
+    font-size: 20px;
+    margin-left: 5px;
+  }
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: $white;
+  }
+
+.message{
+  background-color: $light-pink;
+  padding: 10px;
+  border: 2px solid rgb(235, 143, 158);
+}
