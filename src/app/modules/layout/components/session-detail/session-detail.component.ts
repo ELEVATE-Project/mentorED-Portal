@@ -76,7 +76,7 @@ export class SessionDetailComponent implements OnInit {
   pastSession:any;
   sessionId:any
   snackbarRef:any;
-  isJoinEnabled: any;
+  isDisable: any;
   fromSessionDetails = true;
   constructor(
     private router: Router,
@@ -107,6 +107,7 @@ export class SessionDetailComponent implements OnInit {
       this.details.data.endDate = moment.unix(response.endDate).format("DD/MM/YYYY");
       let currentTimeInSeconds = Math.floor(Date.now() / 1000)
       this.isEnabled = (((response.startDate - currentTimeInSeconds) < 600) && !(response?.meetingInfo?.platform == 'OFF'))? true : false
+      this.isDisable = ((response.startDate-currentTimeInSeconds)<600 || response.status=='live')?true:false;
       this.details.data = Object.assign({}, response);
       this.details.data.startDate = readableStartDate;
       this.details.data.startTime = readableStartTime;
