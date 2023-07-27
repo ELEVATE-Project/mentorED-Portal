@@ -210,7 +210,7 @@
                     [formControlName]="control?.name"
                     [value]="control?.value"
                     [max]="maxDate"
-                    [min]="(control.name === dependedChild)?dependedChildDate:currentDate"
+                    [min]="minDate"
                     [readonly]="control?.readonly"
                     [required]="control?.validators?.required">
                     <mat-icon class="calender-icon" matIconSuffix (click)="date.click()">calendar_today</mat-icon>
