@@ -139,10 +139,12 @@ export class DynamicFormComponent implements OnInit {
         )
       );
     }
-    if(this.jsonFormData.controls[2].value){
-      this.minDate = new Date(this.jsonFormData.controls[2].value);
-    }
-  }
+    for(let element of this.jsonFormData?.controls ){
+      if(element?.name == 'startDate' && element?.value){
+        this.minDate = new Date(element?.value);
+        break;
+      }
+   }}
 
   compareWith(a:any, b:any) {
     a = _.flatten([a]);
