@@ -139,7 +139,7 @@ export class DynamicFormComponent implements OnInit {
         )
       );
     }
-    if(this.jsonFormData.controls[2].value){
+    if(this.jsonFormData?.controls[2]?.name == 'startDate' && this.jsonFormData?.controls[2]?.value){
       this.minDate = new Date(this.jsonFormData.controls[2].value);
     }
   }
