@@ -101,8 +101,6 @@ getSessions(){
       this.pastCardDetails = this.pastCardDetails.concat(data.result.data)
       this.showLoadMoreButtonPastSession =
         data.result.count == this.pastCardDetails.length ? false : true
-        this.showLoadMoreButtonUpcomingSession=(!this.pastCardDetails.length)?false:true
-
     })
   }
   buttonClick(event: any){
