@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -42,7 +42,7 @@ export function translateHttpLoaderFactory(httpClient: HttpClient) {
       }
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: Boolean(environment.production),
+      enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
