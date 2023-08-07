@@ -65,6 +65,7 @@ export class DynamicFormComponent implements OnInit {
   selectedChips: any;
   currentDate = new Date();
   maxDate = new Date(moment(this.currentDate).add(10, "years").format());
+  minDate =new Date();
   dependedChild: any;
   dependedChildDate: any;
   dependedParent: any;
@@ -138,6 +139,14 @@ export class DynamicFormComponent implements OnInit {
         )
       );
     }
+    for(let element of this.jsonFormData?.controls ){
+      if(element?.name == 'startDate' && element?.value){
+        if(this.minDate > new Date(element?.value)){
+          this.minDate = new Date(element?.value);
+          break;
+        }
+      }
+   }
   }
 
   compareWith(a:any, b:any) {

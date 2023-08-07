@@ -18,9 +18,10 @@
           </mat-checkbox>
           <a routerLink="/auth/forgotPassword" class="forgot-password">{{ "FORGOT_PASSWORD" | translate }}</a>
         </div>
-        <div class="mailToContainer">   
-          {{'HAVING_TROUBLE_IN_LOGGING_IN' | translate}}  (<span class="email">{{ supportInfo?.reportIssue?.to}}</span>  )
-      </div>
+        <div class="mailToContainer"  fxLayout="column">  
+         <span>{{'HAVING_TROUBLE_IN_LOGGING_IN' | translate}} </span>
+         <span>{{'WRITE_TO_US_AT' | translate}} <span class="email">{{ supportInfo?.reportIssue?.to}}</span></span>   
+        </div>
       </div>
     </div>
   </div>
