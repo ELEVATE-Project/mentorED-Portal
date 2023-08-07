@@ -29,3 +29,8 @@
 .close-icon{
     margin: 2px 0 auto auto;
 }
+@media (max-width: 480px) {
+    .title{
+        max-width: 180px;
+    }
+  }
