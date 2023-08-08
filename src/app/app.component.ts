@@ -24,14 +24,6 @@ export class AppComponent {
   constructor(private translate: TranslateService, private localStorage: LocalStorageService, private userService: UserService, private apiService: ApiService, private form: FormService, private router: Router) {
     router.canceledNavigationResolution = 'computed';
     this.initializeApp();
-    let refreshing:boolean;
-    navigator.serviceWorker.addEventListener('controllerchange',
-      function() {
-        if (refreshing) return;
-        refreshing = true;
-        window.location.reload();
-      }
-    );
   }
 
   initializeApp() {
