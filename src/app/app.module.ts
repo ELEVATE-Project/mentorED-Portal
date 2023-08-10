@@ -41,13 +41,13 @@ export function translateHttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    NgxIndexedDBModule.forRoot(dbConfig),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
+      enabled: Boolean(environment.production),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }),
-    NgxIndexedDBModule.forRoot(dbConfig)
+    })
   ],
   providers: [
     Title
