@@ -33,6 +33,7 @@ import { CreateSessionComponent } from './components/create-session/create-sessi
 import { LogoutComponent } from './components/logout/logout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MentorProfileComponent } from './components/mentor-profile/mentor-profile.component';
+// import { SlReportsLibraryModule} from '@shikshalokam/sl-reports-library'
 import { SessionDetailComponent } from './components/session-detail/session-detail.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
@@ -79,6 +80,7 @@ import { HelpComponent } from './components/help/help.component';
     MatCardModule,
     MatDialogModule,
     MatCardModule,
+    // SlReportsLibraryModule,
     MatStepperModule,
     MatRadioModule
   ]
