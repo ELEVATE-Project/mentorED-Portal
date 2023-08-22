@@ -45,7 +45,6 @@ export class ApiService {
   }
 
   get(config: any) {
-    console.log(this.httpHeaders);
     return this.http.get(`${this.baseUrl}${config.url}`, {headers: this.httpHeaders})
       .pipe(
         catchError(this.handleError.bind(this))
