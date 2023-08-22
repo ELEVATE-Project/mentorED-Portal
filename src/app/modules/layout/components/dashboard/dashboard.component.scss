@@ -25,6 +25,7 @@
 mat-card {
   align-items: center;
   justify-content: center;
+  margin: 20px !important;
 }
 .card {
   margin-top: 2%;
@@ -70,4 +71,7 @@ mat-card {
 }
 h2 {
   text-align: center;
+}
+.my-chart {
+  padding-top: 25px;
 }

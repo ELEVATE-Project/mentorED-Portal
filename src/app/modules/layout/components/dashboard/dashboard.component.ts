@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild('selectDropdown') selectDropdown: any;
   public chart: any;
   segment: any = 'mentee'
-  dataAvailable: any
+  dataAvailable: any=true;
   isMentor: boolean = false
   selectedFilter = 'Weekly'
   buttonEnable = false
@@ -44,7 +44,6 @@ export class DashboardComponent implements OnInit {
     { label: 'MENTEE_LABEL', value: 'mentee' },
   ]
   loading: boolean = false
-  data: any
   chartData: any ;
   constructor(
     private translate: TranslateService,
@@ -68,6 +67,7 @@ export class DashboardComponent implements OnInit {
    
   }
   createChart() {
+    this.dataAvailable = (this.chartData?.totalSessionCreated == 0 || this.chartData?.totalSessionEnrolled == 0) ? false : true
     this.chart = new Chart("MyChart", {
       type: 'pie', //this denotes tha type of chart
 
@@ -83,15 +83,11 @@ export class DashboardComponent implements OnInit {
         }],
       },
       options: {
-        aspectRatio:2.5,
+        aspectRatio:1.5,
         responsive: true,
       }
 
     });
-    // this.chartData.totalSessionCreated = 0;
-    this.dataAvailable = (this.chartData?.totalSessionCreated == 0 || this.chartData?.totalSessionEnrolled == 0) ? false : true
-    console.log(this.chartData, this.chart.data)
-
   }
 
   getReports() {
@@ -105,28 +101,6 @@ export class DashboardComponent implements OnInit {
     }
     return this.apiService.get(config).pipe(
       map((result: any) => {
-        // let chartObj
-        // this.chartData.chart.data.labels.length = 0
-        // this.chartData.chart.data.datasets[0].data.length = 0
-        // if (this.segment === 'mentor') {
-        //   this.chartData.chart.data.labels.push(
-        //     'Total sessions created',
-        //     'Total sessions conducted',
-        //   )
-        //   this.chartData.chart.data.datasets[0].data.push(
-        //     result.result.totalSessionCreated || 0,
-        //     result.result.totalsessionHosted || 0,
-        //   )
-        // } else {
-        //   this.chartData.chart.data.labels.push(
-        //     'Total sessions enrolled',
-        //     'Total sessions attended',
-        //   )
-        //   this.chartData.chart.data.datasets[0].data.push(
-        //     result.result.totalSessionEnrolled || 0,
-        //     result.result.totalsessionsAttended || 0,
-        //   )
-        // }
         this.chartData = result.result
         this.createChart()
       }),
@@ -140,11 +114,13 @@ export class DashboardComponent implements OnInit {
         ? 'CONDUCT_LIVE_SESSION_TO_FILL_SPACE'
         : 'ENROLL_FOR_SESSION_TO_FILL_SPACE'
     this.chart.destroy();
+    this.dataAvailable = true;
     this.getReports().subscribe()
   }
   filterChangeHandler(event: any) {
     this.selectedFilter = event
     this.chart.destroy();
+    this.dataAvailable = true;
     this.getReports().subscribe()
   }
 }

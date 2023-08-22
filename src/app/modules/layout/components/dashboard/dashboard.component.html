@@ -117,12 +117,9 @@
       </div>
 
       <span layout="row"><hr flex /></span>
-      <!-- <div *ngIf="chartData && !loading" class="piechart"> -->
-        <!-- <sl-pie-chart [data]="chartData"></sl-pie-chart> -->
-        <div>
-          <canvas id="MyChart">{{ chart }}</canvas>
-        </div>
-      <!-- </div> -->
+      <div class="my-chart" fxFlex *ngIf="dataAvailable">
+        <canvas id="MyChart">{{ chart }}</canvas>
+      </div>
     </div>
     <div class="no-data-image">
       <app-no-data-found

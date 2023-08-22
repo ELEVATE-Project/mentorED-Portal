@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +13,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 import { DbConfig } from './core/constants/dbConfig';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 
 const dbConfig:DBConfig = DbConfig;
 
