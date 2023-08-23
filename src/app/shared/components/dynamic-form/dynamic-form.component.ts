@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit,Input, Output, EventEmitter, Inject, PLATFORM_ID } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as _ from 'lodash-es';
 import * as moment from 'moment';
@@ -7,6 +7,7 @@ import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupDialogComponent } from '../popup-dialog/popup-dialog.component';
+import { isPlatformBrowser } from '@angular/common';
 
 interface JsonFormValidators {
   min?: number;
@@ -71,11 +72,13 @@ export class DynamicFormComponent implements OnInit {
   dependedParent: any;
   dependedParentDate: any;
 
-  constructor(private fb: FormBuilder,private toastService: ToastService,public dialog: MatDialog,private translate: TranslateService) { }
+  constructor(private fb: FormBuilder, @Inject(PLATFORM_ID) private platformId: Object,public dialog: MatDialog,private translate: TranslateService) { }
 
 
   ngOnInit() {
-    this.isScreenTouchable = this.deviceRegexp.test(navigator.userAgent)
+    if (isPlatformBrowser(this.platformId)) {
+      this.isScreenTouchable = this.deviceRegexp.test(navigator.userAgent)
+    }
     this.jsonFormData.controls.find((element: any, index: number) => {
       if(element.type == "select"){
         this.jsonFormData.controls[index].options = _.sortBy(this.jsonFormData.controls[index].options, ['label']);

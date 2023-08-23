@@ -1,22 +1,29 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   public saveLocalData(key: string, value: string): Promise<any> {
     return new Promise((resolve,reject) => {
-      let data = localStorage.setItem(key, value)
+      let data = null;
+      if (isPlatformBrowser(this.platformId)) {
+        data = localStorage.setItem(key, value) 
+      }
       resolve(data)
     })
     }
     
     public getLocalData(key: string): Promise<any> {
       return new Promise((resolve, reject) => {
-        let data = localStorage.getItem(key)
+        let data = null;
+        if (isPlatformBrowser(this.platformId)) {
+          data = localStorage.getItem(key);
+        }
         resolve(data)
       })
     }
@@ -24,8 +31,10 @@ export class LocalStorageService {
     public removeLocalData(key: Array<string>): Promise<any> {
       return new Promise((resolve, reject) => {
         for (const keys of key) {
-          localStorage.removeItem(keys);
-      }
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.removeItem(keys);
+          }
+        }
         resolve(key)
       })
     }

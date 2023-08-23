@@ -27,7 +27,7 @@
         {{ button?.label | translate }}
       </button>
     </div>
-    <div *ngIf="chartData.chart.data.datasets[0].data[0]" fxLayout="column">
+    <div fxLayout="column">
       <div
         fxFlex="row"
         fxLayoutAlign="space-between"
@@ -55,7 +55,7 @@
           </mat-option>
         </mat-select>
       </div>
-      <div *ngIf="dataAvailable">
+      <div>
         <div [ngSwitch]="segment">
           <div
             *ngSwitchCase="'mentor'"
@@ -70,7 +70,7 @@
             >
               <h2>{{ 'TOTAL_SESSION_CREATED' | translate }}</h2>
               <h2 fxLayoutAlign="center">
-                {{ chartData.chart.data.datasets[0].data[0] }}
+                {{ chartData?.totalSessionCreated }}
               </h2>
             </mat-card>
             <mat-card
@@ -81,7 +81,7 @@
             >
               <h2>{{ 'TOTAL_SESSION_HOSTED' | translate }}</h2>
               <h2 fxLayoutAlign="center">
-                {{ chartData.chart.data.datasets[0].data[1] }}
+                {{ chartData?.totalsessionHosted }}
               </h2>
             </mat-card>
           </div>
@@ -98,7 +98,7 @@
             >
               <h2>{{ 'TOTAL_SESSION_ENROLLED' | translate }}</h2>
               <h2 fxLayoutAlign="center">
-                {{ chartData.chart.data.datasets[0].data[0] }}
+                {{ chartData?.totalSessionEnrolled }}
               </h2>
             </mat-card>
             <mat-card
@@ -109,7 +109,7 @@
             >
               <h2>{{ 'TOTAL_SESSION_ATTENDED' | translate }}</h2>
               <h2 fxLayoutAlign="center">
-                {{ chartData.chart.data.datasets[0].data[1] }}
+                {{ chartData?.totalsessionsAttended }}
               </h2>
             </mat-card>
           </div>
@@ -117,13 +117,13 @@
       </div>
 
       <span layout="row"><hr flex /></span>
-      <div *ngIf="chartData && !loading" class="piechart">
-        <!-- <sl-pie-chart [data]="chartData"></sl-pie-chart> -->
+      <div class="my-chart" fxFlex *ngIf="dataAvailable">
+        <canvas id="MyChart">{{ chart }}</canvas>
       </div>
     </div>
     <div class="no-data-image">
       <app-no-data-found
-        *ngIf="!chartData.chart.data.datasets[0].data[0] && !loading"
+        *ngIf="!dataAvailable"
         fxLayoutAlign="center"
         [data]="noData"
       ></app-no-data-found>
