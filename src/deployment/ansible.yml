@@ -2,13 +2,14 @@
 - hosts: elevate
   vars:
     project_path: /opt/frontend/mentorED-Portal
+    root_path: /opt/frontend
   tasks:
     - name: Slurp hosts file
       slurp:
         src: "/opt/backend/deployment/.token"
       register: slurpfile
     - name: Run vault credentials
-      shell: "curl --location --request GET '{{ vaultAddress }}mentored-portal' --header 'X-Vault-Token: {{ slurpfile['content'] | b64decode }}' | jq '.data' > '{{ project_path }}/data2.json'"
+      shell: "curl --location --request GET '{{ vaultAddress }}mentored-portal' --header 'X-Vault-Token: {{ slurpfile['content'] | b64decode }}' | jq '.data' > '{{root_path}}/data2.json'"
       register: vaultCurl
     - name: Change directory
       shell: cd {{project_path}}
@@ -23,7 +24,7 @@
     - name: set permission
       shell: chmod 744 {{ project_path }}/src/scripts/json2env.sh  
     - name: generate .env
-      shell: cat {{ project_path }}/data2.json | {{ project_path }}/src/scripts/json2env.sh > {{ project_path }}/src/environments.ts
+      shell: cat {{root_path}}/data2.json | {{ project_path }}/src/scripts/json2env.sh > {{ project_path }}/src/environments.ts
       register: envConfig 
     - debug: msg=" cred {{ envConfig }} "
     - name: Change directory
