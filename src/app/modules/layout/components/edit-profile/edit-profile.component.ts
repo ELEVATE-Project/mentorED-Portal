@@ -61,7 +61,7 @@ export class EditProfileComponent implements OnInit, CanLeave {
       let dialog = this.dialog.open(ExitPopupComponent, {
         data: {
           header: "Exit this page?",
-          label: "You have unsaved data, please save your data before closing",
+          label: "You have unsaved data, please save your data before closing.",
           confirmButton: "CANCEL",
           cancelButton: 'OK'
         }
