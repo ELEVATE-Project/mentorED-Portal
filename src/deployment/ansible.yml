@@ -35,4 +35,4 @@
     - name: Change dir
       shell: cd {{ project_path }}
     - name: Start pm2
-      shell: pm2 start pm2.config.json --name='MentorEd-Portal'
+      shell: cd {{ project_path }} && pm2 start pm2.config.json --name='MentorEd-Portal'
