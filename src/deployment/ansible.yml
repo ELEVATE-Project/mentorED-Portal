@@ -1,7 +1,7 @@
 ---
 - hosts: elevate
   vars:
-    project_path: /opt/frontend/mentorED-Portal
+    project_path: /opt/frontend/mentorEd-portal
     root_path: /opt/frontend
   tasks:
     - name: Slurp hosts file
