@@ -34,5 +34,7 @@
       register: pm2
     - name: Change dir
       shell: cd {{ project_path }}
+      - name: Build portal
+      shell: npm run build:ssr
     - name: Start pm2
       shell: cd {{ project_path }} && pm2 start pm2.config.json --name='MentorEd-Portal'
