@@ -24,7 +24,7 @@
     - name: set permission
       shell: chmod 744 {{ project_path }}/src/scripts/json2env.sh  
     - name: generate .env
-      shell: cat {{root_path}}/data2.json | jq > {{ project_path }}/src/environments/environment.ts && sed -i '1s/^/export const environment = \n/' {{ project_path }}/src/environments/environment.ts
+      shell: cat {{root_path}}/data2.json | jq '.data' > {{ project_path }}/src/environments/environment.ts && sed -i '1s/^/export const environment = \n/' {{ project_path }}/src/environments/environment.ts
       register: envConfig 
     - debug: msg=" cred {{ envConfig }} "
     - name: Change directory
