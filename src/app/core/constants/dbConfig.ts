@@ -2,7 +2,7 @@ import { DBConfig } from 'ngx-indexed-db';
 import { environment } from 'src/environments/environment';
 
 export const DbConfig: DBConfig = {
-    name: environment['app_name'],
+    name: environment.app_name,
     version: 4,
     objectStoresMeta: [{
       store: 'forms',
