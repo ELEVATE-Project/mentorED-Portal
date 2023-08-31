@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { fromEvent, map, Observable, Subject, takeUntil } from 'rxjs';
 import { API_CONSTANTS } from 'src/app/core/constants/apiUrlConstants';
 import { CREATE_SESSION_FORM } from 'src/app/core/constants/formConstant';

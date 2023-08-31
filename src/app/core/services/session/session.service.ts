@@ -3,7 +3,7 @@ import { API_CONSTANTS } from '../../constants/apiUrlConstants'
 import { map } from 'rxjs'
 import { ApiService } from '../api/api.service'
 import { ToastService } from '../toast/toast.service'
-import * as _ from 'lodash'
+import * as _ from 'lodash-es'
 import { MatDialog } from '@angular/material/dialog'
 import { JoinDialogBoxComponent } from 'src/app/shared/components/join-dialog-box/join-dialog-box.component'
 

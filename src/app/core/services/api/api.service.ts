@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { catchError, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { API_CONSTANTS } from '../../constants/apiUrlConstants';
@@ -45,7 +45,6 @@ export class ApiService {
   }
 
   get(config: any) {
-    console.log(this.httpHeaders);
     return this.http.get(`${this.baseUrl}${config.url}`, {headers: this.httpHeaders})
       .pipe(
         catchError(this.handleError.bind(this))

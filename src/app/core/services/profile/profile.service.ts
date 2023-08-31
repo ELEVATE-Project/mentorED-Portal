@@ -2,7 +2,7 @@ import { Location } from "@angular/common";
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { TranslateService } from "@ngx-translate/core";
-import * as _ from "lodash";
+import * as _ from "lodash-es";
 import { BehaviorSubject, map } from "rxjs";
 import { API_CONSTANTS } from "../../constants/apiUrlConstants";
 import { localKeys } from "../../constants/localStorage.keys";

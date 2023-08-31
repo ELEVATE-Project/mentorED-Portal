@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { map } from 'rxjs';
 import { API_CONSTANTS } from '../../constants/apiUrlConstants';
 import { localKeys } from '../../constants/localStorage.keys';

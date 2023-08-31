@@ -25,6 +25,7 @@
 mat-card {
   align-items: center;
   justify-content: center;
+  margin: 20px !important;
 }
 .card {
   margin-top: 2%;
@@ -67,4 +68,10 @@ mat-card {
 ::ng-deep  .filter .mat-select-value-text,  ::ng-deep .filter .mat-select-arrow{
   color: $white !important;
   font-size: 13px;
+}
+h2 {
+  text-align: center;
+}
+.my-chart {
+  padding-top: 25px;
 }
