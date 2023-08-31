@@ -17,7 +17,7 @@ import { UserService } from '../user/user.service';
 })
 export class ApiService {
 
-  private baseUrl: string = environment.base_url;
+  private baseUrl: string = environment['base_url'];
   private currentLanguage: any = this.localStorage.getLocalData(localKeys.SELECTED_LANGUAGE);
   private timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   private httpHeaders: any;

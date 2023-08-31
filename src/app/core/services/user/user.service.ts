@@ -18,7 +18,7 @@ export class UserService {
   constructor(
     private localStorage: LocalStorageService,
     ) { 
-      this.baseUrl = environment.base_url;
+      this.baseUrl = environment['base_url'];
     }
 
   async getUserToken() {
