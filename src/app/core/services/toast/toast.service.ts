@@ -3,7 +3,7 @@ import {
   MatSnackBar,
 } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { ToastMessageComponent } from 'src/app/shared/components/toast-message/toast-message.component';
 
 @Injectable({

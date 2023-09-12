@@ -1,4 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SessionService } from 'src/app/core/services/session/session.service';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
@@ -11,7 +12,8 @@ import { ToastService } from 'src/app/core/services/toast/toast.service';
 export class JoinDialogBoxComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
   private sessionService: SessionService,
-  private toast: ToastService) { }
+  private toast: ToastService,
+  @Inject(PLATFORM_ID) private platformId: Object) { }
   ngOnInit(): void {
   }
 
@@ -19,11 +21,13 @@ export class JoinDialogBoxComponent implements OnInit {
     window.location.href = this.data.result.link
   }
   copyToClipBoard(copyData:any) {
-    navigator.clipboard.writeText(copyData).then(() => {
-      this.toast.showMessage('Copied successfully.')
-    },() => {
-      console.error('Failed to copy');
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      navigator.clipboard.writeText(copyData).then(() => {
+        this.toast.showMessage('Copied successfully.')
+      },() => {
+        console.error('Failed to copy');
+      });
+    }
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import * as _ from "lodash";
+import * as _ from "lodash-es";
 import { SessionService } from "src/app/core/services/session/session.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import * as moment from "moment";

@@ -3,7 +3,7 @@ import { API_CONSTANTS } from '../../constants/apiUrlConstants';
 import { ApiService } from '../api/api.service';
 import { map, Observable, of, switchMap } from 'rxjs';
 import { DbService } from '../db/db.service';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { localKeys } from '../../constants/localStorage.keys';
 
