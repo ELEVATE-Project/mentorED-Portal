@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { UUID } from 'angular2-uuid';
 import { MatChipInputEvent } from '@angular/material/chips';

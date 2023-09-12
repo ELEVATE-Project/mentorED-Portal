@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
 import { ToastService } from 'src/app/core/services/toast/toast.service';

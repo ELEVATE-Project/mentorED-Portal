@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { fromEvent, map, Observable, Subject, takeUntil } from 'rxjs';
 import { API_CONSTANTS } from 'src/app/core/constants/apiUrlConstants';
 import { EDIT_PROFILE_FORM } from 'src/app/core/constants/formConstant';
@@ -61,9 +61,9 @@ export class EditProfileComponent implements OnInit, CanLeave {
       let dialog = this.dialog.open(ExitPopupComponent, {
         data: {
           header: "Exit this page?",
-          label: "You have unsaved data, please save your data before closing?",
-          confirmButton: "OK",
-          cancelButton: 'CANCEL'
+          label: "You have unsaved data, please save your data before closing.",
+          confirmButton: "CANCEL",
+          cancelButton: 'OK'
         }
       })
       return dialog.afterClosed().pipe(
